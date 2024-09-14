@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export const useForm = (initialState) => {
-    const [fields, setFields] = useState(initialState);
+    const [fields, setFields] = useState(initialState)
 
     function handleChange({ target }) {
         let { value, name: field, type, checked } = target
@@ -9,16 +9,18 @@ export const useForm = (initialState) => {
         switch (type) {
             case 'number':
             case 'range':
-                value = +value;
+                value = +value
                 break
             case 'checkbox':
-                value = checked;
-                break
-            default: break;
-        }
+                value = checked
 
-        setFields((prevFields) => ({ ...prevFields, [field]: value }));
+            default: break
+        }
+        setFields((prevFields) => ({ ...prevFields, [field]: value }))
     }
 
-    return [fields, setFields, handleChange];
+
+    return [fields, setFields, handleChange]
+
+
 }
