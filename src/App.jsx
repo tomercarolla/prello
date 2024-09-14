@@ -21,7 +21,6 @@ export function App() {
                         </Router>
                     </div>
                 </div>
-
             </main>
         </div>
     )
