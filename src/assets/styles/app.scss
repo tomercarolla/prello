@@ -1,0 +1,32 @@
+#root {
+  height: 100%;
+}
+
+.surface {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+  main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    outline: none;
+  }
+
+  .container {
+    display: flex;
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+  }
+}
