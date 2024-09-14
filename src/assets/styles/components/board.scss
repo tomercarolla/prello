@@ -1,0 +1,16 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-block-end: 0;
+
+  .header {
+
+  }
+
+  .canvas {
+    position: relative;
+    margin-block-start: 12px;
+    flex: 1;
+  }
+}
