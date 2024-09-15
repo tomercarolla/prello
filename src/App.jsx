@@ -3,6 +3,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 
 import {HomePage} from './pages/HomePage'
 import {AppHeader} from "./components/AppHeader.jsx";
+import {Board} from "./components/board/Board.jsx";
 
 export function App() {
     return (
@@ -17,6 +18,7 @@ export function App() {
                         <Router>
                             <Routes>
                                 <Route path="/" element={<HomePage />}/>
+                                <Route path="/b/:id/:boardName" element={<Board />}/>
                             </Routes>
                         </Router>
                     </div>
