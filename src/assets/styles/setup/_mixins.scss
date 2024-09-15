@@ -47,11 +47,25 @@
     }
   }
   
-  // Mixin for removing hover efects on iphone screen
-  @mixin hover-supported {    
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
     @media not all and (pointer: coarse) {
         &:hover {
             @content;
         }
     }
   }
+
+@mixin text-clamp($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: $lines;
+    line-clamp: $lines;
+  }
+}
