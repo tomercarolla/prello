@@ -21,7 +21,7 @@ export const Icon = ({ name, size = '24px', ...props }) => {
     }
 
     return (
-        <StyledIcon width={size} height={size} {...props}>
+        <StyledIcon size={size} {...props}>
             <IconComponent />
         </StyledIcon>
     );
