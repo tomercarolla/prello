@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState} from "react";
 import {IconButton} from "../../ui/IconButton.jsx";
-import {StarFilled, StarOutlined} from "@ant-design/icons";
 import {Icon} from "../../ui/Icons/Icon.jsx";
 
 export function BoardHeader() {
