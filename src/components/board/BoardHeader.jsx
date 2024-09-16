@@ -38,8 +38,6 @@ export function BoardHeader() {
                     {isFavorite ? (<Icon size='16px' name="starFull" color='#FFF'/>) : (
                         <Icon size='16px' name="starEmpty" color='#FFF'/>)}
                 </IconButton>
-
-
             </div>
             <div></div>
         </section>
