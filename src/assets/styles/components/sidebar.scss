@@ -20,12 +20,8 @@
   align-items: center;
   background: transparent;
   border: none;
+  padding:0;
   color: #fff;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 30px;
-  left: 0;
   z-index: 100;
   cursor: pointer;
   transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
@@ -35,22 +31,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  margin: 0;
+  border-radius: 3px;
+  background-color: var(--surface);
+  border: 1px solid #555;
+  position: absolute;
+  top: 10px;
+  left: 0;
   border-radius: 50%;
-  background-color: #555;
 }
 
-.sidebar.expanded .expand-button {
-  left: 240px;
+.sidebar .expand-button.collapsed:hover {
+  background-color: var(--dynamic-button-hovered);
 }
 
-.sidebar .expand-button svg {
-  transition: transform 0.3s ease;
+
+.sidebar .expand-button.collapsed img {
+  rotate: 180deg;
 }
 
-.sidebar.expanded .expand-button svg {
-  transform: rotate(180deg);
-}
+
 
 .avatar {
   width: 40px;
@@ -151,6 +151,10 @@
   }
 }
 
+.icon {
+  display:flex;
+}
+
   .icon-details {
     display: none;
     padding: 0;
@@ -161,5 +165,6 @@
     display: none;
     cursor: pointer;
   }
+
 
 

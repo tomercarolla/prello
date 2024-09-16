@@ -9,6 +9,7 @@ export const IconButton = styled.button`
     justify-content: center;
     background-color: var(--dynamic-button);
     border: none;
+    border-radius: 2px;
     color: var(--dynamic-text);
     //todo - move to generic place
     transition-property: background-color, border-color, box-shadow;
@@ -29,5 +30,11 @@ export const IconButton = styled.button`
         display: flex;
         width: 22px;
         height: 22px;
+        cursor: pointer;
+    }
+
+    &.expanded {
+        width: 28px;
+        height: 28px;
     }
 `;

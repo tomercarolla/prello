@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { CalendarOutlined, CodeSandboxOutlined, EllipsisOutlined, RightOutlined, PlusOutlined, ProjectOutlined, SettingOutlined, StarOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
+import { CalendarOutlined, CodeSandboxOutlined, EllipsisOutlined, PlusOutlined, ProjectOutlined, SettingOutlined, StarOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
+
 import { IconButton } from '../ui/IconButton';
 
+import BackwardIcon from '../ui/icons/BackwardIcon.svg';
 
 
 
@@ -22,16 +24,16 @@ export function Sidebar() {
             </div>
           </Container>
         )}
-        <button
+        <IconButton
           onClick={() => setExpandedSidebar(!expandedSidebar)}
           className={`expand-button ${
             expandedSidebar ? 'expanded' : 'collapsed'
           }`}
         >
           <div className='icon'>
-            <RightOutlined />
+            <img src={BackwardIcon}/>
           </div>
-        </button>
+        </IconButton>
       </Container>
       {expandedSidebar && (
         <>
