@@ -38,6 +38,10 @@ export function BoardHeader() {
                     {isFavorite ? (<Icon size='16px' name="starFull" color='#FFF'/>) : (
                         <Icon size='16px' name="starEmpty" color='#FFF'/>)}
                 </IconButton>
+
+                <IconButton onClick={() => console.log('open workspace menu')}>
+                    <Icon size='16px' name="workspace" color='#FFF'/>
+                </IconButton>
             </div>
             <div></div>
         </section>
