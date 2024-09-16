@@ -1,0 +1,67 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-block-end: 0;
+
+  .header {
+    background-color: var(--board-header-background-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-block: 12px;
+    padding-inline: 10px 16px;
+
+    .board-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .board-name {
+      cursor: pointer;
+      //todo - move to generic place
+      transition-property: background-color, border-color, box-shadow;
+      transition-duration: 85ms;
+      transition-timing-function: ease;
+
+      &:hover {
+        background-color: var(--dynamic-button-hovered);
+        color: var(--dynamic-text);
+      }
+
+      input {
+        margin: 0;
+        border: 0;
+        color: var(--ds-text);
+        width: fit-content;
+        max-width: 200px;
+        height: 32px;
+        padding-inline: 10px;
+        background-color: var(--ds-background-input, #ffffff);
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 3px;
+        //border-radius: 5px;
+        box-shadow: inset 0 0 0 1px var(--ds-border-input, #091e4224);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 200px;
+        padding-inline: 10px;
+        color: var(--dynamic-text);
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 32px;
+
+        @include text-clamp();
+      }
+    }
+  }
+
+  .canvas {
+    position: relative;
+    margin-block-start: 12px;
+    flex: 1;
+  }
+}
