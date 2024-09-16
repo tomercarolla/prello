@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { icons } from './svg-icons/icons.js';
+import {icons} from "./svg-icons/icons.jsx";
 
 const StyledIcon = styled.div`
     height: ${({size}) => size || '24px'};
@@ -12,7 +12,7 @@ const StyledIcon = styled.div`
     }
 `;
 
-export const Icon = ({ name, size = '24px', ...props }) => {
+export function Icon({ name, size = '24px', ...props }) {
     const IconComponent = icons[name];
 
     if (!IconComponent) {
