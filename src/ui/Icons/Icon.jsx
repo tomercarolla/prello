@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { icons } from './svg-icons/icons.js';
 
-// Styled component for the SVG wrapper
 const StyledIcon = styled.div`
     width: ${({width}) => width || '24px'};
     height: ${({height}) => height || '24px'};
