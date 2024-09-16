@@ -1,0 +1,162 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  font-size: 14px;
+  color: var(--text);
+  width: 16px;
+  overflow: hidden;
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.sidebar.expanded {
+  width: 260px;
+}
+
+.sidebar .expand-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 100;
+  cursor: pointer;
+  transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar .expand-button.collapsed {
+  padding: 12px;
+  border-radius: 50%;
+  background-color: #555;
+}
+
+.sidebar.expanded .expand-button {
+  left: 240px;
+}
+
+.sidebar .expand-button svg {
+  transition: transform 0.3s ease;
+}
+
+.sidebar.expanded .expand-button svg {
+  transform: rotate(180deg);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  border-radius: 5px;
+  margin:5px;
+}
+
+.user-info {
+  display:flex;
+  flex-direction: column;
+  font-size: 14px
+}
+
+.username {
+  font-weight: 600;
+}
+
+.workspace-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px;
+}
+
+.workspace-container:hover {
+    .icon-details {
+      display: block;
+    }
+  }
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  font-size: 14px;
+  padding: 0 12px;
+  height: 32px;
+  gap: 10px;
+  width: 100%;
+}
+
+.list-item:hover {
+  background-color: #555;
+  border-radius: 2px;
+  transition: 0.3s;
+
+     .icon-details {
+        display: block;
+        cursor: pointer;
+  }
+
+     .icon-star {
+        display: block;
+        cursor: pointer;
+     }
+
+    .icon-details:hover {
+    background-color: #666;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+    .icon-star:hover {
+      cursor: pointer;
+      transition: 0.3s;
+  }
+}
+
+.icons-container {
+  display: flex;
+  gap: 10px;
+
+  .icon {
+    padding: 3px;
+  }
+
+  .icon-details:hover {
+    background-color: #555;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  .icon-plus:hover {
+    background-color: #555;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+}
+
+  .icon-details {
+    display: none;
+    cursor: pointer;
+  }
+
+  .icon-star {
+    display: none;
+    cursor: pointer;
+  }
+
+
