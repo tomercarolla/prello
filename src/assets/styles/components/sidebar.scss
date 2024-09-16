@@ -21,9 +21,8 @@
   background: transparent;
   border: none;
   padding:0;
-  color: #fff;
+  color: var(--dynamic-text);
   z-index: 100;
-  cursor: pointer;
   transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
 }
 
@@ -102,52 +101,41 @@
   height: 32px;
   gap: 10px;
   width: 100%;
+  transition: 0.3s;
 }
 
 .list-item:hover {
-  background-color: var( --ds-background-neutral-hovered);;
+  background-color: var(--ds-background-neutral-hovered);;
   border-radius: 2px;
-  transition: 0.3s;
 
      .icon-details {
         display: block;
-        cursor: pointer;
   }
 
      .icon-star {
         display: block;
-        cursor: pointer;
      }
 
     .icon-details:hover {
-    background-color: var( --ds-background-neutral-hovered);
+    background-color: var(--ds-background-neutral-hovered);
     border-radius: 2px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-    .icon-star:hover {
-      cursor: pointer;
-      transition: 0.3s;
   }
 }
 
 .icons-container {
   display: flex;
   gap: 10px;
+  transition: 0.3s;
 
 
   .icon-details:hover {
-    background-color: var( --ds-background-neutral-hovered);
+    background-color: var(--ds-background-neutral-hovered);
     border-radius: 2px;
-    transition: 0.3s;
   }
 
   .icon-plus:hover {
-    background-color: var( --ds-background-neutral-hovered);
+    background-color: var(--ds-background-neutral-hovered);
     border-radius: 2px;
-    cursor: pointer;
-    transition: 0.3s;
   }
 }
 
@@ -158,12 +146,10 @@
 .icon-details {
   display: none;
   padding: 0;
-  cursor: pointer;
 }
 
 .icon-star {
   display: none;
-  cursor: pointer;
 }
 
 
