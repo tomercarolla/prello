@@ -2,12 +2,12 @@ import {Routes, Route} from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 import {HomePage} from './pages/HomePage'
-import {AppHeader} from "./components/AppHeader.jsx";
+import {Header} from "./components/Header.jsx";
 
 export function App() {
     return (
         <div className='surface'>
-            <AppHeader />
+            <Header />
 
             <main>
                 <div className="container">
