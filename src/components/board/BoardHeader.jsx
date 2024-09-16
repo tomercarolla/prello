@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {IconButton} from "../../ui/IconButton.jsx";
-import {Icon} from "../../ui/Icons/Icon.jsx";
+import {Icon, IconButton} from "@ui";
 
 export function BoardHeader() {
     const [boardName, setBoardName] = useState('Basic Board');
