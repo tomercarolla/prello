@@ -24,7 +24,7 @@
   width: 16px;
   height: 16px;
   position: absolute;
-  top: 50px;
+  top: 30px;
   left: 0;
   z-index: 100;
   cursor: pointer;
@@ -32,6 +32,9 @@
 }
 
 .sidebar .expand-button.collapsed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px;
   border-radius: 50%;
   background-color: #555;
@@ -73,19 +76,21 @@
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  padding: 4px;
+  padding:8px;
 }
 
 .workspace-container:hover {
-    .icon-details {
-      display: block;
-    }
+  
+  .icon-details {
+    display: block;
+    padding: 4px;
   }
+
+}
 
 .list-container {
   display: flex;
   flex-direction: column;
-
 }
 
 .list-item {
@@ -131,9 +136,6 @@
   display: flex;
   gap: 10px;
 
-  .icon {
-    padding: 3px;
-  }
 
   .icon-details:hover {
     background-color: #555;
@@ -151,6 +153,7 @@
 
   .icon-details {
     display: none;
+    padding: 0;
     cursor: pointer;
   }
 

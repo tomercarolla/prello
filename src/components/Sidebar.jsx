@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { CalendarOutlined, CodeSandboxOutlined, EllipsisOutlined, RightOutlined, PlusOutlined, ProjectOutlined, SettingOutlined, StarOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
+import { IconButton } from '../ui/IconButton';
 
 
 
 
 export function Sidebar() {
-  const [expandedSidebar, setExpandedSidebar] = useState(false);
+  const [expandedSidebar, setExpandedSidebar] = useState(true);
 
   return (
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
@@ -23,7 +24,9 @@ export function Sidebar() {
         )}
         <button
           onClick={() => setExpandedSidebar(!expandedSidebar)}
-          className={`expand-button ${expandedSidebar ? 'expanded' : 'collapsed'}`}
+          className={`expand-button ${
+            expandedSidebar ? 'expanded' : 'collapsed'
+          }`}
         >
           <div className='icon'>
             <RightOutlined />
@@ -56,12 +59,12 @@ export function Sidebar() {
               <div className='workspace-container'>
                 <span>Workspace views</span>
                 <div className='icons-container'>
-                  <div className='icon icon-details'>
+                  <IconButton className='icon icon-details small'>
                     <EllipsisOutlined />
-                  </div>
-                  <div className='icon icon-plus'>
+                  </IconButton>
+                  <IconButton className='icon plus'>
                     <PlusOutlined />
-                  </div>
+                  </IconButton>
                 </div>
               </div>
               <List>
@@ -71,9 +74,9 @@ export function Sidebar() {
                       <TableOutlined />
                     </div>
                     <LinkStyled to='/'>Tabel</LinkStyled>
-                    <div className='icon-details'>
+                    <IconButton className='icon-details small'>
                       <EllipsisOutlined />
-                    </div>
+                    </IconButton>
                   </li>
 
                   <li className='list-item'>
@@ -82,9 +85,9 @@ export function Sidebar() {
                     </div>
                     <LinkStyled to='/'>Calendar</LinkStyled>
                     <div>
-                      <div className='icon-details'>
+                      <IconButton className='icon-details small'>
                         <EllipsisOutlined />
-                      </div>
+                      </IconButton>
                     </div>
                   </li>
                 </div>
@@ -97,12 +100,12 @@ export function Sidebar() {
               <div className='workspace-container'>
                 <span>Your Boards</span>
                 <div className='icons-container'>
-                  <div className='icon icon-details'>
+                  <IconButton className='icon icon-details small'>
                     <EllipsisOutlined />
-                  </div>
-                  <div className='icon icon-plus'>
+                  </IconButton>
+                  <IconButton className='icon plus'>
                     <PlusOutlined />
-                  </div>
+                  </IconButton>
                 </div>
               </div>
               <List>
@@ -113,9 +116,9 @@ export function Sidebar() {
                     </div>
                     <LinkStyled to='/'>Yonatan's Board</LinkStyled>
                     <div className='icons-container'>
-                      <div className='icon-details'>
+                      <IconButton className='icon-details small'>
                         <EllipsisOutlined />
-                      </div>
+                      </IconButton>
                       <div className='icon-star'>
                         <StarOutlined />
                       </div>
