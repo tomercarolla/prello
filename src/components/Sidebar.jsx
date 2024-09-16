@@ -160,7 +160,7 @@ const StyledLink = styled(NavLink)`
 
   &:hover {
     text-decoration: none; 
-    background-color: #555;
+    background-color: var( --ds-background-neutral-hovered);
     border-radius: 2px;
     transition: 0.3s;
 `;

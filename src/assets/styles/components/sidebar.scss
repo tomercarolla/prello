@@ -34,7 +34,7 @@
   margin: 0;
   border-radius: 3px;
   background-color: var(--surface);
-  border: 1px solid #555;
+  border: 1px solid var(--border);
   position: absolute;
   top: 10px;
   left: 0;
@@ -105,7 +105,7 @@
 }
 
 .list-item:hover {
-  background-color: #555;
+  background-color: var( --ds-background-neutral-hovered);;
   border-radius: 2px;
   transition: 0.3s;
 
@@ -120,7 +120,7 @@
      }
 
     .icon-details:hover {
-    background-color: #666;
+    background-color: var( --ds-background-neutral-hovered);
     border-radius: 2px;
     cursor: pointer;
     transition: 0.3s;
@@ -138,13 +138,13 @@
 
 
   .icon-details:hover {
-    background-color: #555;
+    background-color: var( --ds-background-neutral-hovered);
     border-radius: 2px;
     transition: 0.3s;
   }
 
   .icon-plus:hover {
-    background-color: #555;
+    background-color: var( --ds-background-neutral-hovered);
     border-radius: 2px;
     cursor: pointer;
     transition: 0.3s;
@@ -155,16 +155,16 @@
   display:flex;
 }
 
-  .icon-details {
-    display: none;
-    padding: 0;
-    cursor: pointer;
-  }
+.icon-details {
+  display: none;
+  padding: 0;
+  cursor: pointer;
+}
 
-  .icon-star {
-    display: none;
-    cursor: pointer;
-  }
+.icon-star {
+  display: none;
+  cursor: pointer;
+}
 
 
 
