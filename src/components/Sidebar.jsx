@@ -5,7 +5,7 @@ import { CalendarOutlined, CodeSandboxOutlined, EllipsisOutlined, PlusOutlined, 
 
 import { IconButton } from '../ui/IconButton';
 
-import BackwardIcon from '../ui/icons/BackwardIcon.svg';
+import { Expanded } from 'ui/icons/svg-icons/Expanded';
 
 
 
@@ -15,7 +15,6 @@ export function Sidebar() {
   return (
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
       <Container>
-        {expandedSidebar && (
           <Container $justifyContent='flex-start'>
             <div className='avatar'></div>
             <div className='user-info'>
@@ -23,7 +22,7 @@ export function Sidebar() {
               <span className='user-status'>Premium</span>
             </div>
           </Container>
-        )}
+
         <IconButton
           onClick={() => setExpandedSidebar(!expandedSidebar)}
           className={`expand-button ${
@@ -31,7 +30,7 @@ export function Sidebar() {
           }`}
         >
           <div className='icon'>
-            <img src={BackwardIcon}/>
+            <Expanded />
           </div>
         </IconButton>
       </Container>
