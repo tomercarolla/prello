@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {IconButton} from "../../ui/IconButton.jsx";
 import {StarFilled, StarOutlined} from "@ant-design/icons";
+import {Icon} from "../../ui/Icons/Icon.jsx";
 
 export function BoardHeader() {
     const [boardName, setBoardName] = useState('Basic Board');
@@ -34,8 +35,11 @@ export function BoardHeader() {
                 </div>
 
                 <IconButton onClick={() => setIsFavorite(prev => !prev)}>
-                    {isFavorite ? (<StarFilled />) : (<StarOutlined />)}
+                    {isFavorite ? (<Icon size='16px' name="starFull" color='#FFF'/>) : (
+                        <Icon size='16px' name="starEmpty" color='#FFF'/>)}
                 </IconButton>
+
+
             </div>
             <div></div>
         </section>

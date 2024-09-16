@@ -1,6 +1,8 @@
-import {Star} from "./Star.jsx";
+import {StarEmpty} from "./StarEmpty.jsx";
+import {StarFull} from "./StarFull.jsx";
 
 export const icons = {
-    star: Star,
+    starEmpty: StarEmpty,
+    starFull: StarFull,
     // Add more icons here...
 }
