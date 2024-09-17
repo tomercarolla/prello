@@ -14,7 +14,7 @@ export function BoardCard({title}) {
                     <h2>{title}</h2>
                 </div>
 
-                <IconButton radius='8px' onClick={() => setIsCollapsed(prev => !prev)}>
+                <IconButton color='var(--ds-icon-subtle)' radius='8px' onClick={() => setIsCollapsed(prev => !prev)}>
                     {isCollapsed ? (
                         <Icon name='expand'/>
                     ) : (
@@ -28,7 +28,7 @@ export function BoardCard({title}) {
                         3
                     </div>
                 ) : (
-                    <IconButton radius='8px'>
+                    <IconButton color='var(--ds-icon-subtle)' radius='8px'>
                         <Icon size='16px' name='menuHorizontal' />
                     </IconButton>
                 )}
