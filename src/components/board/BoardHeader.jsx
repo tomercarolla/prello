@@ -1,7 +1,9 @@
 import {useEffect, useRef, useState} from "react";
 import {ButtonLink, Icon, IconButton} from "@ui";
+import {useTranslation} from "react-i18next";
 
 export function BoardHeader() {
+    const { t } = useTranslation();
     const [boardName, setBoardName] = useState('Basic Board');
     const [showInput, setShowInput] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
@@ -43,12 +45,12 @@ export function BoardHeader() {
 
                 <ButtonLink className='active' onClick={() => console.log('board view')}>
                     <Icon size='16px' name="list" />
-                    <span>Board</span>
+                    <span>{t('BOARD')}</span>
                 </ButtonLink>
 
                 <ButtonLink onClick={() => console.log('table view')}>
                     <Icon size='16px' name="table" />
-                    <span>Table</span>
+                    <span>{t('TABLE')}</span>
                 </ButtonLink>
 
                 <IconButton onClick={() => console.log('view menu')}>
@@ -67,7 +69,7 @@ export function BoardHeader() {
 
                 <ButtonLink onClick={() => console.log('filter menu')}>
                     <Icon size='16px' name="filter" />
-                    <span>Filters</span>
+                    <span>{t('FILTERS')}</span>
                 </ButtonLink>
             </div>
         </section>
