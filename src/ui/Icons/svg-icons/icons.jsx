@@ -7,6 +7,9 @@ import {ChevronDown} from "./ChevronDown.jsx";
 import {Rocket} from "./Rocket.jsx";
 import {Flash} from "./Flash.jsx";
 import {Filter} from "./Filter.jsx";
+import {Collapse} from "./Collapse.jsx";
+import {Expand} from "./Expand.jsx";
+import {MenuHorizontal} from "./MenuHorizontal.jsx";
 
 export const icons = {
     starEmpty: StarEmpty,
@@ -18,5 +21,8 @@ export const icons = {
     rocket: Rocket,
     flash: Flash,
     filter: Filter,
+    collapse: Collapse,
+    expand: Expand,
+    menuHorizontal: MenuHorizontal,
     // Add more icons here...
 }

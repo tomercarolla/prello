@@ -66,5 +66,65 @@
     position: relative;
     margin-block-start: 12px;
     flex: 1;
+
+    .board-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-self: start;
+      justify-content: space-between;
+      width: 272px;
+      max-height: 100%;
+      padding: 8px;
+      border-radius: 12px;
+      background-color: var(--tr-background-list);
+      box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
+      color: var(--ds-text-subtle, #44546f);
+
+      &.collapsed {
+        width: auto;
+        padding: 8px 4px 16px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--ds-background-neutral-hovered, #091e4224);
+          color: var(--ds-icon, #44546f);
+
+          button {
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+
+        .top {
+          writing-mode: vertical-lr;
+        }
+
+        .name {
+          order: 1;
+        }
+
+        .counter {
+          order: 2;
+          font-size: 14px;
+        }
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .name {
+        flex: 1;
+
+        h2 {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
   }
 }

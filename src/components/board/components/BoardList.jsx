@@ -1,11 +1,18 @@
 import styled from "styled-components";
+import {BoardCard} from "./BoardCard.jsx";
 
 export function BoardList() {
     return (
         <List>
-            <li>To-Do</li>
-            <li>In progress</li>
-            <li>Done</li>
+            <li>
+                <BoardCard title='To do'/>
+            </li>
+            <li>
+                <BoardCard title='Doing'/>
+            </li>
+            <li>
+                <BoardCard title='Done'/>
+            </li>
         </List>
     )
 }
@@ -15,7 +22,7 @@ const List = styled.ol`
     list-style: none;
     position: absolute;
     display: flex;
-    gap: 12px;
+    gap: 6px;
     inset: 0;
     overflow-x: auto;
     overflow-y: hidden;
@@ -27,8 +34,4 @@ const List = styled.ol`
     //todo - move scroll desgin to setup.scss
     //scrollbar-color: #fff6 #00000026;
     //scrollbar-width: auto;
-    
-    li {
-        
-    }
 `;
