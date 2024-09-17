@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {Icon, IconButton} from "@ui";
+import {ButtonLink, Icon, IconButton} from "@ui";
 
 export function BoardHeader() {
     const [boardName, setBoardName] = useState('Basic Board');
@@ -40,8 +40,36 @@ export function BoardHeader() {
                 <IconButton onClick={() => console.log('open workspace menu')}>
                     <Icon size='16px' name="workspace" color='#FFF'/>
                 </IconButton>
+
+                <ButtonLink className='active' onClick={() => console.log('board view')}>
+                    <Icon size='16px' name="list" />
+                    <span>Board</span>
+                </ButtonLink>
+
+                <ButtonLink onClick={() => console.log('table view')}>
+                    <Icon size='16px' name="table" />
+                    <span>Table</span>
+                </ButtonLink>
+
+                <IconButton onClick={() => console.log('view menu')}>
+                    <Icon size='16px' name="chevronDown" color='#FFF'/>
+                </IconButton>
             </div>
-            <div></div>
+
+            <div className='board-actions'>
+                <IconButton onClick={() => console.log('power ups menu')}>
+                    <Icon size='16px' name="rocket" color='#FFF'/>
+                </IconButton>
+
+                <IconButton onClick={() => console.log('power ups menu')}>
+                    <Icon size='16px' name="flash" color='#FFF'/>
+                </IconButton>
+
+                <ButtonLink onClick={() => console.log('filter menu')}>
+                    <Icon size='16px' name="filter" />
+                    <span>Filters</span>
+                </ButtonLink>
+            </div>
         </section>
     )
 }

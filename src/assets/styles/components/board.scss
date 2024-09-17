@@ -8,13 +8,16 @@
     background-color: var(--board-header-background-color);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 4px;
     padding-block: 12px;
     padding-inline: 10px 16px;
 
-    .board-info {
+    .board-info,
+    .board-actions {
       display: flex;
       align-items: center;
+      gap: 4px;
     }
 
     .board-name {
