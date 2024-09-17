@@ -34,4 +34,10 @@ const List = styled.ol`
     //todo - move scroll desgin to setup.scss
     //scrollbar-color: #fff6 #00000026;
     //scrollbar-width: auto;
+    
+    li {
+        background-color: var(--tr-background-list);
+        height: fit-content;
+        border-radius: 12px;
+    }
 `;

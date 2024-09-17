@@ -6,7 +6,7 @@ export function BoardCard({title}) {
     return (
         <div className={`board-card ${isCollapsed ? 'collapsed' : ''}`} onClick={() => {
             if (isCollapsed) {
-                setIsCollapsed(prev => !prev)
+                setIsCollapsed(false)
             }
         }}>
             <div className="top">
@@ -14,7 +14,7 @@ export function BoardCard({title}) {
                     <h2>{title}</h2>
                 </div>
 
-                <IconButton color='var(--ds-icon-subtle)' radius='8px' onClick={() => setIsCollapsed(prev => !prev)}>
+                <IconButton color='var(--ds-icon-subtle)' radius='8px' onClick={() => setIsCollapsed(true)}>
                     {isCollapsed ? (
                         <Icon name='expand'/>
                     ) : (
@@ -29,7 +29,7 @@ export function BoardCard({title}) {
                     </div>
                 ) : (
                     <IconButton color='var(--ds-icon-subtle)' radius='8px'>
-                        <Icon size='16px' name='menuHorizontal' />
+                        <Icon size='16px' name='menuHorizontal'/>
                     </IconButton>
                 )}
             </div>
