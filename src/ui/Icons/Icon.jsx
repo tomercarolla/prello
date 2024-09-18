@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import {icons} from "./svg-icons/icons.jsx";
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.i`
     height: ${({size}) => size || '24px'};
+    min-width: ${({size}) => size || '24px'};
     aspect-ratio: 1;
     color: ${({color}) => color || 'currentColor'};
 

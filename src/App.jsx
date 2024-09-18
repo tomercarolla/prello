@@ -7,7 +7,7 @@ import {Board} from "./components/board/Board.jsx";
 
 export function App() {
     return (
-        <div className='surface'>
+        <div className='surface' style={{backgroundColor: 'rgb(75, 191, 107)'}}>
             <AppHeader />
 
             <main>

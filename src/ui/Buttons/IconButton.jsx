@@ -8,8 +8,8 @@ export const IconButton = styled.button`
     align-items: center;
     justify-content: center;
     background-color: var(--dynamic-button);
-    border-radius: 3px;
-    color: var(--dynamic-text);
+    border-radius: ${({radius}) => radius || '3px'};
+    color: ${({color}) => color || 'var(--dynamic-text)'};
     //todo - move to generic place
     transition-property: background-color, border-color, box-shadow;
     transition-duration: 85ms;
