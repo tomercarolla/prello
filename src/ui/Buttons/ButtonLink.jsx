@@ -14,7 +14,6 @@ export const ButtonLink = styled.a`
     color: var(--dynamic-text);
     font-size: 14px;
     font-weight: 500;
-    //todo - move to generic place
     transition-property: background-color, border-color, box-shadow;
     transition-duration: 85ms;
     transition-timing-function: ease;
