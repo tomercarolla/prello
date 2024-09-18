@@ -15,7 +15,7 @@ export const Button = styled.button`
     font-size: 14px;
     font-weight: 500;
     background-color: var(--fill, var(--ds-background-brand-bold));
-    color: ${({color}) => color || 'var(--text)'};
+    color: var(--text, var(--ds-text-inverse));
     border-radius: ${({radius}) => radius || '3px'};
 
     height: ${({size}) => {
