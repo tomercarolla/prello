@@ -7,11 +7,28 @@
     --board-header-background-color: #0000003d;
     --dynamic-text: #FFFFFF;
     --dynamic-button: transparent;
-    --dynamic-button-highlighted-hovered: #FFFFFF;
-    --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
     --ds-background-input: #22272B;
     --ds-border-input: #738496;
     --ds-text: #B6C2CF;
+
+    //Buttons
+    --ds-background-brand-bold: #579DFF;
+    --ds-background-brand-bold-hovered: #85B8FF;
+    --dynamic-button-highlighted: #DCDFE4;
+    --dynamic-button-highlighted-hovered: #FFFFFF;
+    --dynamic-button-highlighted-text: #172B4D;
+    --ds-background-neutral: #A1BDD914;
+    --ds-background-neutral-hovered: #A6C5E229;
+    --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
+
+    //Fonts
+    --ds-text-inverse: #1D2125;
+    --ds-text-subtle: #9FADBC;
+
+    //Board Card
+    --tr-background-list: #101204;
+    --ds-icon: #9FADBC;
+    --ds-icon-subtle: #8C9BAB;
 
     // Breakpoints
     --mobile-breakpoint: 460px;

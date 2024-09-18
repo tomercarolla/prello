@@ -8,13 +8,16 @@
     background-color: var(--board-header-background-color);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 4px;
     padding-block: 12px;
     padding-inline: 10px 16px;
 
-    .board-info {
+    .board-info,
+    .board-actions {
       display: flex;
       align-items: center;
+      gap: 4px;
     }
 
     .board-name {
@@ -63,5 +66,69 @@
     position: relative;
     margin-block-start: 12px;
     flex: 1;
+
+    .board-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-self: start;
+      justify-content: space-between;
+      width: 272px;
+      max-height: 100%;
+      padding: 8px;
+      border-radius: 12px;
+      background-color: var(--tr-background-list);
+      box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
+      color: var(--ds-text-subtle, #44546f);
+
+      &.collapsed {
+        width: auto;
+        padding: 8px 4px 16px;
+        cursor: pointer;
+
+        &:hover {
+
+          background-color: var(--ds-background-neutral-hovered, rgba(166, 197, 226, 0.16));
+          color: var(--ds-icon, #44546f);
+
+          button {
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+
+        .top {
+          writing-mode: vertical-lr;
+        }
+
+        .name {
+          order: 1;
+          padding: 4px;
+        }
+
+        .counter {
+          order: 2;
+          font-size: 14px;
+        }
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .name {
+        flex: 1;
+        padding-block: 6px;
+        padding-inline: 8px 12px;
+
+        h2 {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
