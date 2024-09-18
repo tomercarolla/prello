@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { CalendarOutlined, CodeSandboxOutlined, ProjectOutlined, SettingOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
 
-import { IconButton } from '../ui/Buttons/IconButton';
+import { Button } from '../ui/Buttons/IconButton';
 
 import { Icon } from 'ui/icons/Icon';
 
@@ -59,13 +59,13 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Workspace views</span>
             <div className='icons-container'>
-              <IconButton className='details'>
+              <Button className='details'>
                 <Icon name='details' size='16px' />
-              </IconButton>
+              </Button>
 
-              <IconButton className='plus'>
+              <Button className='plus'>
                 <Icon name='plus' size='16px' />
-              </IconButton>
+              </Button>
             </div>
           </div>
 
@@ -79,9 +79,9 @@ export function Sidebar() {
                   <span style={{ fontStyle: 'italic' }}>Tabel</span>
                 </div>
                 <div className='icons-container'>
-                  <IconButton className='details'>
+                  <Button className='details'>
                     <Icon name='details' size='14px' />
-                  </IconButton>
+                  </Button>
                 </div>
               </StyledLink>
             </li>
@@ -95,9 +95,9 @@ export function Sidebar() {
                   <span style={{ fontStyle: 'italic' }}>Calendar</span>
                 </div>
                 <div className='icons-container'>
-                  <IconButton className='details'>
+                  <Button className='details'>
                     <Icon name='details' size='14px' />
-                  </IconButton>
+                  </Button>
                 </div>
               </StyledLink>
             </li>
@@ -106,12 +106,12 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Your Boards</span>
             <div className='icons-container'>
-              <IconButton className='details'>
+              <Button className='details'>
                 <Icon name='details' size='16px' />
-              </IconButton>
-              <IconButton className='plus'>
+              </Button>
+              <Button className='plus'>
                 <Icon name='plus' size='16px' />
-              </IconButton>
+              </Button>
             </div>
           </div>
 
@@ -125,12 +125,12 @@ export function Sidebar() {
                   <span>Yonatan's Board</span>
                 </div>
                 <div className='icons-container'>
-                  <IconButton className='details'>
+                  <Button className='details'>
                     <Icon name='details' size='16px' />
-                  </IconButton>
-                  <IconButton className='star'>
+                  </Button>
+                  <Button className='star'>
                     <Icon name='starEmpty' size='16px' />
-                  </IconButton>
+                  </Button>
                 </div>
               </StyledLink>
             </li>

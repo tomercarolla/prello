@@ -1,9 +1,9 @@
 import {useEffect, useRef, useState} from "react";
-import {ButtonLink, Icon, IconButton} from "@ui";
+import {Button, ButtonLink, Icon} from "@ui";
 import {useTranslation} from "react-i18next";
 
 export function BoardHeader() {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const [boardName, setBoardName] = useState('Basic Board');
     const [showInput, setShowInput] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
@@ -34,41 +34,41 @@ export function BoardHeader() {
                     )}
                 </div>
 
-                <IconButton onClick={() => setIsFavorite(prev => !prev)}>
-                    {isFavorite ? (<Icon size='16px' name="starFull" color='#FFF'/>) : (
-                        <Icon size='16px' name="starEmpty" color='#FFF'/>)}
-                </IconButton>
+                <Button scale='dynamic' size='lg' onClick={() => setIsFavorite(prev => !prev)}>
+                    {isFavorite ? (<Icon size='16px' name="starFull"/>) : (
+                        <Icon size='16px' name="starEmpty"/>)}
+                </Button>
 
-                <IconButton onClick={() => console.log('open workspace menu')}>
-                    <Icon size='16px' name="workspace" color='#FFF'/>
-                </IconButton>
+                <Button scale='dynamic' size='lg' onClick={() => console.log('open workspace menu')}>
+                    <Icon size='16px' name="workspace"/>
+                </Button>
 
-                <ButtonLink className='active' onClick={() => console.log('board view')}>
-                    <Icon size='16px' name="list" />
+                <Button scale='dynamic' size='lg' className='active' onClick={() => console.log('board view')}>
+                    <Icon size='16px' name="list"/>
                     <span>{t('BOARD')}</span>
-                </ButtonLink>
+                </Button>
 
-                <ButtonLink onClick={() => console.log('table view')}>
-                    <Icon size='16px' name="table" />
+                <Button scale='white' onClick={() => console.log('table view')}>
+                    <Icon size='16px' name="table"/>
                     <span>{t('TABLE')}</span>
-                </ButtonLink>
+                </Button>
 
-                <IconButton onClick={() => console.log('view menu')}>
-                    <Icon size='16px' name="chevronDown" color='#FFF'/>
-                </IconButton>
+                <Button scale='dynamic' size='lg' onClick={() => console.log('view menu')}>
+                    <Icon size='16px' name="chevronDown"/>
+                </Button>
             </div>
 
             <div className='board-actions'>
-                <IconButton onClick={() => console.log('power ups menu')}>
-                    <Icon size='16px' name="rocket" color='#FFF'/>
-                </IconButton>
+                <Button scale='dynamic' onClick={() => console.log('power ups menu')}>
+                    <Icon size='16px' name="rocket"/>
+                </Button>
 
-                <IconButton onClick={() => console.log('power ups menu')}>
-                    <Icon size='16px' name="flash" color='#FFF'/>
-                </IconButton>
+                <Button scale='dynamic' onClick={() => console.log('power ups menu')}>
+                    <Icon size='16px' name="flash"/>
+                </Button>
 
                 <ButtonLink onClick={() => console.log('filter menu')}>
-                    <Icon size='16px' name="filter" />
+                    <Icon size='16px' name="filter"/>
                     <span>{t('FILTERS')}</span>
                 </ButtonLink>
             </div>
