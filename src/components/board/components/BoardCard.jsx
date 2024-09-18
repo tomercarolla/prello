@@ -1,4 +1,4 @@
-import {Icon, IconButton} from "@ui";
+import {Button, Icon} from "@ui";
 import {useState} from "react";
 
 export function BoardCard({title}) {
@@ -14,13 +14,13 @@ export function BoardCard({title}) {
                     <h2>{title}</h2>
                 </div>
 
-                <IconButton color='var(--ds-icon-subtle)' radius='8px' onClick={() => setIsCollapsed(true)}>
+                <Button scale='ghost' radius='8px' onClick={() => setIsCollapsed(true)}>
                     {isCollapsed ? (
                         <Icon name='expand'/>
                     ) : (
                         <Icon name='collapse'/>
                     )}
-                </IconButton>
+                </Button>
 
                 {/*todo replace to icon*/}
                 {isCollapsed ? (
@@ -28,9 +28,9 @@ export function BoardCard({title}) {
                         3
                     </div>
                 ) : (
-                    <IconButton color='var(--ds-icon-subtle)' radius='8px'>
+                    <Button scale='ghost' radius='8px'>
                         <Icon size='16px' name='menuHorizontal'/>
-                    </IconButton>
+                    </Button>
                 )}
             </div>
         </div>
