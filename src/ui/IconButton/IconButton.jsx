@@ -20,4 +20,8 @@ export const IconButton = styled.button`
     background-color: var(--dynamic-button-hovered);
     padding: 2px;
   }
+
+  &.plus .details .star {
+    background-color: var(--dynamic-text)
+  }
 `;
