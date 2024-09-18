@@ -15,14 +15,14 @@
   display: flex;
   padding-left: 20px;
   align-items: center;
+  min-width: 50vw;
 }
 
 .header-right-side {
   display: flex;
-  padding-right: 20px;
   align-items: center;
   justify-content: space-between;
-  gap: 12px
+  gap: 12px;
 }
 
 .logo {
@@ -31,9 +31,24 @@
   opacity: 0.85;
 }
 
+
+.drop-down-buttons-container {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+
 .drop-down-button {
-  margin: 10px;
   opacity: 0.85;
+  height: 30px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-down-button:hover{
+  filter: brightness(1.2);
 }
 
 .button-create {
@@ -44,7 +59,11 @@
   height: 30px;
   margin-left: 10px;
   font-size: 12px;
-  font-weight: inherit;
+  font-weight: 550;
+}
+
+.button-create:hover{
+  filter: brightness(1.2);
 }
 
 .account-initials {
@@ -60,7 +79,7 @@
 }
 
 .information {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .notifications {
@@ -90,8 +109,8 @@
   height: 28px;
   border: none;
   outline: none;
-  flex-grow: 1; 
-  min-width: 0; 
+  flex-grow: 1;
+  min-width: 0;
   transition: width 0.1s ease;
   color: var(--text-white);
 }
@@ -99,5 +118,12 @@
 .search-icon {
   margin: 5px;
   padding-left: 2px;
-  width: 15px; 
+  width: 15px;
+}
+
+
+.arrow-down-icon {
+  font-size: 10px;
+  margin-left: 5px;
+  padding-top: 2px;
 }
