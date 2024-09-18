@@ -2,13 +2,13 @@ import {Routes, Route} from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 import {HomePage} from './pages/HomePage'
-import {AppHeader} from "./components/AppHeader.jsx";
+import {Header} from "./components/Header.jsx";
 import {Board} from "./components/board/Board.jsx";
 
 export function App() {
     return (
         <div className='surface' style={{backgroundColor: 'rgb(75, 191, 107)'}}>
-            <AppHeader />
+            <Header />
 
             <main>
                 <div className="container">
