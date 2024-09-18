@@ -8,7 +8,6 @@ export const Button = styled.button`
     justify-content: center;
     gap: 6px;
     padding-inline: 6px;
-    border-radius: ${({radius}) => radius || '3px'};
     transition-property: background-color, border-color, box-shadow;
     transition-duration: 85ms;
     transition-timing-function: ease;
@@ -17,6 +16,7 @@ export const Button = styled.button`
     font-weight: 500;
     background-color: var(--fill, var(--ds-background-brand-bold));
     color: ${({color}) => color || 'var(--text)'};
+    border-radius: ${({radius}) => radius || '3px'};
 
     height: ${({size}) => {
         switch (size) {
