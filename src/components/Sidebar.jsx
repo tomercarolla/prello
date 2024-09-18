@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { CalendarOutlined, CodeSandboxOutlined, ProjectOutlined, SettingOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
 
-import { IconButton } from '../ui/IconButton';
+import { IconButton } from '../ui/Buttons/IconButton';
 
 import { Icon } from 'ui/icons/Icon';
 
@@ -29,7 +29,10 @@ export function Sidebar() {
             expandedSidebar ? 'expanded' : 'collapsed'
           }`}
         >
-          <Icon size='28px' name='expanded' color='#fff' />
+          <Icon
+            size='28px'
+            name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
+          />
         </IconButton>
       </Container>
       {expandedSidebar && (

@@ -1,5 +1,6 @@
-import {BoardHeader} from "./BoardHeader.jsx";
-import {BoardList} from "./BoardList.jsx";
+import {BoardHeader} from "./components/BoardHeader.jsx";
+import {BoardList} from "./components/BoardList.jsx";
+
 
 export function Board() {
     return (

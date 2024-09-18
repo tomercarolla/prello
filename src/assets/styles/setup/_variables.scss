@@ -7,12 +7,18 @@
     --board-header-background-color: #0000003d;
     --dynamic-text: #FFFFFF;
     --dynamic-button: transparent;
-    --dynamic-button-highlighted-hovered: #FFFFFF;
     --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
     --ds-background-neutral-hovered:#a6c5e229;
     --ds-background-input: #22272B;
     --ds-border-input: #738496;
     --ds-text: #B6C2CF;
+
+    //Board Card
+    --tr-background-list: #101204;
+    --ds-text-subtle: #9FADBC;
+    --ds-background-neutral-hovered: #A6C5E229;
+    --ds-icon: #9FADBC;
+    --ds-icon-subtle: #8C9BAB;
 
     // Breakpoints
     --mobile-breakpoint: 460px;

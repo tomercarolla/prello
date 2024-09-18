@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { icons } from './svg-icons/icons.js';
+import {icons} from "./svg-icons/icons.jsx";
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.i`
     height: ${({size}) => size || '24px'};
+    min-width: ${({size}) => size || '24px'};
     aspect-ratio: 1;
     color: ${({color}) => color || 'currentColor'};
 
@@ -12,7 +13,7 @@ const StyledIcon = styled.div`
     }
 `;
 
-export const Icon = ({ name, size = '24px', ...props }) => {
+export function Icon({ name, size = '24px', ...props }) {
     const IconComponent = icons[name];
 
     if (!IconComponent) {

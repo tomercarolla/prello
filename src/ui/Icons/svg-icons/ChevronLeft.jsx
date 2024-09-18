@@ -1,4 +1,4 @@
-export const Expanded = (props) => (
+export const ChevronLeft = (props) => (
   <svg {...props}
     viewBox="0 0 28 28"
     fill="currentColor"
