@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { CalendarOutlined, CodeSandboxOutlined, EllipsisOutlined, PlusOutlined, ProjectOutlined, SettingOutlined, StarOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
+import { CalendarOutlined, CodeSandboxOutlined, ProjectOutlined, SettingOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
 
 import { IconButton } from '../ui/IconButton';
 
@@ -186,6 +186,5 @@ const StyledLink = styled(Link)`
   &:hover {
     background-color: var(--ds-background-neutral-hovered);
     text-decoration: none;
-    color: inherit;
   }
 `;

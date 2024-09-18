@@ -1,8 +1,6 @@
 export const Details = (props) => (
   <svg
     {...props}
-    width='24'
-    height='24'
     role='presentation'
     focusable='false'
     viewBox='0 0 24 24'

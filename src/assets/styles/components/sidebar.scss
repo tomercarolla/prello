@@ -8,60 +8,58 @@
   overflow: hidden;
   height: 100vh;
   transition: width 0.3s ease;
-}
+  
+  &.expanded {
+    width: 260px;
+  }
 
-.sidebar.expanded {
-  width: 260px;
-}
+  .expand-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--dynamic-text);
+    z-index: 100;
+    transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
 
-.sidebar .expand-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  padding:0;
-  color: var(--dynamic-text);
-  z-index: 100;
-  transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
-}
+    &.collapsed {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border-radius: 3px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      position: absolute;
+      top: 10px;
+      left: 0;
+      border-radius: 50%;
 
-.sidebar .expand-button.collapsed {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  border-radius: 3px;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  position: absolute;
-  top: 10px;
-  left: 0;
-  border-radius: 50%;
-}
+      &:hover {
+        background-color: var(--dynamic-button-hovered);
+      }
+    }
+  }
 
-.sidebar .expand-button.collapsed:hover {
-  background-color: var(--dynamic-button-hovered);
-}
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 5px;
+    margin: 5px;
+  }
 
-// ----------------- UserInfo container ----------------- //
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  background-color: #555;
-  border-radius: 5px;
-  margin:5px;
-}
-
-.user-info {
-  display:flex;
-  flex-direction: column;
-  font-size: 14px
-}
-
-.username {
-  font-weight: 600;
+    .username {
+      font-weight: 600;
+    }
+  }
 }
 
 
