@@ -9,9 +9,9 @@
 @import "basics/layout";
 @import "basics/base";
 @import "basics/forms";
-@import "./header.scss";
 
 // Views
 @import "app";
 // Components
 @import "components/board";
+@import "components/header";
