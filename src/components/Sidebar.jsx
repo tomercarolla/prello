@@ -5,7 +5,7 @@ import { CalendarOutlined, CodeSandboxOutlined, EllipsisOutlined, PlusOutlined, 
 
 import { IconButton } from '../ui/IconButton';
 
-import { Expanded } from 'ui/icons/svg-icons/Expanded';
+import { Icon } from 'ui/icons/Icon';
 
 
 
@@ -15,13 +15,13 @@ export function Sidebar() {
   return (
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
       <Container>
-          <Container $justifyContent='flex-start'>
-            <div className='avatar'></div>
-            <div className='user-info'>
-              <span className='username'>tomer test</span>
-              <span className='user-status'>Premium</span>
-            </div>
-          </Container>
+        <Container $justifyContent='flex-start'>
+          <div className='avatar'></div>
+          <div className='user-info'>
+            <span className='username'>tomer test</span>
+            <span className='user-status'>Premium</span>
+          </div>
+        </Container>
 
         <IconButton
           onClick={() => setExpandedSidebar(!expandedSidebar)}
@@ -29,9 +29,7 @@ export function Sidebar() {
             expandedSidebar ? 'expanded' : 'collapsed'
           }`}
         >
-          <div className='icon'>
-            <Expanded />
-          </div>
+          <Icon size='28px' name='expanded' color='#fff' />
         </IconButton>
       </Container>
       {expandedSidebar && (
@@ -39,96 +37,101 @@ export function Sidebar() {
           <Divider />
 
           <Container $flexDirection='column' $alignItems='flex-start'>
-            <StyledLink to='/'>
+            <StyledNavLink to='/'>
               <CodeSandboxOutlined style={{ marginRight: '8px' }} />
               Boards
-            </StyledLink>
+            </StyledNavLink>
 
-            <StyledLink to='/'>
+            <StyledNavLink to='/'>
               <UsergroupDeleteOutlined style={{ marginRight: '8px' }} />
               Members
-            </StyledLink>
+            </StyledNavLink>
 
-            <StyledLink to='/'>
+            <StyledNavLink to='/'>
               <SettingOutlined style={{ marginRight: '8px' }} />
               Workspace settings
-            </StyledLink>
+            </StyledNavLink>
           </Container>
 
-          <div>
-            <div>
-              <div className='workspace-container'>
-                <span>Workspace views</span>
-                <div className='icons-container'>
-                  <IconButton className='icon icon-details small'>
-                    <EllipsisOutlined />
-                  </IconButton>
-                  <IconButton className='icon plus'>
-                    <PlusOutlined />
-                  </IconButton>
-                </div>
-              </div>
-              <List>
-                <div className='list-container'>
-                  <li className='list-item'>
-                    <div>
-                      <TableOutlined />
-                    </div>
-                    <LinkStyled to='/'>Tabel</LinkStyled>
-                    <IconButton className='icon-details small'>
-                      <EllipsisOutlined />
-                    </IconButton>
-                  </li>
+          <div className='workspace-container'>
+            <span>Workspace views</span>
+            <div className='icons-container'>
+              <IconButton className='details'>
+                <Icon name='details' size='16px' />
+              </IconButton>
 
-                  <li className='list-item'>
-                    <div>
-                      <CalendarOutlined />
-                    </div>
-                    <LinkStyled to='/'>Calendar</LinkStyled>
-                    <div>
-                      <IconButton className='icon-details small'>
-                        <EllipsisOutlined />
-                      </IconButton>
-                    </div>
-                  </li>
-                </div>
-              </List>
+              <IconButton className='plus'>
+                <Icon name='plus' size='16px' />
+              </IconButton>
             </div>
           </div>
 
-          <div>
-            <div>
-              <div className='workspace-container'>
-                <span>Your Boards</span>
+          <List>
+            <li className='list-item'>
+              <StyledLink to='/'>
+                <div>
+                  <span style={{ marginRight: '8px' }}>
+                    <TableOutlined />
+                  </span>
+                  <span style={{ fontStyle: 'italic' }}>Tabel</span>
+                </div>
                 <div className='icons-container'>
-                  <IconButton className='icon icon-details small'>
-                    <EllipsisOutlined />
-                  </IconButton>
-                  <IconButton className='icon plus'>
-                    <PlusOutlined />
+                  <IconButton className='details'>
+                    <Icon name='details' size='14px' />
                   </IconButton>
                 </div>
-              </div>
-              <List>
-                <div className='list-container'>
-                  <li className='list-item'>
-                    <div>
-                      <ProjectOutlined />
-                    </div>
-                    <LinkStyled to='/'>Yonatan's Board</LinkStyled>
-                    <div className='icons-container'>
-                      <IconButton className='icon-details small'>
-                        <EllipsisOutlined />
-                      </IconButton>
-                      <div className='icon-star'>
-                        <StarOutlined />
-                      </div>
-                    </div>
-                  </li>
+              </StyledLink>
+            </li>
+
+            <li className='list-item'>
+              <StyledLink to='/'>
+                <div>
+                  <span style={{ marginRight: '8px' }}>
+                    <CalendarOutlined />
+                  </span>
+                  <span style={{ fontStyle: 'italic' }}>Calendar</span>
                 </div>
-              </List>
+                <div className='icons-container'>
+                  <IconButton className='details'>
+                    <Icon name='details' size='14px' />
+                  </IconButton>
+                </div>
+              </StyledLink>
+            </li>
+          </List>
+
+          <div className='workspace-container'>
+            <span>Your Boards</span>
+            <div className='icons-container'>
+              <IconButton className='details'>
+                <Icon name='details' size='16px' />
+              </IconButton>
+              <IconButton className='plus'>
+                <Icon name='plus' size='16px' />
+              </IconButton>
             </div>
           </div>
+
+          <List>
+            <li className='list-item'>
+              <StyledLink to='/'>
+                <div>
+                  <span style={{ marginRight: '8px' }}>
+                    <ProjectOutlined />
+                  </span>
+                  <span>Yonatan's Board</span>
+                </div>
+                <div className='icons-container'>
+                  <IconButton className='details'>
+                    <Icon name='details' size='16px' />
+                  </IconButton>
+                  <IconButton className='star'>
+                    <Icon name='starEmpty' size='16px' />
+                  </IconButton>
+                </div>
+              </StyledLink>
+            </li>
+          </List>
         </>
       )}
     </nav>
@@ -149,38 +152,40 @@ const Divider = styled.div`
   opacity: 0.2;
 `
 
-const StyledLink = styled(NavLink)`
+const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   padding: 6px;
+  height: 32px;
   width: 100%;
 
   &:hover {
-    text-decoration: none; 
     background-color: var( --ds-background-neutral-hovered);
-    border-radius: 2px;
-    transition: 0.3s;
+    text-decoration: none; 
 `;
 
 const List = styled.ul`
   list-style: none;
-  padding: 0;
+  padding: 5px;
   margin: 0;
+  }
 `
 
-const LinkStyled = styled(Link)`
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   text-decoration: none;
+  padding: 4px 8px;
+  height: 32px;
   color: inherit;
   width: 100%;
 
   &:hover {
-    text-decoration: none; 
+    background-color: var(--ds-background-neutral-hovered);
+    text-decoration: none;
     color: inherit;
-
-    .icon-details {
-      display: block;
-      }
   }
-`
+`;

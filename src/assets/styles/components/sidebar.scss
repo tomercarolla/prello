@@ -63,23 +63,25 @@
   font-weight: 600;
 }
 
+
+// ----------------- WORKSPACE ----------------- //
+
 .workspace-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  padding:8px;
-}
+  padding:5px;
 
-.workspace-container:hover {
-  
-  .icon-details {
-    display: block;
-    padding: 4px;
+  &:hover {
+    .details {
+      display:flex;
+       transition: 0.3s ease;
+    }
   }
-
 }
+
 
 .list-container {
   display: flex;
@@ -89,62 +91,35 @@
 .list-item {
   display: flex;
   align-items: center;
-  font-style: italic;
   font-size: 14px;
-  padding: 0 12px;
-  height: 32px;
   gap: 10px;
   width: 100%;
   transition: 0.3s;
-}
 
-.list-item:hover {
-  background-color: var(--ds-background-neutral-hovered);;
-  border-radius: 2px;
-
-     .icon-details {
-        display: block;
-  }
-
-     .icon-star {
-        display: block;
+  &:hover {
+     .details {
+      display:flex;
      }
-
-    .icon-details:hover {
-    background-color: var(--ds-background-neutral-hovered);
-    border-radius: 2px;
+     .star {
+      display:flex;
+     }
   }
 }
+
 
 .icons-container {
   display: flex;
-  gap: 10px;
-  transition: 0.3s;
 
-
-  .icon-details:hover {
-    background-color: var(--ds-background-neutral-hovered);
-    border-radius: 2px;
+  .details {
+    display:none;
+    border-radius: 3px;
   }
 
-  .icon-plus:hover {
-    background-color: var(--ds-background-neutral-hovered);
-    border-radius: 2px;
+  .star {
+    display:none;
+  }
+
+  .plus {
+    border-radius: 3px;
   }
 }
-
-.icon {
-  display:flex;
-}
-
-.icon-details {
-  display: none;
-  padding: 0;
-}
-
-.icon-star {
-  display: none;
-}
-
-
-
