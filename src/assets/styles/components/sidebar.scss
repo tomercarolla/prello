@@ -1,0 +1,113 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  font-size: 14px;
+  color: var(--text);
+  width: 16px;
+  overflow: hidden;
+  height: 100vh;
+  transition: width 0.3s ease;
+
+  &.expanded {
+    width: 260px;
+  }
+
+  .expand-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 0;
+    z-index: 100;
+    transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
+
+    &.collapsed {
+      width: 24px;
+      height: 24px;
+      margin: 0;
+      background-color: var(--ds-background-inverse-subtle);
+      border: 1px solid var(--dynamic-text-transparent);
+      position: absolute;
+      top: 10px;
+      left: 0;
+      border-radius: 50%;
+    }
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+    .username {
+      font-weight: 600;
+    }
+  }
+}
+
+
+// ----------------- WORKSPACE/Your Boards ----------------- //
+
+.workspace-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px;
+  transition: 0.3s ease;
+
+  &:hover {
+    .details {
+      display: flex;
+    }
+  }
+}
+
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  transition: 0.3s;
+
+  &:hover {
+    .details {
+      display: flex;
+    }
+
+    .star {
+      display: flex;
+    }
+  }
+}
+
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .details {
+    display: none;
+  }
+
+  .star {
+    display: none;
+  }
+}
