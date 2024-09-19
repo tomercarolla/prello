@@ -25,15 +25,14 @@ export function Sidebar() {
         </Container>
 
         <Button
-          scale='dynamic'
+          scale='ghost'
           onClick={() => setExpandedSidebar(!expandedSidebar)}
           className={`expand-button ${
-            expandedSidebar ? 'expanded' : 'collapsed'
+            expandedSidebar ? '' : 'collapsed'
           }`}
         >
           <Icon
-            color='var(--text)'
-            size='28px'
+            size={expandedSidebar ? '28px' : '26px'}
             name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
           />
         </Button>
@@ -68,12 +67,12 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Workspace views</span>
             <div className='icons-container'>
-              <Button size='sm' scale='dynamic' className='details'>
-                <Icon name='details' size='16px' color='var(--text)' />
+              <Button size='sm' scale='ghost' className='details'>
+                <Icon name='details' size='16px' />
               </Button>
 
-              <Button size='sm' scale='dynamic' className='plus'>
-                <Icon name='plus' size='16px' color='var(--text)' />
+              <Button size='sm' scale='ghost' className='plus'>
+                <Icon name='plus' size='16px' />
               </Button>
             </div>
           </div>
@@ -86,8 +85,8 @@ export function Sidebar() {
                   <span>Tabel</span>
                 </div>
                 <div className='icons-container'>
-                  <Button size='md' scale='dynamic' className='details'>
-                    <Icon name='details' size='14px' color='var(--text)' />
+                  <Button size='md' scale='ghost' className='details'>
+                    <Icon name='details' size='14px' />
                   </Button>
                 </div>
               </StyledLink>
@@ -100,7 +99,7 @@ export function Sidebar() {
                   <span>Calendar</span>
                 </div>
                 <div className='icons-container'>
-                  <Button size='md' scale='dynamic' className='details'>
+                  <Button size='md' scale='ghost' className='details'>
                     <Icon name='details' size='14px' />
                   </Button>
                 </div>
@@ -111,10 +110,10 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Your Boards</span>
             <div className='icons-container'>
-              <Button size='sm' scale='dynamic' className='details'>
+              <Button size='sm' scale='ghost' className='details'>
                 <Icon name='details' size='16px' />
               </Button>
-              <Button size='sm' scale='dynamic' className='plus'>
+              <Button size='sm' scale='ghost' className='plus'>
                 <Icon name='plus' size='16px' />
               </Button>
             </div>
@@ -130,10 +129,10 @@ export function Sidebar() {
                   <span>Yonatan's Board</span>
                 </div>
                 <div className='icons-container'>
-                  <Button size='md' scale='dynamic' className='details'>
+                  <Button size='md' scale='ghost' className='details'>
                     <Icon name='details' size='16px' />
                   </Button>
-                  <Button size='md' scale='dynamic' className='star'>
+                  <Button size='md' scale='ghost' className='star'>
                     <Icon name='starEmpty' size='16px' />
                   </Button>
                 </div>
