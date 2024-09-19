@@ -3,9 +3,10 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { CalendarOutlined, CodeSandboxOutlined, ProjectOutlined, SettingOutlined, TableOutlined, UsergroupDeleteOutlined } from '@ant-design/icons'
 
-import { Button } from '../ui/Buttons/IconButton';
+
 
 import { Icon } from 'ui/icons/Icon';
+import { Button } from '@ui';
 
 
 
@@ -23,17 +24,19 @@ export function Sidebar() {
           </div>
         </Container>
 
-        <IconButton
+        <Button
+          scale='dynamic'
           onClick={() => setExpandedSidebar(!expandedSidebar)}
           className={`expand-button ${
             expandedSidebar ? 'expanded' : 'collapsed'
           }`}
         >
           <Icon
+            color='var(--text)'
             size='28px'
             name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
           />
-        </IconButton>
+        </Button>
       </Container>
       {expandedSidebar && (
         <>
@@ -41,30 +44,36 @@ export function Sidebar() {
 
           <Container $flexDirection='column' $alignItems='flex-start'>
             <StyledNavLink to='/'>
-              <CodeSandboxOutlined style={{ marginRight: '8px' }} />
-              Boards
+              <div className='icons-container'>
+                <Icon name='board' size='16px'/>
+                Boards
+              </div>
             </StyledNavLink>
 
             <StyledNavLink to='/'>
-              <UsergroupDeleteOutlined style={{ marginRight: '8px' }} />
-              Members
+              <div className='icons-container'>
+                <Icon name='member' size='16px' />
+                Members
+              </div>
             </StyledNavLink>
 
             <StyledNavLink to='/'>
-              <SettingOutlined style={{ marginRight: '8px' }} />
+              <div className='icons-container'>
+              <Icon name='settings' size='16px' />
               Workspace settings
+              </div>
             </StyledNavLink>
           </Container>
 
           <div className='workspace-container'>
             <span>Workspace views</span>
             <div className='icons-container'>
-              <Button className='details'>
-                <Icon name='details' size='16px' />
+              <Button size='sm' scale='dynamic' className='details'>
+                <Icon name='details' size='16px' color='var(--text)' />
               </Button>
 
-              <Button className='plus'>
-                <Icon name='plus' size='16px' />
+              <Button size='sm' scale='dynamic' className='plus'>
+                <Icon name='plus' size='16px' color='var(--text)' />
               </Button>
             </div>
           </div>
@@ -72,15 +81,13 @@ export function Sidebar() {
           <List>
             <li className='list-item'>
               <StyledLink to='/'>
-                <div>
-                  <span style={{ marginRight: '8px' }}>
-                    <TableOutlined />
-                  </span>
-                  <span style={{ fontStyle: 'italic' }}>Tabel</span>
+                <div className='icons-container'>
+                  <Icon name='table' size='16px' />
+                  <span>Tabel</span>
                 </div>
                 <div className='icons-container'>
-                  <Button className='details'>
-                    <Icon name='details' size='14px' />
+                  <Button size='md' scale='dynamic' className='details'>
+                    <Icon name='details' size='14px' color='var(--text)' />
                   </Button>
                 </div>
               </StyledLink>
@@ -88,14 +95,12 @@ export function Sidebar() {
 
             <li className='list-item'>
               <StyledLink to='/'>
-                <div>
-                  <span style={{ marginRight: '8px' }}>
-                    <CalendarOutlined />
-                  </span>
-                  <span style={{ fontStyle: 'italic' }}>Calendar</span>
+                <div className='icons-container'>
+                  <Icon name='calendar' size='16px' />
+                  <span>Calendar</span>
                 </div>
                 <div className='icons-container'>
-                  <Button className='details'>
+                  <Button size='md' scale='dynamic' className='details'>
                     <Icon name='details' size='14px' />
                   </Button>
                 </div>
@@ -106,10 +111,10 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Your Boards</span>
             <div className='icons-container'>
-              <Button className='details'>
+              <Button size='sm' scale='dynamic' className='details'>
                 <Icon name='details' size='16px' />
               </Button>
-              <Button className='plus'>
+              <Button size='sm' scale='dynamic' className='plus'>
                 <Icon name='plus' size='16px' />
               </Button>
             </div>
@@ -125,10 +130,10 @@ export function Sidebar() {
                   <span>Yonatan's Board</span>
                 </div>
                 <div className='icons-container'>
-                  <Button className='details'>
+                  <Button size='md' scale='dynamic' className='details'>
                     <Icon name='details' size='16px' />
                   </Button>
-                  <Button className='star'>
+                  <Button size='md' scale='dynamic' className='star'>
                     <Icon name='starEmpty' size='16px' />
                   </Button>
                 </div>

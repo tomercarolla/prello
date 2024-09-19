@@ -8,26 +8,26 @@ import {Board} from "./components/board/Board.jsx";
 
 export function App() {
     return (
+    <Router>
         <div
           className='surface'
           style={{ backgroundColor: 'rgb(75, 191, 107)' }}
         >
           <Header />
 
-          <main>
+        <main>
             <div className='container'>
               <Sidebar />
 
               <div className='content'>
-                <Router>
                   <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/b/:id/:boardName' element={<Board />} />
                   </Routes>
-                </Router>
               </div>
             </div>
           </main>
         </div>
+    </Router>
     );
 }

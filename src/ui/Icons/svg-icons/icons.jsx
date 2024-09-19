@@ -14,6 +14,10 @@ import { Details } from "./Details.jsx";
 import { Plus } from "./Plus.jsx";
 import { ChevronLeft } from "./ChevronLeft.jsx";
 import { ChevronRight } from "./ChevronRight.jsx";
+import { Board } from "./Board.jsx";
+import { Member } from "./Member.jsx";
+import { Settings } from "./Settings.jsx";
+import { Calendar } from "./Calendar.jsx";
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -32,5 +36,9 @@ export const icons = {
   plus: Plus,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
+  board: Board,
+  member: Member,
+  settings: Settings,
+  calendar: Calendar,
   // Add more icons here...
 };
