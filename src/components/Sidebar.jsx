@@ -68,11 +68,11 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Workspace views</span>
             <div className='icons-container'>
-              <Button size='sm' scale='dynamic' className='details'>
+              <Button size='sm' scale='dynamic' className='details' onClick={() => console.log('workspace view')}>
                 <Icon name='details' size='16px' color='var(--text)' />
               </Button>
 
-              <Button size='sm' scale='dynamic' className='plus'>
+              <Button size='sm' scale='dynamic' className='plus' onClick={() => console.log('Create a view')}>
                 <Icon name='plus' size='16px' color='var(--text)' />
               </Button>
             </div>
@@ -86,7 +86,7 @@ export function Sidebar() {
                   <span>Tabel</span>
                 </div>
                 <div className='icons-container'>
-                  <Button size='md' scale='dynamic' className='details'>
+                  <Button size='md' scale='dynamic' className='details' onClick={() => console.log('Table')}>
                     <Icon name='details' size='14px' color='var(--text)' />
                   </Button>
                 </div>
@@ -100,7 +100,7 @@ export function Sidebar() {
                   <span>Calendar</span>
                 </div>
                 <div className='icons-container'>
-                  <Button size='md' scale='dynamic' className='details'>
+                  <Button size='md' scale='dynamic' className='details' onClick={() => console.log('Calendar')}>
                     <Icon name='details' size='14px' />
                   </Button>
                 </div>
@@ -111,10 +111,10 @@ export function Sidebar() {
           <div className='workspace-container'>
             <span>Your Boards</span>
             <div className='icons-container'>
-              <Button size='sm' scale='dynamic' className='details'>
+              <Button size='sm' scale='dynamic' className='details' onClick={() => console.log('Your Board')}>
                 <Icon name='details' size='16px' />
               </Button>
-              <Button size='sm' scale='dynamic' className='plus'>
+              <Button size='sm' scale='dynamic' className='plus' onClick={() => console.log('Create a board')}>
                 <Icon name='plus' size='16px' />
               </Button>
             </div>
@@ -130,10 +130,10 @@ export function Sidebar() {
                   <span>Yonatan's Board</span>
                 </div>
                 <div className='icons-container'>
-                  <Button size='md' scale='dynamic' className='details'>
+                  <Button size='md' scale='dynamic' className='details' onClick={() => console.log('Details about this board')}>
                     <Icon name='details' size='16px' />
                   </Button>
-                  <Button size='md' scale='dynamic' className='star'>
+                  <Button size='md' scale='dynamic' className='star' onClick={() => console.log('Star this board')}>
                     <Icon name='starEmpty' size='16px' />
                   </Button>
                 </div>
