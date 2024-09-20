@@ -1,16 +1,7 @@
 import {useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import styled from 'styled-components';
-import {
-    CalendarOutlined,
-    CodeSandboxOutlined,
-    ProjectOutlined,
-    SettingOutlined,
-    TableOutlined,
-    UsergroupDeleteOutlined
-} from '@ant-design/icons'
-
-
+import {ProjectOutlined,} from '@ant-design/icons'
 import {Icon} from 'ui/icons/Icon';
 import {Button} from '@ui';
 
@@ -119,10 +110,12 @@ export function Sidebar() {
                     <div className='workspace-container'>
                         <span>Your Boards</span>
                         <div className='icons-container'>
-                            <Button size='sm' scale='ghost' className='details' onClick={() => console.log('Your Board')}>
+                            <Button size='sm' scale='ghost' className='details'
+                                    onClick={() => console.log('Your Board')}>
                                 <Icon name='details' size='16px'/>
                             </Button>
-                            <Button size='sm' scale='ghost' className='plus' onClick={() => console.log('Create a board')}>
+                            <Button size='sm' scale='ghost' className='plus'
+                                    onClick={() => console.log('Create a board')}>
                                 <Icon name='plus' size='16px'/>
                             </Button>
                         </div>
@@ -132,17 +125,22 @@ export function Sidebar() {
                         <li className='list-item'>
                             <StyledLink to='/'>
                                 <div>
-                  <span style={{marginRight: '8px'}}>
-                    <ProjectOutlined/>
-                  </span>
+                                     <span style={{marginRight: '8px'}}>
+                                         <ProjectOutlined/>
+                                     </span>
                                     <span>Yonatan's Board</span>
                                 </div>
                                 <div className='icons-container'>
-                                    <Button size='md' scale='ghost' className='details'
+                                    <Button size='md'
+                                            scale='ghost'
+                                            className='details'
                                             onClick={() => console.log('Details about this board')}>
                                         <Icon name='details' size='16px'/>
                                     </Button>
-                                    <Button size='md' scale='ghost' className='star'
+
+                                    <Button size='md'
+                                            scale='ghost'
+                                            className='star'
                                             onClick={() => console.log('Star this board')}>
                                         <Icon name='starEmpty' size='16px'/>
                                     </Button>
@@ -163,12 +161,12 @@ const Container = styled.div`
     align-items: ${props => props.$alignItems || 'center'};
     width: 100%;
     padding: 5px;
-`
+`;
 
 const Divider = styled.div`
     border-top: 1px solid #999;
     opacity: 0.2;
-`
+`;
 
 const StyledNavLink = styled(NavLink)`
     display: flex;
@@ -188,8 +186,7 @@ const List = styled.ul`
     list-style: none;
     padding: 5px;
     margin: 0;
-}
-`
+`;
 
 const StyledLink = styled(Link)`
     display: flex;
