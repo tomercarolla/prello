@@ -165,12 +165,12 @@ const Container = styled.div`
     align-items: ${props => props.$alignItems || 'center'};
     width: 100%;
     padding: 5px;
-`
+`;
 
 const Divider = styled.div`
     border-top: 1px solid #999;
     opacity: 0.2;
-`
+`;
 
 const StyledNavLink = styled(NavLink)`
     display: flex;
@@ -190,8 +190,7 @@ const List = styled.ul`
     list-style: none;
     padding: 5px;
     margin: 0;
-}
-`
+`;
 
 const StyledLink = styled(Link)`
     display: flex;
