@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
+    "@radix-ui/react-popover": "^1.1.1",
     "antd": "^5.20.6",
     "axios": "^1.5.0",
+    "framer-motion": "^11.5.5",
     "i18next": "^23.15.1",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",

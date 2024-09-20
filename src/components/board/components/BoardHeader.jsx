@@ -34,43 +34,43 @@ export function BoardHeader() {
                     )}
                 </div>
 
-                <Button scale='dynamic' size='lg' onClick={() => setIsFavorite(prev => !prev)}>
+                <Button scale='dynamic' size='lg' radius='3px' onClick={() => setIsFavorite(prev => !prev)}>
                     {isFavorite ? (<Icon size='16px' name="starFull"/>) : (
                         <Icon size='16px' name="starEmpty"/>)}
                 </Button>
 
-                <Button scale='dynamic' size='lg' onClick={() => console.log('open workspace menu')}>
+                <Button scale='dynamic' size='lg' radius='3px' onClick={() => console.log('open workspace menu')}>
                     <Icon size='16px' name="workspace"/>
                 </Button>
 
-                <Button scale='dynamic' size='lg' className='active' onClick={() => console.log('board view')}>
+                <Button scale='dynamic' size='lg' radius='3px' className='active' onClick={() => console.log('board view')}>
                     <Icon size='16px' name="list"/>
                     <span>{t('BOARD')}</span>
                 </Button>
 
-                <Button scale='white' onClick={() => console.log('table view')}>
+                <Button scale='white' radius='3px' onClick={() => console.log('table view')}>
                     <Icon size='16px' name="table"/>
                     <span>{t('TABLE')}</span>
                 </Button>
 
-                <Button scale='dynamic' size='lg' onClick={() => console.log('view menu')}>
+                <Button scale='dynamic' radius='3px' size='lg' onClick={() => console.log('view menu')}>
                     <Icon size='16px' name="chevronDown"/>
                 </Button>
             </div>
 
             <div className='board-actions'>
-                <Button scale='dynamic' onClick={() => console.log('power ups menu')}>
+                <Button scale='dynamic' radius='3px' onClick={() => console.log('power ups menu')}>
                     <Icon size='16px' name="rocket"/>
                 </Button>
 
-                <Button scale='dynamic' onClick={() => console.log('power ups menu')}>
+                <Button scale='dynamic' radius='3px' onClick={() => console.log('power ups menu')}>
                     <Icon size='16px' name="flash"/>
                 </Button>
 
-                <ButtonLink onClick={() => console.log('filter menu')}>
+                <Button scale='dynamic' radius='3px' onClick={() => console.log('filter menu')}>
                     <Icon size='16px' name="filter"/>
                     <span>{t('FILTERS')}</span>
-                </ButtonLink>
+                </Button>
             </div>
         </section>
     )
