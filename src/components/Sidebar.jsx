@@ -3,7 +3,7 @@ import {Link, NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import {ProjectOutlined,} from '@ant-design/icons'
 import {Icon} from 'ui/icons/Icon';
-import {Button} from '@ui';
+import {Button, Menu} from '@ui';
 
 
 export function Sidebar() {
@@ -68,10 +68,27 @@ export function Sidebar() {
                                 <Icon name='details' size='16px'/>
                             </Button>
 
-                            <Button size='sm' scale='ghost' className='plus'
-                                    onClick={() => console.log('Create a view')}>
-                                <Icon name='plus' size='16px'/>
-                            </Button>
+                            <Menu
+                                title='List actions'
+                                trigger={
+                                    <Button size='sm' scale='ghost' className='plus'
+                                            onClick={() => console.log('Create a view')}>
+                                        <Icon name='plus' size='16px'/>
+                                    </Button>
+                                }
+                            >
+                                <div>
+                                    <Button fullwidth='true' scale='ghost'
+                                            onClick={() => console.log('clicked')}
+                                    >
+                                        Click me
+                                    </Button>
+
+                                    <Button as='a' scale='ghost'>
+                                        Im a link
+                                    </Button>
+                                </div>
+                            </Menu>
                         </div>
                     </div>
 
@@ -128,7 +145,7 @@ export function Sidebar() {
                                      <span style={{marginRight: '8px'}}>
                                          <ProjectOutlined/>
                                      </span>
-                                    <span>Yonatan's Board</span>
+                                    <span>Yonatans Board</span>
                                 </div>
                                 <div className='icons-container'>
                                     <Button size='md'

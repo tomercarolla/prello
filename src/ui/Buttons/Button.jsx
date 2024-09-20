@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Button = styled.button`
     all: unset;
+    box-sizing: border-box;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 6px;
     padding-inline: 6px;
     transition-property: background-color, border-color, box-shadow;
@@ -16,7 +16,7 @@ export const Button = styled.button`
     font-weight: 500;
     background-color: var(--fill, var(--ds-background-brand-bold));
     color: var(--text, var(--ds-text-inverse));
-    border-radius: ${({radius}) => radius || '3px'};
+    border-radius: ${({radius}) => radius || '0'};
 
     height: ${({size}) => {
         switch (size) {
@@ -60,7 +60,11 @@ export const Button = styled.button`
         }
     }};
 
+    width: ${({fullwidth, as}) => fullwidth && as !== 'a' ? '100%' : 'fit-content'};
+
     &:hover {
+        text-decoration: none;
+        
         --fill: ${({scale}) => {
             switch (scale) {
                 case 'brand':
@@ -78,7 +82,12 @@ export const Button = styled.button`
     }
 
     &:has(> i:only-child) {
+        justify-content: center;
         aspect-ratio: 1/1;
         padding-inline: 0;
+    }
+
+    i {
+        display: flex;
     }
 `;
