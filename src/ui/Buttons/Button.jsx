@@ -6,6 +6,7 @@ export const Button = styled.button`
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     padding-inline: 6px;
     transition-property: background-color, border-color, box-shadow;
@@ -16,9 +17,9 @@ export const Button = styled.button`
     font-weight: 500;
     background-color: var(--fill, var(--ds-background-brand-bold));
     color: var(--text, var(--ds-text-inverse));
-    border-radius: ${({radius}) => radius || '0'};
+    border-radius: ${({ radius }) => radius || '0'};
 
-    height: ${({size}) => {
+    height: ${({ size }) => {
         switch (size) {
             case 'sm':
                 return '24px';
@@ -31,7 +32,7 @@ export const Button = styled.button`
         }
     }};
 
-    --fill: ${({scale}) => {
+    --fill: ${({ scale }) => {
         switch (scale) {
             case 'brand':
                 return 'var(--ds-background-brand-bold)';
@@ -45,7 +46,7 @@ export const Button = styled.button`
         }
     }};
 
-    --text: ${({scale}) => {
+    --text: ${({ scale }) => {
         switch (scale) {
             case 'brand':
                 return 'var(--ds-text-inverse)';
@@ -60,25 +61,25 @@ export const Button = styled.button`
         }
     }};
 
-    width: ${({fullwidth, as}) => fullwidth && as !== 'a' ? '100%' : 'fit-content'};
+    width: ${({ customWidth }) => customWidth || 'fit-content'};
 
     &:hover {
         text-decoration: none;
         
-        --fill: ${({scale}) => {
-            switch (scale) {
-                case 'brand':
-                    return 'var(--ds-background-brand-bold-hovered)';
-                case 'white':
-                    return 'var(--dynamic-button-highlighted-hovered)';
-                case 'neutral':
-                    return 'var(--ds-background-neutral-hovered)';
-                case 'ghost':
-                    return 'var(--ds-background-neutral-hovered)';
-                case 'dynamic':
-                    return 'var(--dynamic-button-hovered)'
-            }
-        }};
+        --fill: ${({ scale }) => {
+        switch (scale) {
+            case 'brand':
+                return 'var(--ds-background-brand-bold-hovered)';
+            case 'white':
+                return 'var(--dynamic-button-highlighted-hovered)';
+            case 'neutral':
+                return 'var(--ds-background-neutral-hovered)';
+            case 'ghost':
+                return 'var(--ds-background-neutral-hovered)';
+            case 'dynamic':
+                return 'var(--dynamic-button-hovered)'
+        }
+    }};
     }
 
     &:has(> i:only-child) {
