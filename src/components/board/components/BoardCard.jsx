@@ -1,4 +1,4 @@
-import {Button, Icon} from "@ui";
+import {Popover, Button, Icon, Menu} from "@ui";
 import {useState} from "react";
 
 export function BoardCard({title}) {
@@ -28,9 +28,23 @@ export function BoardCard({title}) {
                         3
                     </div>
                 ) : (
-                    <Button scale='ghost' radius='8px'>
-                        <Icon size='16px' name='menuHorizontal'/>
-                    </Button>
+                    <Popover
+                        trigger={
+                            <Button scale='ghost' radius='8px'>
+                                <Icon size='16px' name='menuHorizontal'/>
+                            </Button>
+                        }
+                    >
+                        <Button fullwidth='true' scale='ghost'
+                                onClick={() => console.log('clicked')}
+                        >
+                            Click me
+                        </Button>
+
+                        <Button as='a' scale='ghost'>
+                            Im a link
+                        </Button>
+                    </Popover>
                 )}
             </div>
         </div>

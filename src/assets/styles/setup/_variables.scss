@@ -1,47 +1,45 @@
 :root {
-    // Colors
-    //dark theme
-    --surface: #1D2125;
-    --text:#9fadbc;
-    --border: #555;
-    --light-blue: #599eff;
-    --text-white: #B6C2CF;
-    --board-header-background-color: #0000003d;
-    --dynamic-text: #FFFFFF;
-    --dynamic-button: transparent;
-    --ds-background-input: #22272B;
-    --ds-border-input: #738496;
-    --ds-text: #B6C2CF;
-    --ds-background-inverse-subtle: #FFFFFF29;
-    --ds-background-input-hovered: #EBECF0;
-    --ds-border-input-hovered: #7A869A;
-    --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
-    --ds-shadow-overlay: 0px 0px 0px 1px #39424a, 0px 8px 12px #0304045C, 0px 0px 1px 1px #03040480;
+  // Colors
+  //dark theme
+  --surface: #1D2125;
+  --text: #9fadbc;
+  --border: #555;
+  --light-blue: #599eff;
+  --text-white: #B6C2CF;
+  --board-header-background-color: #0000003d;
+  --dynamic-text: #FFFFFF;
+  --dynamic-button: transparent;
+  --ds-background-input: #22272B;
+  --ds-border-input: #738496;
+  --ds-text: #B6C2CF;
+  --ds-background-inverse-subtle: #FFFFFF29;
+  --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
 
-    //Buttons
-    --ds-background-brand-bold: #579DFF;
-    --ds-background-brand-bold-hovered: #85B8FF;
-    --ds-background-selected-pressed: #0055CC;
-    --ds-background-selected-bold-pressed: #CCE0FF;
-    --ds-background-selected-bold: #579DFF;
-    --dynamic-button-highlighted: #DCDFE4;
-    --dynamic-button-highlighted-hovered: #FFFFFF;
-    --dynamic-button-highlighted-text: #172B4D;
-    --ds-background-neutral: #A1BDD914;
-    --ds-background-neutral-hovered: #A6C5E229;
-    --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
+  //Buttons
+  --ds-background-brand-bold: #579DFF;
+  --ds-background-brand-bold-hovered: #85B8FF;
+  --dynamic-button-highlighted: #DCDFE4;
+  --dynamic-button-highlighted-hovered: #FFFFFF;
+  --dynamic-button-highlighted-text: #172B4D;
+  --ds-background-neutral: #A1BDD914;
+  --ds-background-neutral-hovered: #A6C5E229;
+  --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
 
-    //Fonts
-    --ds-text-inverse: #1D2125;
-    --ds-text-subtle: #9FADBC;
+  //Popover Menu
+  --ds-surface-overlay: #282E33;
+  --ds-shadow-overlay: 0 0 0 1px #39424a, 0 8px 12px #0304045C, 0 0 1px 1px #03040480;
 
-    //Board Card
-    --tr-background-list: #101204;
-    --ds-icon: #9FADBC;
-    --ds-icon-subtle: #8C9BAB;
+  //Fonts
+  --ds-text-inverse: #1D2125;
+  --ds-text-subtle: #9FADBC;
 
-    // Breakpoints
-    --mobile-breakpoint: 460px;
-    --narrow-breakpoint: 720px;
-    --normal-breakpoint: 960px;
+  //Board Card
+  --tr-background-list: #101204;
+  --ds-icon: #9FADBC;
+  --ds-icon-subtle: #8C9BAB;
+
+  // Breakpoints
+  --mobile-breakpoint: 460px;
+  --narrow-breakpoint: 720px;
+  --normal-breakpoint: 960px;
 }

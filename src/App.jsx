@@ -2,7 +2,7 @@ import {Routes, Route} from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 import {HomePage} from './pages/HomePage'
-
+import {Sidebar} from './components/Sidebar.jsx';
 import {Header} from "./components/Header.jsx";
 import {Board} from "./components/board/Board.jsx";
 import { Sidebar } from 'components/sidebar/Sidebar';

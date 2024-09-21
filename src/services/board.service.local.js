@@ -1,7 +1,6 @@
-
-import { storageService } from './async-storage.service'
-import { utilService } from './util.service'
-import { userService } from './user.service'
+import {storageService} from './async-storage.service'
+import {utilService} from './util.service'
+import {userService} from './user.service'
 
 const STORAGE_KEY = 'board'
 
@@ -70,8 +69,6 @@ const board = {
                 {
                     "id": "c104",
                     "title": "Help me",
-                    "status": "inProgress", // monday / both
-                    "priority": "high",  // monday / both
                     "dueDate": "2024-09-24",
                     "description": "description",
                     "comments": [ // in Trello this is easier implemented as an activity
@@ -135,9 +132,11 @@ const board = {
         }
     ],
 
-    // For Monday draggable columns (optional)
-    cmpsOrder: ["StatusPicker", "MemberPicker", "DatePicker"]
+    // // For Monday draggable columns (optional)
+    // cmpsOrder: ["StatusPicker", "MemberPicker", "DatePicker"]
 }
+
+_createBoard();
 
 export const boardService = {
     query,
@@ -148,109 +147,122 @@ export const boardService = {
     getDemoBoard,
     addBoardMsg,
     updateTask,
-    getTaskEditCmps
+    // getTaskEditCmps
 }
+
 window.boardSer = boardService
 
+async function query(filterBy = {title: ''}) {
+    let boards = await storageService.query(STORAGE_KEY);
 
-async function query(filterBy = { title: '' }) {
-    var boards = await storageService.query(STORAGE_KEY)
     if (filterBy.title) {
-        const regex = new RegExp(filterBy.title, 'i')
-        boards = boards.filter(board => regex.test(board.title))
+        const regex = new RegExp(filterBy.title, 'i');
+
+        boards = boards.filter(board => regex.test(board.title));
     }
+
     // Return just preview info about the boards
-    boards = boards.map(({ _id, title, owner }) => ({ _id, title, owner }))
-    return boards
+    // boards = boards.map(({_id, title, owner}) => ({_id, title, owner}));
+
+    return boards;
 }
 
 function getById(boardId) {
-    return storageService.get(STORAGE_KEY, boardId)
+    return storageService.get(STORAGE_KEY, boardId);
 }
 
 async function remove(boardId) {
     // throw new Error('Nope')
-    await storageService.remove(STORAGE_KEY, boardId)
+    await storageService.remove(STORAGE_KEY, boardId);
 }
 
 async function save(board) {
-    var savedBoard
+    let savedBoard;
+
     if (board._id) {
         const boardToUpdate = {
             _id: board._id,
             title: board.title
-        }
-        savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate)
+        };
+
+        savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
     } else {
         // Later, owner is set by the backend
-        board.owner = userService.getLoggedinUser()
+        board.owner = userService.getLoggedinUser();
+
         savedBoard = await storageService.post(STORAGE_KEY, board)
     }
+
     return savedBoard
 }
 
 async function addBoardMsg(boardId, txt) {
-
     // Later, this is all done by the backend
-    const board = await getById(boardId)
-    if (!board.msgs) board.msgs = []
+    const board = await getById(boardId);
+
+    if (!board.msgs) board.msgs = [];
 
     const msg = {
         id: utilService.makeId(),
         by: userService.getLoggedinUser(),
         txt
-    }
-    board.msgs.push(msg)
-    await storageService.put(STORAGE_KEY, board)
+    };
 
-    return msg
+    board.msgs.push(msg);
+
+    await storageService.put(STORAGE_KEY, board);
+
+    return msg;
 }
 
 async function updateTask(boardId, groupId, task, activityTitle) {
     // Later, this is all done by the backend
-    const board = await getById(boardId)
-    const group = board.groups.find(g => g.id === groupId)
-    const idx = group.tasks.findIndex(t => t.id === task.id)
-    group.tasks[idx] = task
+    const board = await getById(boardId);
+    const group = board.groups.find(g => g.id === groupId);
+    const idx = group.tasks.findIndex(t => t.id === task.id);
 
-    const activity = _createActivity(activityTitle, _toMiniTask(task), _toMiniGroup(group))
-    board.activities.push(activity)
-    await storageService.put(STORAGE_KEY, board)
+    group.tasks[idx] = task;
 
-    return [task, activity]
+    const activity = _createActivity(activityTitle, _toMiniTask(task), _toMiniGroup(group));
+
+    board.activities.push(activity);
+
+    await storageService.put(STORAGE_KEY, board);
+
+    return [task, activity];
 }
 
-function getTaskEditCmps(task, board) {
-    const cmps = [
-        {
-            type: 'StatusPicker',
-            info: {
-                label: 'Status:',
-                propName: 'status',
-                selectedStatus: task.status,
-                statuses: _getStatuses()
-            }
-        },
-        {
-            type: 'DatePicker',
-            info: {
-                label: 'Due date:',
-                propName: 'dueDate',
-                selectedDate: task.dueDate,
-            }
-        },
-        {
-            type: 'MemberPicker',
-            info: {
-                label: 'Members: ',
-                propName: 'memberIds',
-                selectedMemberIds: task.memberIds || [],
-                members: board.members
-            }
-        }
-    ]
-    return cmps
-}
+// function getTaskEditCmps(task, board) {
+//     const cmps = [
+//         {
+//             type: 'StatusPicker',
+//             info: {
+//                 label: 'Status:',
+//                 propName: 'status',
+//                 selectedStatus: task.status,
+//                 statuses: _getStatuses()
+//             }
+//         },
+//         {
+//             type: 'DatePicker',
+//             info: {
+//                 label: 'Due date:',
+//                 propName: 'dueDate',
+//                 selectedDate: task.dueDate,
+//             }
+//         },
+//         {
+//             type: 'MemberPicker',
+//             info: {
+//                 label: 'Members: ',
+//                 propName: 'memberIds',
+//                 selectedMemberIds: task.memberIds || [],
+//                 members: board.members
+//             }
+//         }
+//     ]
+//     return cmps
+// }
 
 function getEmptyBoard() {
     return {
@@ -260,7 +272,15 @@ function getEmptyBoard() {
 }
 
 function getDemoBoard() {
-    return structuredClone(board)
+    return structuredClone(board);
+}
+
+function _createBoard() {
+    let boardStorage = utilService.loadFromStorage(STORAGE_KEY);
+
+    if (boardStorage && boardStorage.length > 0) return;
+
+    utilService.saveToStorage(STORAGE_KEY, board);
 }
 
 function _createActivity(title, task, group = null) {
@@ -275,17 +295,16 @@ function _createActivity(title, task, group = null) {
 }
 
 function _getStatuses() {
-    return ['open', 'inProgress', 'done']
+    return ['open', 'inProgress', 'done'];
 }
 
 function _toMiniGroup(group) {
-    return { id: group.id, title: group.title }
+    return {id: group.id, title: group.title};
 }
 
 function _toMiniTask(task) {
-    return { id: task.id, title: task.title }
+    return {id: task.id, title: task.title};
 }
-
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, board).then(savedBoard => console.log('Added board', savedBoard))
