@@ -10,6 +10,15 @@ import {Filter} from "./Filter.jsx";
 import {Collapse} from "./Collapse.jsx";
 import {Expand} from "./Expand.jsx";
 import {MenuHorizontal} from "./MenuHorizontal.jsx";
+import {Details} from "./Details.jsx";
+import {Plus} from "./Plus.jsx";
+import {ChevronLeft} from "./ChevronLeft.jsx";
+import {ChevronRight} from "./ChevronRight.jsx";
+import {Board} from "./Board.jsx";
+import {Member} from "./Member.jsx";
+import {Settings} from "./Settings.jsx";
+import {Calendar} from "./Calendar.jsx";
+import {Close} from "./Close.jsx";
 
 export const icons = {
     starEmpty: StarEmpty,
@@ -24,5 +33,14 @@ export const icons = {
     collapse: Collapse,
     expand: Expand,
     menuHorizontal: MenuHorizontal,
+    details: Details,
+    plus: Plus,
+    chevronLeft: ChevronLeft,
+    chevronRight: ChevronRight,
+    board: Board,
+    member: Member,
+    settings: Settings,
+    calendar: Calendar,
+    close: Close,
     // Add more icons here...
-}
+};
