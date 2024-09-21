@@ -18,6 +18,8 @@ import { Board } from "./Board.jsx";
 import { Member } from "./Member.jsx";
 import { Settings } from "./Settings.jsx";
 import { Calendar } from "./Calendar.jsx";
+import { Close } from "./Close.jsx";
+import { Trash } from "./Trash.jsx";
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -40,5 +42,7 @@ export const icons = {
   member: Member,
   settings: Settings,
   calendar: Calendar,
+  close: Close,
+  trash: Trash,
   // Add more icons here...
 };
