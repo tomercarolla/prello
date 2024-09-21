@@ -19,6 +19,11 @@ import {Member} from "./Member.jsx";
 import {Settings} from "./Settings.jsx";
 import {Calendar} from "./Calendar.jsx";
 import {Close} from "./Close.jsx";
+import { ApplicationSwitcher } from "./ApplicationSwitcher.jsx";
+import { ArrowDown } from "./ArrowDown.jsx";
+import { Search } from "./Search.jsx";
+import { Bell } from "./Bell.jsx";
+import { QuestionMark } from "./QuestioMark.jsx";
 
 export const icons = {
     starEmpty: StarEmpty,
@@ -42,5 +47,10 @@ export const icons = {
     settings: Settings,
     calendar: Calendar,
     close: Close,
+    applicationSwitcher: ApplicationSwitcher,
+    arrowDown: ArrowDown,
+    search: Search,
+    bell: Bell,
+    questionMark: QuestionMark,
     // Add more icons here...
 };
