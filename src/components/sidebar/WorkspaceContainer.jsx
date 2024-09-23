@@ -7,7 +7,6 @@ export function WorkspaceContainer({
   menuType,
   getMenuContent,
   onToggleMenu,
-  onAddClick,
 }) {
   return (
     <div className='workspace-container'>
