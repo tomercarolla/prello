@@ -6,7 +6,7 @@ import { Icon } from 'ui/icons/Icon';
 import { Button, Menu } from '@ui';
 import { Container } from './StyledElements';
 
-import { NavLinks } from './NavLinks.jsx';
+import { NavLinks } from './components/NavLinks.jsx';
 import { BoardList } from './components/BoardList';
 import { WorkspaceContainer } from './components/WorkspaceContainer';
 
@@ -58,7 +58,7 @@ export function Sidebar() {
       case 'table':
       case 'calendar':
         return (
-          <Button scale='dynamic' size='md' className='close-button'>
+          <Button fullwidth='true' scale='dynamic' size='md' className='close-button'>
             <Icon name='trash' size='16px' color='var(--ds-text)' />
             <span style={{ color: 'var(--ds-text)' }}>Remove View</span>
           </Button>
@@ -77,25 +77,28 @@ export function Sidebar() {
 
   return (
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
-      <Container>
-        <Container $justifyContent='flex-start'>
-          <div className='avatar'></div>
-          <div className='user-info'>
-            <span className='username'>tomer test</span>
-            <span className='user-status'>Premium</span>
-          </div>
-        </Container>
 
-        <Button
-          scale='ghost'
-          onClick={() => setExpandedSidebar(!expandedSidebar)}
-          className={`expand-button ${expandedSidebar ? '' : 'collapsed'}`}
-        >
-          <Icon
-            size={expandedSidebar ? '28px' : '26px'}
-            name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
-          />
-        </Button>
+      <Container>
+
+          <Container $justifyContent='flex-start'>
+            <div className='avatar'></div>
+            <div className='user-info'>
+              <span className='username'>tomer test</span>
+              <span className='user-status'>Premium</span>
+            </div>
+          </Container>
+
+          <Button
+            scale='ghost'
+            onClick={() => setExpandedSidebar(!expandedSidebar)}
+            className={`expand-button ${expandedSidebar ? '' : 'collapsed'}`}
+          >
+            <Icon
+              size={expandedSidebar ? '28px' : '26px'}
+              name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
+            />
+          </Button>
+        
       </Container>
 
 

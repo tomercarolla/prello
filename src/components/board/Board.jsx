@@ -14,7 +14,7 @@ export function Board() {
         loadBoards();
         console.log(boards)
     }, []);
-
+    
   
 
 
