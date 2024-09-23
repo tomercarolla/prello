@@ -7,8 +7,8 @@ import { Button, Menu } from '@ui';
 import { Container } from './StyledElements';
 
 import { NavLinks } from './NavLinks.jsx';
-import { BoardList } from './BoardList';
-import { WorkspaceContainer } from './WorkspaceContainer';
+import { BoardList } from './components/BoardList';
+import { WorkspaceContainer } from './components/WorkspaceContainer';
 
 
 export function Sidebar() {
@@ -97,6 +97,8 @@ export function Sidebar() {
           />
         </Button>
       </Container>
+
+
       {expandedSidebar && (
         <>
           <Divider />

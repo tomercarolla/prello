@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { Container } from './StyledElements';
+import { Container } from '../StyledElements';
 import { Icon } from 'ui/icons/Icon';
 
 
