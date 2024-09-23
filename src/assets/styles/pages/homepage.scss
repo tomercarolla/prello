@@ -3,14 +3,16 @@ body {
  height: 100vh;
  overflow: hidden;
  box-sizing: border-box;
- font-family: 'Charlie text', sans-serif
+ font-family: 'Poppins', sans-serif;
 }
 
 .header {
   position: fixed;
   inset: 0 0 auto 0;
+  font-weight: 600; 
   display: flex;
   z-index: 1000;
+  
 
 
   .home-nav {
@@ -28,6 +30,7 @@ body {
     text-decoration: none;
     align-items: center;
     padding: 1rem;
+    cursor: pointer;
 
    }
 
@@ -60,12 +63,12 @@ body {
     margin: 0 0 0 auto;
     align-items: center;
     padding: 0.5rem 5rem;
-    background-color: #172b4d;
-    poniter: cursor;
+    background-color:var(--dynamic-button-highlighted-text);
+    color:var(--dynamic-text);
+    text-decoration: none;
 
-    a {
-      text-decoration: none;
-      color: var(--dynamic-text)
+    &:hover {
+      background-color: #253b60
     }
    }
   }
@@ -117,11 +120,19 @@ body {
           .email-input {
             font-size: 1rem;
             padding: .7rem .75rem .8rem;
-            border: 1px solid rgb(223, 225, 230);
+            border: 2px solid rgb(223, 225, 230);
             border-radius: .3rem;
             max-width: 300px;
-            transition: .25s ease-out;
+            transition: all 0.3s ease;
             width: 376px;
+            outline: none;
+
+            &:focus {
+              border-color: #0065ff;
+              box-shadow: 0 0 0 3px rgba(0, 101, 255, 0.3);
+              transform: translateY(-2px);  
+            }
+
           }
 
           .email-button {
@@ -139,6 +150,11 @@ body {
             font-size: 1rem;
             padding: .7rem 1rem .8rem;
             color: #fff !important;
+
+            &:hover {
+              background-color: var(--ds-background-button-blue);
+              border-color: var(--dynamic-button-blue-hovered);
+            }
           }
         }
       

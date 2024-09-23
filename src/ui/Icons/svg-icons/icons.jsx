@@ -25,6 +25,8 @@ import {Bell} from "./Bell.jsx";
 import {QuestionMark} from "./QuestioMark.jsx";
 import {Trash} from "./Trash.jsx";
 import { Trello } from "./Trello.jsx"
+import { Wave } from "./Wave.jsx";
+
 
 export const icons = {
     starEmpty: StarEmpty,
@@ -54,5 +56,6 @@ export const icons = {
     questionMark: QuestionMark,
     trash: Trash,
     trello: Trello,
+    wave: Wave,
     // Add more icons here...
 };

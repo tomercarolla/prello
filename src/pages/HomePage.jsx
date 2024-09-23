@@ -1,5 +1,5 @@
-
 import { Link } from 'react-router-dom';
+
 
 import { Icon } from 'ui/icons/Icon';
 
@@ -35,9 +35,9 @@ export function HomePage() {
                 <Icon name='chevronDown' size='14px' />
               </button>
             </div>
-            <div className='nav-link'>
-              <Link to='/board'>Go to Boards</Link>
-            </div>
+            <Link className='nav-link' to='/board'>
+              Go to Boards
+            </Link>
           </nav>
         </header>
 
@@ -52,12 +52,16 @@ export function HomePage() {
                   Keep everything in the same place even if your team isn’t.
                 </p>
                 <form className='form'>
-                  <input className='email-input' type='email' placeholder='Enter your email' />
+                  <input
+                    className='email-input'
+                    type='email'
+                    placeholder='Enter your email'
+                  />
                   <button className='email-button'>Sign up it's free!</button>
                 </form>
               </div>
               <pciture className='right'>
-                <img src="./src/ui/Icons/png-icons/HomeImage.png" />
+                <img src='./src/ui/Icons/png-icons/HomeImage.png' />
               </pciture>
             </section>
           </div>
