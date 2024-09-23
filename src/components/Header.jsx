@@ -1,4 +1,3 @@
-import { DownOutlined, QuestionCircleOutlined, BellOutlined, SearchOutlined } from '@ant-design/icons';
 import TrelloGif from '../ui/giffs/TrelloGif.gif';
 import TrelloIcon from '../ui/Icons/png-icons/TrelloIcon.png'
 import { Icon } from 'ui/icons/Icon';
