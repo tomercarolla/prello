@@ -28,7 +28,7 @@ export function WorkspaceContainer({
         >
           {getMenuContent(menuType)}
         </Menu>
-        <Button size='sm' scale='ghost' className='plus' onClick={onAddClick}>
+        <Button size='sm' scale='ghost' className='plus'>
           <Icon name='plus' size='16px' />
         </Button>
       </div>
