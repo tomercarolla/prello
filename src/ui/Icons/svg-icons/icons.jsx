@@ -19,11 +19,12 @@ import {Member} from "./Member.jsx";
 import {Settings} from "./Settings.jsx";
 import {Calendar} from "./Calendar.jsx";
 import {Close} from "./Close.jsx";
-import { ApplicationSwitcher } from "./ApplicationSwitcher.jsx";
-import { ArrowDown } from "./ArrowDown.jsx";
-import { Search } from "./Search.jsx";
-import { Bell } from "./Bell.jsx";
-import { QuestionMark } from "./QuestioMark.jsx";
+import {ApplicationSwitcher} from "./ApplicationSwitcher.jsx";
+import {ArrowDown} from "./ArrowDown.jsx";
+import {Search} from "./Search.jsx";
+import {Bell} from "./Bell.jsx";
+import {QuestionMark} from "./QuestioMark.jsx";
+import {Trash} from "./Trash.jsx";
 
 export const icons = {
     starEmpty: StarEmpty,
@@ -52,5 +53,6 @@ export const icons = {
     search: Search,
     bell: Bell,
     questionMark: QuestionMark,
+    trash: Trash,
     // Add more icons here...
 };
