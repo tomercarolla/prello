@@ -16,8 +16,8 @@ export function Sidebar() {
     const [expandedSidebar, setExpandedSidebar] = useState(true);
     const [openMenu, setOpenMenu] = useState(null);
 
-    function toggleMenu(menuType) {
-        setOpenMenu(openMenu === menuType ? null : menuType)
+  function toggleMenu(menuType) {
+      setOpenMenu(openMenu === menuType ? null : menuType)
   }
   
   function getMenuContent(type) {
@@ -68,6 +68,9 @@ export function Sidebar() {
         return null;
     }
   }
+
+
+
     return (
       <>
         <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
@@ -161,7 +164,7 @@ export function Sidebar() {
                             size='md'
                             scale='ghost'
                             className='details'
-                            onClick={() => toggleMenu('table')}
+                            onClick={(ev) => toggleMenu('table')}
                           >
                             <Icon name='details' size='14px' />
                           </Button>
@@ -187,7 +190,7 @@ export function Sidebar() {
                             size='md'
                             scale='ghost'
                             className='details'
-                            onClick={() => toggleMenu('calendar')}
+                            onClick={(ev) => toggleMenu('calendar')}
                           >
                             <Icon name='details' size='14px' />
                           </Button>
@@ -254,7 +257,8 @@ export function Sidebar() {
                           title='Board Options'
                         >
                           {getMenuContent('board')}
-                        </Menu>
+                      </Menu>
+                      <div style={{ width:'28px' }}>
                         <Button
                           size='md'
                           scale='ghost'
@@ -263,6 +267,7 @@ export function Sidebar() {
                         >
                           <Icon name='starEmpty' size='16px' />
                         </Button>
+                      </div>
                       </div>
                     </StyledLink>
                   </li>

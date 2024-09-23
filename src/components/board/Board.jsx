@@ -1,27 +1,22 @@
 import {BoardHeader} from "./components/BoardHeader.jsx";
 import {BoardList} from "./components/BoardList.jsx";
-import {useEffect, useState} from "react";
-import {boardService} from "../../services/board.service.local.js";
+import {useEffect} from "react";
+
+import { loadBoards } from "store/board.actions.js";
+import { useSelector } from "react-redux";
 
 
 export function Board() {
-    const [board, setBoard] = useState(null);
+    // const [board, setBoard] = useState(null);
+    const boards = useSelector(state => state.boardModule.boards)
 
     useEffect(() => {
-        loadBoard();
+        loadBoards();
+        console.log(boards)
     }, []);
 
-    async function loadBoard() {
-        try {
-            const board = await boardService.query();
+  
 
-            setBoard(board);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    console.log(board)
 
     return (
         <section className='board'>
