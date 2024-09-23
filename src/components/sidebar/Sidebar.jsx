@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Select } from 'antd';
 import { Icon } from 'ui/icons/Icon';
-import { Button, Menu } from '@ui';
+import { Button } from '@ui';
 import { Container } from './StyledElements';
 
 import { NavLinks } from './components/NavLinks.jsx';
 import { BoardList } from './components/BoardList';
 import { WorkspaceContainer } from './components/WorkspaceContainer';
-
 
 export function Sidebar() {
   const [expandedSidebar, setExpandedSidebar] = useState(true);

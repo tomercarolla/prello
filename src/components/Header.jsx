@@ -25,7 +25,7 @@ export function Header() {
                 </div>
                 <div className='drop-down-buttons-container pointer'>
                     {dropdowns.map((text) =>
-                        <div className='drop-down-button pointer'>
+                        <div key={text} className='drop-down-button pointer'>
                             <div
                                 onClick={() => setExpandedSidebar(!expandedSidebar)}
                             > {text}
@@ -34,9 +34,8 @@ export function Header() {
                         </div>
                     )}
                 </div>
-                <Button customWidth='65px' radius='4px' className='button-create' scale='brand'> Create </Button>
+                <Button radius='4px' className='button-create' scale='brand'> Create </Button>
             </div>
-
 
             <div className='header-right-side'>
                 <div className='input-container'>
