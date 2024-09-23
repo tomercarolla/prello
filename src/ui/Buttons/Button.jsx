@@ -64,7 +64,7 @@ export const Button = styled.button`
 
     &:hover {
         text-decoration: none;
-        
+
         --fill: ${({scale}) => {
             switch (scale) {
                 case 'brand':
