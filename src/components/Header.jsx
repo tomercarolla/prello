@@ -9,9 +9,7 @@ import AccountInitials from './AccountInitials';
 const dropdowns = ['Workspaces', 'Recent', 'Starred', 'Templates']
 
 export function Header() {
-
     const [isHovering, setIsHovering] = useState(false);
-
 
     return (
         <div className='header-container'>
@@ -25,28 +23,24 @@ export function Header() {
                 </div>
                 <div className='drop-down-buttons-container pointer'>
                     {dropdowns.map((text) =>
-                        <div key={text} className='drop-down-button pointer'>
-                            <div
-                                onClick={() => setExpandedSidebar(!expandedSidebar)}
-                            > {text}
-                            </div>
-                            <Icon name='arrowDown' className='arrow-down' size='16px' />
-                        </div>
+                        <Button key={text} scale='ghost' radius='3px' onClick={() => console.log(text)}>
+                            <span>{text}</span>
+                            <Icon name='chevronDown' className='arrow-down' size='16px' />
+                        </Button>
                     )}
                 </div>
-                <Button radius='4px' className='button-create' scale='brand'> Create </Button>
+                <Button radius='4px' scale='brand'>Create</Button>
             </div>
 
             <div className='header-right-side'>
                 <div className='input-container'>
                     <Icon name='search' size='16px' className='pointer' />
-                    <input className='search-bar' placeholder='Search Prello'>
-                    </input>
+                    <input className='search-bar' placeholder='Search Prello' />
                 </div>
                 <Icon name='bell' className='pointer' size='24px' />
                 <Icon name='questionMark' className='pointer' size='22px' />
                 <AccountInitials user={{ name: 'Roy Live', userColor: '#3498db' }} />
-                <div ></div>
+                <div></div>
             </div>
 
         </div >
