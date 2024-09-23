@@ -1,0 +1,56 @@
+body {
+ width: 100%;
+ height: 100vh;
+ overflow: hidden;
+ box-sizing: border-box;
+}
+
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  display: flex;
+  background-color: lightblue;
+  z-index: 1000;
+
+
+  .home-nav {
+   display: flex;
+   align-self: center;
+   -webkit-box-align: stretch;
+   align-items: stretch;
+   height: 60px;
+   margin: 0 auto;
+   width: 100%;
+   max-width: 1320px;
+
+   .logo-link {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 1rem;
+
+   }
+
+   .btns {
+    display: flex;
+
+    .home-btn {
+     display:flex;
+     align-items: center;
+     align-self: stretch;
+     padding: 1.25rem 1rem 1rem;
+     font-size: 1rem;
+     border: none;
+     background-color: transparent;
+     line-height: 24px;
+     text-size-adjust: 100%;
+     font-stretch: 100%;
+     color: #172b4d;
+     cursor: pointer;
+    }
+   }
+  }
+
+
+}
+

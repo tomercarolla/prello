@@ -25,6 +25,7 @@ import {Bell} from "./Bell.jsx";
 import {QuestionMark} from "./QuestioMark.jsx";
 import {Trash} from "./Trash.jsx";
 
+
 export const icons = {
     starEmpty: StarEmpty,
     starFull: StarFull,
