@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-
 import { Icon } from 'ui/icons/Icon';
 
 
@@ -46,7 +45,7 @@ export function HomePage() {
             <section className='content'>
               <div className='left'>
                 <h1>
-                  Trello brings all your tasks, teammates, and tools together
+                  Prello brings all your tasks, teammates, and tools together
                 </h1>
                 <p>
                   Keep everything in the same place even if your team isn’t.
