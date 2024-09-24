@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Select } from 'antd';
 import { Icon } from 'ui/icons/Icon';
 import { Button } from '@ui';
-import { Container } from './StyledElements';
+import { Container, Divider } from './StyledElements';
 
 import { NavLinks } from './components/NavLinks.jsx';
 import { BoardList } from './components/BoardList';
@@ -138,10 +138,6 @@ export function Sidebar() {
   );
 }
 
-export const Divider = styled.div`
-  border-top: 1px solid #999;
-  opacity: 0.2;
-`;
 
 export const StyledSelect = styled(Select)`
   && {
