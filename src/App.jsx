@@ -9,8 +9,8 @@ import { Provider } from 'react-redux';
 import { store } from './store/store.js';
 
 
-import { HomePage } from './pages/HomePage';
-import { BoardsPage } from './pages/BoardsPage.jsx';
+import { HomePage } from './pages/homepage/HomePage.jsx';
+import { BoardsPage } from './pages/BoardsPage.jsx'; 
 import { Board } from './components/board/Board';
 import { WorkspacePage } from './pages/WorkspacePage.jsx';
 

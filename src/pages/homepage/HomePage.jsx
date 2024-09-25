@@ -1,5 +1,5 @@
+import homepagePng from './src/pages/homepage/assets/HomeImage.png'
 import { Link } from 'react-router-dom';
-
 import { Icon } from 'ui/icons/Icon';
 
 
@@ -8,7 +8,7 @@ export function HomePage() {
       <>
         <header className='header'>
           <nav className='home-nav'>
-            <Link to='/home' className='logo-link'>
+            <Link to='/' className='logo-link'>
               <Icon name='trello' />
               <span>Prello</span>
             </Link>
@@ -60,7 +60,7 @@ export function HomePage() {
                 </form>
               </div>
               <pciture className='right'>
-                <img src='./src/ui/Icons/png-icons/HomeImage.png' />
+                <img src={homepagePng} />
               </pciture>
             </section>
           </div>
