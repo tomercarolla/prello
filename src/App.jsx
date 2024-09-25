@@ -8,8 +8,8 @@ import {store} from './store/store.js';
 import {HomePage} from './pages/homepage/HomePage.jsx';
 import {Board} from './components/board/Board';
 import {AuthRoute} from "./auth.utls.jsx";
-import {Header} from "./components/Header.jsx";
 import {Sidebar} from "./components/sidebar/Sidebar.jsx";
+import {Header} from "./components/header/Header.jsx";
 
 export function App() {
     return (
@@ -32,7 +32,7 @@ export function App() {
                                             <Sidebar/>
                                             <div className="content">
                                                 <Routes>
-                                                    <Route path="/b/:id/:boardName" element={<Board/>}/>
+                                                    <Route path="/b/:boardId/:boardName" element={<Board/>}/>
                                                 </Routes>
                                             </div>
                                         </div>
