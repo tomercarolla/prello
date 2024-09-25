@@ -2,9 +2,11 @@ import {Popover, Button, Icon, Menu} from "@ui";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
-export function BoardCard({title}) {
+export function BoardCard({title, tasks}) {
     const {t} = useTranslation();
     const [isCollapsed, setIsCollapsed] = useState(false);
+
+    console.log('tasks ', tasks)
 
     return (
         <div className={`board-card ${isCollapsed ? 'collapsed' : ''}`} onClick={() => {
@@ -52,40 +54,29 @@ export function BoardCard({title}) {
 
             <div className="dynamic-content">
                 <ol className='tasks-list'>
-                    <li>
-                        <div className="task-container">
-                            <div className="task-content">
-                                <a href="#">
-                                    Invite collaborators to your board by selecting the menu to the right of the
-                                    notifications bell.
-                                </a>
-                                <div className="task-badges"></div>
+                    {tasks.map(task => (
+                        <li key={task.id}>
+                            {task?.style?.backgroundImage ? (
+                                <div className="img-container"
+                                     style={{backgroundImage: task.backgroundImage}}
+                                />
+                            ) : null}
+                            <div className="task-container">
+                                <div className="task-content">
+                                    <a href="#">
+                                        {task.title}
+                                        {/*Invite collaborators to your board by selecting the menu to the right of the*/}
+                                        {/*notifications bell.*/}
+                                    </a>
+                                    <div className="task-badges"></div>
+                                </div>
                             </div>
-                        </div>
 
-                        <Button scale='ghost' radius='16px' className='edit-btn'>
-                            <Icon name='edit' size='16px'/>
-                        </Button>
-                    </li>
-
-                    <li>
-                        <div className="task-container">
-                            <div className="img-container"
-                                 style={{backgroundImage: "url(`https://trello.com/1/cards/66e30d1ef24cacb885f0129e/attachments/66e30d1ef24cacb885f01362/previews/66e30d1ef24cacb885f01367/download/sergey-shmidt-koy6FlCCy5s-unsplash.jpg`)"}}
-                            />
-                            <div className="task-content">
-                                <a href="#">
-                                    Invite collaborators to your board by selecting the menu to the right of the
-                                    notifications bell.
-                                </a>
-                                <div className="task-badges"></div>
-                            </div>
-                        </div>
-
-                        <Button scale='ghost' radius='16px' className='edit-btn'>
-                            <Icon name='edit' size='16px'/>
-                        </Button>
-                    </li>
+                            <Button scale='ghost' radius='16px' className='edit-btn'>
+                                <Icon name='edit' size='16px'/>
+                            </Button>
+                        </li>
+                    ))}
                 </ol>
             </div>
 

@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import {BoardCard} from "./BoardCard.jsx";
 
-export function BoardList() {
+export function BoardList({groups}) {
+
+    if (!groups) return null;
+
+    console.log('groups ', groups)
+
     return (
         <List>
-            <li>
-                <BoardCard title='To do'/>
-            </li>
-            <li>
-                <BoardCard title='Doing'/>
-            </li>
-            <li>
-                <BoardCard title='Done'/>
-            </li>
+            {groups.map(({id, title, tasks}) => (
+                <li key={id}>
+                    <BoardCard title={title} tasks={tasks}/>
+                </li>
+            ))}
         </List>
     )
 }

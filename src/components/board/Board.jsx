@@ -2,8 +2,8 @@ import {BoardHeader} from "./components/BoardHeader.jsx";
 import {BoardList} from "./components/BoardList.jsx";
 import {useEffect} from "react";
 
-import { loadBoards } from "store/board.actions.js";
-import { useSelector } from "react-redux";
+import {loadBoards} from "store/board.actions.js";
+import {useSelector} from "react-redux";
 
 
 export function Board() {
@@ -11,14 +11,14 @@ export function Board() {
 
     useEffect(() => {
         loadBoards();
-    }, [boards]);
+    }, []);
 
     return (
         <section className='board'>
-            <BoardHeader />
+            <BoardHeader/>
 
             <div className="canvas">
-                <BoardList />
+                <BoardList groups={boards.groups}/>
             </div>
         </section>
     );
