@@ -1,9 +1,9 @@
-import TrelloGif from '../ui/giffs/TrelloGif.gif';
-import TrelloIcon from '../ui/Icons/png-icons/TrelloIcon.png'
+import TrelloGif from './assets/TrelloGif.gif';
+import TrelloIcon from './assets/TrelloIcon.png'
 import { Icon } from 'ui/icons/Icon';
 import { useState } from 'react';
 import { Button } from '@ui';
-import AccountInitials from './AccountInitials';
+import AccountInitials from '../AccountInitials';
 
 const dropdowns = ['Workspaces', 'Recent', 'Starred', 'Templates']
 
