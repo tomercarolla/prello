@@ -1,12 +1,11 @@
-import {Popover, Button, Icon, Menu} from "@ui";
+import {Popover, Button, Icon} from "@ui";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
+import {Task} from "./Task.jsx";
 
 export function BoardCard({title, tasks}) {
     const {t} = useTranslation();
     const [isCollapsed, setIsCollapsed] = useState(false);
-
-    console.log('tasks ', tasks)
 
     return (
         <div className={`board-card ${isCollapsed ? 'collapsed' : ''}`} onClick={() => {
@@ -57,27 +56,7 @@ export function BoardCard({title, tasks}) {
                     <div className="dynamic-content">
                         <ol className='tasks-list'>
                             {tasks.map(task => (
-                                <li key={task.id}>
-                                    {task?.style?.backgroundImage ? (
-                                        <div className="img-container"
-                                             style={{backgroundImage: task.backgroundImage}}
-                                        />
-                                    ) : null}
-                                    <div className="task-container">
-                                        <div className="task-content">
-                                            <a href="#">
-                                                {task.title}
-                                                {/*Invite collaborators to your board by selecting the menu to the right of the*/}
-                                                {/*notifications bell.*/}
-                                            </a>
-                                            <div className="task-badges"></div>
-                                        </div>
-                                    </div>
-
-                                    <Button scale='ghost' radius='16px' className='edit-btn'>
-                                        <Icon name='edit' size='16px'/>
-                                    </Button>
-                                </li>
+                                <Task key={task.id} task={task}/>
                             ))}
                         </ol>
                     </div>
