@@ -1,38 +1,51 @@
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
+    BrowserRouter as Router,
+    Routes,
+    Route,
 } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {store} from './store/store.js';
-
-
 import {HomePage} from './pages/homepage/HomePage.jsx';
-import {BoardsPage} from './pages/BoardsPage.jsx';
 import {Board} from './components/board/Board';
-import {WorkspacePage} from './pages/WorkspacePage.jsx';
+import {AuthRoute} from "./auth.utls.jsx";
+import {Header} from "./components/Header.jsx";
+import {Sidebar} from "./components/sidebar/Sidebar.jsx";
 
 export function App() {
-  return (
-    <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          {/*This /boards path is identically in content to /w/:workspaceId but different in styling a litle bit but Trello keeps both of them! we need to raise this and think about it with Yonatan before we decide about it */}
-          <Route path='/boards' element={<BoardsPage />} />
-          <Route path='/b/:boardId/:boardName' element={<Board />} />
-          <Route path='/w/:workspaceId' element={<WorkspacePage />} />
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
 
-          {/* For default or some errors */}
-          <Route path='*' element={<Navigate to='/home' replace />} />
-        </Routes>
-      </Router>
-    </Provider>
-  );
+                <Route
+                    path="/*"
+                    element={
+                        <Provider store={store}>
+                            <AuthRoute>
+                                <div
+                                    className="surface"
+                                    style={{backgroundColor: 'rgb(75, 191, 107)'}}
+                                >
+                                    <Header/>
+                                    <main>
+                                        <div className="container">
+                                            <Sidebar/>
+                                            <div className="content">
+                                                <Routes>
+                                                    <Route path="/b/:id/:boardName" element={<Board/>}/>
+                                                </Routes>
+                                            </div>
+                                        </div>
+                                    </main>
+                                </div>
+                            </AuthRoute>
+                        </Provider>
+                    }
+                />
+            </Routes>
+        </Router>
+    );
 }
-
-
 
 
 // -----------------------------------------------------------------------------------------
