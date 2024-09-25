@@ -9,3 +9,9 @@ export const Container = styled.div`
   width: 100%;
   padding: 5px;
 `;
+
+
+export const Divider = styled.div`
+  border-top: 1px solid #999;
+  opacity: 0.2;
+`;
