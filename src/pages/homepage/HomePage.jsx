@@ -1,4 +1,4 @@
-import homepagePng from './src/pages/homepage/assets/HomeImage.png'
+import homepagePng from './assets/HomeImage.png'
 import { Link } from 'react-router-dom';
 import { Icon } from 'ui/icons/Icon';
 
