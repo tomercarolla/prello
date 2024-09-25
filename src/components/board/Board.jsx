@@ -2,20 +2,21 @@ import {BoardHeader} from "./components/BoardHeader.jsx";
 import {BoardList} from "./components/BoardList.jsx";
 import {useEffect} from "react";
 
-import { loadBoards } from "store/board.actions.js";
+import { loadBoard } from "store/board.actions.js";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 
 export function Board() {
-    // const [board, setBoard] = useState(null);
-    const boards = useSelector(state => state.boardModule.boards)
+   
+    const board = useSelector(state => state.boardModule.board)
+    const { boardId } = useParams()
 
     useEffect(() => {
-        loadBoards();
-        console.log(boards)
-    }, []);
+        loadBoard(boardId)
+        console.log(board)
+    }, [])
     
-  
 
 
     return (
