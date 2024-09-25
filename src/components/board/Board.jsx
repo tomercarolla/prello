@@ -7,16 +7,11 @@ import { useSelector } from "react-redux";
 
 
 export function Board() {
-    // const [board, setBoard] = useState(null);
     const boards = useSelector(state => state.boardModule.boards)
 
     useEffect(() => {
         loadBoards();
-        console.log(boards)
-    }, []);
-    
-  
-
+    }, [boards]);
 
     return (
         <section className='board'>

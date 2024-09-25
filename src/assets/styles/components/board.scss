@@ -71,8 +71,8 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      align-self: start;
       justify-content: space-between;
+      gap: 8px;
       width: 272px;
       max-height: 100%;
       padding: 8px;
@@ -127,6 +127,94 @@
         h2 {
           font-size: 14px;
           font-weight: 600;
+        }
+      }
+
+      .dynamic-content {
+        overflow-y: auto;
+        scrollbar-color: var(--ds-background-neutral-hovered, #091e4224) var(--ds-background-neutral, #091e420f);
+        scrollbar-width: thin;
+
+        .tasks-list {
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          row-gap: 8px;
+          padding-block: 2px;
+          padding-inline: 4px;
+
+          li {
+            position: relative;
+            min-height: 36px;
+            border-radius: 8px;
+            background-color: var(--ds-surface-raised, #ffffff);
+            box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
+            color: var(--ds-text);
+            cursor: pointer;
+
+            &:hover {
+              .edit-btn {
+                display: flex;
+              }
+            }
+
+            &:hover,
+            &:focus-within {
+              outline: var(--ds-border-focused, #388bff) solid 2px;
+            }
+          }
+
+          .img-container {
+            border-radius: 8px 8px 0 0;
+            background-size: cover;
+            background-color: rgb(35, 126, 156);
+            min-height: 176px;
+            max-height: 200px;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+
+          .task-content {
+            display: flow-root;
+            position: relative;
+            z-index: 10;
+            min-height: 24px;
+            padding: 8px 12px 4px;
+            color: var(--ds-text);
+          }
+
+          a {
+            display: block;
+            color: var(--ds-text);
+            margin-block-end: 4px;
+            word-break: break-all;
+            white-space: normal;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          .task-badges {
+
+          }
+
+          .edit-btn {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            top: 2px;
+            right: 2px;
+            background-color: var(--ds-surface-raised);
+          }
+        }
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+
+        .add-btn {
         }
       }
     }

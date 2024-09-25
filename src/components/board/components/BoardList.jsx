@@ -36,8 +36,7 @@ const List = styled.ol`
     //scrollbar-width: auto;
     
     li {
-        background-color: var(--tr-background-list);
-        height: fit-content;
         border-radius: 12px;
+        height: 100%;
     }
 `;
