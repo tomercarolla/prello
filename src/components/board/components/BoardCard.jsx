@@ -52,40 +52,44 @@ export function BoardCard({title, tasks}) {
                 )}
             </div>
 
-            <div className="dynamic-content">
-                <ol className='tasks-list'>
-                    {tasks.map(task => (
-                        <li key={task.id}>
-                            {task?.style?.backgroundImage ? (
-                                <div className="img-container"
-                                     style={{backgroundImage: task.backgroundImage}}
-                                />
-                            ) : null}
-                            <div className="task-container">
-                                <div className="task-content">
-                                    <a href="#">
-                                        {task.title}
-                                        {/*Invite collaborators to your board by selecting the menu to the right of the*/}
-                                        {/*notifications bell.*/}
-                                    </a>
-                                    <div className="task-badges"></div>
-                                </div>
-                            </div>
+            {!isCollapsed ? (
+                <>
+                    <div className="dynamic-content">
+                        <ol className='tasks-list'>
+                            {tasks.map(task => (
+                                <li key={task.id}>
+                                    {task?.style?.backgroundImage ? (
+                                        <div className="img-container"
+                                             style={{backgroundImage: task.backgroundImage}}
+                                        />
+                                    ) : null}
+                                    <div className="task-container">
+                                        <div className="task-content">
+                                            <a href="#">
+                                                {task.title}
+                                                {/*Invite collaborators to your board by selecting the menu to the right of the*/}
+                                                {/*notifications bell.*/}
+                                            </a>
+                                            <div className="task-badges"></div>
+                                        </div>
+                                    </div>
 
-                            <Button scale='ghost' radius='16px' className='edit-btn'>
-                                <Icon name='edit' size='16px'/>
-                            </Button>
-                        </li>
-                    ))}
-                </ol>
-            </div>
+                                    <Button scale='ghost' radius='16px' className='edit-btn'>
+                                        <Icon name='edit' size='16px'/>
+                                    </Button>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
 
-            <div className="footer">
-                <Button scale='ghost' fullwidth='true' radius='8px' className='add-btn'>
-                    <Icon name='plus' size='16px'/>
-                    <span>{t('ADD_CARD')}</span>
-                </Button>
-            </div>
+                    <div className="footer">
+                        <Button scale='ghost' fullwidth='true' radius='8px' className='add-btn'>
+                            <Icon name='plus' size='16px'/>
+                            <span>{t('ADD_CARD')}</span>
+                        </Button>
+                    </div>
+                </>
+            ) : null}
         </div>
     )
 }
