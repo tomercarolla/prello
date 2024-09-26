@@ -43,7 +43,7 @@ export function App() {
                             <Sidebar />
                             <div className='content'>
                               <Routes>
-                                <Route path='b/:id/:boardName' element={<Board />} />
+                                <Route path='b/:boardId/:boardName' element={<Board />} />
                               </Routes>
                             </div>
                           </div>
