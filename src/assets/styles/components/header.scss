@@ -4,9 +4,11 @@
   width: 100vw;
   background-color: var(--surface);
   font-weight: 500;
-  height: 5.5vh;
+  padding: 8px;
+  max-height: 48px;
   color: var(--text-white);
   font-size: 14px;
+  border-bottom: 1px solid var(--dynamic-text-transparent);
 
   .header-left-side {
     display: flex;

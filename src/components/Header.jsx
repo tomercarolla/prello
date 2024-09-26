@@ -41,7 +41,6 @@ export function Header() {
                 <AccountInitials user={{ name: 'Roy Live', userColor: '#3498db' }} />
                 <div></div>
             </div>
-
-        </div >
+        </div>
     )
 }

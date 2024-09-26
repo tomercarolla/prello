@@ -6,77 +6,78 @@ body {
  font-family: 'Poppins', sans-serif;
 }
 
-.header {
-  position: fixed;
-  inset: 0 0 auto 0;
-  font-weight: 600; 
-  display: flex;
-
-
-  .home-nav {
-   display: flex;
-   height: 60px;
-   margin: 0 auto;
-   width: 100%;
-   max-width: 1320px;
-
-   .logo-link {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    padding: 28px;
-    cursor: pointer;
-
-   }
-
-   .btns {
+.homepage {
+  .header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    font-weight: 600;
     display: flex;
 
-    .home-btn {
-     display:flex;
-     align-items: stretch;
-     align-self: stretch;
-     padding: 20px 16px 16px;
-     font-size: 1rem;
-     border: none;
-     background-color: transparent;
-     line-height: 24px;
-     text-size-adjust: 100%;
-     font-stretch: 100%;
-     color: #172b4d;
-     cursor: pointer;
-    
-    &:hover {
-      color: var(--ds-background-button-blue);
-    }
-    
-    }
-   }
 
-   .nav-link {
-    display: flex;
-    margin: 0 0 0 auto;
-    align-items: center;
-    padding: 8px 80px;
-    background-color:var(--dynamic-button-highlighted-text);
-    color:var(--dynamic-text);
-    text-decoration: none;
+    .home-nav {
+      display: flex;
+      height: 60px;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1320px;
 
-    &:hover {
-      background-color: #253b60
+      .logo-link {
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        padding: 28px;
+        cursor: pointer;
+
+      }
+
+      .btns {
+        display: flex;
+
+        .home-btn {
+          display:flex;
+          align-items: stretch;
+          align-self: stretch;
+          padding: 20px 16px 16px;
+          font-size: 1rem;
+          border: none;
+          background-color: transparent;
+          line-height: 24px;
+          text-size-adjust: 100%;
+          font-stretch: 100%;
+          color: #172b4d;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--ds-background-button-blue);
+          }
+
+        }
+      }
+
+      .nav-link {
+        display: flex;
+        margin: 0 0 0 auto;
+        align-items: center;
+        padding: 8px 80px;
+        background-color:var(--dynamic-button-highlighted-text);
+        color:var(--dynamic-text);
+        text-decoration: none;
+
+        &:hover {
+          background-color: #253b60
+        }
+      }
     }
-   }
   }
-}
 
-.home-main {
-  margin-top: 60px;
-  background-image: url(./src/pages/homepage/assets/wave.svg), linear-gradient(60deg, rgb(82, 67, 170), rgb(237, 80, 180));
-  background-position: center calc(100% + 120px), 0 0;
-  background-repeat: no-repeat, no-repeat;
-  background-size: 100% auto, cover;
-  color: var(--dynamic-text);
-  height: 67%;
+  .home-main {
+    margin-top: 60px;
+    background-image: url(./src/pages/homepage/assets/wave.svg), linear-gradient(60deg, rgb(82, 67, 170), rgb(237, 80, 180));
+    background-position: center calc(100% + 120px), 0 0;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% auto, cover;
+    color: var(--dynamic-text);
+    height: 67%;
 
     .bg {
       padding-top: 10%;
@@ -119,25 +120,25 @@ body {
             &:focus {
               border-color: var( --dynamic-button-blue-hovered);
               box-shadow: 0 0 0 3px rgba(0, 101, 255, 0.3);
-              transform: translateY(-2px);  
+              transform: translateY(-2px);
             }
 
           }
 
           .email-button {
-           appearance: none;
-           display: inline-flex;
-           align-items: center;
-           text-align: center;
-           padding: 11px 16px 13px;
-           border: 1px solid var(--dynamic-button-blue-hovered);
-           border-radius: 4.8px;
-           color: var(--dynamic-text);
-           font-size: 16px;
-           background-color: var(--dynamic-button-blue-hovered);
-           text-decoration: none;
-           transition: 0.25s ease-out;
-           cursor: pointer;
+            appearance: none;
+            display: inline-flex;
+            align-items: center;
+            text-align: center;
+            padding: 11px 16px 13px;
+            border: 1px solid var(--dynamic-button-blue-hovered);
+            border-radius: 4.8px;
+            color: var(--dynamic-text);
+            font-size: 16px;
+            background-color: var(--dynamic-button-blue-hovered);
+            text-decoration: none;
+            transition: 0.25s ease-out;
+            cursor: pointer;
 
             &:hover {
               background-color: var(--ds-background-button-blue);
@@ -145,13 +146,13 @@ body {
             }
           }
         }
-      
+
         .right {
           width: 50%;
         }
       }
-        
+
     }
 
+  }
 }
-
