@@ -56,9 +56,9 @@ export function HomePage() {
                 <button className='email-button'>Sign up it's free!</button>
               </form>
             </div>
-            <pciture className='right'>
+            <picture className='right'>
               <img src={HomeImage} />
-            </pciture>
+            </picture>
           </section>
         </div>
       </main>
