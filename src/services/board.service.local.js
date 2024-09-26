@@ -1,6 +1,6 @@
-import {storageService} from './async-storage.service'
-import {utilService} from './util.service'
-import {userService} from './user.service'
+import {storageService} from '../async-storage.service'
+import {utilService} from '../util.service'
+import {userService} from '../user.service'
 
 const STORAGE_KEY = 'boards'
 
