@@ -25,6 +25,10 @@ import {Bell} from "./Bell.jsx";
 import {QuestionMark} from "./QuestioMark.jsx";
 import {Trash} from "./Trash.jsx";
 import { Trello } from "./Trello.jsx"
+import { Members } from "./Members.jsx"
+import { Collections } from "./Collections.jsx"
+import { Heart } from "./Heart.jsx"
+import { Views } from "./Views.jsx"
 
 
 
@@ -56,5 +60,10 @@ export const icons = {
     questionMark: QuestionMark,
     trash: Trash,
     trello: Trello,
+    members: Members,
+    collections: Collections,
+    heart: Heart,
+    views: Views,
+    
     // Add more icons here...
 };

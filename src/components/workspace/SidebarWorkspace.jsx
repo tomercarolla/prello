@@ -1,43 +1,95 @@
 import { useState } from 'react';
 import { Divider } from 'components/sidebar/StyledElements'
 import { Link } from "react-router-dom";
+import { Icon } from '@ui';
 
 export function SidebarWorkspace() { 
- const [isMenuOpen, setIsMenuOpen] = useState(false);
+ const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+
+ function toggleMenu() {
+   setIsMenuOpen(!isMenuOpen)
+ }
+
+ const topSidebarItems = [
+   { name: 'Boards', icon: 'board'},
+   { name: 'Templates', icon: 'board'},
+   { name: 'Home', icon: 'board'},
+ ];
+
+ const dropDownmenuItems = [
+   { name: 'Boards', icon: 'board' },
+   { name: 'Collections', icon: 'collections' },
+   { name: 'Highlights', icon: 'heart' },
+   { name: 'Views', icon: 'views' },
+   { name: 'Members', icon: 'members' },
+   { name: 'Settings', icon: 'settings' },
+ ];
 
  return (
    <>
      <nav className='sidebar-workspace'>
        <div className='top-sidebar-container'>
          <ul className='top-sidebar'>
-           <li className='top-list-item'>
-             <Link to='/w'>
-               Boards
-             </Link>
-           </li>
-           <li className='top-list-item'>
-             <Link to='/templates'>
-               Templates
-             </Link>
-           </li>
-           <li className='top-list-item'>
-             <Link to='/'>
-               Home
-             </Link>
-           </li>
+           {topSidebarItems.map((item) => (
+             <li
+               key={item.name}
+               className='top-list-item'
+               tabIndex={0}
+               data-active='false'
+               onClick={(ev) =>
+                 ev.currentTarget.setAttribute('data-active', 'true')
+               }
+               onBlur={(ev) =>
+                 ev.currentTarget.setAttribute('data-active', 'false')
+               }
+             >
+               <Link to='/w'>
+                 <Icon name={item.icon} size='14px' />
+                 <span>{item.name}</span>
+               </Link>
+             </li>
+           ))}
          </ul>
-    </div>
-    
-    <Divider />
+       </div>
 
-         <ul className='bottom-sidebar'>
-           <div className='workspaces'>
-             <span>Workspaces</span>
+       <Divider />
+
+       <ul className='bottom-sidebar'>
+         <div className='workspaces'>
+           <span>Workspaces</span>
+         </div>
+
+         <li onClick={toggleMenu} className='dropdown-menu-header'>
+           <div className='user-info-container'>
+             <div className='avatar'></div>
+             <span>Tomer test</span>
            </div>
+           <Icon name='chevronDown' size='14px' />
+         </li>
 
-           <li className='dropdown-menu-header'><div></div>Tomer test</li>
-             <ul className='dropdown-menu'></ul>
-         </ul>
+         {isMenuOpen && (
+           <ul className='dropdown-menu'>
+             {dropDownmenuItems.map((item) => (
+               <li
+                 key={item.name}
+                 className='dropdown-menu-item'
+                 tabIndex={0}
+                 data-active='false'
+                 onClick={(ev) =>
+                   ev.currentTarget.setAttribute('data-active', 'true')
+                 }
+                 onBlur={(ev) =>
+                   ev.currentTarget.setAttribute('data-active', 'false')
+                 }
+               >
+                 <Icon name={item.icon} size='14px' />
+                 <span>{item.name}</span>
+               </li>
+             ))}
+           </ul>
+         )}
+       </ul>
      </nav>
    </>
  );
