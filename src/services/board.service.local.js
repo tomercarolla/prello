@@ -1,8 +1,8 @@
-import {storageService} from '../async-storage.service'
-import {utilService} from '../util.service'
-import {userService} from '../user.service'
+import { storageService } from './async-storage.service';
+import { utilService } from './util.service';
+import { userService } from './user.service';
 
-const STORAGE_KEY = 'boards'
+const STORAGE_KEY = 'boards';
 
 const boards = [
   {
@@ -266,104 +266,107 @@ const boards = [
       },
     ],
     orderedGroupsIds: ['g103', 'g104'],
-
   },
 ];
 
 _createBoards();
 
 export const boardService = {
-    query,
-    getById,
-    save,
-    remove,
-    getEmptyBoard,
-    getDemoBoard,
-    addBoardMsg,
-    updateTask,
-    // getTaskEditCmps
-}
+  query,
+  getById,
+  save,
+  remove,
+  getEmptyBoard,
+  getDemoBoard,
+  addBoardMsg,
+  updateTask,
+  // getTaskEditCmps
+};
 
-window.boardSer = boardService
+window.boardSer = boardService;
 
-async function query(filterBy = {title: ''}) {
-    let boards = await storageService.query(STORAGE_KEY);
+async function query(filterBy = { title: '' }) {
+  let boards = await storageService.query(STORAGE_KEY);
 
-    if (filterBy.title) {
-        const regex = new RegExp(filterBy.title, 'i');
+  if (filterBy.title) {
+    const regex = new RegExp(filterBy.title, 'i');
 
-        boards = boards.filter(board => regex.test(board.title));
-    }
+    boards = boards.filter((board) => regex.test(board.title));
+  }
 
-    // Return just preview info about the boards
-    // boards = boards.map(({_id, title, owner}) => ({_id, title, owner}));
+  // Return just preview info about the boards
+  // boards = boards.map(({_id, title, owner}) => ({_id, title, owner}));
 
-    return boards;
+  return boards;
 }
 
 function getById(boardId) {
-    return storageService.get(STORAGE_KEY, boardId);
+  return storageService.get(STORAGE_KEY, boardId);
 }
 
 async function remove(boardId) {
-    // throw new Error('Nope')
-    await storageService.remove(STORAGE_KEY, boardId);
+  // throw new Error('Nope')
+  await storageService.remove(STORAGE_KEY, boardId);
 }
 
 async function save(board) {
-    let savedBoard;
+  let savedBoard;
 
-    if (board._id) {
-        const boardToUpdate = {
-            _id: board._id,
-            title: board.title
-        };
+  if (board._id) {
+    const boardToUpdate = {
+      _id: board._id,
+      title: board.title,
+    };
 
-        savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
-    } else {
-        // Later, owner is set by the backend
-        board.owner = userService.getLoggedinUser();
+    savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
+  } else {
+    // Later, owner is set by the backend
+    board.owner = userService.getLoggedinUser();
 
-        savedBoard = await storageService.post(STORAGE_KEY, board)
-    }
+    savedBoard = await storageService.post(STORAGE_KEY, board);
+  }
 
-    return savedBoard
+  return savedBoard;
 }
 
 async function addBoardMsg(boardId, txt) {
-    // Later, this is all done by the backend
-    const board = await getById(boardId);
+  // Later, this is all done by the backend
+  const board = await getById(boardId);
 
-    if (!board.msgs) board.msgs = [];
+  if (!board.msgs) board.msgs = [];
 
-    const msg = {
-        id: utilService.makeId(),
-        by: userService.getLoggedinUser(),
-        txt
-    };
+  const msg = {
+    id: utilService.makeId(),
+    by: userService.getLoggedinUser(),
+    txt,
+  };
 
-    board.msgs.push(msg);
+  board.msgs.push(msg);
 
-    await storageService.put(STORAGE_KEY, board);
+  await storageService.put(STORAGE_KEY, board);
 
-    return msg;
+  return msg;
 }
 
 async function updateTask(boardId, groupId, task, activityTitle) {
-    // Later, this is all done by the backend
-    const board = await getById(boardId);
-    const group = board.groups.find(g => g.id === groupId);
-    const idx = group.tasks.findIndex(t => t.id === task.id);
+  // Later, this is all done by the backend
+  const board = await getById(boardId);
+  const group = board.groups.find((g) => g.id === groupId);
+  const idx = group.tasks.findIndex((t) => t.id === task.id);
 
-    group.tasks[idx] = task;
+  group.tasks[idx] = task;
 
-    const activity = _createActivity(activityTitle, _toMiniTask(task), _toMiniGroup(group));
+  const activity = _createActivity(
+    activityTitle,
+    _toMiniTask(task),
+    _toMiniGroup(group)
+  );
 
-    board.activities.push(activity);
+  board.activities.push(activity);
 
-    await storageService.put(STORAGE_KEY, board);
+  await storageService.put(STORAGE_KEY, board);
 
-    return [task, activity];
+  return [task, activity];
 }
 
 // function getTaskEditCmps(task, board) {
@@ -399,45 +402,45 @@ async function updateTask(boardId, groupId, task, activityTitle) {
 // }
 
 function getEmptyBoard() {
-    return {
-        title: 'Board -' + (Date.now() % 1000),
-        activities: []
-    }
+  return {
+    title: 'Board -' + (Date.now() % 1000),
+    activities: [],
+  };
 }
 
 function getDemoBoard() {
-    return structuredClone(board);
+  return structuredClone(board);
 }
 
 function _createBoards() {
-    let boardStorage = utilService.loadFromStorage(STORAGE_KEY);
+  let boardStorage = utilService.loadFromStorage(STORAGE_KEY);
 
-    if (boardStorage && boardStorage.length > 0) return;
+  if (boardStorage && boardStorage.length > 0) return;
 
-    utilService.saveToStorage(STORAGE_KEY, boards);
+  utilService.saveToStorage(STORAGE_KEY, boards);
 }
 
 function _createActivity(title, task, group = null) {
-    return {
-        id: utilService.makeId(),
-        createdAt: Date.now(),
-        byMember: userService.getLoggedinUser(),
-        title,
-        task,
-        group
-    }
+  return {
+    id: utilService.makeId(),
+    createdAt: Date.now(),
+    byMember: userService.getLoggedinUser(),
+    title,
+    task,
+    group,
+  };
 }
 
 function _getStatuses() {
-    return ['open', 'inProgress', 'done'];
+  return ['open', 'inProgress', 'done'];
 }
 
 function _toMiniGroup(group) {
-    return {id: group.id, title: group.title};
+  return { id: group.id, title: group.title };
 }
 
 function _toMiniTask(task) {
-    return {id: task.id, title: task.title};
+  return { id: task.id, title: task.title };
 }
 
 // TEST DATA
