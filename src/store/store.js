@@ -1,11 +1,11 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux'
 
 import { boardReducer } from './board/board.reducer'
+import { userReducer } from './user/user.reducer'
 import { reviewReducer } from './review/review.reducer'
 import { systemReducer } from './system.reducer'
 import { groupReducer } from './group/group.reducer'
 import { taskReducer } from './task/task.reducer'
-import {userReducer} from "./user/user.reducer.js";
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,
