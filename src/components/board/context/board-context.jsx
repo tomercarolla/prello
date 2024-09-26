@@ -4,6 +4,7 @@ export const BoardContext = createContext({
     reorderColumn: () => {},
     reorderCard: () => {},
     moveCard: () => {},
+    instanceId: Symbol(),
 });
 
 export function useBoardContext() {

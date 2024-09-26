@@ -18,6 +18,6 @@ export function groupReducer(state = initialState, action) {
      case REMOVE_GROUP:
          return { ...state, groups: state.groups.filter(group => group.id !== action.groupId) }
      default:
-         return
+         return state;
   }
 }

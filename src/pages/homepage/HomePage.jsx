@@ -1,7 +1,5 @@
-import homepagePng from './assets/HomeImage.png'
 import {Link} from 'react-router-dom';
 import {Icon} from 'ui/icons/Icon';
-
 
 export function HomePage() {
     return (
@@ -56,12 +54,9 @@ export function HomePage() {
                                     type='email'
                                     placeholder='Enter your email'
                                 />
-                                <button className='email-button'>Sign up it's free!</button>
+                                <button className='email-button'>Sign up its free!</button>
                             </form>
                         </div>
-                        <pciture className='right'>
-                            <img src={homepagePng}/>
-                        </pciture>
                     </section>
                 </div>
             </main>

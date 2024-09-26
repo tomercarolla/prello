@@ -6,10 +6,10 @@ import {
 import {Provider} from 'react-redux';
 import {store} from './store/store.js';
 import {HomePage} from './pages/homepage/HomePage.jsx';
-import {Board} from './components/board/Board';
 import {AuthRoute} from "./auth.utls.jsx";
-import {Header} from "./components/Header.jsx";
 import {Sidebar} from "./components/sidebar/Sidebar.jsx";
+import {Header} from "./components/header/Header.jsx";
+import {BoardPage} from "./components/board/BoardPage.jsx";
 
 export function App() {
     return (
@@ -32,7 +32,7 @@ export function App() {
                                             <Sidebar/>
                                             <div className="content">
                                                 <Routes>
-                                                    <Route path="/b/:boardId/:boardName" element={<Board/>}/>
+                                                    <Route path="/b/:boardId/:boardName" element={<BoardPage/>}/>
                                                 </Routes>
                                             </div>
                                         </div>

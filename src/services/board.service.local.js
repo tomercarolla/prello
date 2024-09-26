@@ -1,6 +1,6 @@
-import {storageService} from '../async-storage.service'
-import {utilService} from '../util.service'
-import {userService} from '../user.service'
+import {storageService} from './async-storage.service.js';
+import {utilService} from './util.service.js';
+import {userService} from './user.service.js';
 
 const STORAGE_KEY = 'boards'
 
@@ -42,12 +42,12 @@ const boards = [
                 "imgUrl": "https://www.google.com"
             }
         ],
-        groups: [
-            {
-                "id": "g101",
-                "title": "Group 1",
-                "archivedAt": 1589983468418,
-                "tasks": [
+        groups: {
+            g101: {
+                id: "g101",
+                title: "Group 1",
+                archivedAt: 1589983468418,
+                tasks: [
                     {
                         "id": "c101",
                         "title": "Replace logo"
@@ -57,12 +57,12 @@ const boards = [
                         "title": "Add Samples"
                     }
                 ],
-                "style": {}
+                style: {}
             },
-            {
-                "id": "g102",
-                "title": "Group 2",
-                "tasks": [
+            g102: {
+                id: "g102",
+                title: "Group 2",
+                tasks: [
                     {
                         "id": "c103",
                         "title": "Do that",
@@ -110,9 +110,9 @@ const boards = [
                         }
                     }
                 ],
-                "style": {}
+                style: {}
             }
-        ],
+        },
         activities: [
             {
                 "id": "a101",
@@ -172,8 +172,8 @@ const boards = [
                 "imgUrl": "https://www.google.com"
             }
         ],
-        groups: [
-            {
+        groups: {
+            g104: {
                 "id": "g103",
                 "title": "Group 1",
                 "archivedAt": 1589983468418,
@@ -189,7 +189,7 @@ const boards = [
                 ],
                 "style": {}
             },
-            {
+            g103: {
                 "id": "g104",
                 "title": "Group 2",
                 "tasks": [
@@ -242,7 +242,7 @@ const boards = [
                 ],
                 "style": {}
             }
-        ],
+        },
         activities: [
             {
                 "id": "a101",

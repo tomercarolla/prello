@@ -1,11 +1,11 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux'
 
 import { boardReducer } from './board/board.reducer'
-import { userReducer } from './user.reducer'
 import { reviewReducer } from './review/review.reducer'
 import { systemReducer } from './system.reducer'
 import { groupReducer } from './group/group.reducer'
 import { taskReducer } from './task/task.reducer'
+import {userReducer} from "./user/user.reducer.js";
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,
@@ -16,15 +16,11 @@ const rootReducer = combineReducers({
     taskModule: taskReducer,
 })
 
-
 const middleware = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : undefined
-
 
 export const store = createStore(rootReducer, middleware)
 
-window.gStore = store
-
-
+window.gStore = store;
 
 // For debug:
 // store.subscribe(() => {
