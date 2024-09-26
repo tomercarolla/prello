@@ -65,7 +65,11 @@ export function SidebarWorkspace() {
              <div className='avatar'></div>
              <span>Tomer test</span>
            </div>
-           <Icon name='chevronDown' size='14px' />
+           {isMenuOpen ? (
+             <Icon name='chevronUp' size='16px' />
+           ) : (
+             <Icon name='chevronDown' size='16px' />
+           )}
          </li>
 
          {isMenuOpen && (

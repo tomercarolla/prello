@@ -29,6 +29,7 @@ import { Members } from "./Members.jsx"
 import { Collections } from "./Collections.jsx"
 import { Heart } from "./Heart.jsx"
 import { Views } from "./Views.jsx"
+import { ChevronUp } from "./ChevronUp.jsx";
 
 
 
@@ -39,6 +40,7 @@ export const icons = {
     list: List,
     table: Table,
     chevronDown: ChevronDown,
+    chevronUp: ChevronUp,
     rocket: Rocket,
     flash: Flash,
     filter: Filter,
