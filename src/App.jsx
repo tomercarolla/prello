@@ -3,48 +3,62 @@ import {
     Routes,
     Route,
 } from 'react-router-dom';
-import {Provider} from 'react-redux';
-import {store} from './store/store.js';
-import {HomePage} from './pages/homepage/HomePage.jsx';
-import {Board} from './components/board/Board';
+
+
 import {AuthRoute} from "./auth.utls.jsx";
+import {Provider} from 'react-redux';
+import { store } from './store/store.js';
+
+// ------PAGES------
+import {HomePage} from './pages/homepage/HomePage.jsx';
+import { WorkspacePage } from 'pages/WorkspacePage.jsx';
+
+// ------COMPONENTS------
 import {Header} from "./components/Header.jsx";
 import {Sidebar} from "./components/sidebar/Sidebar.jsx";
+import {Board} from './components/board/Board';
 
 export function App() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-
-                <Route
-                    path="/*"
+  return (
+    <Router>
+      <Routes>
+        <Route path='/home' element={<HomePage />} />
+        <Route
+          path='/*'
+          element={
+            <Provider store={store}>
+              <AuthRoute>
+                <Routes>
+                  <Route path='w' element={<WorkspacePage />} />
+                  <Route
+                    path='*'
                     element={
-                        <Provider store={store}>
-                            <AuthRoute>
-                                <div
-                                    className="surface"
-                                    style={{backgroundColor: 'rgb(75, 191, 107)'}}
-                                >
-                                    <Header/>
-                                    <main>
-                                        <div className="container">
-                                            <Sidebar/>
-                                            <div className="content">
-                                                <Routes>
-                                                    <Route path="/b/:id/:boardName" element={<Board/>}/>
-                                                </Routes>
-                                            </div>
-                                        </div>
-                                    </main>
-                                </div>
-                            </AuthRoute>
-                        </Provider>
+                      <div
+                        className='surface'
+                        style={{ backgroundColor: 'rgb(75, 191, 107)' }}
+                      >
+                        <Header />
+                        <main>
+                          <div className='container'>
+                            <Sidebar />
+                            <div className='content'>
+                              <Routes>
+                                <Route path='b/:boardId/:boardName' element={<Board />} />
+                              </Routes>
+                            </div>
+                          </div>
+                        </main>
+                      </div>
                     }
-                />
-            </Routes>
-        </Router>
-    );
+                  />
+                </Routes>
+              </AuthRoute>
+            </Provider>
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }
 
 
