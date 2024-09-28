@@ -1,0 +1,148 @@
+body {
+ font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.hero {
+ display: flex;
+ position: relative;
+ align-items: flex-start;
+ justify-content: space-between;
+ max-width: 850px;
+ margin: 0 auto;
+ padding: 42.5px;
+
+ .user-info-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 3px;
+    background: linear-gradient(var(--ds-background-accent-green-bolder), var(--ds-background-accent-green-subtle));
+  }
+
+  .user-info {
+    display: flex;
+    
+   .subscription-container {
+    display: flex;
+    align-items: center;
+    max-width: 550px;
+    margin-top: 5px;
+    gap: 5px;
+   }
+
+   h2 {
+    max-height: 20px;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   }
+
+   span:first-child {
+    max-height: 20px;
+    width: 60px;
+   }
+
+   span:nth-child(2) {
+    display: flex;
+    width: 20px;
+    gap: 2px;
+   }
+
+   span:last-child {
+    width: 60px;
+   }
+  }
+ }
+}
+
+.boards-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 14px;
+  width: 100%;
+
+  .boards-header {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 0 20px;
+    max-width: 1266px;
+
+    span {
+      display: flex;
+      align-items: center;
+      height: 20px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+
+  .boards-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    &-item {
+      display: block;
+      margin: 0 16px 16px 0; 
+      padding: 0;
+      width: 23.5%; 
+      min-width: 150px;
+      border-radius: 3px;
+      // background-image: url(https://d2k1ftgv7pobq7.cloudfront.net/images/backgrounds/gradients/snow.svg);
+      background-size: cover;
+      background-position: center;
+      height: 96px;
+      min-height: 96px;
+      cursor: pointer;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+
+        .board-title {
+          display: block;
+          padding: 8px;
+          color: var(--dynamic-text);
+          font-weight: bold;
+        }
+      }
+    }
+
+    .add-board-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 16px 16px 0;
+      padding: 0;
+      width: 23.5%; 
+      min-width: 150px;
+      border-radius: 3px;
+      background-color: #282D33;
+      background-size: cover;
+      background-position: center;
+      height: 96px;
+      min-height: 96px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--ds-background-neutral-hovered)
+      }
+
+      span {
+       padding: 8px;
+       color: var(--ds-text);
+      }
+    }
+  }
+}

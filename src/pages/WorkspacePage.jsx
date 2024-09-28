@@ -1,5 +1,6 @@
 import { Header } from "components/Header";
 import { SidebarWorkspace } from "components/workspace/SidebarWorkspace";
+import { WorkspaceContent } from "components/workspace/WorkspaceContent";
 
 
 export function WorkspacePage() {
@@ -17,7 +18,9 @@ export function WorkspacePage() {
        </section>
 
        <section className='boards-container'>
-         <div className="boards-content"></div>
+         <div className="boards-content">
+           <WorkspaceContent />
+         </div>
        </section>
 
     
