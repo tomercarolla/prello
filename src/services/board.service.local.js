@@ -42,78 +42,79 @@ const boards = [
         imgUrl: 'https://www.google.com',
       },
     ],
-    groups: [
-      {
+    groups: {
+      'g101': {
         id: 'g101',
         title: 'Group 1',
         archivedAt: 1589983468418,
-        tasks: [
-          {
-            id: 'c101',
-            title: 'Replace logo',
-          },
-          {
-            id: 'c102',
-            title: 'Add Samples',
-          },
-        ],
+        tasksIds: ['c101', 'c102'],
         style: {},
       },
-      {
+      'g102': {
         id: 'g102',
         title: 'Group 2',
-        tasks: [
+        tasksIds: ['c104', 'c103'],
+        style: {},
+      }
+    },
+    tasks: {
+      'c101': {
+        id: 'c101',
+        title: 'Replace logo',
+      },
+      'c103': {
+        id: 'c103',
+        title: 'Do that',
+        archivedAt: 1589983468418,
+      },
+      'c102': {
+        id: 'c102',
+        title: 'Add Samples',
+      },
+      'c104': {
+        id: 'c104',
+        title: 'Help me',
+        dueDate: '2024-09-24',
+        description: 'description',
+        comments: [
+          // in Trello this is easier implemented as an activity
           {
-            id: 'c103',
-            title: 'Do that',
-            archivedAt: 1589983468418,
-          },
-          {
-            id: 'c104',
-            title: 'Help me',
-            dueDate: '2024-09-24',
-            description: 'description',
-            comments: [
-              // in Trello this is easier implemented as an activity
-              {
-                id: 'ZdPnm',
-                title: 'also @yaronb please CR this',
-                createdAt: 1590999817436,
-                byMember: {
-                  _id: 'u101',
-                  fullname: 'Tal Tarablus',
-                  imgUrl: '',
-                },
-              },
-            ],
-            checklists: [
-              {
-                id: 'YEhmF',
-                title: 'Checklist',
-                todos: [
-                  {
-                    id: '212jX',
-                    title: 'To Do 1',
-                    isDone: false,
-                  },
-                ],
-              },
-            ],
-            memberIds: ['u101'],
-            labelIds: ['l101', 'l102'],
+            id: 'ZdPnm',
+            title: 'also @yaronb please CR this',
+            createdAt: 1590999817436,
             byMember: {
               _id: 'u101',
               fullname: 'Tal Tarablus',
               imgUrl: '',
             },
-            style: {
-              backgroundColor: '#26de81',
-            },
           },
         ],
-        style: {},
-      },
-    ],
+        checklists: [
+          {
+            id: 'YEhmF',
+            title: 'Checklist',
+            todos: [
+              {
+                id: '212jX',
+                title: 'To Do 1',
+                isDone: false,
+              },
+            ],
+          },
+        ],
+        memberIds: ['u101'],
+        labelIds: ['l101', 'l102'],
+        byMember: {
+          _id: 'u101',
+          fullname: 'Tal Tarablus',
+          imgUrl: '',
+        },
+        style: {
+          backgroundColor: '#26de81',
+        },
+      }
+    },
+    orderedGroupsIds: ['g101', 'g102'],
     activities: [
       {
         id: 'a101',
@@ -134,7 +135,6 @@ const boards = [
         },
       },
     ],
-    orderedGroupsIds: ['g101', 'g102'],
   },
   {
     _id: '1234',
@@ -173,78 +173,79 @@ const boards = [
         imgUrl: 'https://www.google.com',
       },
     ],
-    groups: [
-      {
-        id: '103',
+    groups: {
+      'g103': {
+        id: 'g103',
         title: 'Group 1',
         archivedAt: 1589983468418,
-        tasks: [
-          {
-            id: 'c101',
-            title: 'Replace logo',
-          },
-          {
-            id: 'c102',
-            title: 'Add Samples',
-          },
-        ],
+        tasksIds: ['c101', 'c102'],
         style: {},
       },
-      {
+      'g104': {
         id: 'g104',
         title: 'Group 2',
-        tasks: [
+        tasksIds: ['c103', 'c104'],
+        style: {},
+      }
+    },
+    tasks: {
+      'c101': {
+        id: 'c101',
+        title: 'Replace logo',
+      },
+      'c103': {
+        id: 'c103',
+        title: 'Do that',
+        archivedAt: 1589983468418,
+      },
+      'c102': {
+        id: 'c102',
+        title: 'Add Samples',
+      },
+      'c104': {
+        id: 'c104',
+        title: 'Help me',
+        dueDate: '2024-09-24',
+        description: 'description',
+        comments: [
+          // in Trello this is easier implemented as an activity
           {
-            id: 'c103',
-            title: 'Do that',
-            archivedAt: 1589983468418,
-          },
-          {
-            id: 'c104',
-            title: 'Help me',
-            dueDate: '2024-09-24',
-            description: 'description',
-            comments: [
-              // in Trello this is easier implemented as an activity
-              {
-                id: 'ZdPnm',
-                title: 'also @yaronb please CR this',
-                createdAt: 1590999817436,
-                byMember: {
-                  _id: 'u101',
-                  fullname: 'Tal Tarablus',
-                  imgUrl: '',
-                },
-              },
-            ],
-            checklists: [
-              {
-                id: 'YEhmF',
-                title: 'Checklist',
-                todos: [
-                  {
-                    id: '212jX',
-                    title: 'To Do 1',
-                    isDone: false,
-                  },
-                ],
-              },
-            ],
-            memberIds: ['u101'],
-            labelIds: ['l101', 'l102'],
+            id: 'ZdPnm',
+            title: 'also @yaronb please CR this',
+            createdAt: 1590999817436,
             byMember: {
               _id: 'u101',
               fullname: 'Tal Tarablus',
               imgUrl: '',
             },
-            style: {
-              backgroundColor: '#26de81',
-            },
           },
         ],
-        style: {},
-      },
-    ],
+        checklists: [
+          {
+            id: 'YEhmF',
+            title: 'Checklist',
+            todos: [
+              {
+                id: '212jX',
+                title: 'To Do 1',
+                isDone: false,
+              },
+            ],
+          },
+        ],
+        memberIds: ['u101'],
+        labelIds: ['l101', 'l102'],
+        byMember: {
+          _id: 'u101',
+          fullname: 'Tal Tarablus',
+          imgUrl: '',
+        },
+        style: {
+          backgroundColor: '#26de81',
+        },
+      }
+    },
+    orderedGroupsIds: ['g103', 'g104'],
     activities: [
       {
         id: 'a101',
@@ -265,7 +266,6 @@ const boards = [
         },
       },
     ],
-    orderedGroupsIds: ['g103', 'g104'],
   },
 ];
 

@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {Button, ButtonLink, Icon} from "@ui";
+import {Button, Icon} from "@ui";
 import {useTranslation} from "react-i18next";
 
 export function BoardHeader() {
