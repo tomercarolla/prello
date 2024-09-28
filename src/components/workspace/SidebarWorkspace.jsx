@@ -13,7 +13,7 @@ export function SidebarWorkspace() {
 
  const topSidebarItems = [
    { name: 'Boards', icon: 'board'},
-   { name: 'Templates', icon: 'board'},
+   { name: 'Templates', icon: 'template'},
    { name: 'Home', icon: 'board'},
  ];
 
@@ -45,7 +45,7 @@ export function SidebarWorkspace() {
                }
              >
                <Link to='/w'>
-                 <Icon name={item.icon} size='14px' />
+                 <Icon name={item.icon} size='16px' />
                  <span>{item.name}</span>
                </Link>
              </li>
@@ -87,7 +87,7 @@ export function SidebarWorkspace() {
                    ev.currentTarget.setAttribute('data-active', 'false')
                  }
                >
-                 <Icon name={item.icon} size='14px' />
+                 <Icon name={item.icon} size='16px' />
                  <span>{item.name}</span>
                </li>
              ))}

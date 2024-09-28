@@ -1,5 +1,6 @@
 export const Heart = (props) => (
   <svg
+    {...props}
     role='presentation'
     focusable='false'
     viewBox='0 0 24 24'

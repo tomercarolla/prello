@@ -43,7 +43,7 @@ export function WorkspaceContent() {
 
      <div className="your-boards">
         <div className="boards-header">
-           <span><Icon name='member' size='22px' /></span><span>Your Boards</span>
+           <span><Icon name='member' size='22px' /></span>Your Boards
         </div>
 
         <ul className="boards-list">
@@ -58,13 +58,13 @@ export function WorkspaceContent() {
                </Link>
            </li>
           ))}
-         <div className="add-board-btn"><span>Create new board</span></div>
+         <div className="add-board-btn">Create new board</div>
         </ul>
     </div>
     
     <div className='template-boards'>
        <div className='boards-header'>
-         <span><Icon name='template' size='22px' /></span><span>Most popular templates</span>
+         <span><Icon name='template' size='22px' /></span>Most popular templates
        </div>
      
        <ul className="boards-list">
