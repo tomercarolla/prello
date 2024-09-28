@@ -39,24 +39,43 @@ export function WorkspaceContent() {
    <Divider />
 
    <section className="boards-container">
-    <div className="boards-header">
-       <span><Icon name='member' size='22px' /></span><span>Your Boards</span>
-    </div>
 
-    <ul className="boards-list">
-      {boards.map(board => (
-       <li
-        key={board._id}
-        className="boards-list-item"
-        style={{ backgroundColor: utilService.getRandomColor() }}
-       >
-           <Link to={`/b/${board._id}/${board.title}`}>
-              <span className="board-title">{board.title}</span>
-           </Link>
-       </li>
-      ))}
-     <div className="add-board-btn"><span>Create new board</span></div>
-    </ul>
+
+     <div className="your-boards">
+        <div className="boards-header">
+           <span><Icon name='member' size='22px' /></span><span>Your Boards</span>
+        </div>
+
+        <ul className="boards-list">
+          {boards.map(board => (
+           <li
+            key={board._id}
+            className="boards-list-item"
+            style={{ backgroundColor: utilService.getRandomColor() }}
+           >
+               <Link to={`/b/${board._id}/${board.title}`}>
+                  <span className="board-title">{board.title}</span>
+               </Link>
+           </li>
+          ))}
+         <div className="add-board-btn"><span>Create new board</span></div>
+        </ul>
+    </div>
+    
+    <div className='template-boards'>
+       <div className='boards-header'>
+         <span><Icon name='template' size='22px' /></span><span>Most popular templates</span>
+       </div>
+     
+       <ul className="boards-list">
+          <li
+            className="boards-list-item"
+            style={{ backgroundColor: utilService.getRandomColor() }}
+          >
+             <span className="board-title">Kanban Template</span>
+          </li>
+       </ul>
+     </div>
    </section>
   </>
  )

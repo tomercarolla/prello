@@ -31,6 +31,7 @@ import { Heart } from "./Heart.jsx"
 import { Views } from "./Views.jsx"
 import { ChevronUp } from "./ChevronUp.jsx";
 import { Lock } from "./Lock.jsx";
+import { Template } from "./Template.jsx";
 
 
 export const icons = {
@@ -67,6 +68,7 @@ export const icons = {
     heart: Heart,
     views: Views,
     lock: Lock,
+    template: Template,
     
     // Add more icons here...
 };
