@@ -1,0 +1,9 @@
+{
+  "plugins": ["prettier-plugin-organize-imports"],
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "trailingComma": "none",
+  "singleQuote": true,
+  "jsxBracketSameLine": true
+}

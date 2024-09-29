@@ -1,30 +1,29 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Icon } from 'ui/icons/Icon';
 import { Button, Menu } from '@ui';
-
+import { Icon } from 'ui/icons/Icon';
 
 export function BoardList({ items, toggleMenu, getMenuContent }) {
   return (
     <List>
       {items.map((item) => (
-        <li key={item.name} className='list-item'>
-          <StyledLink to='/'>
-            <div className='icons-container'>
-              <Icon name={item.icon} size='16px' />
+        <li key={item.name} className="list-item">
+          <StyledLink to="/">
+            <div className="icons-container">
+              <Icon name={item.icon} size="16px" />
               <span>{item.name}</span>
             </div>
-            <div className='icons-container'>
+            <div className="icons-container">
               <Menu
                 trigger={
                   <Button
-                    size='md'
-                    scale='ghost'
-                    className='details'
+                    size="md"
+                    scale="ghost"
+                    className="details"
                     onClick={() => toggleMenu(item.name.toLowerCase())}
                   >
-                    <Icon name='details' size='14px' />
+                    <Icon name="details" size="14px" />
                   </Button>
                 }
                 title={item.name}
@@ -61,4 +60,3 @@ const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
-

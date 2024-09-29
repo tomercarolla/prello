@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { Button } from '@ui';
 import { Select } from 'antd';
 import { Icon } from 'ui/icons/Icon';
-import { Button } from '@ui';
 import { Container, Divider } from './StyledElements';
 
-import { NavLinks } from './components/NavLinks.jsx';
 import { BoardList } from './components/BoardList';
+import { NavLinks } from './components/NavLinks.jsx';
 import { WorkspaceContainer } from './components/WorkspaceContainer';
 
 export function Sidebar() {
@@ -22,34 +22,34 @@ export function Sidebar() {
     switch (type) {
       case 'workspace':
         return (
-          <div className='filter-container'>
+          <div className="filter-container">
             <StyledLabel>Filter</StyledLabel>
             <StyledSelect
-              defaultValue='all'
+              defaultValue="all"
               style={{ width: '100%' }}
               onChange={(value) => console.log(value)}
               options={[
                 { value: 'all', label: 'All workspace views' },
-                { value: 'created', label: 'Created by me' },
+                { value: 'created', label: 'Created by me' }
               ]}
-              className='custom-select'
+              className="custom-select"
             />
           </div>
         );
 
       case 'board':
         return (
-          <div className='sort-container'>
+          <div className="sort-container">
             <StyledLabel>Sort</StyledLabel>
             <StyledSelect
-              defaultValue='alphabetically'
+              defaultValue="alphabetically"
               style={{ width: '100%' }}
               onChange={(value) => console.log(value)}
               options={[
                 { value: 'alphabetically', label: 'sort alphabetically' },
-                { value: 'created', label: 'sort by created date' },
+                { value: 'created', label: 'sort by created date' }
               ]}
-              className='custom-select'
+              className="custom-select"
             />
           </div>
         );
@@ -57,8 +57,13 @@ export function Sidebar() {
       case 'table':
       case 'calendar':
         return (
-          <Button fullwidth='true' scale='dynamic' size='md' className='close-button'>
-            <Icon name='trash' size='16px' color='var(--ds-text)' />
+          <Button
+            fullwidth="true"
+            scale="dynamic"
+            size="md"
+            className="close-button"
+          >
+            <Icon name="trash" size="16px" color="var(--ds-text)" />
             <span style={{ color: 'var(--ds-text)' }}>Remove View</span>
           </Button>
         );
@@ -69,37 +74,31 @@ export function Sidebar() {
 
   const listItems = [
     { name: 'Table', icon: 'table' },
-    { name: 'Calendar', icon: 'table' },
+    { name: 'Calendar', icon: 'table' }
   ];
-
-
 
   return (
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
-
       <Container>
+        <Container $justifyContent="flex-start">
+          <div className="avatar"></div>
+          <div className="user-info">
+            <span className="username">tomer test</span>
+            <span className="user-status">Premium</span>
+          </div>
+        </Container>
 
-          <Container $justifyContent='flex-start'>
-            <div className='avatar'></div>
-            <div className='user-info'>
-              <span className='username'>tomer test</span>
-              <span className='user-status'>Premium</span>
-            </div>
-          </Container>
-
-          <Button
-            scale='ghost'
-            onClick={() => setExpandedSidebar(!expandedSidebar)}
-            className={`expand-button ${expandedSidebar ? '' : 'collapsed'}`}
-          >
-            <Icon
-              size={expandedSidebar ? '28px' : '26px'}
-              name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
-            />
-          </Button>
-        
+        <Button
+          scale="ghost"
+          onClick={() => setExpandedSidebar(!expandedSidebar)}
+          className={`expand-button ${expandedSidebar ? '' : 'collapsed'}`}
+        >
+          <Icon
+            size={expandedSidebar ? '28px' : '26px'}
+            name={expandedSidebar ? 'chevronLeft' : 'chevronRight'}
+          />
+        </Button>
       </Container>
-
 
       {expandedSidebar && (
         <>
@@ -108,8 +107,8 @@ export function Sidebar() {
           <NavLinks />
 
           <WorkspaceContainer
-            title='Workspace views'
-            menuType='workspace'
+            title="Workspace views"
+            menuType="workspace"
             getMenuContent={getMenuContent}
             onToggleMenu={toggleMenu}
           />
@@ -121,8 +120,8 @@ export function Sidebar() {
           />
 
           <WorkspaceContainer
-            title='Your Boards'
-            menuType='board'
+            title="Your Boards"
+            menuType="board"
             getMenuContent={getMenuContent}
             onToggleMenu={toggleMenu}
           />
@@ -137,7 +136,6 @@ export function Sidebar() {
     </nav>
   );
 }
-
 
 export const StyledSelect = styled(Select)`
   && {
