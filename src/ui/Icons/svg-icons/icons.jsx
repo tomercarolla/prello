@@ -25,7 +25,13 @@ import {Bell} from "./Bell.jsx";
 import {QuestionMark} from "./QuestioMark.jsx";
 import {Trash} from "./Trash.jsx";
 import { Trello } from "./Trello.jsx"
-
+import { Members } from "./Members.jsx"
+import { Collections } from "./Collections.jsx"
+import { Heart } from "./Heart.jsx"
+import { Views } from "./Views.jsx"
+import { ChevronUp } from "./ChevronUp.jsx";
+import { Lock } from "./Lock.jsx";
+import { Template } from "./Template.jsx";
 
 
 export const icons = {
@@ -35,6 +41,7 @@ export const icons = {
     list: List,
     table: Table,
     chevronDown: ChevronDown,
+    chevronUp: ChevronUp,
     rocket: Rocket,
     flash: Flash,
     filter: Filter,
@@ -56,5 +63,12 @@ export const icons = {
     questionMark: QuestionMark,
     trash: Trash,
     trello: Trello,
+    members: Members,
+    collections: Collections,
+    heart: Heart,
+    views: Views,
+    lock: Lock,
+    template: Template,
+    
     // Add more icons here...
 };

@@ -16,7 +16,7 @@ export async function loadBoards() {
     console.log('Boards from DB:', boards);
     store.dispatch(getCmdSetBoards(boards));
   } catch (err) {
-    console.log('Cannot load boards', err);
+    console.error('Cannot load boards', err);
     throw err;
   }
 }
@@ -96,6 +96,20 @@ export async function updateTask(boardId, groupId, task, activityTitle) {
 }
 
 // Command Creators:
+function getCmdSetBoards(boards) {
+  return {
+    type: SET_BOARDS,
+    boards,
+  };
+}
+
+function getCmdSetBoard(board) {
+  return {
+    type: SET_BOARD,
+    board,
+  };
+}
+
 function getCmdRemoveBoard(boardId) {
   return {
     type: REMOVE_BOARD,
@@ -117,19 +131,6 @@ function getCmdUpdateBoard(board) {
   };
 }
 
-function getCmdSetBoards(boards) {
-  return {
-    type: SET_BOARDS,
-    boards,
-  };
-}
-
-function getCmdSetBoard(board) {
-  return {
-    type: SET_BOARD,
-    board,
-  };
-}
 
 function getCmdAddBoardMsg(msg) {
   return {

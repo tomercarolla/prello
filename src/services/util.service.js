@@ -5,7 +5,8 @@ export const utilService = {
     debounce,
     randomPastTime,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    getRandomColor,
 }
 
 function makeId(length = 6) {
@@ -63,3 +64,8 @@ function loadFromStorage(key, defaultValue = null) {
     return JSON.parse(value);
 }
 
+
+export function getRandomColor() {
+    const hue = Math.floor(Math.random() * 360);
+    return `hsl(${hue}, 65%, 60%)`;
+}

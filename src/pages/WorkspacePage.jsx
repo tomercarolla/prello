@@ -5,11 +5,8 @@ import { SidebarWorkspace } from "components/workspace/SidebarWorkspace";
 export function WorkspacePage() {
  return (
    <>
-     <header>
        <Header />
-     </header>
      <main className='main-boards'>
-       {/* I think we need to make a different Sidebar for this page. There are diffrences in the sidebars. */}
        <section>
          <nav className='navbar'>
          <SidebarWorkspace />
@@ -17,7 +14,9 @@ export function WorkspacePage() {
        </section>
 
        <section className='boards-container'>
-         <div className="boards-content"></div>
+         <div className="boards-content">
+           <WorkspaceContent />
+         </div>
        </section>
 
     
