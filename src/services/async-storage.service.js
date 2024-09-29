@@ -3,7 +3,7 @@ export const storageService = {
   get,
   post,
   put,
-  remove
+  remove,
 };
 
 function query(entityType, delay = 500) {
@@ -18,7 +18,7 @@ function get(entityType, entityId) {
 
     if (!entity)
       throw new Error(
-        `Get failed, cannot find entity with id: ${entityId} in: ${entityType}`
+        `Get failed, cannot find entity with id: ${entityId} in: ${entityType}`,
       );
 
     return entity;
@@ -40,12 +40,12 @@ function post(entityType, newEntity) {
 function put(entityType, updatedEntity) {
   return query(entityType).then((entities) => {
     const idx = entities.findIndex(
-      (entity) => entity._id === updatedEntity._id
+      (entity) => entity._id === updatedEntity._id,
     );
 
     if (idx < 0)
       throw new Error(
-        `Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`
+        `Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`,
       );
 
     const entityToUpdate = { ...entities[idx], ...updatedEntity };
@@ -64,7 +64,7 @@ function remove(entityType, entityId) {
 
     if (idx < 0)
       throw new Error(
-        `Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`
+        `Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`,
       );
 
     entities.splice(idx, 1);

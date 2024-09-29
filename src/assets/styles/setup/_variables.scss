@@ -18,11 +18,9 @@
   --ds-background-accent-green-subtle: #00875a;
   --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
 
-
   //Buttons
   --ds-background-brand-bold: #579DFF;
   --ds-background-brand-bold-hovered: #85B8FF;
-  --ds-background-button-blue: #0056e0;
   --ds-text-selected: #0c66e4;
   --ds-text-blue: #287eff;
   --dynamic-button-highlighted: #DCDFE4;
@@ -31,6 +29,8 @@
   --ds-background-neutral: #A1BDD914;
   --ds-background-neutral-hovered: #A6C5E229;
   --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
+  --ds-surface-raised: #22272B;
+  --ds-background-button-blue: #0056e0;
   --dynamic-button-blue-hovered: #0065ff;
 
   //Popover Menu
@@ -45,6 +45,9 @@
   --tr-background-list: #101204;
   --ds-icon: #9FADBC;
   --ds-icon-subtle: #8C9BAB;
+
+  //Tasks Card
+  --ds-border-focused: #85B8FF;
 
   // Breakpoints
   --mobile-breakpoint: 460px;

@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
     <I18nextProvider i18n={i18n}>
       <App />
     </I18nextProvider>
-  </Provider>
+  </Provider>,
 );
 
 // If you want your app to work offline and load faster, you can change

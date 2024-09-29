@@ -10,6 +10,7 @@ import { Close } from './Close.jsx';
 import { Collapse } from './Collapse.jsx';
 import { Collections } from './Collections.jsx';
 import { Details } from './Details.jsx';
+import { Edit } from './Edit.jsx';
 import { Expand } from './Expand.jsx';
 import { Filter } from './Filter.jsx';
 import { Flash } from './Flash.jsx';
@@ -61,12 +62,13 @@ export const icons = {
   bell: Bell,
   questionMark: QuestionMark,
   trash: Trash,
+  edit: Edit,
   trello: Trello,
   members: Members,
   collections: Collections,
   heart: Heart,
   views: Views,
   lock: Lock,
-  template: Template
+  template: Template,
   // Add more icons here...
 };

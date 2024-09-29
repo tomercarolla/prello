@@ -13,107 +13,108 @@ const boards = [
     createdBy: {
       _id: 'u101',
       fullname: 'Abi Abambi',
-      imgUrl: 'http://some-img'
+      imgUrl: 'http://some-img',
     },
     style: {
-      backgroundImage: ''
+      backgroundImage: '',
     },
     labels: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f'
+        color: '#61bd4f',
       },
       {
         id: 'l102',
         title: 'Progress',
-        color: '#61bd33'
-      }
+        color: '#61bd33',
+      },
     ],
     members: [
       {
         _id: 'u101',
         fullname: 'Tal Taltal',
-        imgUrl: 'https://www.google.com'
+        imgUrl: 'https://www.google.com',
       },
       {
         _id: 'u102',
         fullname: 'Josh Ga',
-        imgUrl: 'https://www.google.com'
-      }
+        imgUrl: 'https://www.google.com',
+      },
     ],
-    groups: [
-      {
+    groups: {
+      g101: {
         id: 'g101',
         title: 'Group 1',
         archivedAt: 1589983468418,
-        tasks: [
-          {
-            id: 'c101',
-            title: 'Replace logo'
-          },
-          {
-            id: 'c102',
-            title: 'Add Samples'
-          }
-        ],
-        style: {}
+        tasksIds: ['c101', 'c102'],
+        style: {},
       },
-      {
+      g102: {
         id: 'g102',
         title: 'Group 2',
-        tasks: [
+        tasksIds: ['c104', 'c103'],
+        style: {},
+      },
+    },
+    tasks: {
+      c101: {
+        id: 'c101',
+        title: 'Replace logo',
+      },
+      c103: {
+        id: 'c103',
+        title: 'Do that',
+        archivedAt: 1589983468418,
+      },
+      c102: {
+        id: 'c102',
+        title: 'Add Samples',
+      },
+      c104: {
+        id: 'c104',
+        title: 'Help me',
+        dueDate: '2024-09-24',
+        description: 'description',
+        comments: [
+          // in Trello this is easier implemented as an activity
           {
-            id: 'c103',
-            title: 'Do that',
-            archivedAt: 1589983468418
-          },
-          {
-            id: 'c104',
-            title: 'Help me',
-            dueDate: '2024-09-24',
-            description: 'description',
-            comments: [
-              // in Trello this is easier implemented as an activity
-              {
-                id: 'ZdPnm',
-                title: 'also @yaronb please CR this',
-                createdAt: 1590999817436,
-                byMember: {
-                  _id: 'u101',
-                  fullname: 'Tal Tarablus',
-                  imgUrl: ''
-                }
-              }
-            ],
-            checklists: [
-              {
-                id: 'YEhmF',
-                title: 'Checklist',
-                todos: [
-                  {
-                    id: '212jX',
-                    title: 'To Do 1',
-                    isDone: false
-                  }
-                ]
-              }
-            ],
-            memberIds: ['u101'],
-            labelIds: ['l101', 'l102'],
+            id: 'ZdPnm',
+            title: 'also @yaronb please CR this',
+            createdAt: 1590999817436,
             byMember: {
               _id: 'u101',
               fullname: 'Tal Tarablus',
-              imgUrl: ''
+              imgUrl: '',
             },
-            style: {
-              backgroundColor: '#26de81'
-            }
-          }
+          },
         ],
-        style: {}
-      }
-    ],
+        checklists: [
+          {
+            id: 'YEhmF',
+            title: 'Checklist',
+            todos: [
+              {
+                id: '212jX',
+                title: 'To Do 1',
+                isDone: false,
+              },
+            ],
+          },
+        ],
+        memberIds: ['u101'],
+        labelIds: ['l101', 'l102'],
+        byMember: {
+          _id: 'u101',
+          fullname: 'Tal Tarablus',
+          imgUrl: '',
+        },
+        style: {
+          backgroundColor: '#26de81',
+        },
+      },
+    },
+    orderedGroupsIds: ['g101', 'g102'],
     activities: [
       {
         id: 'a101',
@@ -122,19 +123,18 @@ const boards = [
         byMember: {
           _id: 'u101',
           fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img'
+          imgUrl: 'http://some-img',
         },
         group: {
           id: 'g101',
-          title: 'Urgent Stuff'
+          title: 'Urgent Stuff',
         },
         task: {
           id: 'c101',
-          title: 'Replace Logo'
-        }
-      }
+          title: 'Replace Logo',
+        },
+      },
     ],
-    orderedGroupsIds: ['g101', 'g102']
   },
   {
     _id: '1234',
@@ -144,107 +144,108 @@ const boards = [
     createdBy: {
       _id: 'u101',
       fullname: 'Abi Abambi',
-      imgUrl: 'http://some-img'
+      imgUrl: 'http://some-img',
     },
     style: {
-      backgroundImage: ''
+      backgroundImage: '',
     },
     labels: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f'
+        color: '#61bd4f',
       },
       {
         id: 'l102',
         title: 'Progress',
-        color: '#61bd33'
-      }
+        color: '#61bd33',
+      },
     ],
     members: [
       {
         _id: 'u101',
         fullname: 'Tal Taltal',
-        imgUrl: 'https://www.google.com'
+        imgUrl: 'https://www.google.com',
       },
       {
         _id: 'u102',
         fullname: 'Josh Ga',
-        imgUrl: 'https://www.google.com'
-      }
+        imgUrl: 'https://www.google.com',
+      },
     ],
-    groups: [
-      {
-        id: '103',
+    groups: {
+      g103: {
+        id: 'g103',
         title: 'Group 1',
         archivedAt: 1589983468418,
-        tasks: [
-          {
-            id: 'c101',
-            title: 'Replace logo'
-          },
-          {
-            id: 'c102',
-            title: 'Add Samples'
-          }
-        ],
-        style: {}
+        tasksIds: ['c101', 'c102'],
+        style: {},
       },
-      {
+      g104: {
         id: 'g104',
         title: 'Group 2',
-        tasks: [
+        tasksIds: ['c103', 'c104'],
+        style: {},
+      },
+    },
+    tasks: {
+      c101: {
+        id: 'c101',
+        title: 'Replace logo',
+      },
+      c103: {
+        id: 'c103',
+        title: 'Do that',
+        archivedAt: 1589983468418,
+      },
+      c102: {
+        id: 'c102',
+        title: 'Add Samples',
+      },
+      c104: {
+        id: 'c104',
+        title: 'Help me',
+        dueDate: '2024-09-24',
+        description: 'description',
+        comments: [
+          // in Trello this is easier implemented as an activity
           {
-            id: 'c103',
-            title: 'Do that',
-            archivedAt: 1589983468418
-          },
-          {
-            id: 'c104',
-            title: 'Help me',
-            dueDate: '2024-09-24',
-            description: 'description',
-            comments: [
-              // in Trello this is easier implemented as an activity
-              {
-                id: 'ZdPnm',
-                title: 'also @yaronb please CR this',
-                createdAt: 1590999817436,
-                byMember: {
-                  _id: 'u101',
-                  fullname: 'Tal Tarablus',
-                  imgUrl: ''
-                }
-              }
-            ],
-            checklists: [
-              {
-                id: 'YEhmF',
-                title: 'Checklist',
-                todos: [
-                  {
-                    id: '212jX',
-                    title: 'To Do 1',
-                    isDone: false
-                  }
-                ]
-              }
-            ],
-            memberIds: ['u101'],
-            labelIds: ['l101', 'l102'],
+            id: 'ZdPnm',
+            title: 'also @yaronb please CR this',
+            createdAt: 1590999817436,
             byMember: {
               _id: 'u101',
               fullname: 'Tal Tarablus',
-              imgUrl: ''
+              imgUrl: '',
             },
-            style: {
-              backgroundColor: '#26de81'
-            }
-          }
+          },
         ],
-        style: {}
-      }
-    ],
+        checklists: [
+          {
+            id: 'YEhmF',
+            title: 'Checklist',
+            todos: [
+              {
+                id: '212jX',
+                title: 'To Do 1',
+                isDone: false,
+              },
+            ],
+          },
+        ],
+        memberIds: ['u101'],
+        labelIds: ['l101', 'l102'],
+        byMember: {
+          _id: 'u101',
+          fullname: 'Tal Tarablus',
+          imgUrl: '',
+        },
+        style: {
+          backgroundColor: '#26de81',
+        },
+      },
+    },
+    orderedGroupsIds: ['g103', 'g104'],
     activities: [
       {
         id: 'a101',
@@ -253,20 +254,19 @@ const boards = [
         byMember: {
           _id: 'u101',
           fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img'
+          imgUrl: 'http://some-img',
         },
         group: {
           id: 'g101',
-          title: 'Urgent Stuff'
+          title: 'Urgent Stuff',
         },
         task: {
           id: 'c101',
-          title: 'Replace Logo'
-        }
-      }
+          title: 'Replace Logo',
+        },
+      },
     ],
-    orderedGroupsIds: ['g103', 'g104']
-  }
+  },
 ];
 
 _createBoards();
@@ -279,7 +279,7 @@ export const boardService = {
   getEmptyBoard,
   getDemoBoard,
   addBoardMsg,
-  updateTask
+  updateTask,
   // getTaskEditCmps
 };
 
@@ -315,7 +315,7 @@ async function save(board) {
   if (board._id) {
     const boardToUpdate = {
       _id: board._id,
-      title: board.title
+      title: board.title,
     };
 
     savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
@@ -338,7 +338,7 @@ async function addBoardMsg(boardId, txt) {
   const msg = {
     id: utilService.makeId(),
     by: userService.getLoggedinUser(),
-    txt
+    txt,
   };
 
   board.msgs.push(msg);
@@ -359,7 +359,7 @@ async function updateTask(boardId, groupId, task, activityTitle) {
   const activity = _createActivity(
     activityTitle,
     _toMiniTask(task),
-    _toMiniGroup(group)
+    _toMiniGroup(group),
   );
 
   board.activities.push(activity);
@@ -404,7 +404,7 @@ async function updateTask(boardId, groupId, task, activityTitle) {
 function getEmptyBoard() {
   return {
     title: 'Board -' + (Date.now() % 1000),
-    activities: []
+    activities: [],
   };
 }
 
@@ -427,13 +427,13 @@ function _createActivity(title, task, group = null) {
     byMember: userService.getLoggedinUser(),
     title,
     task,
-    group
+    group,
   };
 }
 
-function _getStatuses() {
-  return ['open', 'inProgress', 'done'];
-}
+// function _getStatuses() {
+//   return ['open', 'inProgress', 'done'];
+// }
 
 function _toMiniGroup(group) {
   return { id: group.id, title: group.title };

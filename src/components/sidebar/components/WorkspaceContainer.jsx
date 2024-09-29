@@ -5,7 +5,7 @@ export function WorkspaceContainer({
   title,
   menuType,
   getMenuContent,
-  onToggleMenu
+  onToggleMenu,
 }) {
   return (
     <div className="workspace-container">

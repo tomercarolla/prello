@@ -7,7 +7,7 @@ import {
   SET_BOARD,
   SET_BOARDS,
   UPDATE_BOARD,
-  UPDATE_TASK
+  UPDATE_TASK,
 } from './board.reducer';
 
 export async function loadBoards() {
@@ -84,7 +84,7 @@ export async function updateTask(boardId, groupId, task, activityTitle) {
       boardId,
       groupId,
       task,
-      activityTitle
+      activityTitle,
     );
     console.log('Updated task', savedTask);
     store.dispatch(getCmdUpdateTask(groupId, task, activity));
@@ -99,42 +99,42 @@ export async function updateTask(boardId, groupId, task, activityTitle) {
 function getCmdSetBoards(boards) {
   return {
     type: SET_BOARDS,
-    boards
+    boards,
   };
 }
 
 function getCmdSetBoard(board) {
   return {
     type: SET_BOARD,
-    board
+    board,
   };
 }
 
 function getCmdRemoveBoard(boardId) {
   return {
     type: REMOVE_BOARD,
-    boardId
+    boardId,
   };
 }
 
 function getCmdAddBoard(board) {
   return {
     type: ADD_BOARD,
-    board
+    board,
   };
 }
 
 function getCmdUpdateBoard(board) {
   return {
     type: UPDATE_BOARD,
-    board
+    board,
   };
 }
 
 function getCmdAddBoardMsg(msg) {
   return {
     type: ADD_BOARD_MSG,
-    msg
+    msg,
   };
 }
 
@@ -143,7 +143,7 @@ function getCmdUpdateTask(groupId, task, activity) {
     type: UPDATE_TASK,
     groupId,
     task,
-    activity
+    activity,
   };
 }
 
@@ -153,7 +153,7 @@ async function unitTestActions() {
   await addBoard(boardService.getEmptyBoard());
   await updateBoard({
     _id: 'm1oC7',
-    title: 'Board-Good'
+    title: 'Board-Good',
   });
   await removeBoard('m1oC7');
   // TODO unit test loadBoard

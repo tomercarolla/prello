@@ -57,7 +57,7 @@ export function HomePage() {
               </form>
             </div>
             <picture className="right">
-              <img src={HomeImage} />
+              <img src={HomeImage} alt="illustration" />
             </picture>
           </section>
         </div>

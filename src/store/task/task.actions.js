@@ -1,4 +1,4 @@
-import { taskService } from '../../services/task/task.service';
+import { taskService } from '../../services/task.service.js';
 import { store } from '../store';
 
 export const SET_TASKS = 'SET_TASKS';
@@ -36,7 +36,7 @@ export async function removeTask(boardId, groupId, taskId) {
   }
 }
 
-export async function updateTask(boardId, groupId, task, task) {
+export async function updateTask(boardId, groupId, task) {
   try {
     const updatedTask = await taskService.save(boardId, groupId, task);
     store.dispatch({ type: UPDATE_TASK, task: updatedTask });

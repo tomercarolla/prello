@@ -5,7 +5,7 @@ export const groupService = {
   query,
   getById,
   save,
-  remove
+  remove,
 };
 
 async function query(boardId) {
@@ -22,7 +22,7 @@ async function save(baordId, group) {
   const board = await boardService.getById(baordId);
   if (group.id) {
     const idx = board.groups.findIndex(
-      (currGroup) => currGroup.id === group.id
+      (currGroup) => currGroup.id === group.id,
     );
     board.groups.splice(idx, 1, group);
   } else {

@@ -2,7 +2,7 @@ export const LOADING_START = 'LOADING_START';
 export const LOADING_DONE = 'LOADING_DONE';
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
 };
 
 export function systemReducer(state = initialState, action = {}) {

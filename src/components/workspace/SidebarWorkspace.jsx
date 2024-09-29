@@ -13,7 +13,7 @@ export function SidebarWorkspace() {
   const topSidebarItems = [
     { name: 'Boards', icon: 'board' },
     { name: 'Templates', icon: 'template' },
-    { name: 'Home', icon: 'board' }
+    { name: 'Home', icon: 'board' },
   ];
 
   const dropDownmenuItems = [
@@ -22,7 +22,7 @@ export function SidebarWorkspace() {
     { name: 'Highlights', icon: 'heart' },
     { name: 'Views', icon: 'views' },
     { name: 'Members', icon: 'members' },
-    { name: 'Settings', icon: 'settings' }
+    { name: 'Settings', icon: 'settings' },
   ];
 
   return (
@@ -64,10 +64,7 @@ export function SidebarWorkspace() {
               <div className="avatar"></div>
               <span>Tomer test</span>
             </div>
-            <Icon
-              name={`isMenuOpen ? 'chevronUp' : 'chevronDown'`}
-              size="16px"
-            />
+            <Icon name={isMenuOpen ? 'chevronUp' : 'chevronDown'} size="16px" />
           </li>
 
           {isMenuOpen && (

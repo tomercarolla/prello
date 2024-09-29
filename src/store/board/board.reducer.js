@@ -8,7 +8,7 @@ export const UPDATE_TASK = 'UPDATE_TASK';
 
 const initialState = {
   board: null,
-  boards: []
+  boards: [],
 };
 
 export function boardReducer(state = initialState, action) {
@@ -22,21 +22,21 @@ export function boardReducer(state = initialState, action) {
     case REMOVE_BOARD:
       return {
         ...state,
-        boards: state.boards.filter((board) => board._id !== action.boardId)
+        boards: state.boards.filter((board) => board._id !== action.boardId),
       };
 
     case ADD_BOARD:
       return {
         ...state,
-        boards: [...state.boards, action.board]
+        boards: [...state.boards, action.board],
       };
 
     case UPDATE_BOARD:
       return {
         ...state,
         boards: state.boards.map((board) =>
-          board._id === action.board._id ? action.board : board
-        )
+          board._id === action.board._id ? action.board : board,
+        ),
       };
 
     case ADD_BOARD_MSG:
@@ -44,8 +44,8 @@ export function boardReducer(state = initialState, action) {
         ...state,
         board: {
           ...state.board,
-          msgs: [...(state.board.msgs || []), action.msg]
-        }
+          msgs: [...(state.board.msgs || []), action.msg],
+        },
       };
 
     case UPDATE_TASK:
@@ -57,11 +57,11 @@ export function boardReducer(state = initialState, action) {
             : {
                 ...g,
                 tasks: g.tasks.map((t) =>
-                  t.id !== action.task.id ? t : action.task
-                )
-              }
+                  t.id !== action.task.id ? t : action.task,
+                ),
+              },
         ),
-        activities: [...state.board.activities, action.activity]
+        activities: [...state.board.activities, action.activity],
       };
       return { ...state, board: updatedBoard };
 
@@ -76,11 +76,11 @@ function unitTestReducer() {
   var state = initialState;
   const board1 = {
     _id: 'b101',
-    title: 'Board ' + parseInt(Math.random() * 10)
+    title: 'Board ' + parseInt(Math.random() * 10),
   };
   const board2 = {
     _id: 'b102',
-    title: 'Board ' + parseInt(Math.random() * 10)
+    title: 'Board ' + parseInt(Math.random() * 10),
   };
 
   state = boardReducer(state, { type: SET_BOARDS, boards: [board1] });
@@ -91,7 +91,7 @@ function unitTestReducer() {
 
   state = boardReducer(state, {
     type: UPDATE_BOARD,
-    board: { ...board2, title: 'Good' }
+    board: { ...board2, title: 'Good' },
   });
   console.log('After UPDATE_BOARD:', state);
 
@@ -102,7 +102,7 @@ function unitTestReducer() {
   state = boardReducer(state, {
     type: ADD_BOARD_MSG,
     boardId: board1._id,
-    msg
+    msg,
   });
   console.log('After ADD_BOARD_MSG:', state);
 
