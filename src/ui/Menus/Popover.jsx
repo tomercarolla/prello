@@ -5,7 +5,7 @@ import React, {
   isValidElement,
   useEffect,
   useRef,
-  useState
+  useState,
 } from 'react';
 import styled from 'styled-components';
 
@@ -33,7 +33,7 @@ export function ControlledPopover({
   side = 'bottom',
   open,
   setOpen,
-  children
+  children,
 }) {
   const contentRef = useRef(null);
 
@@ -46,7 +46,7 @@ export function ControlledPopover({
           }
 
           setOpen(false);
-        }
+        },
       });
     }
 
@@ -67,7 +67,7 @@ export function ControlledPopover({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{
                   ease: 'linear',
-                  duration: 0.12
+                  duration: 0.12,
                 }}
               >
                 {clonedChildren.map((clonedChild) => clonedChild)}

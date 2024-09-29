@@ -4,7 +4,7 @@ export const UPDATE_TASK = 'UPDATE_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 
 const initialState = {
-  tasks: []
+  tasks: [],
 };
 
 export function taskReducer(state = initialState, action) {
@@ -17,13 +17,13 @@ export function taskReducer(state = initialState, action) {
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.task.id ? action.task : task
-        )
+          task.id === action.task.id ? action.task : task,
+        ),
       };
     case REMOVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.taskId)
+        tasks: state.tasks.filter((task) => task.id !== action.taskId),
       };
     default:
       return state;

@@ -9,14 +9,14 @@ function createEventEmitter() {
         : [listener];
       return () => {
         listenersMap[evName] = listenersMap[evName].filter(
-          (func) => func !== listener
+          (func) => func !== listener,
         );
       };
     },
     emit(evName, data) {
       if (!listenersMap[evName]) return;
       listenersMap[evName].forEach((listener) => listener(data));
-    }
+    },
   };
 }
 

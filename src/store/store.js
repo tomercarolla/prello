@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   systemModule: systemReducer,
   reviewModule: reviewReducer,
   groupModule: groupReducer,
-  taskModule: taskReducer
+  taskModule: taskReducer,
 });
 
 const middleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

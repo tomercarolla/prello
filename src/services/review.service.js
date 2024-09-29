@@ -4,7 +4,7 @@ import { userService } from './user.service';
 export const reviewService = {
   add,
   query,
-  remove
+  remove,
 };
 
 function query(filterBy) {
@@ -29,8 +29,8 @@ async function add({ txt, aboutUserId }) {
     aboutUser: {
       _id: aboutUser._id,
       fullname: aboutUser.fullname,
-      imgUrl: aboutUser.imgUrl
-    }
+      imgUrl: aboutUser.imgUrl,
+    },
   };
 
   reviewToAdd.byUser.score += 10;

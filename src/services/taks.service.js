@@ -8,7 +8,7 @@ export const taskService = {
   remove,
   addTask,
   removeTask,
-  updateTask
+  updateTask,
 };
 
 async function query(boardId, groupId) {

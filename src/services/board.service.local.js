@@ -13,65 +13,65 @@ const boards = [
     createdBy: {
       _id: 'u101',
       fullname: 'Abi Abambi',
-      imgUrl: 'http://some-img'
+      imgUrl: 'http://some-img',
     },
     style: {
-      backgroundImage: ''
+      backgroundImage: '',
     },
     labels: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f'
+        color: '#61bd4f',
       },
       {
         id: 'l102',
         title: 'Progress',
-        color: '#61bd33'
-      }
+        color: '#61bd33',
+      },
     ],
     members: [
       {
         _id: 'u101',
         fullname: 'Tal Taltal',
-        imgUrl: 'https://www.google.com'
+        imgUrl: 'https://www.google.com',
       },
       {
         _id: 'u102',
         fullname: 'Josh Ga',
-        imgUrl: 'https://www.google.com'
-      }
+        imgUrl: 'https://www.google.com',
+      },
     ],
     groups: {
-      'g101': {
+      g101: {
         id: 'g101',
         title: 'Group 1',
         archivedAt: 1589983468418,
         tasksIds: ['c101', 'c102'],
         style: {},
       },
-      'g102': {
+      g102: {
         id: 'g102',
         title: 'Group 2',
         tasksIds: ['c104', 'c103'],
         style: {},
-      }
+      },
     },
     tasks: {
-      'c101': {
+      c101: {
         id: 'c101',
         title: 'Replace logo',
       },
-      'c103': {
+      c103: {
         id: 'c103',
         title: 'Do that',
         archivedAt: 1589983468418,
       },
-      'c102': {
+      c102: {
         id: 'c102',
         title: 'Add Samples',
       },
-      'c104': {
+      c104: {
         id: 'c104',
         title: 'Help me',
         dueDate: '2024-09-24',
@@ -112,7 +112,7 @@ const boards = [
         style: {
           backgroundColor: '#26de81',
         },
-      }
+      },
     },
     orderedGroupsIds: ['g101', 'g102'],
     activities: [
@@ -123,17 +123,17 @@ const boards = [
         byMember: {
           _id: 'u101',
           fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img'
+          imgUrl: 'http://some-img',
         },
         group: {
           id: 'g101',
-          title: 'Urgent Stuff'
+          title: 'Urgent Stuff',
         },
         task: {
           id: 'c101',
-          title: 'Replace Logo'
-        }
-      }
+          title: 'Replace Logo',
+        },
+      },
     ],
   },
   {
@@ -144,65 +144,65 @@ const boards = [
     createdBy: {
       _id: 'u101',
       fullname: 'Abi Abambi',
-      imgUrl: 'http://some-img'
+      imgUrl: 'http://some-img',
     },
     style: {
-      backgroundImage: ''
+      backgroundImage: '',
     },
     labels: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f'
+        color: '#61bd4f',
       },
       {
         id: 'l102',
         title: 'Progress',
-        color: '#61bd33'
-      }
+        color: '#61bd33',
+      },
     ],
     members: [
       {
         _id: 'u101',
         fullname: 'Tal Taltal',
-        imgUrl: 'https://www.google.com'
+        imgUrl: 'https://www.google.com',
       },
       {
         _id: 'u102',
         fullname: 'Josh Ga',
-        imgUrl: 'https://www.google.com'
-      }
+        imgUrl: 'https://www.google.com',
+      },
     ],
     groups: {
-      'g103': {
+      g103: {
         id: 'g103',
         title: 'Group 1',
         archivedAt: 1589983468418,
         tasksIds: ['c101', 'c102'],
         style: {},
       },
-      'g104': {
+      g104: {
         id: 'g104',
         title: 'Group 2',
         tasksIds: ['c103', 'c104'],
         style: {},
-      }
+      },
     },
     tasks: {
-      'c101': {
+      c101: {
         id: 'c101',
         title: 'Replace logo',
       },
-      'c103': {
+      c103: {
         id: 'c103',
         title: 'Do that',
         archivedAt: 1589983468418,
       },
-      'c102': {
+      c102: {
         id: 'c102',
         title: 'Add Samples',
       },
-      'c104': {
+      c104: {
         id: 'c104',
         title: 'Help me',
         dueDate: '2024-09-24',
@@ -243,7 +243,7 @@ const boards = [
         style: {
           backgroundColor: '#26de81',
         },
-      }
+      },
     },
     orderedGroupsIds: ['g103', 'g104'],
     activities: [
@@ -254,17 +254,17 @@ const boards = [
         byMember: {
           _id: 'u101',
           fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img'
+          imgUrl: 'http://some-img',
         },
         group: {
           id: 'g101',
-          title: 'Urgent Stuff'
+          title: 'Urgent Stuff',
         },
         task: {
           id: 'c101',
-          title: 'Replace Logo'
-        }
-      }
+          title: 'Replace Logo',
+        },
+      },
     ],
   },
 ];
@@ -279,7 +279,7 @@ export const boardService = {
   getEmptyBoard,
   getDemoBoard,
   addBoardMsg,
-  updateTask
+  updateTask,
   // getTaskEditCmps
 };
 
@@ -315,7 +315,7 @@ async function save(board) {
   if (board._id) {
     const boardToUpdate = {
       _id: board._id,
-      title: board.title
+      title: board.title,
     };
 
     savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
@@ -338,7 +338,7 @@ async function addBoardMsg(boardId, txt) {
   const msg = {
     id: utilService.makeId(),
     by: userService.getLoggedinUser(),
-    txt
+    txt,
   };
 
   board.msgs.push(msg);
@@ -359,7 +359,7 @@ async function updateTask(boardId, groupId, task, activityTitle) {
   const activity = _createActivity(
     activityTitle,
     _toMiniTask(task),
-    _toMiniGroup(group)
+    _toMiniGroup(group),
   );
 
   board.activities.push(activity);
@@ -404,7 +404,7 @@ async function updateTask(boardId, groupId, task, activityTitle) {
 function getEmptyBoard() {
   return {
     title: 'Board -' + (Date.now() % 1000),
-    activities: []
+    activities: [],
   };
 }
 
@@ -427,7 +427,7 @@ function _createActivity(title, task, group = null) {
     byMember: userService.getLoggedinUser(),
     title,
     task,
-    group
+    group,
   };
 }
 

@@ -6,7 +6,7 @@ export const utilService = {
   randomPastTime,
   saveToStorage,
   loadFromStorage,
-  getRandomColor
+  getRandomColor,
 };
 
 function makeId(length = 6) {
@@ -54,7 +54,7 @@ function makeLorem(size = 100) {
     'was',
     'a pleasure',
     'to',
-    'burn'
+    'burn',
   ];
   var txt = '';
   while (size > 0) {

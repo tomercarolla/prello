@@ -4,7 +4,7 @@ export const UPDATE_GROUP = 'UPDATE_GROUP';
 export const REMOVE_GROUP = 'REMOVE_GROUP';
 
 const initialState = {
-  groups: []
+  groups: [],
 };
 
 export function groupReducer(state = initialState, action) {
@@ -17,13 +17,13 @@ export function groupReducer(state = initialState, action) {
       return {
         ...state,
         groups: state.groups.map((group) =>
-          group.id === action.group.id ? action.group : group
-        )
+          group.id === action.group.id ? action.group : group,
+        ),
       };
     case REMOVE_GROUP:
       return {
         ...state,
-        groups: state.groups.filter((group) => group.id !== action.groupId)
+        groups: state.groups.filter((group) => group.id !== action.groupId),
       };
     default:
       return state;

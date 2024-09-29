@@ -4,7 +4,7 @@ import {
   ADD_GROUP,
   REMOVE_GROUP,
   SET_GROUPS,
-  UPDATE_GROUP
+  UPDATE_GROUP,
 } from './group.reducer';
 
 export async function loadGroups() {

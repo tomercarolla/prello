@@ -42,7 +42,7 @@ export function BoardHeader() {
           radius="3px"
           onClick={() => setIsFavorite((prev) => !prev)}
         >
-          <Icon name={`isFavorite ? 'starFull' : 'starEmpty'`} size="16px" />
+          <Icon name={isFavorite ? 'starFull' : 'starEmpty'} size="16px" />
         </Button>
 
         <Button

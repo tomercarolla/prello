@@ -8,7 +8,7 @@ import {
   REMOVE_USER,
   SET_USER,
   SET_USERS,
-  SET_WATCHED_USER
+  SET_WATCHED_USER,
 } from './user.reducer';
 
 export async function loadUsers() {
@@ -37,7 +37,7 @@ export async function login(credentials) {
     const user = await userService.login(credentials);
     store.dispatch({
       type: SET_USER,
-      user
+      user,
     });
     socketService.login(user);
     return user;
@@ -52,7 +52,7 @@ export async function signup(credentials) {
     const user = await userService.signup(credentials);
     store.dispatch({
       type: SET_USER,
-      user
+      user,
     });
     socketService.login(user);
     return user;
@@ -67,7 +67,7 @@ export async function logout() {
     await userService.logout();
     store.dispatch({
       type: SET_USER,
-      user: null
+      user: null,
     });
     socketService.logout();
   } catch (err) {

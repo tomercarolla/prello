@@ -1,5 +1,5 @@
 export const uploadService = {
-  uploadImg
+  uploadImg,
 };
 async function uploadImg(ev) {
   const CLOUD_NAME = 'dcwibf9o5';
@@ -13,7 +13,7 @@ async function uploadImg(ev) {
 
     const res = await fetch(UPLOAD_URL, {
       method: 'POST',
-      body: formData
+      body: formData,
     });
     const imgUrl = await res.json();
     return imgUrl;

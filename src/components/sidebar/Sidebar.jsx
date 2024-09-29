@@ -30,7 +30,7 @@ export function Sidebar() {
               onChange={(value) => console.log(value)}
               options={[
                 { value: 'all', label: 'All workspace views' },
-                { value: 'created', label: 'Created by me' }
+                { value: 'created', label: 'Created by me' },
               ]}
               className="custom-select"
             />
@@ -47,7 +47,7 @@ export function Sidebar() {
               onChange={(value) => console.log(value)}
               options={[
                 { value: 'alphabetically', label: 'sort alphabetically' },
-                { value: 'created', label: 'sort by created date' }
+                { value: 'created', label: 'sort by created date' },
               ]}
               className="custom-select"
             />
@@ -74,7 +74,7 @@ export function Sidebar() {
 
   const listItems = [
     { name: 'Table', icon: 'table' },
-    { name: 'Calendar', icon: 'table' }
+    { name: 'Calendar', icon: 'table' },
   ];
 
   return (
