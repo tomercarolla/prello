@@ -43,6 +43,13 @@ export function Board() {
       console.log('moveTask newStartGroupData ', newStartGroupData);
       console.log('moveTask newFinishGroupData ', newFinishGroupData);
 
+      // const newBoard = {
+      //   ...board,
+      //   newFinishGroupData,
+      // };
+
+      // dispatch(newBoard);
+
       //todo - save board in the store
       // setBoard({
       //     ...board,
