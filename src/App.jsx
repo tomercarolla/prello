@@ -15,8 +15,8 @@ import { WorkspacePage } from 'pages/WorkspacePage.jsx';
 
 // ------COMPONENTS------
 import {Sidebar} from "./components/sidebar/Sidebar.jsx";
-import {BoardPage} from "./components/board/BoardPage.jsx";
 import {Header} from "./components/header/Header.jsx";
+import {Board} from "./components/board/Board.jsx";
 
 export function App() {
   return (
@@ -44,7 +44,7 @@ export function App() {
                             <Sidebar />
                             <div className='content'>
                               <Routes>
-                                <Route path='b/:boardId/:boardName' element={<BoardPage />} />
+                                <Route path='b/:boardId/:boardName' element={<Board />} />
                               </Routes>
                             </div>
                           </div>
