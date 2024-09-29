@@ -1,5 +1,6 @@
 export const Views = (props) => (
   <svg
+    {...props}
     role='presentation'
     focusable='false'
     viewBox='0 0 24 24'

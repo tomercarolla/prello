@@ -6,11 +6,8 @@ import { WorkspaceContent } from "components/workspace/WorkspaceContent";
 export function WorkspacePage() {
  return (
    <>
-     <header>
        <Header />
-     </header>
      <main className='main-boards'>
-       {/* I think we need to make a different Sidebar for this page. There are diffrences in the sidebars. */}
        <section>
          <nav className='navbar'>
          <SidebarWorkspace />

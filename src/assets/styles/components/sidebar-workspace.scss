@@ -24,7 +24,7 @@
         border-radius: 8px;
         min-height: 40px;
         padding: 6px 8px;
-        margin: 0 0 0 4px;
+        margin-bottom: 4px;
         overflow: hidden;
         gap: 8px;
         cursor: pointer;
@@ -115,7 +115,7 @@
 
      .dropdown-menu-item {
        display: flex;
-       padding: 10px 20px 10px 20px;
+       padding: 10px 20px;
        margin: 2px 0 5px 2px;
        border-radius: 8px;
        font-size: 14px;

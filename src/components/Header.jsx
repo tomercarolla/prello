@@ -11,7 +11,7 @@ export function Header() {
     const [isHovering, setIsHovering] = useState(false);
 
     return (
-        <div className='header-container'>
+        <header className='header-container'>
             <div className='header-left-side'>
                 <Icon name='applicationSwitcher' size='20px' className='pointer' />
                 <div
@@ -41,6 +41,6 @@ export function Header() {
                 <AccountInitials user={{ name: 'Roy Live', userColor: '#3498db' }} />
                 <div></div>
             </div>
-        </div>
+        </header>
     )
 }
