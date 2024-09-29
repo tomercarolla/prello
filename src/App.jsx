@@ -10,7 +10,7 @@ import { HomePage } from './pages/homepage/HomePage.jsx';
 
 // ------COMPONENTS------
 import { Board } from './components/board/Board';
-import { Header } from './components/Header.jsx';
+import { Header } from './components/header/Header.jsx';
 import { Sidebar } from './components/sidebar/Sidebar.jsx';
 
 export function App() {

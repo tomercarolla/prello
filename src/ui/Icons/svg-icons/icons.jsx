@@ -5,14 +5,19 @@ import { Calendar } from './Calendar.jsx';
 import { ChevronDown } from './ChevronDown.jsx';
 import { ChevronLeft } from './ChevronLeft.jsx';
 import { ChevronRight } from './ChevronRight.jsx';
+import { ChevronUp } from './ChevronUp.jsx';
 import { Close } from './Close.jsx';
 import { Collapse } from './Collapse.jsx';
+import { Collections } from './Collections.jsx';
 import { Details } from './Details.jsx';
 import { Expand } from './Expand.jsx';
 import { Filter } from './Filter.jsx';
 import { Flash } from './Flash.jsx';
+import { Heart } from './Heart.jsx';
 import { List } from './List.jsx';
+import { Lock } from './Lock.jsx';
 import { Member } from './Member.jsx';
+import { Members } from './Members.jsx';
 import { MenuHorizontal } from './MenuHorizontal.jsx';
 import { Plus } from './Plus.jsx';
 import { QuestionMark } from './QuestioMark.jsx';
@@ -22,16 +27,11 @@ import { Settings } from './Settings.jsx';
 import { StarEmpty } from './StarEmpty.jsx';
 import { StarFull } from './StarFull.jsx';
 import { Table } from './Table.jsx';
+import { Template } from './Template.jsx';
 import { Trash } from './Trash.jsx';
 import { Trello } from './Trello.jsx';
+import { Views } from './Views.jsx';
 import { Workspace } from './Workspace.jsx';
-import { Members } from "./Members.jsx"
-import { Collections } from "./Collections.jsx"
-import { Heart } from "./Heart.jsx"
-import { Views } from "./Views.jsx"
-import { ChevronUp } from "./ChevronUp.jsx";
-import { Lock } from "./Lock.jsx";
-import { Template } from "./Template.jsx";
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -67,6 +67,6 @@ export const icons = {
   heart: Heart,
   views: Views,
   lock: Lock,
-  template: Template,
+  template: Template
   // Add more icons here...
 };

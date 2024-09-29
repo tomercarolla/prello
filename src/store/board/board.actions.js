@@ -99,14 +99,14 @@ export async function updateTask(boardId, groupId, task, activityTitle) {
 function getCmdSetBoards(boards) {
   return {
     type: SET_BOARDS,
-    boards,
+    boards
   };
 }
 
 function getCmdSetBoard(board) {
   return {
     type: SET_BOARD,
-    board,
+    board
   };
 }
 
@@ -130,7 +130,6 @@ function getCmdUpdateBoard(board) {
     board
   };
 }
-
 
 function getCmdAddBoardMsg(msg) {
   return {

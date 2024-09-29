@@ -22,13 +22,13 @@ export function boardReducer(state = initialState, action) {
     case REMOVE_BOARD:
       return {
         ...state,
-        boards: state.boards.filter((board) => board._id !== action.boardId),
+        boards: state.boards.filter((board) => board._id !== action.boardId)
       };
 
     case ADD_BOARD:
       return {
         ...state,
-        boards: [...state.boards, action.board],
+        boards: [...state.boards, action.board]
       };
 
     case UPDATE_BOARD:
@@ -36,7 +36,7 @@ export function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.map((board) =>
           board._id === action.board._id ? action.board : board
-        ),
+        )
       };
 
     case ADD_BOARD_MSG:
@@ -44,8 +44,8 @@ export function boardReducer(state = initialState, action) {
         ...state,
         board: {
           ...state.board,
-          msgs: [...(state.board.msgs || []), action.msg],
-        },
+          msgs: [...(state.board.msgs || []), action.msg]
+        }
       };
 
     case UPDATE_TASK:
@@ -58,10 +58,10 @@ export function boardReducer(state = initialState, action) {
                 ...g,
                 tasks: g.tasks.map((t) =>
                   t.id !== action.task.id ? t : action.task
-                ),
+                )
               }
         ),
-        activities: [...state.board.activities, action.activity],
+        activities: [...state.board.activities, action.activity]
       };
       return { ...state, board: updatedBoard };
 

@@ -1,13 +1,13 @@
 export const utilService = {
-    makeId,
-    makeLorem,
-    getRandomIntInclusive,
-    debounce,
-    randomPastTime,
-    saveToStorage,
-    loadFromStorage,
-    getRandomColor,
-}
+  makeId,
+  makeLorem,
+  getRandomIntInclusive,
+  debounce,
+  randomPastTime,
+  saveToStorage,
+  loadFromStorage,
+  getRandomColor
+};
 
 function makeId(length = 6) {
   var txt = '';
@@ -100,6 +100,6 @@ function loadFromStorage(key, defaultValue = null) {
 }
 
 export function getRandomColor() {
-    const hue = Math.floor(Math.random() * 360);
-    return `hsl(${hue}, 65%, 60%)`;
+  const hue = Math.floor(Math.random() * 360);
+  return `hsl(${hue}, 65%, 60%)`;
 }
