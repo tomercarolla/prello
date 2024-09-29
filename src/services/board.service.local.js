@@ -1,46 +1,46 @@
 import { storageService } from './async-storage.service';
-import { utilService } from './util.service';
 import { userService } from './user.service';
+import { utilService } from './util.service';
 
 const STORAGE_KEY = 'boards';
 
 const boards = [
   {
     _id: '123',
-    title: 'Robot dev proj',
+    title: 'Board dev proj',
     isStarred: false,
     archivedAt: 1589983468418,
     createdBy: {
       _id: 'u101',
       fullname: 'Abi Abambi',
-      imgUrl: 'http://some-img',
+      imgUrl: 'http://some-img'
     },
     style: {
-      backgroundImage: '',
+      backgroundImage: ''
     },
     labels: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f',
+        color: '#61bd4f'
       },
       {
         id: 'l102',
         title: 'Progress',
-        color: '#61bd33',
-      },
+        color: '#61bd33'
+      }
     ],
     members: [
       {
         _id: 'u101',
         fullname: 'Tal Taltal',
-        imgUrl: 'https://www.google.com',
+        imgUrl: 'https://www.google.com'
       },
       {
         _id: 'u102',
         fullname: 'Josh Ga',
-        imgUrl: 'https://www.google.com',
-      },
+        imgUrl: 'https://www.google.com'
+      }
     ],
     groups: {
       'g101': {
@@ -123,55 +123,55 @@ const boards = [
         byMember: {
           _id: 'u101',
           fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img',
+          imgUrl: 'http://some-img'
         },
         group: {
           id: 'g101',
-          title: 'Urgent Stuff',
+          title: 'Urgent Stuff'
         },
         task: {
           id: 'c101',
-          title: 'Replace Logo',
-        },
-      },
+          title: 'Replace Logo'
+        }
+      }
     ],
   },
   {
     _id: '1234',
-    title: 'Robot dev proj',
+    title: 'Board dev proj',
     isStarred: false,
     archivedAt: 1589983468418,
     createdBy: {
       _id: 'u101',
       fullname: 'Abi Abambi',
-      imgUrl: 'http://some-img',
+      imgUrl: 'http://some-img'
     },
     style: {
-      backgroundImage: '',
+      backgroundImage: ''
     },
     labels: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f',
+        color: '#61bd4f'
       },
       {
         id: 'l102',
         title: 'Progress',
-        color: '#61bd33',
-      },
+        color: '#61bd33'
+      }
     ],
     members: [
       {
         _id: 'u101',
         fullname: 'Tal Taltal',
-        imgUrl: 'https://www.google.com',
+        imgUrl: 'https://www.google.com'
       },
       {
         _id: 'u102',
         fullname: 'Josh Ga',
-        imgUrl: 'https://www.google.com',
-      },
+        imgUrl: 'https://www.google.com'
+      }
     ],
     groups: {
       'g103': {
@@ -254,17 +254,17 @@ const boards = [
         byMember: {
           _id: 'u101',
           fullname: 'Abi Abambi',
-          imgUrl: 'http://some-img',
+          imgUrl: 'http://some-img'
         },
         group: {
           id: 'g101',
-          title: 'Urgent Stuff',
+          title: 'Urgent Stuff'
         },
         task: {
           id: 'c101',
-          title: 'Replace Logo',
-        },
-      },
+          title: 'Replace Logo'
+        }
+      }
     ],
   },
 ];
@@ -279,7 +279,7 @@ export const boardService = {
   getEmptyBoard,
   getDemoBoard,
   addBoardMsg,
-  updateTask,
+  updateTask
   // getTaskEditCmps
 };
 
@@ -315,7 +315,7 @@ async function save(board) {
   if (board._id) {
     const boardToUpdate = {
       _id: board._id,
-      title: board.title,
+      title: board.title
     };
 
     savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
@@ -338,7 +338,7 @@ async function addBoardMsg(boardId, txt) {
   const msg = {
     id: utilService.makeId(),
     by: userService.getLoggedinUser(),
-    txt,
+    txt
   };
 
   board.msgs.push(msg);
@@ -404,7 +404,7 @@ async function updateTask(boardId, groupId, task, activityTitle) {
 function getEmptyBoard() {
   return {
     title: 'Board -' + (Date.now() % 1000),
-    activities: [],
+    activities: []
   };
 }
 
@@ -427,7 +427,7 @@ function _createActivity(title, task, group = null) {
     byMember: userService.getLoggedinUser(),
     title,
     task,
-    group,
+    group
   };
 }
 

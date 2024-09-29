@@ -1,4 +1,4 @@
-export const Workspace = (props) => (
+export const Members = (props) => (
   <svg
     {...props}
     role="presentation"

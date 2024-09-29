@@ -7,7 +7,8 @@ const InitialsCircle = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: ${({ color }) => color || 'gray'}; /* User's color or default */
+  background-color: ${({ color }) =>
+    color || 'gray'}; /* User's color or default */
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -17,17 +18,16 @@ const InitialsCircle = styled.div`
 
 const getUserInitials = (name) => {
   const nameParts = name.split(' ');
-  const initials = nameParts.map(part => part[0]).slice(0, 2).join('');
+  const initials = nameParts
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join('');
   return initials;
 };
 
 const AccountInitials = ({ user }) => {
   const initials = getUserInitials(user.name);
-  return (
-    <InitialsCircle color={user.userColor}>
-      {initials}
-    </InitialsCircle>
-  );
+  return <InitialsCircle color={user.userColor}>{initials}</InitialsCircle>;
 };
 
 export default AccountInitials;
