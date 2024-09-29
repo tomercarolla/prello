@@ -1,4 +1,4 @@
-import { storageService } from './async-storage.service.js';
+import { storageService } from './async-storage.service';
 import { utilService } from './util.service';
 import { userService } from './user.service';
 

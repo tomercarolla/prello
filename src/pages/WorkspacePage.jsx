@@ -1,6 +1,5 @@
 import { Header } from "components/Header";
 import { SidebarWorkspace } from "components/workspace/SidebarWorkspace";
-import { WorkspaceContent } from "components/workspace/WorkspaceContent";
 
 
 export function WorkspacePage() {
