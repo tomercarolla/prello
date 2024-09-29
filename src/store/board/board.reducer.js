@@ -12,55 +12,62 @@ const initialState = {
 };
 
 export function boardReducer(state = initialState, action) {
-  var newState = state;
-  var boards;
   switch (action.type) {
     case SET_BOARDS:
-      newState = { ...state, boards: action.boards };
-      break;
+      return { ...state, boards: action.boards };
+
     case SET_BOARD:
-      newState = { ...state, board: action.board };
-      break;
+      return { ...state, board: action.board };
+
     case REMOVE_BOARD:
-      boards = state.boards.filter((board) => board._id !== action.boardId);
-      newState = { ...state, boards };
-      break;
+      return {
+        ...state,
+        boards: state.boards.filter((board) => board._id !== action.boardId),
+      };
+
     case ADD_BOARD:
-      newState = { ...state, boards: [...state.boards, action.board] };
-      break;
+      return {
+        ...state,
+        boards: [...state.boards, action.board],
+      };
+
     case UPDATE_BOARD:
-      boards = state.boards.map((board) =>
-        board._id === action.board._id ? action.board : board
-      );
-      newState = { ...state, boards };
-      break;
+      return {
+        ...state,
+        boards: state.boards.map((board) =>
+          board._id === action.board._id ? action.board : board
+        ),
+      };
+
     case ADD_BOARD_MSG:
-      newState = {
+      return {
         ...state,
         board: {
           ...state.board,
-          msgs: [...(state.board.msgs || []), action.msg]
-        }
+          msgs: [...(state.board.msgs || []), action.msg],
+        },
       };
-      break;
+
     case UPDATE_TASK:
-      const board = { ...state.board };
-      board.groups = state.board.groups.map((g) => {
-        if (g.id !== action.groupId) return g;
-        const group = { ...g };
-        group.tasks = group.tasks.map((t) =>
-          t.id !== action.task.id ? t : action.task
-        );
-        return group;
-      });
-      board.activities = [...board.activities, action.activity];
-      newState = { ...state, board };
-      break;
+      const updatedBoard = {
+        ...state.board,
+        groups: state.board.groups.map((g) =>
+          g.id !== action.groupId
+            ? g
+            : {
+                ...g,
+                tasks: g.tasks.map((t) =>
+                  t.id !== action.task.id ? t : action.task
+                ),
+              }
+        ),
+        activities: [...state.board.activities, action.activity],
+      };
+      return { ...state, board: updatedBoard };
 
     default:
       return state;
   }
-  return newState;
 }
 
 // unitTestReducer()

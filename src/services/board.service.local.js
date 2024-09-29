@@ -7,7 +7,7 @@ const STORAGE_KEY = 'boards';
 const boards = [
   {
     _id: '123',
-    title: 'Robot dev proj',
+    title: 'Board dev proj',
     isStarred: false,
     archivedAt: 1589983468418,
     createdBy: {
@@ -138,7 +138,7 @@ const boards = [
   },
   {
     _id: '1234',
-    title: 'Robot dev proj',
+    title: 'Board dev proj',
     isStarred: false,
     archivedAt: 1589983468418,
     createdBy: {

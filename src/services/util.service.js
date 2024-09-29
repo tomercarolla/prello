@@ -1,12 +1,13 @@
 export const utilService = {
-  makeId,
-  makeLorem,
-  getRandomIntInclusive,
-  debounce,
-  randomPastTime,
-  saveToStorage,
-  loadFromStorage
-};
+    makeId,
+    makeLorem,
+    getRandomIntInclusive,
+    debounce,
+    randomPastTime,
+    saveToStorage,
+    loadFromStorage,
+    getRandomColor,
+}
 
 function makeId(length = 6) {
   var txt = '';
@@ -96,4 +97,9 @@ function loadFromStorage(key, defaultValue = null) {
   const value = localStorage[key] || defaultValue;
 
   return JSON.parse(value);
+}
+
+export function getRandomColor() {
+    const hue = Math.floor(Math.random() * 360);
+    return `hsl(${hue}, 65%, 60%)`;
 }
