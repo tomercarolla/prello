@@ -1,49 +1,47 @@
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-} from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-
-import {AuthRoute} from "./auth.utls.jsx";
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { AuthRoute } from './auth.utls.jsx';
 import { store } from './store/store.js';
 
 // ------PAGES------
-import {HomePage} from './pages/homepage/HomePage.jsx';
 import { WorkspacePage } from 'pages/WorkspacePage.jsx';
+import { HomePage } from './pages/homepage/HomePage.jsx';
 
 // ------COMPONENTS------
-import {Header} from "./components/Header.jsx";
-import {Sidebar} from "./components/sidebar/Sidebar.jsx";
-import {Board} from './components/board/Board';
+import { Board } from './components/board/Board';
+import { Header } from './components/Header.jsx';
+import { Sidebar } from './components/sidebar/Sidebar.jsx';
 
 export function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/home' element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route
-          path='/*'
+          path="/*"
           element={
             <Provider store={store}>
               <AuthRoute>
                 <Routes>
-                  <Route path='w' element={<WorkspacePage />} />
+                  <Route path="w" element={<WorkspacePage />} />
                   <Route
-                    path='*'
+                    path="*"
                     element={
                       <div
-                        className='surface'
+                        className="surface"
                         style={{ backgroundColor: 'rgb(75, 191, 107)' }}
                       >
                         <Header />
                         <main>
-                          <div className='container'>
+                          <div className="container">
                             <Sidebar />
-                            <div className='content'>
+                            <div className="content">
                               <Routes>
-                                <Route path='b/:boardId/:boardName' element={<Board />} />
+                                <Route
+                                  path="b/:boardId/:boardName"
+                                  element={<Board />}
+                                />
                               </Routes>
                             </div>
                           </div>
@@ -60,7 +58,6 @@ export function App() {
     </Router>
   );
 }
-
 
 // -----------------------------------------------------------------------------------------
 
