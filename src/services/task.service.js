@@ -1,14 +1,13 @@
-import { boardService } from './board/board.service.local';
+import { boardService } from './board.service.local.js';
 import { utilService } from './util.service';
+
+//TODO - refactor task service
 
 export const taskService = {
   query,
   getById,
   save,
   remove,
-  addTask,
-  removeTask,
-  updateTask,
 };
 
 async function query(boardId, groupId) {

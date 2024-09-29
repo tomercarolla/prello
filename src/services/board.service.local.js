@@ -431,9 +431,9 @@ function _createActivity(title, task, group = null) {
   };
 }
 
-function _getStatuses() {
-  return ['open', 'inProgress', 'done'];
-}
+// function _getStatuses() {
+//   return ['open', 'inProgress', 'done'];
+// }
 
 function _toMiniGroup(group) {
   return { id: group.id, title: group.title };
