@@ -40,7 +40,6 @@ export function Board() {
         taskToMove,
       );
 
-      console.log('moveTask - Updated board:', updatedBoard);
       updateBoard(updatedBoard);
     },
     [board],
