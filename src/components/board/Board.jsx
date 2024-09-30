@@ -28,7 +28,7 @@ export function Board() {
       destinationGroupId,
       itemIndexInFinishGroup,
     }) => {
-      const updatedBoard = _.cloneDeep(board); // Deep clone. maybe we have better way to do this... ask Yonatan .
+      const updatedBoard = _.cloneDeep(board);
       const startGroupData = updatedBoard.groups[sourceGroupId];
       const destinationGroupData = updatedBoard.groups[destinationGroupId];
       const taskToMove = startGroupData.tasksIds[taskIndexInStartGroup];
@@ -62,7 +62,7 @@ export function Board() {
 
   const reorderGroup = useCallback(
     ({ startIndex, finishIndex }) => {
-      const updatedBoard = _.cloneDeep(board); // Deep clone
+      const updatedBoard = _.cloneDeep(board);
       updatedBoard.orderedGroupsIds = reorder({
         list: updatedBoard.orderedGroupsIds,
         startIndex,
