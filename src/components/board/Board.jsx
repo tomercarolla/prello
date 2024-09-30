@@ -13,7 +13,6 @@ import { Column } from './components/Column.jsx';
 export function Board() {
   const { boardId } = useParams();
   const board = useSelector((state) => state.boardModule.board);
-  console.log('Board data:', board);
   const listRef = useRef();
   const { event } = useDraggable(listRef);
   
@@ -29,9 +28,8 @@ export function Board() {
      destinationGroupId,
      itemIndexInFinishGroup,
    }) => {
-     if (!board) return;
 
-     const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone
+     const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone. maybe we have better way to do this... ask Yonatan .
      const startGroupData = updatedBoard.groups[sourceGroupId];
      const destinationGroupData = updatedBoard.groups[destinationGroupId];
      const taskToMove = startGroupData.tasksIds[taskIndexInStartGroup];
@@ -84,9 +82,8 @@ export function Board() {
 
   const reorderTask = useCallback(
     ({ groupId, startIndex, finishIndex }) => {
-      if (!board) return;
 
-      const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone
+      const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone 
       const groupData = updatedBoard.groups[groupId];
       groupData.tasksIds = reorder({
         list: groupData.tasksIds,
@@ -112,7 +109,6 @@ export function Board() {
 
   const reorderGroup = useCallback(
     ({ startIndex, finishIndex }) => {
-      if (!board) return;
 
       const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone
       updatedBoard.orderedGroupsIds = reorder({
@@ -140,7 +136,6 @@ export function Board() {
   useEffect(() => {
     return monitorForElements({
       onDrop: ({ source, location }) => {
-        console.log('onDrop called with:', { source, location });
         const destination = location.current.dropTargets.length;
 
         if (!destination) {
@@ -269,7 +264,6 @@ export function Board() {
 
   return (
     <div className="board">
-      {console.log('Rendering board with data:', board)}
       <BoardHeader />
       <div className="canvas">
         <div ref={listRef} className="list" {...event}>
@@ -280,7 +274,7 @@ export function Board() {
               
               return (
                 <Column
-                  key={`${group.id}-${group.tasksIds.join('-')}`} // update the key prop to include tasks Ids, it forces the component to re-render when tasks are updated
+                  key={group.id}
                   groupId={group.id}
                   title={group.title}
                   tasks={tasks}

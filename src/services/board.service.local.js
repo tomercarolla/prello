@@ -311,11 +311,9 @@ async function remove(boardId) {
 
 async function save(board) {
   if (board._id) {
-    const updatedBoard = await storageService.put(STORAGE_KEY, board);
-    return updatedBoard;
+    return await storageService.put(STORAGE_KEY, board);
   } else {
-    const addedBoard = await storageService.post(STORAGE_KEY, board);
-    return addedBoard;
+    await storageService.post(STORAGE_KEY, board);
   }
 }
 
