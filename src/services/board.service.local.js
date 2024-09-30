@@ -310,23 +310,13 @@ async function remove(boardId) {
 }
 
 async function save(board) {
-  let savedBoard;
-
   if (board._id) {
-    const boardToUpdate = {
-      _id: board._id,
-      title: board.title,
-    };
-
-    savedBoard = await storageService.put(STORAGE_KEY, boardToUpdate);
+    const updatedBoard = await storageService.put(STORAGE_KEY, board);
+    return updatedBoard;
   } else {
-    // Later, owner is set by the backend
-    board.owner = userService.getLoggedinUser();
-
-    savedBoard = await storageService.post(STORAGE_KEY, board);
+    const addedBoard = await storageService.post(STORAGE_KEY, board);
+    return addedBoard;
   }
-
-  return savedBoard;
 }
 
 async function addBoardMsg(boardId, txt) {
