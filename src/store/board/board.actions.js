@@ -2,11 +2,11 @@ import { boardService } from '../../services/board.service.local';
 import { store } from '../store';
 import {
   ADD_BOARD,
-  REMOVE_BOARD,
-  SET_BOARDS,
-  SET_BOARD,
-  UPDATE_BOARD,
   ADD_BOARD_MSG,
+  REMOVE_BOARD,
+  SET_BOARD,
+  SET_BOARDS,
+  UPDATE_BOARD,
   UPDATE_TASK,
 } from './board.reducer';
 
@@ -83,7 +83,7 @@ export async function updateTask(boardId, groupId, task, activityTitle) {
       boardId,
       groupId,
       task,
-      activityTitle
+      activityTitle,
     );
     console.log('Updated task', savedTask);
     store.dispatch(getCmdUpdateTask(groupId, task, activity));
@@ -129,7 +129,6 @@ function getCmdUpdateBoard(board) {
     board,
   };
 }
-
 
 function getCmdAddBoardMsg(msg) {
   return {
