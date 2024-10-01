@@ -58,7 +58,9 @@ export function WorkspaceContent() {
                 className="boards-list-item"
                 style={{ backgroundColor: utilService.getRandomColor() }}
               >
-                <Link to={`/b/${board._id}/${board.title}`}>
+                <Link
+                  to={`/b/${board._id}/${board.title.replace(/\s+/g, '-')}`}
+                >
                   <span className="board-title">{board.title}</span>
                 </Link>
               </li>
