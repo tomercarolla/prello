@@ -56,10 +56,6 @@ export const Task = ({ ...task }) => {
   }, [task.id]);
 
 
-  function handleTaskClick() {
-    setModalOpen(true);
-  }
-
   const taskContent = (
     <div
       ref={taskRef}
