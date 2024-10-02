@@ -11,7 +11,7 @@ export const taskService = {
 };
 
 async function query(boardId, groupId) {
-  const board = await boardService.getById(boardId);
+  const board = await boardService.getById(boardId, groupId);
   const group = board.groups.find((group) => group.id === groupId);
 
   return group.tasks;

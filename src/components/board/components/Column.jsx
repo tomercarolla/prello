@@ -13,7 +13,9 @@ import { useTranslation } from 'react-i18next';
 import invariant from 'tiny-invariant';
 import { Task } from './Task.jsx';
 
-export const Column = ({ groupId, title, tasks }) => {
+
+
+export const Column = ({ groupId, title, tasks, onTaskDetailsOpen }) => {
   const { t } = useTranslation();
   const groupRef = useRef(null);
   const groupInnerRef = useRef(null);
@@ -126,7 +128,9 @@ export const Column = ({ groupId, title, tasks }) => {
             <div className="dynamic-content">
               <div className="tasks-list">
                 {tasks.map((task) => (
-                  <Task key={task.id} {...task} />
+                  <Task
+                    key={task.id} {...task}
+                    onClick={() => onTaskDetailsOpen(task)} />
                 ))}
               </div>
             </div>

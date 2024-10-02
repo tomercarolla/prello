@@ -11,7 +11,7 @@ import { Button, Icon } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
 
-export const Task = ({ ...task }) => {
+export const Task = ({ onClick, ...task }) => {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
@@ -56,6 +56,16 @@ export const Task = ({ ...task }) => {
     );
   }, [task.id]);
 
+  function handleClick() {
+    if (dragging) return;
+    if (task && task.id) {
+      onClick(task);
+    } else {
+      console.error('Error in fetching task', task);
+    }
+  }
+
+
   return (
     <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>
       {task?.style?.backgroundImage ? (
@@ -65,7 +75,7 @@ export const Task = ({ ...task }) => {
         />
       ) : null}
 
-      <div className="task-container">
+      <div className="task-container" onClick={handleClick}>
         <div className="task-content">
           <a href="#" draggable="false">
             {task.title}

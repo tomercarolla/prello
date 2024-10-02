@@ -2,6 +2,7 @@ import { taskService } from '../../services/task.service.js';
 import { store } from '../store';
 
 export const SET_TASKS = 'SET_TASKS';
+export const SET_TASK = 'SET_TASK';
 export const ADD_TASK = 'ADD_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
@@ -12,6 +13,16 @@ export async function loadTasks(boardId, groupId) {
     store.dispatch({ type: SET_TASKS, tasks });
   } catch (err) {
     console.error('TaskActions: err in loadTasks', err);
+    throw err;
+  }
+}
+
+export async function loadTask(boardId, groupId, taskId) {
+  try {
+    const task = await taskService.getById(boardId, groupId, taskId);
+    store.dispatch({ type: SET_TASK, task })
+  } catch (err) {
+    console.error('TaskActions: err in loadTask', err);
     throw err;
   }
 }
