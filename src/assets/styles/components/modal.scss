@@ -1,65 +1,24 @@
 .modal-overlay {
+  display: flex;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   inset: 0;
-  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
 }
 
 .modal-content {
-  background-color: white;
+  display: flex;
+  background-color: var(--surface);
   border-radius: 6px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 600px;
-  max-height: 85vh;
-  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid #e0e0e0;
-    
-    h2 {
-      margin: 0;
-      font-size: 20px;
-    }
-    
-    .close-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      
-      &:hover {
-        background-color: #f0f0f0;
-        border-radius: 50%;
-      }
-    }
-  }
-}
 
-@keyframes overlayShow {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    span {
+      display: flex;
+    }
 }
+    
 
-@keyframes contentShow {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}

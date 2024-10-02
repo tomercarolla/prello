@@ -1,8 +1,8 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { Icon } from '@ui';
-import { Task } from 'components/board/components/Task';
 
-export function Modal({ open, onOpenChange, title, children, trigger }) {
+
+export function Modal({ open, onOpenChange, children, trigger }) {
    return (
      <Dialog.Root open={open} onOpenChange={onOpenChange}>
        <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
@@ -10,9 +10,8 @@ export function Modal({ open, onOpenChange, title, children, trigger }) {
          <Dialog.Overlay className="modal-overlay">
            <Dialog.Content className="modal-content">
              <div className="modal-header">
-               <Dialog.Title>{title}</Dialog.Title>
-               <Dialog.Close>
-                 <Icon name="close" size="18px" />
+               <Dialog.Close className='close-button'>
+                  <span> <Icon name="close" size="18px" /></span>
                </Dialog.Close>
              </div>
              {children}
