@@ -1,20 +1,19 @@
-import {
-  attachClosestEdge,
-  extractClosestEdge,
-} from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
+import { attachClosestEdge, extractClosestEdge} from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
-import {
-  draggable,
-  dropTargetForElements,
-} from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
+import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { Button, Icon } from '@ui';
+import * as Dialog from '@radix-ui/react-dialog';
+import { TaskDetails } from 'components/taskDetails/TaskDetails';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
+import { Modal } from 'ui/Modal/Modal';
 
-export const Task = ({ onClick, ...task }) => {
+
+export const Task = ({ ...task }) => {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     invariant(taskRef);
@@ -56,18 +55,16 @@ export const Task = ({ onClick, ...task }) => {
     );
   }, [task.id]);
 
-  function handleClick() {
-    if (dragging) return;
-    if (task && task.id) {
-      onClick(task);
-    } else {
-      console.error('Error in fetching task', task);
-    }
+
+  function handleTaskClick() {
+    setModalOpen(true);
   }
 
-
-  return (
-    <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>
+  const taskContent = (
+    <div
+      ref={taskRef}
+      className={`task ${dragging ? 'dragging' : ''}`}
+    >
       {task?.style?.backgroundImage ? (
         <div
           className="img-container"
@@ -75,7 +72,7 @@ export const Task = ({ onClick, ...task }) => {
         />
       ) : null}
 
-      <div className="task-container" onClick={handleClick}>
+      <div className="task-container">
         <div className="task-content">
           <a href="#" draggable="false">
             {task.title}
@@ -87,9 +84,19 @@ export const Task = ({ onClick, ...task }) => {
       <Button scale="ghost" radius="16px" className="edit-btn">
         <Icon name="edit" size="16px" />
       </Button>
-      {/*{children}*/}
       {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
     </div>
+  );
+
+  return (
+    <Modal
+      open={modalOpen}
+      onOpenChange={setModalOpen}
+      title='Task Details'
+      trigger={taskContent}
+    >
+      <TaskDetails task={task} />
+    </Modal>
   );
 };
 

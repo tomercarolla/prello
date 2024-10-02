@@ -2,30 +2,20 @@ import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/clo
 import { getReorderDestinationIndex } from '@atlaskit/pragmatic-drag-and-drop-hitbox/util/get-reorder-destination-index';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
-
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useDraggable } from 'react-use-draggable-scroll';
 import { loadBoard, updateBoard } from '../../store/board/board.actions.js';
-
 import { BoardHeader } from './components/BoardHeader.jsx';
 import { Column } from './components/Column.jsx';
-import { DialogComponent } from 'ui/Dialog/DialogComponent.jsx';
 
 export function Board() {
   const { boardId } = useParams();
   const board = useSelector((state) => state.boardModule.board);
   const listRef = useRef();
   const { event } = useDraggable(listRef);
-
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  function handleTaskDetailsOpen(task) {
-    setSelectedTask(task);
-    setIsDialogOpen(true);
-  };
+  
   
   useEffect(() => {
     loadBoard(boardId);
@@ -289,21 +279,11 @@ export function Board() {
                   groupId={group.id}
                   title={group.title}
                   tasks={tasks}
-                  onTaskDetailsOpen={handleTaskDetailsOpen}
                 />
               );
             })}
         </div>
       </div>
-      {selectedTask && (
-        <DialogComponent
-          task={selectedTask}
-          isOpen={isDialogOpen}
-          onOpenChange={setIsDialogOpen}
-        >
-          <div></div>
-        </DialogComponent>
-      )}
     </div>
   );
 }
