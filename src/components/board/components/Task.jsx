@@ -1,12 +1,11 @@
 import { attachClosestEdge, extractClosestEdge} from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
 import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
-import { Button, Icon } from '@ui';
-import * as Dialog from '@radix-ui/react-dialog';
+import { Button, Icon, Modal } from '@ui';
 import { TaskDetails } from 'components/taskDetails/TaskDetails';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
-import { Modal } from 'ui/Modal/Modal';
+
 
 
 export const Task = ({ ...task }) => {

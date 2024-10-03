@@ -2,6 +2,7 @@ import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/clo
 import { getReorderDestinationIndex } from '@atlaskit/pragmatic-drag-and-drop-hitbox/util/get-reorder-destination-index';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
+import _ from 'lodash';
 import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -15,76 +16,38 @@ export function Board() {
   const board = useSelector((state) => state.boardModule.board);
   const listRef = useRef();
   const { event } = useDraggable(listRef);
-  
-  
+
   useEffect(() => {
     loadBoard(boardId);
   }, [boardId]);
 
+  const moveTask = useCallback(
+    ({
+      taskIndexInStartGroup,
+      sourceGroupId,
+      destinationGroupId,
+      itemIndexInFinishGroup,
+    }) => {
+      const updatedBoard = _.cloneDeep(board);
+      const startGroupData = updatedBoard.groups[sourceGroupId];
+      const destinationGroupData = updatedBoard.groups[destinationGroupId];
+      const taskToMove = startGroupData.tasksIds[taskIndexInStartGroup];
 
- const moveTask = useCallback(
-   ({
-     taskIndexInStartGroup,
-     sourceGroupId,
-     destinationGroupId,
-     itemIndexInFinishGroup,
-   }) => {
+      startGroupData.tasksIds.splice(taskIndexInStartGroup, 1);
+      destinationGroupData.tasksIds.splice(
+        itemIndexInFinishGroup ?? 0,
+        0,
+        taskToMove,
+      );
 
-     const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone. maybe we have better way to do this... ask Yonatan .
-     const startGroupData = updatedBoard.groups[sourceGroupId];
-     const destinationGroupData = updatedBoard.groups[destinationGroupId];
-     const taskToMove = startGroupData.tasksIds[taskIndexInStartGroup];
-
-     startGroupData.tasksIds.splice(taskIndexInStartGroup, 1);
-     destinationGroupData.tasksIds.splice(
-       itemIndexInFinishGroup ?? 0,
-       0,
-       taskToMove,
-     );
-
-     console.log('moveTask - Updated board:', updatedBoard);
-     updateBoard(updatedBoard);
-   },
-   [board, updateBoard],
- );
-      // const newStartGroupData = {
-      //   ...startGroupData,
-      //   tasksIds: startGroupData.tasksIds.filter((task) => task !== taskToMove),
-      // };
-      // const newDestinationTasks = destinationGroupData.tasksIds;
-      // const newIndexInDestination = itemIndexInFinishGroup ?? 0;
-
-      // newDestinationTasks.splice(newIndexInDestination, 0, taskToMove);
-
-      // const newFinishGroupData = {
-      //   ...destinationGroupData,
-      //   tasksIds: newDestinationTasks,
-      // };
-
-      // console.log('moveTask newStartGroupData ', newStartGroupData);
-      // console.log('moveTask newFinishGroupData ', newFinishGroupData);
-
-      // const newBoard = {
-      //   ...board,
-      //   newFinishGroupData,
-      // };
-
-      // dispatch(newBoard);
-
-      //todo - save board in the store
-      // setBoard({
-      //     ...board,
-      //     [sourceGroupId]: newStartGroupData,
-      //     [destinationGroupId]: newFinishGroupData,
-      // });
-  //   },
-  //   [board],
-  // );
+      updateBoard(updatedBoard);
+    },
+    [board],
+  );
 
   const reorderTask = useCallback(
     ({ groupId, startIndex, finishIndex }) => {
-
-      const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone 
+      const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone
       const groupData = updatedBoard.groups[groupId];
       groupData.tasksIds = reorder({
         list: groupData.tasksIds,
@@ -97,21 +60,9 @@ export function Board() {
     [board],
   );
 
-      // console.log('reorderTask updatedSourceGroup ', updatedSourceGroup);
-
-      //todo - save board in the store
-      // setBoardData({
-      //     ...board,
-      //     [groupId]: updatedSourceGroup,
-      // });
-  //   },
-  //   [board],
-  // );
-
   const reorderGroup = useCallback(
     ({ startIndex, finishIndex }) => {
-
-      const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone
+      const updatedBoard = _.cloneDeep(board);
       updatedBoard.orderedGroupsIds = reorder({
         list: updatedBoard.orderedGroupsIds,
         startIndex,
@@ -122,17 +73,6 @@ export function Board() {
     },
     [board],
   );
-      // console.log('updatedSourceGroup ', updatedSourceGroup);
-
-      //todo - save board in the store
-      // setBoardData({
-      //     ...board,
-      //     [groupId]: updatedSourceGroup,
-      // });
-  //   },
-  //   [board],
-  // );
-
 
   useEffect(() => {
     return monitorForElements({
@@ -272,7 +212,7 @@ export function Board() {
             board.orderedGroupsIds.map((groupId) => {
               const group = board.groups[groupId];
               const tasks = group.tasksIds.map((taskId) => board.tasks[taskId]);
-              
+
               return (
                 <Column
                   key={group.id}
