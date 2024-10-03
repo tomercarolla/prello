@@ -7,7 +7,8 @@ import {
   draggable,
   dropTargetForElements,
 } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
-import { Button, Icon } from '@ui';
+import { Button, Icon, Modal } from '@ui';
+import { TaskDetails } from 'components/taskDetails/TaskDetails';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
 import { useBoardContext } from '../board-context.jsx';
@@ -16,6 +17,7 @@ export const Task = ({ ...task }) => {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   const { setTaskId } = useBoardContext();
 
   useEffect(() => {
@@ -59,30 +61,43 @@ export const Task = ({ ...task }) => {
     );
   }, [setTaskId, task.id]);
 
-  return (
-    <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>
-      {task?.style?.backgroundImage ? (
+    const taskContent = (
         <div
-          className="img-container"
-          style={{ backgroundImage: task.backgroundImage }}
-        />
-      ) : null}
+            ref={taskRef}
+            className={`task ${dragging ? 'dragging' : ''}`}
+        >
+            {task?.style?.backgroundImage ? (
+                <div
+                    className="img-container"
+                    style={{ backgroundImage: task.backgroundImage }}
+                />
+            ) : null}
 
-      <div className="task-container">
-        <div className="task-content">
-          <a href="#" draggable="false">
-            {task.title}
-          </a>
-          <div className="task-badges"></div>
+            <div className="task-container">
+                <div className="task-content">
+                    <a href="#" draggable="false">
+                        {task.title}
+                    </a>
+                    <div className="task-badges"></div>
+                </div>
+            </div>
+
+            <Button scale="ghost" radius="16px" className="edit-btn">
+                <Icon name="edit" size="16px" />
+            </Button>
+            {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
         </div>
-      </div>
+    );
 
-      <Button scale="ghost" radius="16px" className="edit-btn">
-        <Icon name="edit" size="16px" />
-      </Button>
-      {/*{children}*/}
-      {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
-    </div>
+  return (
+    <Modal
+      open={modalOpen}
+      onOpenChange={setModalOpen}
+      title='Task Details'
+      trigger={taskContent}
+    >
+      <TaskDetails task={task} />
+    </Modal>
   );
 };
 

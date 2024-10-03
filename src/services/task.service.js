@@ -10,18 +10,17 @@ export const taskService = {
   remove,
 };
 
-async function query(boardId, groupId) {
+async function query(boardId) {
   const board = await boardService.getById(boardId);
-  const group = board.groups.find((group) => group.id === groupId);
+  // const group = board.groups.find((group) => group.id === groupId);
 
-  return group.tasks;
+  return board.tasks;
 }
 
-async function getById(boardId, groupId, taskId) {
+async function getById(boardId, taskId) {
   const board = await boardService.getById(boardId);
-  const group = board.groups.find((group) => group.id === groupId);
-
-  return group.tasks.find((task) => task.id === taskId);
+  
+  return board.tasks.find((task) => task.id === taskId);
 }
 
 async function save(boardId, groupId, task) {
