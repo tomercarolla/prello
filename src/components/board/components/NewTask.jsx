@@ -5,8 +5,9 @@ import { loadBoard } from '../../../store/board/board.actions.js';
 import { addTask } from '../../../store/task/task.actions.js';
 import { useBoardContext } from '../board-context.jsx';
 
-export function NewTask({ groupId, setIsAddingCard }) {
+export function NewTask({ groupId, isAddingCard, setIsAddingCard }) {
   const { t } = useTranslation();
+  const newTaskRef = useRef(null);
   const textAreaRef = useRef(null);
   const [value, setValue] = useState('');
   const { boardId } = useBoardContext();
@@ -21,13 +22,32 @@ export function NewTask({ groupId, setIsAddingCard }) {
     textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
   };
 
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleClickOutside = (event) => {
+    if (newTaskRef.current && !newTaskRef.current.contains(event.target)) {
+      setIsAddingCard(false);
+    }
+  };
+
   useEffect(() => {
     resizeTextArea();
     window.addEventListener('resize', resizeTextArea);
   }, []);
 
+  useEffect(() => {
+    if (isAddingCard) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside, isAddingCard]);
+
   return (
-    <div className="add-task">
+    <div className="add-task" ref={newTaskRef}>
       <div className="demo-task">
         <textarea
           rows="3"
@@ -42,7 +62,6 @@ export function NewTask({ groupId, setIsAddingCard }) {
 
       <div className="actions">
         <Button
-          paddinginline="12px"
           scale="brand"
           radius="3px"
           onClick={async () => {
