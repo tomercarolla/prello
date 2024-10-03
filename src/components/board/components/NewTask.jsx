@@ -5,11 +5,11 @@ import { loadBoard } from '../../../store/board/board.actions.js';
 import { addTask } from '../../../store/task/task.actions.js';
 import { useBoardContext } from '../board-context.jsx';
 
-export function NewTask({ setIsAddingCard }) {
+export function NewTask({ groupId, setIsAddingCard }) {
   const { t } = useTranslation();
   const textAreaRef = useRef(null);
   const [value, setValue] = useState('');
-  const { boardId, groupId } = useBoardContext();
+  const { boardId } = useBoardContext();
 
   const resizeTextArea = () => {
     if (!textAreaRef.current) {
