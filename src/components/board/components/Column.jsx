@@ -11,7 +11,6 @@ import { Button, Icon, Popover } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import invariant from 'tiny-invariant';
-import { useBoardContext } from '../board-context.jsx';
 import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
@@ -23,10 +22,8 @@ export const Column = ({ groupId, title, tasks }) => {
   const [closestEdge, setClosestEdge] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddingCard, setIsAddingCard] = useState(false);
-  const { setGroupId } = useBoardContext();
 
   useEffect(() => {
-    setGroupId(groupId);
     invariant(groupRef);
     invariant(groupInnerRef);
 
@@ -72,7 +69,7 @@ export const Column = ({ groupId, title, tasks }) => {
         onDrop: () => setClosestEdge(null),
       }),
     );
-  }, [groupId, setGroupId]);
+  }, [groupId]);
 
   return (
     <div
@@ -137,7 +134,7 @@ export const Column = ({ groupId, title, tasks }) => {
             </div>
 
             {isAddingCard ? (
-              <NewTask setIsAddingCard={setIsAddingCard} />
+              <NewTask groupId={groupId} setIsAddingCard={setIsAddingCard} />
             ) : (
               <div className="footer">
                 <Button
