@@ -10,14 +10,17 @@ import {
 import { Button, Icon } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
+import { useBoardContext } from '../board-context.jsx';
 
 export const Task = ({ ...task }) => {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
+  const { setTaskId } = useBoardContext();
 
   useEffect(() => {
     invariant(taskRef);
+    setTaskId(task.id);
 
     return combine(
       draggable({
@@ -54,7 +57,7 @@ export const Task = ({ ...task }) => {
         onDrop: () => setClosestEdge(null),
       }),
     );
-  }, [task.id]);
+  }, [setTaskId, task.id]);
 
   return (
     <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>

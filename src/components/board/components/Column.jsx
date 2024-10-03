@@ -11,6 +11,8 @@ import { Button, Icon, Popover } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import invariant from 'tiny-invariant';
+import { useBoardContext } from '../board-context.jsx';
+import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
 export const Column = ({ groupId, title, tasks }) => {
@@ -20,8 +22,11 @@ export const Column = ({ groupId, title, tasks }) => {
   const [isDraggedOver, setIsDraggedOver] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isAddingCard, setIsAddingCard] = useState(false);
+  const { setGroupId } = useBoardContext();
 
   useEffect(() => {
+    setGroupId(groupId);
     invariant(groupRef);
     invariant(groupInnerRef);
 
@@ -67,7 +72,7 @@ export const Column = ({ groupId, title, tasks }) => {
         onDrop: () => setClosestEdge(null),
       }),
     );
-  }, [groupId]);
+  }, [groupId, setGroupId]);
 
   return (
     <div
@@ -131,17 +136,22 @@ export const Column = ({ groupId, title, tasks }) => {
               </div>
             </div>
 
-            <div className="footer">
-              <Button
-                scale="ghost"
-                fullwidth="true"
-                radius="8px"
-                className="add-btn"
-              >
-                <Icon name="plus" size="16px" />
-                <span>{t('ADD_CARD')}</span>
-              </Button>
-            </div>
+            {isAddingCard ? (
+              <NewTask setIsAddingCard={setIsAddingCard} />
+            ) : (
+              <div className="footer">
+                <Button
+                  scale="ghost"
+                  fullwidth="true"
+                  radius="8px"
+                  className="add-btn"
+                  onClick={() => setIsAddingCard(true)}
+                >
+                  <Icon name="plus" size="16px" />
+                  <span>{t('ADD_A_CARD')}</span>
+                </Button>
+              </div>
+            )}
           </>
         ) : null}
       </div>

@@ -86,7 +86,7 @@
 
   .group {
     position: relative;
-    padding: 8px;
+    padding: 8px 4px;
     border-radius: 12px;
     background-color: var(--tr-background-list);
     box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
@@ -158,6 +158,7 @@
       overflow-y: auto;
       scrollbar-color: var(--ds-background-neutral-hovered, #091e4224) var(--ds-background-neutral, #091e420f);
       scrollbar-width: thin;
+      padding-inline: 4px;
 
       .tasks-list {
         padding: 0;
@@ -165,7 +166,6 @@
         flex-direction: column;
         row-gap: 8px;
         padding-block: 2px;
-        padding-inline: 4px;
 
         .task {
           position: relative;
@@ -175,6 +175,7 @@
           box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
           color: var(--ds-text);
           cursor: pointer;
+          font-size: 14px;
 
           &:hover {
             .edit-btn {
@@ -238,13 +239,47 @@
       }
     }
 
+    .add-task {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-inline: 4px;
+
+      .demo-task {
+        textarea {
+          width: 100%;
+          min-height: 36px;
+          max-height: 160px;
+          padding: 8px 12px;
+          overflow: hidden;
+          overflow-y: auto;
+          border: none;
+          border-radius: 8px;
+          background-color: var(--ds-surface-raised, #ffffff);
+          box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
+          color: var(--ds-text);
+          resize: none;
+          font-size: 14px;
+          //overflow-wrap: break-word;
+
+          &:focus-within {
+            outline: none;
+          }
+        }
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: default;
+      }
+    }
+
     .footer {
       display: flex;
       align-items: center;
       padding-inline: 4px;
-
-      .add-btn {
-      }
     }
   }
 

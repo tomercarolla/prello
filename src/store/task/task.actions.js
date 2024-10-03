@@ -9,6 +9,7 @@ export const UPDATE_TASK = 'UPDATE_TASK';
 export async function loadTasks(boardId, groupId) {
   try {
     const tasks = await taskService.query(boardId, groupId);
+
     store.dispatch({ type: SET_TASKS, tasks });
   } catch (err) {
     console.error('TaskActions: err in loadTasks', err);
@@ -19,6 +20,7 @@ export async function loadTasks(boardId, groupId) {
 export async function addTask(boardId, groupId, task) {
   try {
     const savedTask = await taskService.save(boardId, groupId, task);
+
     store.dispatch({ type: ADD_TASK, task: savedTask });
   } catch (err) {
     console.error('TaskActions: err in addTask', err);
@@ -29,6 +31,7 @@ export async function addTask(boardId, groupId, task) {
 export async function removeTask(boardId, groupId, taskId) {
   try {
     await taskService.remove(boardId, groupId, taskId);
+
     store.dispatch({ type: REMOVE_TASK, taskId });
   } catch (err) {
     console.error('TaskActions: err in removeTask', err);
@@ -39,7 +42,9 @@ export async function removeTask(boardId, groupId, taskId) {
 export async function updateTask(boardId, groupId, task) {
   try {
     const updatedTask = await taskService.save(boardId, groupId, task);
+
     store.dispatch({ type: UPDATE_TASK, task: updatedTask });
+
     return updatedTask;
   } catch (err) {
     console.error('TaskActions: err in updateTask', err);
