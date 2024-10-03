@@ -12,11 +12,13 @@ import { HomePage } from './pages/homepage/HomePage.jsx';
 import { Board } from './components/board/Board';
 import { Header } from './components/header/Header.jsx';
 import { Sidebar } from './components/sidebar/Sidebar.jsx';
+import { TaskDetails } from 'components/taskDetails/TaskDetails.jsx';
 
 export function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
         <Route
           path="/*"
@@ -38,10 +40,8 @@ export function App() {
                             <Sidebar />
                             <div className="content">
                               <Routes>
-                                <Route
-                                  path="b/:boardId/:boardName"
-                                  element={<Board />}
-                                />
+                                <Route path="b/:boardId/:boardName" element={<Board />} />
+                                <Route path="c/:taskId/:taskName" element={<TaskDetails />} />
                               </Routes>
                             </div>
                           </div>
