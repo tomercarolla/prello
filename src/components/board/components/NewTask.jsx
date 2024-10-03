@@ -9,7 +9,7 @@ export function NewTask({ setIsAddingCard }) {
   const { t } = useTranslation();
   const textAreaRef = useRef(null);
   const [value, setValue] = useState('');
-  const { boardId, groupId, taskId } = useBoardContext();
+  const { boardId, groupId } = useBoardContext();
 
   const resizeTextArea = () => {
     if (!textAreaRef.current) {

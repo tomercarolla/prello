@@ -8,9 +8,9 @@ import {
   dropTargetForElements,
 } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { Button, Icon, Modal } from '@ui';
-import { TaskDetails } from 'components/taskDetails/TaskDetails';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
+import { TaskDetails } from '../../taskDetails/TaskDetails.jsx';
 import { useBoardContext } from '../board-context.jsx';
 
 export const Task = ({ ...task }) => {
@@ -50,7 +50,6 @@ export const Task = ({ ...task }) => {
           }
         },
         onDrag: (args) => {
-          // Only update the closest edge if the card being dragged is not the same as the card
           if (args.source.data.taskId !== task.id) {
             setClosestEdge(extractClosestEdge(args.self.data));
           }
@@ -61,39 +60,38 @@ export const Task = ({ ...task }) => {
     );
   }, [setTaskId, task.id]);
 
-    const taskContent = (
+  const taskContent = (
+    <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>
+      {task?.style?.backgroundImage ? (
         <div
-            ref={taskRef}
-            className={`task ${dragging ? 'dragging' : ''}`}
-        >
-            {task?.style?.backgroundImage ? (
-                <div
-                    className="img-container"
-                    style={{ backgroundImage: task.backgroundImage }}
-                />
-            ) : null}
+          className="img-container"
+          style={{ backgroundImage: task.backgroundImage }}
+        />
+      ) : null}
 
-            <div className="task-container">
-                <div className="task-content">
-                    <a href="#" draggable="false">
-                        {task.title}
-                    </a>
-                    <div className="task-badges"></div>
-                </div>
-            </div>
+      <div className="task-container">
+        <div className="task-content">
+          <a href="#" draggable="false">
+            {task.title}
+          </a>
 
-            <Button scale="ghost" radius="16px" className="edit-btn">
-                <Icon name="edit" size="16px" />
-            </Button>
-            {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
+          <div className="task-badges"></div>
         </div>
-    );
+      </div>
+
+      <Button scale="ghost" radius="16px" className="edit-btn">
+        <Icon name="edit" size="16px" />
+      </Button>
+
+      {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
+    </div>
+  );
 
   return (
     <Modal
       open={modalOpen}
       onOpenChange={setModalOpen}
-      title='Task Details'
+      title="Task Details"
       trigger={taskContent}
     >
       <TaskDetails task={task} />

@@ -9,10 +9,10 @@ import { WorkspacePage } from 'pages/WorkspacePage.jsx';
 import { HomePage } from './pages/homepage/HomePage.jsx';
 
 // ------COMPONENTS------
+import { TaskDetails } from 'components/taskDetails/TaskDetails.jsx';
 import { Board } from './components/board/Board';
 import { Header } from './components/header/Header.jsx';
 import { Sidebar } from './components/sidebar/Sidebar.jsx';
-import { TaskDetails } from 'components/taskDetails/TaskDetails.jsx';
 
 export function App() {
   return (
@@ -39,8 +39,14 @@ export function App() {
                             <Sidebar />
                             <div className="content">
                               <Routes>
-                                <Route path="b/:boardId/:boardName" element={<Board />} />
-                                <Route path="c/:taskId/:taskName" element={<TaskDetails />} />
+                                <Route
+                                  path="b/:boardId/:boardName"
+                                  element={<Board />}
+                                />
+                                <Route
+                                  path="c/:taskId/:taskName"
+                                  element={<TaskDetails />}
+                                />
                               </Routes>
                             </div>
                           </div>

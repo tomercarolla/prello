@@ -2,8 +2,6 @@ import { createContext, useContext, useState } from 'react';
 import { useParams } from 'react-router';
 
 const BoardValues = {
-  boardId: '',
-  setBoardId: () => {},
   groupId: '',
   setGroupId: () => {},
   taskId: '',

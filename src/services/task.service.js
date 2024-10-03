@@ -19,7 +19,7 @@ async function query(boardId) {
 
 async function getById(boardId, taskId) {
   const board = await boardService.getById(boardId);
-  
+
   return board.tasks.find((task) => task.id === taskId);
 }
 
