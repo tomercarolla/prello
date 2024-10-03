@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useDraggable } from 'react-use-draggable-scroll';
 import { loadBoard, updateBoard } from '../../store/board/board.actions.js';
+import { BoardProvider } from './board-context.jsx';
 import { BoardHeader } from './components/BoardHeader.jsx';
 import { Column } from './components/Column.jsx';
 
@@ -204,26 +205,30 @@ export function Board() {
   }, [board, moveTask, reorderGroup, reorderTask]);
 
   return (
-    <div className="board">
-      <BoardHeader />
-      <div className="canvas">
-        <div ref={listRef} className="list" {...event}>
-          {board &&
-            board.orderedGroupsIds.map((groupId) => {
-              const group = board.groups[groupId];
-              const tasks = group.tasksIds.map((taskId) => board.tasks[taskId]);
+    <BoardProvider>
+      <div className="board">
+        <BoardHeader />
+        <div className="canvas">
+          <div ref={listRef} className="list" {...event}>
+            {board &&
+              board.orderedGroupsIds.map((groupId) => {
+                const group = board.groups[groupId];
+                const tasks = group.tasksIds.map(
+                  (taskId) => board.tasks[taskId],
+                );
 
-              return (
-                <Column
-                  key={group.id}
-                  groupId={group.id}
-                  title={group.title}
-                  tasks={tasks}
-                />
-              );
-            })}
+                return (
+                  <Column
+                    key={group.id}
+                    groupId={group.id}
+                    title={group.title}
+                    tasks={tasks}
+                  />
+                );
+              })}
+          </div>
         </div>
       </div>
-    </div>
+    </BoardProvider>
   );
 }

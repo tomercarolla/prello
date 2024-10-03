@@ -1,21 +1,28 @@
-import { attachClosestEdge, extractClosestEdge} from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
+import {
+  attachClosestEdge,
+  extractClosestEdge,
+} from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
-import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
+import {
+  draggable,
+  dropTargetForElements,
+} from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { Button, Icon, Modal } from '@ui';
-import { TaskDetails } from 'components/taskDetails/TaskDetails';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
-
-
+import { TaskDetails } from '../../taskDetails/TaskDetails.jsx';
+import { useBoardContext } from '../board-context.jsx';
 
 export const Task = ({ ...task }) => {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const { setTaskId } = useBoardContext();
 
   useEffect(() => {
     invariant(taskRef);
+    setTaskId(task.id);
 
     return combine(
       draggable({
@@ -43,7 +50,6 @@ export const Task = ({ ...task }) => {
           }
         },
         onDrag: (args) => {
-          // Only update the closest edge if the card being dragged is not the same as the card
           if (args.source.data.taskId !== task.id) {
             setClosestEdge(extractClosestEdge(args.self.data));
           }
@@ -52,14 +58,10 @@ export const Task = ({ ...task }) => {
         onDrop: () => setClosestEdge(null),
       }),
     );
-  }, [task.id]);
-
+  }, [setTaskId, task.id]);
 
   const taskContent = (
-    <div
-      ref={taskRef}
-      className={`task ${dragging ? 'dragging' : ''}`}
-    >
+    <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>
       {task?.style?.backgroundImage ? (
         <div
           className="img-container"
@@ -72,6 +74,7 @@ export const Task = ({ ...task }) => {
           <a href="#" draggable="false">
             {task.title}
           </a>
+
           <div className="task-badges"></div>
         </div>
       </div>
@@ -79,6 +82,7 @@ export const Task = ({ ...task }) => {
       <Button scale="ghost" radius="16px" className="edit-btn">
         <Icon name="edit" size="16px" />
       </Button>
+
       {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
     </div>
   );
@@ -87,7 +91,7 @@ export const Task = ({ ...task }) => {
     <Modal
       open={modalOpen}
       onOpenChange={setModalOpen}
-      title='Task Details'
+      title="Task Details"
       trigger={taskContent}
     >
       <TaskDetails task={task} />
