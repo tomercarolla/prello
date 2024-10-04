@@ -64,69 +64,90 @@ export function TaskDetails({ task, groupId }) {
       </div>
       <div className="task-body">
         <section className="task-body-content">
+          <div className="actions-container">
+
+            <div className="actions">
+              <span>Members</span>
+              <div style={{ display: 'flex', gap: '2px' }}>
+                <Button scale="dynamic" radius="50%">
+                  TC
+                </Button>
+                <Button scale="dynamic">
+                  <Icon name="plus" scale="ghost" size="16px" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="actions">
+              <span>Notifications</span>
+              <Button scale="ghost">
+                <Icon name="watch" size="16px" scale="ghost" />
+                Watch
+              </Button>
+            </div>
+          </div>
+          {/* <div>Content</div>
           <div>Content</div>
           <div>Content</div>
-          <div>Content</div>
-          <div>Content</div>
-          <div>Content</div>
+          <div>Content</div> */}
         </section>
-        <navbar className="nav-task-body">
+        <nav className="nav-task-body">
           <div className="btn-container">
-            <Icon name="join" />
             <Button scale="ghost" className="nav-btn">
+              <Icon name="join" size="18px" />
               Join
             </Button>
           </div>
 
           <div className="btn-container">
             <Button scale="ghost" className="nav-btn">
-            <Icon name="member" size='18px' />
+              <Icon name="member" size="18px" />
               Members
             </Button>
           </div>
 
           <div className="btn-container">
-            <Icon name="label" />
             <Button scale="ghost" className="nav-btn">
+              <Icon name="label" size="18px" />
               Labels
             </Button>
           </div>
 
           <div className="btn-container">
-            <Icon name="checklist" />
             <Button scale="ghost" className="nav-btn">
+              <Icon name="checklist" size="18px" />
               Checklist
             </Button>
           </div>
 
           <div className="btn-container">
             <Button scale="ghost" className="nav-btn">
-            <Icon name="date" />
+              <Icon name="date" size="18px" />
               Dates
             </Button>
           </div>
 
           <div className="btn-container">
-            <Icon name="attachment" />
             <Button scale="ghost" className="nav-btn">
+              <Icon name="attachment" size="18px" />
               Attachments
             </Button>
           </div>
 
           <div className="btn-container">
-            <Icon name="cover" />
             <Button scale="ghost" className="nav-btn">
+              <Icon name="cover" size="18px" />
               Cover
             </Button>
           </div>
 
           <div className="btn-container">
-            <Icon name="customFields" />
             <Button scale="ghost" className="nav-btn">
+              <Icon name="customFields" size="18px" />
               CustomFields
             </Button>
           </div>
-        </navbar>
+        </nav>
       </div>
     </div>
   );

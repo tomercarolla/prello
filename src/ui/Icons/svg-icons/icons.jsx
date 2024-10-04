@@ -34,7 +34,14 @@ import { Trello } from './Trello.jsx';
 import { Views } from './Views.jsx';
 import { Workspace } from './Workspace.jsx';
 import { Task } from './Task.jsx';
-
+import { Join } from './Join.jsx';
+import { Label } from './Label.jsx';
+import { Checklist } from './Checklist.jsx';
+import { Date } from './Date.jsx';
+import { Attachment } from './Attachment.jsx';
+import { Cover } from './Cover.jsx';
+import { CustomFields } from './CustomFields.jsx';
+import { Watch } from './Watch.jsx';
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -73,5 +80,13 @@ export const icons = {
   lock: Lock,
   template: Template,
   task: Task,
+  join: Join,
+  label: Label,
+  checklist: Checklist,
+  date: Date,
+  attachment: Attachment,
+  cover: Cover,
+  customFields: CustomFields,
+  watch: Watch,
   // Add more icons here...
 };
