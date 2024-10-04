@@ -33,6 +33,8 @@ import { Trash } from './Trash.jsx';
 import { Trello } from './Trello.jsx';
 import { Views } from './Views.jsx';
 import { Workspace } from './Workspace.jsx';
+import { Task } from './Task.jsx';
+
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -70,5 +72,6 @@ export const icons = {
   views: Views,
   lock: Lock,
   template: Template,
+  task: Task,
   // Add more icons here...
 };

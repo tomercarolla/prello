@@ -91,7 +91,7 @@ export const Task = ({ ...task }) => {
     <Modal
       open={modalOpen}
       onOpenChange={setModalOpen}
-      title="Task Details"
+      // title={task.title}
       trigger={taskContent}
     >
       <TaskDetails task={task} />
