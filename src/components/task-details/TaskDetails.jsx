@@ -65,22 +65,21 @@ export function TaskDetails({ task, groupId }) {
       <div className="task-body">
         <section className="task-body-content">
           <div className="actions-container">
-
             <div className="actions">
               <span>Members</span>
               <div style={{ display: 'flex', gap: '2px' }}>
-                <Button scale="dynamic" radius="50%">
-                  TC
+                <Button scale="neutral" radius="50%">
+                  TS
                 </Button>
-                <Button scale="dynamic">
-                  <Icon name="plus" scale="ghost" size="16px" />
+                <Button scale="neutral" radius="50%">
+                  <Icon name="plus" size="16px" />
                 </Button>
               </div>
             </div>
 
             <div className="actions">
               <span>Notifications</span>
-              <Button scale="ghost">
+              <Button scale="neutral" fullwidth={true} className='notification-btn'>
                 <Icon name="watch" size="16px" scale="ghost" />
                 Watch
               </Button>
