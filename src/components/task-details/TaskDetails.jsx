@@ -85,10 +85,10 @@ export function TaskDetails({ task, groupId }) {
               <span>Notifications</span>
               <Button
                 scale="neutral"
-                fullwidth={true}
+                fullwidth='true'
                 className="btn-notification"
               >
-                <Icon name="watch" size="16px" scale="ghost" />
+                <Icon name="watch" size="16px" />
                 Watch
               </Button>
             </div>
@@ -117,7 +117,7 @@ export function TaskDetails({ task, groupId }) {
             <div className='activities'>
               <div className='activity'>
                 <div className='avatar'>TS</div>
-                <input className='input-activity' type='text' value='Write a comment...' />
+                <input className='input-activity' type='text' placeholder='Write a comment...' />
               </div>
 
               <div className='activity'>
