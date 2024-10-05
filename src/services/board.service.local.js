@@ -70,6 +70,7 @@ const boards = [
       c102: {
         id: 'c102',
         title: 'Add Samples',
+        labelIds: ['l102'],
       },
       c104: {
         id: 'c104',

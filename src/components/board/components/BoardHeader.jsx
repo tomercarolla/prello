@@ -55,10 +55,9 @@ export function BoardHeader() {
         </Button>
 
         <Button
-          scale="dynamic"
+          scale="white"
           size="lg"
           radius="3px"
-          className="active"
           onClick={() => console.log('board view')}
         >
           <Icon size="16px" name="list" />
@@ -66,7 +65,7 @@ export function BoardHeader() {
         </Button>
 
         <Button
-          scale="white"
+          scale="dynamic"
           radius="3px"
           onClick={() => console.log('table view')}
         >
