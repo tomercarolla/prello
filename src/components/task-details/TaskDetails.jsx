@@ -65,7 +65,7 @@ export function TaskDetails({ task, groupId }) {
           <p>in list</p>
         </div>
       </div>
-      
+
       <div className="task-body">
         <section className="task-body-content">
           <div className="actions-container">
@@ -107,7 +107,7 @@ export function TaskDetails({ task, groupId }) {
 
           <div className="activity-container">
             <div style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between', gap: '10px' }}>
-              <div style={{ display:'flex' }}>
+              <div style={{ display:'flex', gap: '10px' }}>
                 <Icon name="activity" size="22px" />
                 <h4>Activity</h4>
               </div>
