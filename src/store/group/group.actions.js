@@ -1,5 +1,5 @@
-import { groupService } from '../services/groupService';
-import { store } from '../store/store';
+import { groupService } from '../../services/group.service.js';
+import { store } from '../store.js';
 import {
   ADD_GROUP,
   REMOVE_GROUP,
