@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 // import { updateTask } from 'store/task/task.actions';
 
+import { NavTaskDetails } from './components/NavTaskDetails';
+
 export function TaskDetails({ task, groupId }) {
   // const { boardId } = useParams();
   // const board = useSelector((state) => state.boardReducer.board);
@@ -41,6 +43,7 @@ export function TaskDetails({ task, groupId }) {
 
   return (
     <div className="task-details">
+
       <div className="task-header-container">
         <div className="task-header">
           <div className="title">
@@ -62,6 +65,7 @@ export function TaskDetails({ task, groupId }) {
           <p>in list</p>
         </div>
       </div>
+      
       <div className="task-body">
         <section className="task-body-content">
           <div className="actions-container">
@@ -102,9 +106,12 @@ export function TaskDetails({ task, groupId }) {
           </div>
 
           <div className="activity-container">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Icon name="activity" size="22px" />
-              <h4>Activity</h4>
+            <div style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between', gap: '10px' }}>
+              <div style={{ display:'flex' }}>
+                <Icon name="activity" size="22px" />
+                <h4>Activity</h4>
+              </div>
+              <Button scale="neutral" className="btn-activity">Hide details</Button>
             </div>
             
             <div className='activities'>
@@ -124,100 +131,7 @@ export function TaskDetails({ task, groupId }) {
           </div>
         </section>
 
-        <nav className="nav-task-body">
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="join" size="18px" />
-              Join
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="member" size="18px" />
-              Members
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="label" size="18px" />
-              Labels
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="checklist" size="18px" />
-              Checklist
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="date" size="18px" />
-              Dates
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="attachment" size="18px" />
-              Attachments
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="cover" size="18px" />
-              Cover
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="customFields" size="18px" />
-              CustomFields
-            </Button>
-          </div>
-
-          <span>Actions</span>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="move" size="18px" />
-              Move
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="copy" size="18px" />
-              Copy
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="template" size="18px" />
-              Make template
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="archive" size="18px" />
-              Archive
-            </Button>
-          </div>
-
-          <div className="btn-container">
-            <Button scale="neutral" className="btn-nav">
-              <Icon name="share" size="18px" />
-              Share
-            </Button>
-          </div>
-        </nav>
+        <NavTaskDetails />
       </div>
     </div>
   );

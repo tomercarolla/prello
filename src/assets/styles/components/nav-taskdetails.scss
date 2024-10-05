@@ -1,0 +1,34 @@
+.nav-task-body {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    font-size: 12px;
+    padding-left: 7px;
+    margin-top: 10px;
+  }
+
+  .btn-container {
+    display: flex;
+    width: 100%;
+
+    .btn-nav {
+      display: flex;
+      justify-content: flex-start;
+      margin: 5px;
+      padding: 5px 10px;
+      border-radius: 3px;
+      color: var(--ds-text);
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .nav-task-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1 / -1;
+    margin-top: 20px;
+  }
+}
