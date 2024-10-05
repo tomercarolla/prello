@@ -14,11 +14,10 @@ export function Modal({ open, onOpenChange, children, trigger }) {
             <Dialog.Title asChild>
               <VisuallyHidden>Modal</VisuallyHidden>
             </Dialog.Title>
-            <StyledDescription className="sr-only">
-            </StyledDescription>
+            <StyledDescription className="sr-only"></StyledDescription>
             <CloseButton>
               <span>
-                <Icon name="close" size="18px" />
+                <Icon name="close" scale="neutral" size="22px" />
               </span>
             </CloseButton>
             <ModalBody>{children}</ModalBody>
@@ -63,7 +62,7 @@ const ModalBody = styled.div`
 const CloseButton = styled(Dialog.Close)`
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 25px;
   background: none;
   border: none;
   cursor: pointer;

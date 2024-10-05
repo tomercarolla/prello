@@ -44,7 +44,7 @@ export function TaskDetails({ task, groupId }) {
       <div className="task-header-container">
         <div className="task-header">
           <div className="title">
-            <Icon name="task" color="var(--ds-text)" size="26px" />
+            <Icon name="task" color="var(--ds-text)" size="22px" />
             {showInput ? (
               <input
                 className="title-input"
@@ -67,11 +67,11 @@ export function TaskDetails({ task, groupId }) {
           <div className="actions-container">
             <div className="actions">
               <span>Members</span>
-              <div style={{ display: 'flex', gap: '2px' }}>
-                <Button scale="neutral" radius="50%">
+              <div style={{ display: 'flex', gap: '5px' }}>
+                <Button scale="neutral" radius="50%" className="btn">
                   TS
                 </Button>
-                <Button scale="neutral" radius="50%">
+                <Button scale="neutral" radius="50%" className="btn">
                   <Icon name="plus" size="16px" />
                 </Button>
               </div>
@@ -79,71 +79,142 @@ export function TaskDetails({ task, groupId }) {
 
             <div className="actions">
               <span>Notifications</span>
-              <Button scale="neutral" fullwidth={true} className='notification-btn'>
+              <Button
+                scale="neutral"
+                fullwidth={true}
+                className="btn-notification"
+              >
                 <Icon name="watch" size="16px" scale="ghost" />
                 Watch
               </Button>
             </div>
           </div>
-          {/* <div>Content</div>
-          <div>Content</div>
-          <div>Content</div>
-          <div>Content</div> */}
+
+          <div className="description-container">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Icon name="description" size="22px" />
+              <h4>Description</h4>
+            </div>
+            {/* I can't make this button wider. check this if you can fix it... in my scss file - btn-description*/}
+            <Button scale="neutral" className="btn-description">
+              Add more detailed description...
+            </Button>
+          </div>
+
+          <div className="activity-container">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Icon name="activity" size="22px" />
+              <h4>Activity</h4>
+            </div>
+            
+            <div className='activities'>
+              <div className='activity'>
+                <div className='avatar'>TS</div>
+                <input className='input-activity' type='text' value='Write a comment...' />
+              </div>
+
+              <div className='activity'>
+                <div className='avatar'>YY</div>
+                <span>
+                  <span>Yehonatan Yeshayahu</span>
+                  Joined this card
+                </span>
+              </div>
+            </div>
+          </div>
         </section>
+
         <nav className="nav-task-body">
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="join" size="18px" />
               Join
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="member" size="18px" />
               Members
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="label" size="18px" />
               Labels
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="checklist" size="18px" />
               Checklist
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="date" size="18px" />
               Dates
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="attachment" size="18px" />
               Attachments
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="cover" size="18px" />
               Cover
             </Button>
           </div>
 
           <div className="btn-container">
-            <Button scale="ghost" className="nav-btn">
+            <Button scale="neutral" className="btn-nav">
               <Icon name="customFields" size="18px" />
               CustomFields
+            </Button>
+          </div>
+
+          <span>Actions</span>
+
+          <div className="btn-container">
+            <Button scale="neutral" className="btn-nav">
+              <Icon name="move" size="18px" />
+              Move
+            </Button>
+          </div>
+
+          <div className="btn-container">
+            <Button scale="neutral" className="btn-nav">
+              <Icon name="copy" size="18px" />
+              Copy
+            </Button>
+          </div>
+
+          <div className="btn-container">
+            <Button scale="neutral" className="btn-nav">
+              <Icon name="template" size="18px" />
+              Make template
+            </Button>
+          </div>
+
+          <div className="btn-container">
+            <Button scale="neutral" className="btn-nav">
+              <Icon name="archive" size="18px" />
+              Archive
+            </Button>
+          </div>
+
+          <div className="btn-container">
+            <Button scale="neutral" className="btn-nav">
+              <Icon name="share" size="18px" />
+              Share
             </Button>
           </div>
         </nav>

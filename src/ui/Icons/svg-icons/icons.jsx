@@ -42,6 +42,13 @@ import { Attachment } from './Attachment.jsx';
 import { Cover } from './Cover.jsx';
 import { CustomFields } from './CustomFields.jsx';
 import { Watch } from './Watch.jsx';
+import { Move } from './Move.jsx';
+import { Copy } from './Copy.jsx';
+import { Archive } from './Archive.jsx';
+import { Share } from './Share.jsx';
+import { Description } from './Description.jsx';
+import { Activity } from './Activity.jsx';
+
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -88,5 +95,11 @@ export const icons = {
   cover: Cover,
   customFields: CustomFields,
   watch: Watch,
+  move: Move,
+  copy: Copy,
+  archive: Archive,
+  share: Share,
+  description: Description,
+  activity: Activity,
   // Add more icons here...
 };
