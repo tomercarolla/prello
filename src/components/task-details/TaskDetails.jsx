@@ -20,8 +20,8 @@ export function TaskDetails({ task, groupId, board }) {
 
   async function handleTitleUpdate() {
     try {
-      setShowTitleInput(false);
       await updateTask(board._id, groupId, { ...task, title }, 'Updated task title');
+      setShowTitleInput(false);
     } catch (error) {
       console.error('Failed to update task:', error);
     }
@@ -80,7 +80,9 @@ export function TaskDetails({ task, groupId, board }) {
               />
             ) : (
               <Button
-                scale="neutral"
+                  scale="neutral"
+                  size='lg'
+                  fullwidth='true'
                 className="btn-description"
                 onClick={() => setShowDescriptionInput(true)}
               >
