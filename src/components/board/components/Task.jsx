@@ -93,7 +93,7 @@ export const Task = ({ board, groupId, ...task }) => {
       onOpenChange={setModalOpen}
       trigger={taskContent}
     >
-      <TaskDetails task={task} groupId={groupId} board={board} />
+      <TaskDetails task={task} groupId={groupId} />
     </Modal>
   );
 };

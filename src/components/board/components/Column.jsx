@@ -132,7 +132,6 @@ export const Column = ({ board, groupId, title, tasks }) => {
                     key={task.id}
                     {...task}
                     groupId={groupId}
-                    board={board}
                   />
                 ))}
               </div>

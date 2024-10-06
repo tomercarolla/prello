@@ -81,7 +81,7 @@ export function ControlledPopover({
 }
 
 const Content = styled(motion.div)`
-  --popover-z: 10;
+  --popover-z: 100;
   --max-popover-height: calc(var(--radix-popper-available-height) - 10px);
   width: 304px;
   padding: 12px;

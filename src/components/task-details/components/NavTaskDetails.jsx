@@ -1,13 +1,12 @@
-import { Button, Icon } from '@ui';
-import { useState } from 'react';
+import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
+
+const MenuComponents = {
+  member: MembersMenu,
+  label: LabelMenu,
+  // Add other menu components here
+};
 
 export function NavTaskDetails() {
-  const [showMenu, setShowMenu] = useState(false);
-
-  function toggleMenu() {
-    setShowMenu(!showMenu)
-  };
-
   const buttons = [
     { name: 'join', icon: 'join', text: 'Join' },
     { name: 'member', icon: 'member', text: 'Members' },
@@ -27,30 +26,36 @@ export function NavTaskDetails() {
     { name: 'share', icon: 'share', text: 'Share' },
   ];
 
- function renderButton(buttonData) {
-   const { name, icon, text } = buttonData;
-   return (
-     <div key={name} className="btn-container">
-       <Button
-         className="btn-nav"
-         scale="neutral"
-         onClick={toggleMenu}
-       >
-         <Icon name={icon} size="18px" />
-         <span>{text}</span>
-       </Button>
-     </div>
-   );
- }
+  function renderButton(buttonData) {
+    const { name, icon, text } = buttonData;
+    const MenuContent = MenuComponents[name];
+
+    const trigger = (
+      <Button className="btn-nav" scale="neutral">
+        <Icon name={icon} size="18px" />
+        <span>{text}</span>
+      </Button>
+    );
+
+
+    
+    return (
+      <div
+        key={name}
+        className="btn-container"
+        style={{ position: 'relative' }}
+      >
+        <Menu trigger={trigger} title={text}>
+          {MenuContent ? <MenuContent /> : <div>No Content for {text}</div>}
+        </Menu>
+      </div>
+    );
+  }
 
   return (
     <nav className="nav-task-body">
       {buttons.map(renderButton)}
-      <span
-        style={{ marginLeft: '7px' }}
-      >
-        Actions
-      </span>
+      <span style={{ marginLeft: '7px' }}>Actions</span>
       {actionButtons.map(renderButton)}
     </nav>
   );

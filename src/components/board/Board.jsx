@@ -221,10 +221,8 @@ export function Board() {
                 return (
                   <Column
                     key={group.id}
-                    groupId={group.id}
-                    title={group.title}
                     tasks={tasks}
-                    board={board}
+                    groupId={group.id}
                   />
                 );
               })}

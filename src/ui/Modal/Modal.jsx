@@ -9,8 +9,9 @@ export function Modal({ open, onOpenChange, children, trigger }) {
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <StyledOverlay className="modal-overlay">
-          <StyledContent className="modal-content">
+        <StyledOverlay>
+          <StyledContent >
+            <Overlay>
             <Dialog.Title asChild>
               <VisuallyHidden>Modal</VisuallyHidden>
             </Dialog.Title>
@@ -20,7 +21,8 @@ export function Modal({ open, onOpenChange, children, trigger }) {
                 <Icon name="close" size="22px" />
               </span>
             </CloseButton>
-            <ModalBody>{children}</ModalBody>
+              <ModalBody>{children}</ModalBody>
+            </Overlay>
           </StyledContent>
         </StyledOverlay>
       </Dialog.Portal>
@@ -29,24 +31,28 @@ export function Modal({ open, onOpenChange, children, trigger }) {
 }
 
 const StyledOverlay = styled(Dialog.Overlay)`
-    display: flex;
-    position: fixed;
-    inset: 0; 
-    background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  inset: 0;
+  z-index: 1000;
+`;
 
 const StyledContent = styled(Dialog.Content)`
   display: flex;
-  flex-direction: column;
+  height: fit-content;
   background-color: var(--surface);
-  color: var(--ds-text);
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 768px;
-  height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-block: 48px;
+
+  span {
+    display: flex;
+  }
+
 `;
 
 const StyledDescription = styled(Dialog.Description)`
@@ -76,4 +82,8 @@ const CloseButton = styled(Dialog.Close)`
 `;
 
 
-
+const Overlay = styled.div`
+  width: 765px;
+  background-color: var(--surface);
+  border-radius: 12px;
+`;

@@ -2,13 +2,18 @@ import { Button, Icon } from '@ui';
 import { useEffect, useState } from 'react';
 import { updateTask } from '../../store/board/board.actions';
 import { NavTaskDetails } from './components/NavTaskDetails';
+import { useSelector } from 'react-redux';
 
 
-export function TaskDetails({ task, groupId, board }) {
+export function TaskDetails({ task, groupId }) {
+  const board = useSelector((state) => state.boardModule.board);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description || '');
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
+
+  console.log('GroupId:', groupId);
+  console.log('Board:', board);
 
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
@@ -57,7 +62,7 @@ export function TaskDetails({ task, groupId, board }) {
           <div className="group-container">
             <p>
               in list:
-              <Button scale="neutral" size='sm' className="btn">
+              <Button scale="neutral" size="sm" className="btn">
                 <span>{groupTitle}</span>
               </Button>
             </p>
@@ -68,7 +73,10 @@ export function TaskDetails({ task, groupId, board }) {
       <section className="task-body">
         <div className="task-body-content">
           <div className="description-container">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div
+              className="naming"
+              style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+            >
               <Icon name="description" size="22px" />
               <h4>Description</h4>
             </div>
@@ -80,9 +88,9 @@ export function TaskDetails({ task, groupId, board }) {
               />
             ) : (
               <Button
-                  scale="neutral"
-                  size='lg'
-                  fullwidth='true'
+                scale="neutral"
+                size="lg"
+                fullwidth="true"
                 className="btn-description"
                 onClick={() => setShowDescriptionInput(true)}
               >
@@ -93,6 +101,7 @@ export function TaskDetails({ task, groupId, board }) {
 
           <div className="activity-container">
             <div
+              className="naming"
               style={{
                 display: 'flex',
                 alignItems: 'center',
