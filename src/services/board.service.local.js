@@ -339,9 +339,6 @@ async function addBoardMsg(boardId, txt) {
 async function updateTask(boardId, groupId, task, activityTitle) {
   // Later, this is all done by the backend
   const board = await getById(boardId);
-
-  console.log('Board structure:', JSON.stringify(board, null, 2));
-
   if (!board.groups || !board.groups[groupId]) {
     console.error(`Group with id ${groupId} not found in board:`, board);
     throw new Error('Group with id ${groupId} not found');
