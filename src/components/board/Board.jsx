@@ -22,6 +22,7 @@ export function Board() {
     loadBoard(boardId);
   }, [boardId]);
 
+
   const moveTask = useCallback(
     ({
       taskIndexInStartGroup,
@@ -223,6 +224,7 @@ export function Board() {
                     groupId={group.id}
                     title={group.title}
                     tasks={tasks}
+                    board={board}
                   />
                 );
               })}

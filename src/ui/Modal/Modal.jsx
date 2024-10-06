@@ -17,7 +17,7 @@ export function Modal({ open, onOpenChange, children, trigger }) {
             <StyledDescription className="sr-only"></StyledDescription>
             <CloseButton>
               <span>
-                <Icon name="close" scale="neutral" size="22px" />
+                <Icon name="close" size="22px" />
               </span>
             </CloseButton>
             <ModalBody>{children}</ModalBody>
@@ -68,6 +68,11 @@ const CloseButton = styled(Dialog.Close)`
   cursor: pointer;
   padding: 5px;
   color: var(--text);
+
+  &:hover {
+    background-color: var(--dynamic-button-hovered);
+    border-radius: 50%;
+  }
 `;
 
 

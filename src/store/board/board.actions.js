@@ -86,7 +86,12 @@ export async function updateTask(boardId, groupId, task, activityTitle) {
       activityTitle,
     );
     console.log('Updated task', savedTask);
-    store.dispatch(getCmdUpdateTask(groupId, task, activity));
+    store.dispatch({
+      type: UPDATE_TASK,
+      groupId,
+      task: savedTask,
+      activity,
+    });
     return savedTask;
   } catch (err) {
     console.log('Cannot update task', err);

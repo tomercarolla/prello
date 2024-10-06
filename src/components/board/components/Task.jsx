@@ -13,7 +13,7 @@ import invariant from 'tiny-invariant';
 import { TaskDetails } from '../../task-details/TaskDetails.jsx';
 import { useBoardContext } from '../board-context.jsx';
 
-export const Task = ({ ...task }) => {
+export const Task = ({ board, groupId, ...task }) => {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
@@ -91,10 +91,9 @@ export const Task = ({ ...task }) => {
     <Modal
       open={modalOpen}
       onOpenChange={setModalOpen}
-      // title={task.title}
       trigger={taskContent}
     >
-      <TaskDetails task={task} />
+      <TaskDetails task={task} groupId={groupId} board={board} />
     </Modal>
   );
 };

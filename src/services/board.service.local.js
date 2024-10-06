@@ -62,14 +62,14 @@ const boards = [
         id: 'c101',
         title: 'Replace logo',
       },
+      c102: {
+        id: 'c102',
+        title: 'Add Samples',
+      },
       c103: {
         id: 'c103',
         title: 'Do that',
         archivedAt: 1589983468418,
-      },
-      c102: {
-        id: 'c102',
-        title: 'Add Samples',
       },
       c104: {
         id: 'c104',
@@ -339,22 +339,41 @@ async function addBoardMsg(boardId, txt) {
 async function updateTask(boardId, groupId, task, activityTitle) {
   // Later, this is all done by the backend
   const board = await getById(boardId);
-  const group = board.groups.find((g) => g.id === groupId);
-  const idx = group.tasks.findIndex((t) => t.id === task.id);
 
-  group.tasks[idx] = task;
+  console.log('Board structure:', JSON.stringify(board, null, 2));
+
+  if (!board.groups || !board.groups[groupId]) {
+    console.error(`Group with id ${groupId} not found in board:`, board);
+    throw new Error('Group with id ${groupId} not found');
+  }
+
+
+  if (!board.tasks[task.id]) {
+    console.error(`Task with id ${task.id} not found in board:`, board);
+    throw new Error(`Task with id ${task.id} not found`);
+  }
+
+  board.tasks[task.id] = { ...board.tasks[task.id], ...task };
+
+  if (!board.groups[groupId].tasksIds.includes(task.id)) { 
+    board.groups[groupId].tasksIds.push(task.id);
+  }
+  // const group = board.groups.find((g) => g.id === groupId);
+  // const idx = group.tasks.findIndex((t) => t.id === task.id);
+
+  // group.tasks[idx] = task;
 
   const activity = _createActivity(
     activityTitle,
     _toMiniTask(task),
-    _toMiniGroup(group),
+    _toMiniGroup(board.groups[groupId]),
   );
 
   board.activities.push(activity);
 
   await storageService.put(STORAGE_KEY, board);
 
-  return [task, activity];
+  return [board.tasks[task.id], activity];
 }
 
 // function getTaskEditCmps(task, board) {

@@ -14,7 +14,7 @@ import invariant from 'tiny-invariant';
 import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
-export const Column = ({ groupId, title, tasks }) => {
+export const Column = ({ board, groupId, title, tasks }) => {
   const { t } = useTranslation();
   const groupRef = useRef(null);
   const groupInnerRef = useRef(null);
@@ -128,7 +128,12 @@ export const Column = ({ groupId, title, tasks }) => {
             <div className="dynamic-content">
               <div className="tasks-list">
                 {tasks.map((task) => (
-                  <Task key={task.id} {...task} />
+                  <Task
+                    key={task.id}
+                    {...task}
+                    groupId={groupId}
+                    board={board}
+                  />
                 ))}
               </div>
             </div>

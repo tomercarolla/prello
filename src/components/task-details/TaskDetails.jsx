@@ -1,127 +1,124 @@
-import { Icon } from '@ui';
-import { Button } from 'ui/Buttons/Button';
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-// import { updateTask } from 'store/task/task.actions';
-
+import { Button, Icon } from '@ui';
+import { useEffect, useState } from 'react';
+import { updateTask } from '../../store/board/board.actions';
 import { NavTaskDetails } from './components/NavTaskDetails';
 
-export function TaskDetails({ task, groupId }) {
-  // const { boardId } = useParams();
-  // const board = useSelector((state) => state.boardReducer.board);
+
+export function TaskDetails({ task, groupId, board }) {
   const [title, setTitle] = useState(task.title);
-  const [showInput, setShowInput] = useState(false);
-  const inputRef = useRef(null);
+  const [description, setDescription] = useState(task.description || '');
+  const [showTitleInput, setShowTitleInput] = useState(false);
+  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
 
-    // useEffect(() => {
-    //   loadBoard(boardId);
-    // }, [boardId]);
-  
+  const groupTitle = board.groups[groupId]?.title || 'Unknown List';
+
   useEffect(() => {
-    if (showInput && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [showInput]);
+    setTitle(task.title);
+    setDescription(task.description || '');
+  }, [task]);
 
-  function handleTitleChange(ev) {
-    setTitle(ev.target.value);
-  }
 
-  function handleTitleBlur() {
-    setShowInput(false);
-    // updateTask(boardId, groupId, { ...task, title });
-  }
-
-  function handleTitleKeyDown(ev) {
-    if (ev.key === 'Enter') {
-      handleTitleBlur();
+  async function handleTitleUpdate() {
+    try {
+      setShowTitleInput(false);
+      await updateTask(board._id, groupId, { ...task, title }, 'Updated task title');
+    } catch (error) {
+      console.error('Failed to update task:', error);
     }
   }
 
-  if (!task) return null;
+  async function handleDescriptionUpdate() {
+    try {
+      await updateTask(board._id, groupId, { ...task, description }, 'Updated task description');
+    } catch (error) {
+      console.error('Failed to update task:', error);
+    }
+    setShowDescriptionInput(false);
+  };
 
   return (
     <div className="task-details">
-
-      <div className="task-header-container">
+      <section className="task-header-container">
         <div className="task-header">
           <div className="title">
             <Icon name="task" color="var(--ds-text)" size="22px" />
-            {showInput ? (
+            {showTitleInput ? (
               <input
                 className="title-input"
                 type="text"
-                ref={inputRef}
                 value={title}
-                onChange={handleTitleChange}
-                onBlur={handleTitleBlur}
-                onKeyDown={handleTitleKeyDown}
+                onChange={(e) => setTitle(e.target.value)}
+                onBlur={handleTitleUpdate}
               />
             ) : (
-              <h2 onClick={() => setShowInput(true)}>{title}</h2>
+              <h2 onClick={() => setShowTitleInput(true)}>{title}</h2>
             )}
           </div>
-          <p>in list</p>
-        </div>
-      </div>
-
-      <div className="task-body">
-        <section className="task-body-content">
-          <div className="actions-container">
-            <div className="actions">
-              <span>Members</span>
-              <div style={{ display: 'flex', gap: '5px' }}>
-                <Button scale="neutral" radius="50%" className="btn">
-                  TS
-                </Button>
-                <Button scale="neutral" radius="50%" className="btn">
-                  <Icon name="plus" size="16px" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="actions">
-              <span>Notifications</span>
-              <Button
-                scale="neutral"
-                fullwidth='true'
-                className="btn-notification"
-              >
-                <Icon name="watch" size="16px" />
-                Watch
+          <div className="group-container">
+            <p>
+              in list:
+              <Button scale="neutral" size='sm' className="btn">
+                <span>{groupTitle}</span>
               </Button>
-            </div>
+            </p>
           </div>
+        </div>
+      </section>
 
+      <section className="task-body">
+        <div className="task-body-content">
           <div className="description-container">
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <Icon name="description" size="22px" />
               <h4>Description</h4>
             </div>
-            {/* I can't make this button wider. check this if you can fix it... in my scss file - btn-description*/}
-            <Button scale="neutral" className="btn-description">
-              Add more detailed description...
-            </Button>
+            {showDescriptionInput ? (
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                onBlur={handleDescriptionUpdate}
+              />
+            ) : (
+              <Button
+                scale="neutral"
+                className="btn-description"
+                onClick={() => setShowDescriptionInput(true)}
+              >
+                {description || 'Add more detailed description...'}
+              </Button>
+            )}
           </div>
 
           <div className="activity-container">
-            <div style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between', gap: '10px' }}>
-              <div style={{ display:'flex', gap: '10px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '10px',
+              }}
+            >
+              <div style={{ display: 'flex', gap: '10px' }}>
                 <Icon name="activity" size="22px" />
                 <h4>Activity</h4>
               </div>
-              <Button scale="neutral" className="btn-activity">Hide details</Button>
+              <Button scale="neutral" className="btn-activity">
+                Hide details
+              </Button>
             </div>
-            
-            <div className='activities'>
-              <div className='activity'>
-                <div className='avatar'>TS</div>
-                <input className='input-activity' type='text' placeholder='Write a comment...' />
+
+            <div className="activities">
+              <div className="activity">
+                <div className="avatar">TS</div>
+                <input
+                  className="input-activity"
+                  type="text"
+                  placeholder="Write a comment..."
+                />
               </div>
 
-              <div className='activity'>
-                <div className='avatar'>YY</div>
+              <div className="activity">
+                <div className="avatar">YY</div>
                 <span>
                   <span>Yehonatan Yeshayahu</span>
                   Joined this card
@@ -129,10 +126,10 @@ export function TaskDetails({ task, groupId }) {
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
         <NavTaskDetails />
-      </div>
+      </section>
     </div>
   );
 }

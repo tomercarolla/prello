@@ -16,6 +16,18 @@
     align-items: center;
     height: 36px;
 
+    .group-container {
+      display: flex;
+      margin-left:65px;
+      width: 100%;
+
+      p {
+        display: flex;
+        align-items: center;
+        gap:5px;
+      }
+    }
+
     .title {
       display: flex;
       align-items: center;
@@ -38,12 +50,6 @@
         border: 2px solid var(--ds-border-focused);
         background-color: var(--surface);
       }
-    }
-
-    p {
-      padding: 0;
-      margin: 5px 0 0 75px;
-      width: 100%;
     }
   }
 
@@ -83,6 +89,10 @@
       }
 
       .description-container {
+
+        .textarea-description {
+          background-color: var('--surface');
+        }
         margin-top: 20px;
 
         .btn-description {
