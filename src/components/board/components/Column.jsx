@@ -138,7 +138,11 @@ export const Column = ({ board, groupId, title, tasks }) => {
             </div>
 
             {isAddingCard ? (
-              <NewTask groupId={groupId} setIsAddingCard={setIsAddingCard} />
+              <NewTask
+                groupId={groupId}
+                isAddingCard={isAddingCard}
+                setIsAddingCard={setIsAddingCard}
+              />
             ) : (
               <div className="footer">
                 <Button

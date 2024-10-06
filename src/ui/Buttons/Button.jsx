@@ -7,7 +7,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
-  padding-inline: ${({ paddinginline }) => paddinginline || '6px'};
+  padding-inline: ${({ paddinginline }) => paddinginline || '12px'};
   transition-property: background-color, border-color, box-shadow;
   transition-duration: 85ms;
   transition-timing-function: ease;

@@ -62,14 +62,15 @@ const boards = [
         id: 'c101',
         title: 'Replace logo',
       },
-      c102: {
-        id: 'c102',
-        title: 'Add Samples',
-      },
       c103: {
         id: 'c103',
         title: 'Do that',
         archivedAt: 1589983468418,
+      },
+      c102: {
+        id: 'c102',
+        title: 'Add Samples',
+        labelIds: ['l102'],
       },
       c104: {
         id: 'c104',

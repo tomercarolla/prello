@@ -65,7 +65,7 @@
 
   .canvas {
     position: relative;
-    flex-grow: 1;
+    height: 100%;
 
     .list {
       position: absolute;
@@ -81,6 +81,7 @@
       padding-inline: 12px;
       scrollbar-color: #fff6 #00000026;
       scrollbar-width: auto;
+      align-items: start;
     }
   }
 
@@ -92,7 +93,8 @@
     box-shadow: 0 1px 1px #091e4240, 0 0 1px #091e424f;
     color: var(--ds-text-subtle, #44546f);
     cursor: grab;
-    align-self: start;
+    display: flex;
+    max-height: 100%;
 
     &.collapsed {
       padding: 8px 4px 16px;

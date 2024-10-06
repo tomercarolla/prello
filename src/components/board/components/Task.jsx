@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
 import { TaskDetails } from '../../task-details/TaskDetails.jsx';
 import { useBoardContext } from '../board-context.jsx';
+import { Labels } from './Labels.jsx';
 
 export const Task = ({ board, groupId, ...task }) => {
   const taskRef = useRef(null);
@@ -21,8 +22,11 @@ export const Task = ({ board, groupId, ...task }) => {
   const { setTaskId } = useBoardContext();
 
   useEffect(() => {
-    invariant(taskRef);
     setTaskId(task.id);
+  }, [setTaskId, task.id]);
+
+  useEffect(() => {
+    invariant(taskRef);
 
     return combine(
       draggable({
@@ -58,7 +62,7 @@ export const Task = ({ board, groupId, ...task }) => {
         onDrop: () => setClosestEdge(null),
       }),
     );
-  }, [setTaskId, task.id]);
+  }, [task.id]);
 
   const taskContent = (
     <div ref={taskRef} className={`task ${dragging ? 'dragging' : ''}`}>
@@ -71,6 +75,7 @@ export const Task = ({ board, groupId, ...task }) => {
 
       <div className="task-container">
         <div className="task-content">
+          <Labels task={task} />
           <a href="#" draggable="false">
             {task.title}
           </a>
