@@ -1,13 +1,16 @@
 import { Button } from '@ui';
 import { useState } from 'react';
 import { Icon } from 'ui/icons/Icon';
-import AccountInitials from '../AccountInitials.jsx';
+
 import TrelloGif from './assets/TrelloGif.gif';
 import TrelloIcon from './assets/TrelloIcon.png';
+import { Avatar } from '../Avatar.jsx';
+import { useSelector } from 'react-redux';
 
 const dropdowns = ['Workspaces', 'Recent', 'Starred', 'Templates'];
 
 export function Header() {
+  const loggedInUser = useSelector((state) => state.userModule.currentUser);
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -49,7 +52,7 @@ export function Header() {
         </div>
         <Icon name="bell" className="pointer" size="24px" />
         <Icon name="questionMark" className="pointer" size="22px" />
-        <AccountInitials user={{ name: 'Roy Live', userColor: '#3498db' }} />
+        <Avatar data={loggedInUser} />
         <div></div>
       </div>
     </header>
