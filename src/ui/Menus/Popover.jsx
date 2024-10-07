@@ -44,6 +44,9 @@ export function ControlledPopover({
           if (child.props.onClick) {
             child.props.onClick(event);
           }
+          if (event.target.closest('[data-close-popover]')) {
+            setOpen(false);
+          }
         },
       });
     }

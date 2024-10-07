@@ -8,7 +8,7 @@ export function Menu({ trigger, title, children, onClose }) {
         <Header>
           <h2>{title}</h2>
 
-          <Button scale="ghost" radius="8px" onClick={onClose}>
+          <Button scale="ghost" radius="8px" data-close-popover>
             <Icon size="16px" name="close" />
           </Button>
         </Header>
