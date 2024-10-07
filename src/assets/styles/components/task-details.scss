@@ -5,6 +5,7 @@
   max-width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  color: var(--ds-text);
 
   .btn {
     color: var(--ds-text);
@@ -14,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 36px;
+    height: 100px;
 
     .group-container {
       display: flex;
@@ -31,30 +32,34 @@
     .title {
       display: flex;
       align-items: center;
+      height: 36px;
       gap: 10px;
       width: 100%;
 
-      h2 {
+      .title-text {
         font-size: 20px;
-        padding: 2px;
+        width: 100%;
       }
     }
 
     .title-input {
-      display: inline-flex;
+      display: flex;
       font-size: 20px;
-      font-weight: 600;
-      background: transparent;
-      width: 88%;
       color: var(--ds-text);
-      padding: 2px;
-      outline: none;
-      border: none;
+      background-color: var(--surface);
+      font-weight: 600;
+      width: 100%;
+      max-width: 600px;
       border-radius: 5px;
+      margin-left: -5px;
+      transition: ease-in-out 0.3s;
+      height: 36px;
+      border: none;
+      outline: none;
+
 
       &:focus {
-        border: 2px solid var(--ds-border-focused);
-        background-color: var(--surface);
+        box-shadow: inset 0 0 0 2px var(--ds-border-focused);
       }
     }
   }
@@ -62,39 +67,45 @@
   .task-body {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    margin-top: 50px;
+    margin-top: 10px;
 
     .task-body-content {
       width: 100%;
 
-      .actions-container {
+      .labels-container {
         display: flex;
-        flex-wrap: wrap;
-        padding-left: 35px;
-        gap: 15px;
+        gap:10px;
+        margin-left: 20px;
+        
 
-        .actions {
+        .labels {
           display: flex;
           flex-direction: column;
-          font-size: 12px;
-          width: 80px;
-          gap: 5px;
+          margin-inline: 10px;
+          
 
-          .btn-notification {
-            padding-inline: 5px;
-            color: var(--ds-text);
+          span {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 5px;
           }
-
-          .avatar {
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            justify-content: center;
-          }
-        }
+  
+            div {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+      }
       }
 
       .description-container {
+        
+        .action-title {
+          display: flex;
+          align-items: 'center';
+          justify-content: 'space-between';
+          gap: '10px';
+        }
 
         .textarea-description {
           background-color: var('--surface');
@@ -104,7 +115,6 @@
         .btn-description {
           display: flex;
           align-items: flex-start;
-          color: var(--ds-text);
           padding-top: 10px;
           padding-left: 10px;
           width: 100%;
@@ -112,15 +122,24 @@
           max-width: 480px;
           margin-top: 15px;
           margin-left: 30px;
+          color: var(--ds-text);
         }
-      }
-
-      .naming {
-        color: red;
       }
 
       .activity-container {
         margin-top: 20px;
+
+        .action-title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .icon-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+        }
 
         .btn-activity {
           padding-inline: 15px;

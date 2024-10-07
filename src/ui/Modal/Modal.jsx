@@ -37,13 +37,12 @@ const StyledOverlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
   overflow: auto;
   inset: 0;
-  z-index: 1000;
+  z-index: 100;
 `;
 
 const StyledContent = styled(Dialog.Content)`
   display: flex;
   height: fit-content;
-  background-color: var(--surface);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   position: relative;

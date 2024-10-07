@@ -1,6 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { Button, Icon } from '@ui';
-import { useEffect, useState } from 'react';
 import { updateTask } from '../../store/board/board.actions';
+
 import { NavTaskDetails } from './components/NavTaskDetails';
 import { useSelector } from 'react-redux';
 
@@ -11,24 +12,34 @@ export function TaskDetails({ task, groupId }) {
   const [description, setDescription] = useState(task.description || '');
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
-
-  console.log('GroupId:', groupId);
-  console.log('Board:', board);
+  const inputRef = useRef(null);
 
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
-
+  
   useEffect(() => {
     setTitle(task.title);
     setDescription(task.description || '');
   }, [task]);
 
+  useEffect(() => {
+    if (showTitleInput && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showTitleInput]);
+
+
 
   async function handleTitleUpdate() {
     try {
-      await updateTask(board._id, groupId, { ...task, title }, 'Updated task title');
-      setShowTitleInput(false);
+      if (title.trim() === '') {
+          setTitle(task.title);
+      } else {
+        await updateTask(board._id, groupId, { ...task, title }, 'Updated task title');
+        }
     } catch (error) {
       console.error('Failed to update task:', error);
+    } finally {
+      setShowTitleInput(false);
     }
   }
 
@@ -51,12 +62,18 @@ export function TaskDetails({ task, groupId }) {
               <input
                 className="title-input"
                 type="text"
+                ref={inputRef}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 onBlur={handleTitleUpdate}
               />
             ) : (
-              <h2 onClick={() => setShowTitleInput(true)}>{title}</h2>
+              <div
+                className="title-text"
+                onClick={() => setShowTitleInput(true)}
+              >
+                {title || <span>Click to add a title</span>}
+              </div>
             )}
           </div>
           <div className="group-container">
@@ -72,9 +89,43 @@ export function TaskDetails({ task, groupId }) {
 
       <section className="task-body">
         <div className="task-body-content">
+          <div className="labels-container">
+            <div className="labels">
+              <span>Members</span>
+              <div>
+                <div className="avatar">TS</div>
+                <Button scale="neutral" className="btn" radius="50%">
+                  <Icon name="plus" size="16px" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="labels">
+              <span>Labels</span>
+              <div>
+                <Button scale="neutral" className="btn">
+                  Label
+                </Button>
+                <Button scale="neutral" className="btn">
+                  <Icon name="plus" size="16px" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="labels">
+              <span>Notifications</span>
+              <div>
+                <Button scale="neutral" className="btn" fullwidth="true">
+                  <Icon name="watch" size="16px" />
+                  Watch
+                </Button>
+              </div>
+            </div>
+          </div>
+
           <div className="description-container">
             <div
-              className="naming"
+              className="action-title"
               style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
             >
               <Icon name="description" size="22px" />
@@ -101,15 +152,9 @@ export function TaskDetails({ task, groupId }) {
 
           <div className="activity-container">
             <div
-              className="naming"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '10px',
-              }}
+              className="action-title"
             >
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div className='icon-wrapper'>
                 <Icon name="activity" size="22px" />
                 <h4>Activity</h4>
               </div>
