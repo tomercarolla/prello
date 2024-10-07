@@ -44,8 +44,6 @@ export function ControlledPopover({
           if (child.props.onClick) {
             child.props.onClick(event);
           }
-
-          setOpen(false);
         },
       });
     }
