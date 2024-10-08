@@ -221,14 +221,7 @@ export function Board() {
                   (taskId) => board.tasks[taskId],
                 );
 
-                return (
-                  <Column
-                    key={group.id}
-                    groupId={group.id}
-                    title={group.title}
-                    tasks={tasks}
-                  />
-                );
+                return <Column key={group.id} group={group} tasks={tasks} />;
               })}
 
             <div className="last-column">

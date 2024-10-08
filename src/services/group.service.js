@@ -5,7 +5,7 @@ export const groupService = {
   query,
   getById,
   save,
-  remove,
+  // remove,
 };
 
 async function query(boardId) {
@@ -21,16 +21,20 @@ async function getById(boardId, groupId) {
 async function save(boardId, group) {
   const board = await boardService.getById(boardId);
   if (group.id) {
-    const idx = board.groups.findIndex(
-      (currGroup) => currGroup.id === group.id,
+    const key = Object.keys(board.groups).find(
+      (groupKey) => board.groups[groupKey].id === group.id,
     );
-    board.groups.splice(idx, 1, group);
+
+    board.groups[key] = group;
+    // board.groups.splice(idx, 1, group);
   } else {
     group.id = utilService.makeId();
     board.groups.push(group);
   }
+
   await boardService.save(board);
-  return group;
+
+  return board;
 }
 
 async function removeTask(boardId, groupId, taskId) {

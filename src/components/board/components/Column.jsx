@@ -15,7 +15,7 @@ import { ColumnName } from './ColumnName.jsx';
 import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
-export const Column = ({ groupId, title, tasks }) => {
+export const Column = ({ group, tasks }) => {
   const { t } = useTranslation();
   const groupRef = useRef(null);
   const groupInnerRef = useRef(null);
@@ -23,6 +23,7 @@ export const Column = ({ groupId, title, tasks }) => {
   const [closestEdge, setClosestEdge] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddingCard, setIsAddingCard] = useState(false);
+  const groupId = group.id;
 
   useEffect(() => {
     invariant(groupRef);
@@ -87,7 +88,7 @@ export const Column = ({ groupId, title, tasks }) => {
     >
       <div className="inner-group" ref={groupInnerRef}>
         <div className="top">
-          <ColumnName title={title} />
+          <ColumnName group={group} />
 
           <Button
             scale="ghost"
