@@ -311,6 +311,7 @@ async function remove(boardId) {
 }
 
 async function save(board) {
+  console.log('saved board ', board);
   if (board._id) {
     return await storageService.put(STORAGE_KEY, board);
   } else {

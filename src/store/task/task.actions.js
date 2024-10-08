@@ -1,4 +1,5 @@
 import { taskService } from '../../services/task.service.js';
+import { UPDATE_BOARD } from '../board/board.reducer.js';
 import { store } from '../store';
 
 export const SET_TASKS = 'SET_TASKS';
@@ -20,7 +21,7 @@ export async function loadTasks(boardId) {
 export async function loadTask(boardId, taskId) {
   try {
     const task = await taskService.getById(boardId, taskId);
-    store.dispatch({ type: SET_TASK, task })
+    store.dispatch({ type: SET_TASK, task });
   } catch (err) {
     console.error('TaskActions: err in loadTask', err);
     throw err;
@@ -29,9 +30,9 @@ export async function loadTask(boardId, taskId) {
 
 export async function addTask(boardId, groupId, task) {
   try {
-    const savedTask = await taskService.save(boardId, groupId, task);
+    const savedBoard = await taskService.save(boardId, groupId, task);
 
-    store.dispatch({ type: ADD_TASK, task: savedTask });
+    store.dispatch({ type: UPDATE_BOARD, board: savedBoard });
   } catch (err) {
     console.error('TaskActions: err in addTask', err);
     throw err;

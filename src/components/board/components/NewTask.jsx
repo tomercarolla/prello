@@ -1,7 +1,6 @@
 import { Button, Icon } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { loadBoard } from '../../../store/board/board.actions.js';
 import { addTask } from '../../../store/task/task.actions.js';
 import { useBoardContext } from '../board-context.jsx';
 
@@ -75,7 +74,6 @@ export function NewTask({ groupId, isAddingCard, setIsAddingCard }) {
             };
 
             await addTask(boardId, groupId, newTask);
-            await loadBoard(boardId);
 
             setValue('');
             textAreaRef.current.focus();

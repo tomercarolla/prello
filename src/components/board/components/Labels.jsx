@@ -13,18 +13,17 @@ export function Labels({ task }) {
 
   if (!taskLabels.length) return null;
 
-  console.log('showLabelText ', showLabelText);
-
   return (
     <LabelsContainer className="labels">
       {taskLabels.map((label) => (
         <Label
           key={label.id}
           bgcolor={label.color}
-          onClick={(event, prev) => {
-            setShowLabelText(!prev);
-            event.defaultPrevented;
+          onClick={(event) => {
+            event.stopPropagation();
+            setShowLabelText((prev) => !prev);
           }}
+          className={showLabelText ? '' : 'hide'}
         >
           {showLabelText ? label.title : null}
         </Label>
@@ -61,5 +60,11 @@ const Label = styled.div`
 
   &:hover {
     background-color: ${({ bgcolor }) => darken(0.1, bgcolor)};
+  }
+
+  &.hide {
+    min-width: 40px;
+    max-width: 40px;
+    height: 8px;
   }
 `;

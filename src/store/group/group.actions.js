@@ -1,5 +1,5 @@
-import { groupService } from '../services/groupService';
-import { store } from '../store/store';
+import { groupService } from '../../services/group.service.js';
+import { store } from '../store.js';
 import {
   ADD_GROUP,
   REMOVE_GROUP,
@@ -27,9 +27,9 @@ export async function addGroup(group) {
   }
 }
 
-export async function updateGroup(group) {
+export async function updateGroup(boardId, group) {
   try {
-    const savedGroup = await groupService.save(group);
+    const savedGroup = await groupService.save(boardId, group);
     store.dispatch({ type: UPDATE_GROUP, group: savedGroup });
     return savedGroup;
   } catch (err) {
