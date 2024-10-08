@@ -9,7 +9,7 @@ import { WorkspacePage } from 'pages/WorkspacePage.jsx';
 import { HomePage } from './pages/homepage/HomePage.jsx';
 
 // ------COMPONENTS------
-import { TaskDetails } from 'components/taskDetails/TaskDetails.jsx';
+import { TaskDetails } from 'components/task-details/TaskDetails.jsx';
 import { Board } from './components/board/Board';
 import { Header } from './components/header/Header.jsx';
 import { Sidebar } from './components/sidebar/Sidebar.jsx';

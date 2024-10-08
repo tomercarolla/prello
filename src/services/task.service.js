@@ -8,7 +8,7 @@ export const taskService = {
   getById,
   save,
   remove,
-};
+  };
 
 async function query(boardId) {
   const board = await boardService.getById(boardId);

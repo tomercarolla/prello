@@ -52,17 +52,20 @@ export function boardReducer(state = initialState, action) {
     case UPDATE_TASK:
       const updatedBoard = {
         ...state.board,
-        groups: state.board.groups.map((g) =>
-          g.id !== action.groupId
-            ? g
-            : {
-                ...g,
-                tasks: g.tasks.map((t) =>
-                  t.id !== action.task.id ? t : action.task,
-                ),
-              },
-        ),
-        activities: [...state.board.activities, action.activity],
+        groups: {
+          ...state.board.groups,
+          [action.groupId]: {
+            ...state.board.groups[action.groupId],
+            tasksIds: state.board.groups[action.groupId].tasksIds.map(
+              (taskId) => (taskId === action.task.id ? action.task.id : taskId),
+            ),
+          },
+        },
+        tasks: {
+          ...state.board.tasks,
+          [action.task.id]: action.task,
+        },
+        activities: [action.activity, ...(state.board.activities || [])],
       };
       return { ...state, board: updatedBoard };
 

@@ -33,6 +33,22 @@ import { Trash } from './Trash.jsx';
 import { Trello } from './Trello.jsx';
 import { Views } from './Views.jsx';
 import { Workspace } from './Workspace.jsx';
+import { Task } from './Task.jsx';
+import { Join } from './Join.jsx';
+import { Label } from './Label.jsx';
+import { Checklist } from './Checklist.jsx';
+import { Date } from './Date.jsx';
+import { Attachment } from './Attachment.jsx';
+import { Cover } from './Cover.jsx';
+import { CustomFields } from './CustomFields.jsx';
+import { Watch } from './Watch.jsx';
+import { Move } from './Move.jsx';
+import { Copy } from './Copy.jsx';
+import { Archive } from './Archive.jsx';
+import { Share } from './Share.jsx';
+import { Description } from './Description.jsx';
+import { Activity } from './Activity.jsx';
+
 
 export const icons = {
   starEmpty: StarEmpty,
@@ -70,5 +86,20 @@ export const icons = {
   views: Views,
   lock: Lock,
   template: Template,
+  task: Task,
+  join: Join,
+  label: Label,
+  checklist: Checklist,
+  date: Date,
+  attachment: Attachment,
+  cover: Cover,
+  customFields: CustomFields,
+  watch: Watch,
+  move: Move,
+  copy: Copy,
+  archive: Archive,
+  share: Share,
+  description: Description,
+  activity: Activity,
   // Add more icons here...
 };

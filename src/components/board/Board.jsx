@@ -22,6 +22,7 @@ export function Board() {
     loadBoard(boardId);
   }, [boardId]);
 
+
   const moveTask = useCallback(
     ({
       taskIndexInStartGroup,
@@ -220,9 +221,8 @@ export function Board() {
                 return (
                   <Column
                     key={group.id}
-                    groupId={group.id}
-                    title={group.title}
                     tasks={tasks}
+                    groupId={group.id}
                   />
                 );
               })}
