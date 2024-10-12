@@ -20,15 +20,14 @@ export function Avatar({ data, size, fontSize }) {
   return (
     <AvatarWrapper
       $imageUrl={imageUrl}
-      size={size}
+      $size={size}
+      $bgColor={bgColor}
       fontSize={fontSize}
       title={name || 'User'}
       role="img"
       aria-label={name || 'User avatar'}
     >
-      {imageUrl ? (
-        <img src={imageUrl} alt={name || 'User avatar'}  />
-      ) : initials}
+      {imageUrl ? <img src={imageUrl} alt={name || 'User avatar'} /> : initials}
     </AvatarWrapper>
   );
 }
@@ -46,10 +45,7 @@ export function Avatar({ data, size, fontSize }) {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    background-image: ${({ $imageUrl }) =>
-      $imageUrl ? `url(${$imageUrl})` : 'none'};
-    background-size: cover;
-    background-position: center;
+    overflow: hidden; 
 
     img {
       width: 100%;
