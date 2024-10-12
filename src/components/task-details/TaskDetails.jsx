@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Icon } from '@ui';
+
 import { updateTask } from '../../store/board/board.actions';
 
 import { NavTaskDetails } from './components/NavTaskDetails';
 import { useSelector } from 'react-redux';
+import { Button, Icon } from '@ui';
+import { MenuRender } from 'ui/Menus/MenuRender';
 
 
 export function TaskDetails({ task, groupId }) {
@@ -52,6 +54,8 @@ export function TaskDetails({ task, groupId }) {
     setShowDescriptionInput(false);
   };
 
+  const taskLabels = task.labelIds ? task.labelIds.map(labelId => board.labels.find(label => label.id === labelId)).filter(Boolean) : [];
+
   return (
     <div className="task-details">
       <section className="task-header-container">
@@ -79,7 +83,7 @@ export function TaskDetails({ task, groupId }) {
           <div className="group-container">
             <p>
               in list:
-              <Button scale="neutral" size="sm" className="btn">
+              <Button scale="neutral" size="xs" paddinginline='5px' className="btn">
                 <span>{groupTitle}</span>
               </Button>
             </p>
@@ -94,28 +98,41 @@ export function TaskDetails({ task, groupId }) {
               <span>Members</span>
               <div>
                 <div className="avatar">TS</div>
-                <Button scale="neutral" className="btn" radius="50%">
-                  <Icon name="plus" size="16px" />
-                </Button>
+                <MenuRender
+                  buttonData={{ name: 'member', icon: 'plus', text: 'Add Member' }}
+                  context="plusIcon"
+                />
               </div>
             </div>
 
             <div className="labels">
               <span>Labels</span>
               <div>
-                <Button scale="neutral" className="btn">
-                  Label
-                </Button>
-                <Button scale="neutral" className="btn">
-                  <Icon name="plus" size="16px" />
-                </Button>
+                <span>
+                  {taskLabels.length > 0 && (
+                    taskLabels.map(label => (
+                      <Button
+                        key={label.id}
+                        scale="neutral"
+                        className="btn"
+                        style={{ backgroundColor: label.color }}
+                      >
+                        {label.title}
+                      </Button>
+                    ))
+                  )}
+                </span>
+                <MenuRender 
+                  buttonData={{ name: 'label', icon: 'plus', text: 'Add Label' }}
+                  context="plusIcon"
+                />
               </div>
             </div>
 
             <div className="labels">
               <span>Notifications</span>
               <div>
-                <Button scale="neutral" className="btn" fullwidth="true">
+                <Button scale="neutral" className="btn" paddinginline='20px' fullwidth="true">
                   <Icon name="watch" size="16px" />
                   Watch
                 </Button>
@@ -151,10 +168,8 @@ export function TaskDetails({ task, groupId }) {
           </div>
 
           <div className="activity-container">
-            <div
-              className="action-title"
-            >
-              <div className='icon-wrapper'>
+            <div className="action-title">
+              <div className="icon-wrapper">
                 <Icon name="activity" size="22px" />
                 <h4>Activity</h4>
               </div>

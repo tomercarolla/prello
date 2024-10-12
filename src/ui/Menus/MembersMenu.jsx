@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 
-export function MembersMenu() {
+export function MembersMenu({context = 'default'}) {
   return (
-    <>
+    <MembersMenuWrapper context={context}>
     <div>
       <SearchInput type="text" placeholder="Search members" />
     </div>
     <StyledDiv>
-        <h3>Card members</h3>
+        <h3>{context === 'plusIcon' ? 'Add member' : 'Card members'}</h3>
     </StyledDiv> 
-    </>
+    </MembersMenuWrapper>
   );
 }
+
+const MembersMenuWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: ${(props) => (props.context === 'plusIcon' ? '12px' : '0')};
+`;
 
 
 const SearchInput = styled.input`

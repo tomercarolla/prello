@@ -20,11 +20,14 @@
     .group-container {
       display: flex;
       margin-left:65px;
+      font-size: 14px;
+      height: 30px;
       width: 100%;
 
       p {
         display: flex;
         align-items: center;
+        font-size: 14px;
         gap:5px;
       }
     }
@@ -85,15 +88,20 @@
           
 
           span {
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 5px;
+            display: flex;
+            height:32px;
+            margin-bottom:0;
+            overflow:hidden;
+            border-radius: 3px;
+            line-height: 32px;
+            gap:2px;
           }
   
             div {
               display: flex;
+              flex-wrap: wrap;
               align-items: center;
-              gap: 10px;
+              gap: 5px;
             }
       }
       }

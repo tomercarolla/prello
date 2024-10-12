@@ -1,10 +1,4 @@
-import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
-
-const MenuComponents = {
-  member: MembersMenu,
-  label: LabelMenu,
-  // Add other menu components here
-};
+import { MenuRender } from 'ui/Menus/MenuRender';
 
 export function NavTaskDetails() {
   const buttons = [
@@ -26,37 +20,15 @@ export function NavTaskDetails() {
     { name: 'share', icon: 'share', text: 'Share' },
   ];
 
-  function renderButton(buttonData) {
-    const { name, icon, text } = buttonData;
-    const MenuContent = MenuComponents[name];
-
-    const trigger = (
-      <Button className="btn-nav" scale="neutral">
-        <Icon name={icon} size="18px" />
-        <span>{text}</span>
-      </Button>
-    );
-
-
-    
-    return (
-      <div
-        key={name}
-        className="btn-container"
-        style={{ position: 'relative' }}
-      >
-        <Menu trigger={trigger} title={text}>
-          {MenuContent ? <MenuContent /> : <div>No Content for {text}</div>}
-        </Menu>
-      </div>
-    );
-  }
-
   return (
     <nav className="nav-task-body">
-      {buttons.map(renderButton)}
+      {buttons.map((buttonData) => (
+        <MenuRender key={buttonData.name} buttonData={buttonData} />
+      ))}
       <span style={{ marginLeft: '7px' }}>Actions</span>
-      {actionButtons.map(renderButton)}
+      {actionButtons.map((buttonData) => (
+        <MenuRender key={buttonData.name} buttonData={buttonData} />
+      ))}
     </nav>
   );
 }
