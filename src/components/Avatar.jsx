@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 function getUserInitials(name) {
-  if (!name) return 'GU';
+  if (!name) return;
   return name
     .split(' ')
     .map((part) => part[0])
@@ -26,7 +26,9 @@ export function Avatar({ data, size, fontSize }) {
       role="img"
       aria-label={name || 'User avatar'}
     >
-      {imageUrl ? null : initials}
+      {imageUrl ? (
+        <img src={imageUrl} alt={name || 'User avatar'}  />
+      ) : initials}
     </AvatarWrapper>
   );
 }
@@ -48,4 +50,11 @@ export function Avatar({ data, size, fontSize }) {
       $imageUrl ? `url(${$imageUrl})` : 'none'};
     background-size: cover;
     background-position: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
   `;
