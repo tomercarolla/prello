@@ -9,6 +9,7 @@ import { Container, Divider } from './StyledElements';
 import { BoardList } from './components/BoardList';
 import { NavLinks } from './components/NavLinks.jsx';
 import { WorkspaceContainer } from './components/WorkspaceContainer';
+import { Avatar } from 'components/Avatar';
 
 export function Sidebar() {
   const [expandedSidebar, setExpandedSidebar] = useState(true);
@@ -81,7 +82,7 @@ export function Sidebar() {
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
       <Container>
         <Container $justifyContent="flex-start">
-          <div className="avatar"></div>
+          {/* <div className="avatar"><Avatar data={} bgColor="gray" /></div> */}
           <div className="user-info">
             <span className="username">tomer test</span>
             <span className="user-status">Premium</span>
