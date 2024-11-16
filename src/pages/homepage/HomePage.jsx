@@ -33,7 +33,7 @@ export function HomePage() {
               <Icon name="chevronDown" size="14px" />
             </button>
           </div>
-          <Link className="nav-link" to="/w">
+          <Link className="nav-link" to="/workspace">
             Go to Boards
           </Link>
         </nav>
