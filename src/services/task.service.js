@@ -41,7 +41,7 @@ async function save(boardId, groupId, task) {
 
   await boardService.save(board);
 
-  return task;
+  return board;
 }
 
 async function remove(boardId, groupId, taskId) {

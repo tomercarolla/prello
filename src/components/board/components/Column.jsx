@@ -11,10 +11,11 @@ import { Button, Icon, Popover } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import invariant from 'tiny-invariant';
+import { ColumnName } from './ColumnName.jsx';
 import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
-export const Column = ({ groupId, title, tasks }) => {
+export const Column = ({ group, tasks }) => {
   const { t } = useTranslation();
   const groupRef = useRef(null);
   const groupInnerRef = useRef(null);
@@ -22,6 +23,7 @@ export const Column = ({ groupId, title, tasks }) => {
   const [closestEdge, setClosestEdge] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddingCard, setIsAddingCard] = useState(false);
+  const groupId = group.id;
 
   useEffect(() => {
     invariant(groupRef);
@@ -86,9 +88,7 @@ export const Column = ({ groupId, title, tasks }) => {
     >
       <div className="inner-group" ref={groupInnerRef}>
         <div className="top">
-          <div className="name">
-            <h2>{title}</h2>
-          </div>
+          <ColumnName group={group} />
 
           <Button
             scale="ghost"
@@ -156,6 +156,7 @@ export const Column = ({ groupId, title, tasks }) => {
           </>
         ) : null}
       </div>
+
       {closestEdge && <DropIndicator edge={closestEdge} gap="8px" />}
     </div>
   );
