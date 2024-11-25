@@ -1,5 +1,7 @@
 import { Route } from 'react-router-dom';
 import { HomePage } from '../pages/homepage/HomePage';
+import { LoginPage } from '../pages/LoginPage';
+import { SignupPage } from '../pages/SignupPage';
 import { WorkspacePage } from '../pages/WorkspacePage';
 import { Board } from '../components/board/Board';
 import { TaskDetails } from '../components/taskDetails/TaskDetails';
@@ -12,6 +14,14 @@ const routes = [
   {
     path: '/',
     component: HomePage,
+  },
+  {
+    path: '/login',
+    component: LoginPage,
+  },
+  {
+    path: '/signup',
+    component: SignupPage,
   },
   {
     path: '/workspace',
