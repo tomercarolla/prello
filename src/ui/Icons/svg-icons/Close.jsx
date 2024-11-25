@@ -12,4 +12,4 @@ export const Close = (props) => (
       fill="currentColor"
     />
   </svg>
-);
+)

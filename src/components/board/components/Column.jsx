@@ -14,7 +14,7 @@ import invariant from 'tiny-invariant';
 import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
-export const Column = ({ board, groupId, title, tasks }) => {
+export function Column({ board, groupId, title, tasks }) {
   const { t } = useTranslation();
   const groupRef = useRef(null);
   const groupInnerRef = useRef(null);

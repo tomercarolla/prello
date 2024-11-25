@@ -14,7 +14,7 @@ import { TaskDetails } from '../../task-details/TaskDetails.jsx';
 import { useBoardContext } from '../board-context.jsx';
 import { Labels } from './Labels.jsx';
 
-export const Task = ({ board, groupId, ...task }) => {
+export function Task({ board, groupId, ...task }) {
   const taskRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [closestEdge, setClosestEdge] = useState(null);
