@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 function getUserInitials(name) {
-  if (!name) return;
+  if (!name) return '';
   return name
     .split(' ')
     .map((part) => part[0])
@@ -10,8 +10,12 @@ function getUserInitials(name) {
     .slice(0, 2);
 }
 
-export function Avatar({ data, size, fontSize }) {
-  // Handle different data structures for user and member
+export function Avatar({
+  data,
+  size = '24px',
+  fontSize = '12px',
+  bgColor = 'gray',
+}) {
   const name = data?.fullname || data?.username || '';
   const imageUrl = data?.imgUrl || data?.avatarUrl || '';
 
@@ -21,8 +25,8 @@ export function Avatar({ data, size, fontSize }) {
     <AvatarWrapper
       $imageUrl={imageUrl}
       $size={size}
+      $fontSize={fontSize}
       $bgColor={bgColor}
-      fontSize={fontSize}
       title={name || 'User'}
       role="img"
       aria-label={name || 'User avatar'}
@@ -32,25 +36,24 @@ export function Avatar({ data, size, fontSize }) {
   );
 }
 
-  const AvatarWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: ${({ size }) => size || '24px'};
-    height: ${({ size }) => size || '24px'};
-    border-radius: 50%;
-    background-color: ${({ $bgColor }) => $bgColor || 'gray'};
-    color: white;
-    font-size: ${({ fontSize }) => fontSize || '12px'};
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    overflow: hidden; 
+const AvatarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${({ $size }) => $size};
+  height: ${({ $size }) => $size};
+  border-radius: 50%;
+  background-color: ${({ $bgColor }) => $bgColor};
+  color: white;
+  font-size: ${({ $fontSize }) => $fontSize};
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-  `;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
