@@ -12,7 +12,7 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import { loadBoard, updateBoard } from '../../store/board/board.actions.js';
 import { BoardProvider } from './board-context.jsx';
 import { BoardHeader } from './components/BoardHeader.jsx';
-import { Column } from './components/Column.jsx';
+import { Group } from './components/Group.jsx';
 
 export function Board() {
   const { t } = useTranslation();
@@ -221,17 +221,7 @@ export function Board() {
                   (taskId) => board.tasks[taskId],
                 );
 
-                //from taskDetails
-                  // return (
-                  //     <Column
-                  //         key={group.id}
-                  //         tasks={tasks}
-                  //         groupId={group.id}
-                  //     />
-                  // );
-
-                  //from main
-                return <Column key={group.id} group={group} tasks={tasks} />;
+                return <Group key={group.id} group={group} tasks={tasks} />;
               })}
 
             <div className="last-column">
