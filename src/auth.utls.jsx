@@ -1,10 +1,12 @@
-import { Navigate } from 'react-router-dom';
-
-const isAuthenticated = () => {
-  // !!localStorage.getItem('authToken');
-  return true;
-};
+import { Navigate } from 'react-router-dom'
+import { authService } from './services/authService.js'
 
 export function AuthRoute({ children }) {
-  return isAuthenticated() ? children : <Navigate to="/" />;
+  const user = authService.getLoggedinUser()
+
+  if (!user) {
+    return <Navigate to="/login" replace={true} />
+  }
+
+  return children
 }
