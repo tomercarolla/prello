@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 function getUserInitials(name) {
   if (!name) return '';
+
   return name
     .split(' ')
     .map((part) => part[0])
