@@ -12,7 +12,7 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import { loadBoard, updateBoard } from '../../store/board/board.actions.js';
 import { BoardProvider } from './board-context.jsx';
 import { BoardHeader } from './components/BoardHeader.jsx';
-import { Column } from './components/Column.jsx';
+import { Group } from './components/Group.jsx';
 
 export function Board() {
   const { t } = useTranslation();
@@ -215,13 +215,10 @@ export function Board() {
         <div className="canvas">
           <div ref={listRef} className="list" {...event}>
             {board &&
-              board.orderedGroupsIds.map((groupId) => {
-                const group = board.groups[groupId];
-                const tasks = group.tasksIds.map(
-                  (taskId) => board.tasks[taskId],
+              board.groups.map((group) => {
+                return (
+                  <Group key={group.id} group={group} tasks={group.tasks} />
                 );
-
-                return <Column key={group.id} group={group} tasks={tasks} />;
               })}
 
             <div className="last-column">

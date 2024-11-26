@@ -7,7 +7,7 @@ export function HomePage() {
     <div className="homepage">
       <header className="header">
         <nav className="home-nav">
-          <Link to="/" className="logo-link">
+          <Link to="/signup" className="logo-link">
             <Icon name="trello" />
             <span>Prello</span>
           </Link>
@@ -33,7 +33,7 @@ export function HomePage() {
               <Icon name="chevronDown" size="14px" />
             </button>
           </div>
-          <Link className="nav-link" to="/workspace">
+          <Link className="nav-link" to="/signup">
             Go to Boards
           </Link>
         </nav>
