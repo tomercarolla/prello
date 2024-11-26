@@ -13,58 +13,58 @@
     width: 260px;
   }
 
+   &.collapsed {
+     .sidebar-container {
+       position: fixed;
+     }
+
+     .expand-button {
+       width: 26px;
+       height: 26px;
+       background-color: var(--dynamic-background-transparent);
+       border: 1px solid var(--dynamic-text-transparent2);
+       position: absolute;
+       top: 15px;
+       left: 2px;
+       border-radius: 50%;
+       aspect-ratio: 1 / 0;
+     }
+   }
+
   .expand-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    padding: 0;
     z-index: 100;
-    transition: left 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
 
-    &.collapsed {
-      width: 24px;
-      height: 24px;
-      margin: 0;
-      background-color: var(--ds-background-inverse-subtle);
-      border: 1px solid var(--dynamic-text-transparent);
-      position: absolute;
-      top: 10px;
-      left: 0;
-      border-radius: 50%;
-    }
-
-    &.ant-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      padding: 0;
-      
-      &.collapsed {
-        width: 24px;
-        height: 24px;
-        margin: 0;
-        background-color: var(--ds-background-inverse-subtle);
-        border: 1px solid var(--dynamic-text-transparent);
-        position: absolute;
-        top: 10px;
-        left: 0;
-        border-radius: 50%;
-      }
-    }
+    //&.ant-btn {
+    //  display: flex;
+    //  justify-content: center;
+    //  align-items: center;
+    //  border: none;
+    //  padding: 0;
+    //
+    //  &.collapsed {
+    //    width: 24px;
+    //    height: 24px;
+    //    margin: 0;
+    //    background-color: var(--ds-background-inverse-subtle);
+    //    border: 1px solid var(--dynamic-text-transparent);
+    //    position: absolute;
+    //    top: 10px;
+    //    left: 0;
+    //    border-radius: 50%;
+    //  }
+    //}
   }
 
-  .ant-menu {
-    background-color: var(--surface);
-    color: var(--text);
-
-    .ant-menu-item {
-      &:hover {
-        background-color: var(--ds-background-neutral-hovered);
-      }
-    }
-  }
+  //.ant-menu {
+  //  background-color: var(--surface);
+  //  color: var(--text);
+  //
+  //  .ant-menu-item {
+  //    &:hover {
+  //      background-color: var(--ds-background-neutral-hovered);
+  //    }
+  //  }
+  //}
 
   .avatar {
     width: 40px;

@@ -46,14 +46,14 @@ export function BoardHeader() {
           <Icon name={isFavorite ? 'starFull' : 'starEmpty'} size="16px" />
         </Button>
 
-        <Button
-          scale="dynamic"
-          size="lg"
-          radius="3px"
-          onClick={() => console.log('open workspace menu')}
-        >
-          <Icon size="16px" name="workspace" />
-        </Button>
+        {/*<Button*/}
+        {/*  scale="dynamic"*/}
+        {/*  size="lg"*/}
+        {/*  radius="3px"*/}
+        {/*  onClick={() => console.log('open workspace menu')}*/}
+        {/*>*/}
+        {/*  <Icon size="16px" name="workspace" />*/}
+        {/*</Button>*/}
 
         <Button
           scale="white"
@@ -65,42 +65,26 @@ export function BoardHeader() {
           <span>{t('BOARD')}</span>
         </Button>
 
-        <Button
-          scale="dynamic"
-          radius="3px"
-          onClick={() => console.log('table view')}
-        >
-          <Icon size="16px" name="table" />
-          <span>{t('TABLE')}</span>
-        </Button>
+        {/*<Button*/}
+        {/*  scale="dynamic"*/}
+        {/*  radius="3px"*/}
+        {/*  onClick={() => console.log('table view')}*/}
+        {/*>*/}
+        {/*  <Icon size="16px" name="table" />*/}
+        {/*  <span>{t('TABLE')}</span>*/}
+        {/*</Button>*/}
 
-        <Button
-          scale="dynamic"
-          radius="3px"
-          size="lg"
-          onClick={() => console.log('view menu')}
-        >
-          <Icon size="16px" name="chevronDown" />
-        </Button>
+        {/*<Button*/}
+        {/*  scale="dynamic"*/}
+        {/*  radius="3px"*/}
+        {/*  size="lg"*/}
+        {/*  onClick={() => console.log('view menu')}*/}
+        {/*>*/}
+        {/*  <Icon size="16px" name="chevronDown" />*/}
+        {/*</Button>*/}
       </div>
 
       <div className="board-actions">
-        <Button
-          scale="dynamic"
-          radius="3px"
-          onClick={() => console.log('power ups menu')}
-        >
-          <Icon size="16px" name="rocket" />
-        </Button>
-
-        <Button
-          scale="dynamic"
-          radius="3px"
-          onClick={() => console.log('power ups menu')}
-        >
-          <Icon size="16px" name="flash" />
-        </Button>
-
         <Button
           scale="dynamic"
           radius="3px"

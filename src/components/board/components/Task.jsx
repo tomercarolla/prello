@@ -10,7 +10,7 @@ import {
 import { Button, Icon, Modal } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import invariant from 'tiny-invariant';
-import { TaskDetails } from '../../taskDetails/TaskDetails.jsx';
+import { TaskDetails } from '../../task-details/TaskDetails.jsx';
 import { useBoardContext } from '../board-context.jsx';
 import { Labels } from './Labels.jsx';
 

@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import { Button } from '@ui';
 import { Select } from 'antd';
 import { Icon } from 'ui/icons/Icon';
-import { Container, Divider } from './StyledElements';
+import { AvatarContainer, Container, Divider } from './StyledElements';
 
 import { BoardList } from './components/BoardList';
 import { NavLinks } from './components/NavLinks.jsx';
 import { WorkspaceContainer } from './components/WorkspaceContainer';
-import { Avatar } from 'components/Avatar';
 
 export function Sidebar() {
   const [expandedSidebar, setExpandedSidebar] = useState(true);
@@ -37,7 +36,6 @@ export function Sidebar() {
             />
           </div>
         );
-
       case 'board':
         return (
           <div className="sort-container">
@@ -54,7 +52,6 @@ export function Sidebar() {
             />
           </div>
         );
-
       case 'table':
       case 'calendar':
         return (
@@ -79,20 +76,23 @@ export function Sidebar() {
   ];
 
   return (
-    <nav className={`sidebar ${expandedSidebar ? 'expanded' : ''}`}>
-      <Container>
-        <Container $justifyContent="flex-start">
-          {/* <div className="avatar"><Avatar data={} bgColor="gray" /></div> */}
-          <div className="user-info">
-            <span className="username">tomer test</span>
-            <span className="user-status">Premium</span>
-          </div>
-        </Container>
+    <nav className={`sidebar ${expandedSidebar ? 'expanded' : 'collapsed'}`}>
+      <Container className="sidebar-container">
+        {expandedSidebar ? (
+          <AvatarContainer>
+            {/* <div className="avatar"><Avatar data={} bgColor="gray" /></div> */}
+            <div className="user-info">
+              <span className="username">tomer test</span>
+              <span className="user-status">Premium</span>
+            </div>
+          </AvatarContainer>
+        ) : null}
 
         <Button
           scale="ghost"
+          radius="3px"
           onClick={() => setExpandedSidebar(!expandedSidebar)}
-          className={`expand-button ${expandedSidebar ? '' : 'collapsed'}`}
+          className="expand-button"
         >
           <Icon
             size={expandedSidebar ? '28px' : '26px'}
