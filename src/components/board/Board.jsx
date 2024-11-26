@@ -2,8 +2,10 @@ import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/clo
 import { getReorderDestinationIndex } from '@atlaskit/pragmatic-drag-and-drop-hitbox/util/get-reorder-destination-index';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
+import { Button, Icon } from '@ui';
 import _ from 'lodash';
 import { useCallback, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useDraggable } from 'react-use-draggable-scroll';
@@ -13,6 +15,7 @@ import { BoardHeader } from './components/BoardHeader.jsx';
 import { Column } from './components/Column.jsx';
 
 export function Board() {
+  const { t } = useTranslation();
   const { boardId } = useParams();
   const board = useSelector((state) => state.boardModule.board);
   const listRef = useRef();
@@ -21,7 +24,6 @@ export function Board() {
   useEffect(() => {
     loadBoard(boardId);
   }, [boardId]);
-
 
   const moveTask = useCallback(
     ({
@@ -209,6 +211,7 @@ export function Board() {
     <BoardProvider>
       <div className="board">
         <BoardHeader />
+
         <div className="canvas">
           <div ref={listRef} className="list" {...event}>
             {board &&
@@ -218,14 +221,25 @@ export function Board() {
                   (taskId) => board.tasks[taskId],
                 );
 
-                return (
-                  <Column
-                    key={group.id}
-                    tasks={tasks}
-                    groupId={group.id}
-                  />
-                );
+                //from taskDetails
+                  // return (
+                  //     <Column
+                  //         key={group.id}
+                  //         tasks={tasks}
+                  //         groupId={group.id}
+                  //     />
+                  // );
+
+                  //from main
+                return <Column key={group.id} group={group} tasks={tasks} />;
               })}
+
+            <div className="last-column">
+              <Button scale="ghost" className="add-list-btn">
+                <Icon name="plus" size="16px" />
+                <span>{t('ADD_ANOTHER_LIST')}</span>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
