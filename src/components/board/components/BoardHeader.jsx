@@ -12,6 +12,7 @@ export function BoardHeader() {
   useEffect(() => {
     if (showInput && inputRef.current) {
       inputRef.current.focus();
+      inputRef.current.select();
     }
   }, [showInput]);
 

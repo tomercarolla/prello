@@ -1,14 +1,14 @@
 import { Button, Icon, Popover } from '@ui';
 import styled from 'styled-components';
 
-export function Menu({ trigger, title, children }) {
+export function Menu({ trigger, title, children, onClose }) {
   return (
-    <Popover trigger={trigger}>
+    <Popover trigger={trigger} onOpenChanged={onClose}>
       <Flex>
         <Header>
           <h2>{title}</h2>
 
-          <Button scale="ghost" radius="8px">
+          <Button scale="ghost" radius="8px" data-close-popover>
             <Icon size="16px" name="close" />
           </Button>
         </Header>

@@ -1,11 +1,11 @@
-import { boardService } from './board/board.service.local';
+import { boardService } from './board.service.local.js';
 import { utilService } from './util.service';
 
 export const groupService = {
   query,
   getById,
   save,
-  remove,
+  // remove,
 };
 
 async function query(boardId) {
@@ -18,19 +18,23 @@ async function getById(boardId, groupId) {
   return board.groups.find((group) => group.id === groupId);
 }
 
-async function save(baordId, group) {
-  const board = await boardService.getById(baordId);
+async function save(boardId, group) {
+  const board = await boardService.getById(boardId);
   if (group.id) {
-    const idx = board.groups.findIndex(
-      (currGroup) => currGroup.id === group.id,
+    const key = Object.keys(board.groups).find(
+      (groupKey) => board.groups[groupKey].id === group.id,
     );
-    board.groups.splice(idx, 1, group);
+
+    board.groups[key] = group;
+    // board.groups.splice(idx, 1, group);
   } else {
     group.id = utilService.makeId();
     board.groups.push(group);
   }
+
   await boardService.save(board);
-  return group;
+
+  return board;
 }
 
 async function removeTask(boardId, groupId, taskId) {

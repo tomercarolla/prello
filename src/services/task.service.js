@@ -8,7 +8,7 @@ export const taskService = {
   getById,
   save,
   remove,
-};
+  };
 
 async function query(boardId) {
   const board = await boardService.getById(boardId);
@@ -41,7 +41,7 @@ async function save(boardId, groupId, task) {
 
   await boardService.save(board);
 
-  return task;
+  return board;
 }
 
 async function remove(boardId, groupId, taskId) {
