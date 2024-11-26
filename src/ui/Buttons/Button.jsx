@@ -19,9 +19,9 @@ export const Button = styled.button`
   border-radius: ${({ radius }) => radius || '0'};
 
   height: ${({ size }) => {
-    switch (size) {
-      case 'xs':
-        return '18px';
+  switch (size) {
+    case 'xs': 
+      return '18px';
       case 'sm':
         return '24px';
       case 'md':

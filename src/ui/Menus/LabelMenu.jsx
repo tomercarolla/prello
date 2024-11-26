@@ -27,7 +27,7 @@ const colorOptions = [
   // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
 ];
 
-function EditLabelView({ color, onSave, onDelete, onCancel }) {
+const EditLabelView = ({ color, onSave, onDelete, onCancel }) => {
   const [selectedColor, setSelectedColor] = useState(color);
   const [labelName, setLabelName] = useState('');
 
@@ -156,10 +156,10 @@ export function LabelMenu() {
               <LabelWrapper>
                 <StyledCheckbox type="checkbox" />
                 <Label style={{ backgroundColor: color }}></Label>
+                  {/*defaultChecked={editingLabel === id}*/}
                 <Button
                   scale="ghost"
                   style={{ color: 'var(--ds-text)' }}
-                  defaultChecked={editingLabel === id}
                   onClick={() => handleEdit(id)}
                 >
                   <Icon name="edit" size="16px" />
@@ -180,11 +180,6 @@ export function LabelMenu() {
   </LabelMenuWrapper >
   );
 }
-
-
-
-
-// ----------------------------STYLE-------------------------------------------
 
 const EditLabelWrapper = styled.div`
   display: flex;

@@ -59,7 +59,7 @@ export function WorkspaceContent() {
                 style={{ backgroundColor: utilService.getRandomColor() }}
               >
                 <Link
-                  to={`/b/${board._id}/${board.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  to={`/board/${board._id}/${board.title.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   <span className="board-title">{board.title}</span>
                 </Link>

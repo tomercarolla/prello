@@ -12,24 +12,22 @@ export function MenuRender({
   context = 'default',
   customTrigger = null,
 }) {
-  const { name, icon, text } = buttonData
+  const { name, icon, text } = buttonData;
 
   function renderMenuContent() {
     switch (name) {
-
       case 'label':
-        return <LabelMenu context={context} />
-      
+        return <LabelMenu context={context} />;
       case 'member':
-        return <MembersMenu context={context} />
-      
+        return <MembersMenu context={context} />;
       default:
-        const MenuContent = MenuComponents[name]
+        const MenuContent = MenuComponents[name];
+
         return MenuContent ? (
           <MenuContent context={context} />
         ) : (
           <div>Menu not found</div>
-        )
+        );
     }
   }
 
@@ -46,10 +44,10 @@ export function MenuRender({
     switch (name) {
       case 'label':
         return 'Labels'
-      
+
       case 'member':
         return 'Members'
-      
+
       default:
         return text
     }

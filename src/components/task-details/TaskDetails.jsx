@@ -1,24 +1,22 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
-import { updateTask } from '../../store/board/board.actions'
+import { updateTask } from '../../store/board/board.actions';
 
-import { NavTaskDetails } from './components/NavTaskDetails'
-import { useSelector } from 'react-redux'
-import { Button, Icon, Menu } from '@ui'
-import { MenuRender } from 'ui/Menus/MenuRender'
-
-
+import { Button, Icon } from '@ui';
+import { useSelector } from 'react-redux';
+import { MenuRender } from 'ui/Menus/MenuRender';
+import { NavTaskDetails } from './components/NavTaskDetails';
 
 export function TaskDetails({ task, groupId }) {
-  const board = useSelector((state) => state.boardModule.board)
-  const [title, setTitle] = useState(task.title)
-  const [description, setDescription] = useState(task.description || '')
-  const [showTitleInput, setShowTitleInput] = useState(false)
-  const [showDescriptionInput, setShowDescriptionInput] = useState(false)
-  const inputRef = useRef(null)
+  const board = useSelector((state) => state.boardModule.board);
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description || '');
+  const [showTitleInput, setShowTitleInput] = useState(false);
+  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
+  const inputRef = useRef(null);
 
-  const groupTitle = board.groups[groupId]?.title || 'Unknown List'
-  
+  const groupTitle = board.groups[groupId]?.title || 'Unknown List';
+
   useEffect(() => {
     setTitle(task.title);
     setDescription(task.description || '');
@@ -26,47 +24,48 @@ export function TaskDetails({ task, groupId }) {
 
   useEffect(() => {
     if (showTitleInput && inputRef.current) {
-      inputRef.current.focus()
+      inputRef.current.focus();
     }
-  }, [showTitleInput])
-
-  async function addLabel(label) {
-    try {
-      await updateTask(board._id, groupId, { ...task, labelIds: [...task.labelIds, label.id] }, 'Added label')
-    } catch (err) {
-      console.error('Failed to add label:', err)
-      throw new Error('Failed to add label')
-    }
-  }
+  }, [showTitleInput]);
 
   async function handleTitleUpdate() {
     try {
       if (title.trim() === '') {
-          setTitle(task.title);
+        setTitle(task.title);
       } else {
-        await updateTask(board._id, groupId, { ...task, title }, 'Updated task title')
-        }
+        await updateTask(
+          board._id,
+          groupId,
+          { ...task, title },
+          'Updated task title',
+        );
+      }
     } catch (error) {
-      console.error('Failed to update task:', error)
+      console.error('Failed to update task:', error);
     } finally {
-      setShowTitleInput(false)
+      setShowTitleInput(false);
     }
   }
 
   async function handleDescriptionUpdate() {
     try {
-      await updateTask(board._id, groupId, { ...task, description }, 'Updated task description')
+      await updateTask(
+        board._id,
+        groupId,
+        { ...task, description },
+        'Updated task description',
+      );
     } catch (error) {
-      console.error('Failed to update task:', error)
+      console.error('Failed to update task:', error);
     }
-    setShowDescriptionInput(false)
+    setShowDescriptionInput(false);
   }
 
   const taskLabels = task.labelIds
     ? task.labelIds
-    .map(labelId => board.labels.find(label => label.id === labelId))
-      .filter(Boolean)
-    : []
+        .map((labelId) => board.labels.find((label) => label.id === labelId))
+        .filter(Boolean)
+    : [];
 
   return (
     <div className="task-details">
@@ -168,7 +167,7 @@ export function TaskDetails({ task, groupId }) {
                 <Button
                   scale="neutral"
                   className="btn"
-                  paddinginline="30px"
+                  paddingInline="30px"
                   fullwidth="true"
                 >
                   <Icon name="watch" size="16px" />
@@ -193,6 +192,7 @@ export function TaskDetails({ task, groupId }) {
                 onBlur={handleDescriptionUpdate}
               />
             ) : (
+                // size="lg"
               <Button
                 scale="neutral"
                 fullwidth="true"
