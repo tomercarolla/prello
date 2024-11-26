@@ -27,7 +27,7 @@ const colorOptions = [
   // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
 ];
 
-const EditLabelView = ({ color, onSave, onDelete, onCancel }) => {
+function EditLabelView({ color, onSave, onDelete, onCancel }) {
   const [selectedColor, setSelectedColor] = useState(color);
   const [labelName, setLabelName] = useState('');
 
@@ -159,6 +159,7 @@ export function LabelMenu() {
                 <Button
                   scale="ghost"
                   style={{ color: 'var(--ds-text)' }}
+                  defaultChecked={editingLabel === id}
                   onClick={() => handleEdit(id)}
                 >
                   <Icon name="edit" size="16px" />
@@ -179,6 +180,11 @@ export function LabelMenu() {
   </LabelMenuWrapper >
   );
 }
+
+
+
+
+// ----------------------------STYLE-------------------------------------------
 
 const EditLabelWrapper = styled.div`
   display: flex;

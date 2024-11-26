@@ -1,22 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 
-import { updateTask } from '../../store/board/board.actions';
+import { updateTask } from '../../store/board/board.actions'
 
-import { NavTaskDetails } from './components/NavTaskDetails';
-import { useSelector } from 'react-redux';
-import { Button, Icon } from '@ui';
-import { MenuRender } from 'ui/Menus/MenuRender';
+import { NavTaskDetails } from './components/NavTaskDetails'
+import { useSelector } from 'react-redux'
+import { Button, Icon, Menu } from '@ui'
+import { MenuRender } from 'ui/Menus/MenuRender'
+
 
 
 export function TaskDetails({ task, groupId }) {
-  const board = useSelector((state) => state.boardModule.board);
-  const [title, setTitle] = useState(task.title);
-  const [description, setDescription] = useState(task.description || '');
-  const [showTitleInput, setShowTitleInput] = useState(false);
-  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
-  const inputRef = useRef(null);
+  const board = useSelector((state) => state.boardModule.board)
+  const [title, setTitle] = useState(task.title)
+  const [description, setDescription] = useState(task.description || '')
+  const [showTitleInput, setShowTitleInput] = useState(false)
+  const [showDescriptionInput, setShowDescriptionInput] = useState(false)
+  const inputRef = useRef(null)
 
-  const groupTitle = board.groups[groupId]?.title || 'Unknown List';
+  const groupTitle = board.groups[groupId]?.title || 'Unknown List'
   
   useEffect(() => {
     setTitle(task.title);
@@ -25,36 +26,47 @@ export function TaskDetails({ task, groupId }) {
 
   useEffect(() => {
     if (showTitleInput && inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus()
     }
-  }, [showTitleInput]);
+  }, [showTitleInput])
 
-
+  async function addLabel(label) {
+    try {
+      await updateTask(board._id, groupId, { ...task, labelIds: [...task.labelIds, label.id] }, 'Added label')
+    } catch (err) {
+      console.error('Failed to add label:', err)
+      throw new Error('Failed to add label')
+    }
+  }
 
   async function handleTitleUpdate() {
     try {
       if (title.trim() === '') {
           setTitle(task.title);
       } else {
-        await updateTask(board._id, groupId, { ...task, title }, 'Updated task title');
+        await updateTask(board._id, groupId, { ...task, title }, 'Updated task title')
         }
     } catch (error) {
-      console.error('Failed to update task:', error);
+      console.error('Failed to update task:', error)
     } finally {
-      setShowTitleInput(false);
+      setShowTitleInput(false)
     }
   }
 
   async function handleDescriptionUpdate() {
     try {
-      await updateTask(board._id, groupId, { ...task, description }, 'Updated task description');
+      await updateTask(board._id, groupId, { ...task, description }, 'Updated task description')
     } catch (error) {
-      console.error('Failed to update task:', error);
+      console.error('Failed to update task:', error)
     }
-    setShowDescriptionInput(false);
-  };
+    setShowDescriptionInput(false)
+  }
 
-  const taskLabels = task.labelIds ? task.labelIds.map(labelId => board.labels.find(label => label.id === labelId)).filter(Boolean) : [];
+  const taskLabels = task.labelIds
+    ? task.labelIds
+    .map(labelId => board.labels.find(label => label.id === labelId))
+      .filter(Boolean)
+    : []
 
   return (
     <div className="task-details">
@@ -83,7 +95,12 @@ export function TaskDetails({ task, groupId }) {
           <div className="group-container">
             <p>
               in list:
-              <Button scale="neutral" size="xs" paddinginline='5px' className="btn">
+              <Button
+                scale="neutral"
+                size="xs"
+                paddinginline="5px"
+                className="btn"
+              >
                 <span>{groupTitle}</span>
               </Button>
             </p>
@@ -93,46 +110,67 @@ export function TaskDetails({ task, groupId }) {
 
       <section className="task-body">
         <div className="task-body-content">
-          <div className="labels-container">
-            <div className="labels">
+          <div className="actions-container">
+            <div className="action">
               <span>Members</span>
               <div>
                 <div className="avatar">TS</div>
                 <MenuRender
-                  buttonData={{ name: 'member', icon: 'plus', text: 'Add Member' }}
+                  buttonData={{
+                    name: 'member',
+                    icon: 'plus',
+                    text: 'Add Member',
+                  }}
                   context="plusIcon"
                 />
               </div>
             </div>
 
-            <div className="labels">
+            <div className="action">
               <span>Labels</span>
               <div>
                 <span>
-                  {taskLabels.length > 0 && (
-                    taskLabels.map(label => (
-                      <Button
+                  {taskLabels.length > 0 &&
+                    taskLabels.map((label) => (
+                      <MenuRender
                         key={label.id}
-                        scale="neutral"
-                        className="btn"
-                        style={{ backgroundColor: label.color }}
-                      >
-                        {label.title}
-                      </Button>
-                    ))
-                  )}
+                        buttonData={{
+                          name: 'label',
+                          icon: 'label',
+                          text: label.title,
+                        }}
+                        customTrigger={
+                          <Button
+                            scale="neutral"
+                            className="btn"
+                            style={{ backgroundColor: label.color }}
+                          >
+                            {label.title}
+                          </Button>
+                        }
+                      />
+                    ))}
                 </span>
-                <MenuRender 
-                  buttonData={{ name: 'label', icon: 'plus', text: 'Add Label' }}
+                <MenuRender
+                  buttonData={{
+                    name: 'label',
+                    icon: 'plus',
+                    text: 'Add Label',
+                  }}
                   context="plusIcon"
                 />
               </div>
             </div>
 
-            <div className="labels">
+            <div className="action">
               <span>Notifications</span>
               <div>
-                <Button scale="neutral" className="btn" paddinginline='20px' fullwidth="true">
+                <Button
+                  scale="neutral"
+                  className="btn"
+                  paddinginline="30px"
+                  fullwidth="true"
+                >
                   <Icon name="watch" size="16px" />
                   Watch
                 </Button>
@@ -157,7 +195,6 @@ export function TaskDetails({ task, groupId }) {
             ) : (
               <Button
                 scale="neutral"
-                size="lg"
                 fullwidth="true"
                 className="btn-description"
                 onClick={() => setShowDescriptionInput(true)}

@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100px;
+    margin-bottom: 24px;
 
     .group-container {
       display: flex;
@@ -75,16 +75,16 @@
     .task-body-content {
       width: 100%;
 
-      .labels-container {
+      .actions-container {
         display: flex;
         gap:10px;
-        margin-left: 20px;
+        margin-left: 32px;
+        margin-bottom: 24px;
         
 
-        .labels {
+        .action {
           display: flex;
           flex-direction: column;
-          margin-inline: 10px;
           
 
           span {
@@ -93,6 +93,7 @@
             margin-bottom:0;
             overflow:hidden;
             border-radius: 3px;
+            font-size: 12px;
             line-height: 32px;
             gap:2px;
           }
@@ -107,24 +108,24 @@
       }
 
       .description-container {
-        
+
         .action-title {
           display: flex;
           align-items: 'center';
           justify-content: 'space-between';
+          font-size: 16px;
           gap: '10px';
         }
 
         .textarea-description {
           background-color: var('--surface');
         }
-        margin-top: 20px;
 
         .btn-description {
           display: flex;
           align-items: flex-start;
           padding-top: 10px;
-          padding-left: 10px;
+          padding-inline: 12px;
           width: 100%;
           height: 8vh;
           max-width: 480px;
