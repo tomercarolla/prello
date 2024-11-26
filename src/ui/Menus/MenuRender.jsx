@@ -1,11 +1,4 @@
-import { Button, Icon, Menu } from "@ui";
-import { LabelMenu } from "./LabelMenu";
-import { MembersMenu } from "./MembersMenu";
-
-const MenuComponents = {
-  label: LabelMenu,
-  member: MembersMenu, 
-};
+import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
 
 export function MenuRender({
   buttonData,
@@ -21,18 +14,13 @@ export function MenuRender({
       case 'member':
         return <MembersMenu context={context} />;
       default:
-        const MenuContent = MenuComponents[name];
-        return MenuContent ? (
-          <MenuContent context={context} />
-        ) : (
-          <div>Menu not found</div>
-        );
+        return <div>Menu not found</div>;
     }
   }
 
   const defaultTrigger = (
     <Button className="btn-nav" scale="neutral">
-      <Icon name={icon} size="18px" style={{ color:'var(--ds-text)' }} />
+      <Icon name={icon} size="18px" style={{ color: 'var(--ds-text)' }} />
       {context !== 'plusIcon' && <span>{text}</span>}
     </Button>
   );

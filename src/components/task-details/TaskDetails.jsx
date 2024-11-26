@@ -109,8 +109,8 @@ export function TaskDetails({ task, groupId }) {
 
       <section className="task-body">
         <div className="task-body-content">
-          <div className="labels-container">
-            <div className="labels">
+          <div className="actions-container">
+            <div className="action">
               <span>Members</span>
               <div>
                 <div className="avatar">TS</div>
@@ -125,20 +125,29 @@ export function TaskDetails({ task, groupId }) {
               </div>
             </div>
 
-            <div className="labels">
+            <div className="action">
               <span>Labels</span>
               <div>
                 <span>
                   {taskLabels.length > 0 &&
                     taskLabels.map((label) => (
-                      <Button
+                      <MenuRender
                         key={label.id}
-                        scale="neutral"
-                        className="btn"
-                        style={{ backgroundColor: label.color }}
-                      >
-                        {label.title}
-                      </Button>
+                        buttonData={{
+                          name: 'label',
+                          icon: 'label',
+                          text: label.title,
+                        }}
+                        customTrigger={
+                          <Button
+                            scale="neutral"
+                            className="btn"
+                            style={{ backgroundColor: label.color }}
+                          >
+                            {label.title}
+                          </Button>
+                        }
+                      />
                     ))}
                 </span>
                 <MenuRender
@@ -152,17 +161,12 @@ export function TaskDetails({ task, groupId }) {
               </div>
             </div>
 
-            <div className="labels">
+            <div className="action">
               <span>Notifications</span>
               <div>
-                <Button
-                  scale="neutral"
-                  className="btn"
-                  paddinginline="20px"
-                  fullwidth="true"
-                >
+                <Button scale="neutral" className="btn" fullwidth="true">
                   <Icon name="watch" size="16px" />
-                  Watch
+                  <span>Watch</span>
                 </Button>
               </div>
             </div>
@@ -183,9 +187,9 @@ export function TaskDetails({ task, groupId }) {
                 onBlur={handleDescriptionUpdate}
               />
             ) : (
+              // size="lg"
               <Button
                 scale="neutral"
-                size="lg"
                 fullwidth="true"
                 className="btn-description"
                 onClick={() => setShowDescriptionInput(true)}

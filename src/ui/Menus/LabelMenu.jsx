@@ -4,26 +4,86 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const colorOptions = [
-  { base: 'var(--ds-background-accent-lime-bolder)', hover: 'var(--ds-background-accent-lime-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-lime-subtler)', hover: 'var(--ds-background-accent-lime-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-green-bolder)', hover: 'var(--ds-background-accent-green-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-green-subtler)', hover: 'var(--ds-background-accent-green-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-yellow-bolder)', hover: 'var(--ds-background-accent-yellow-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-yellow-subtler)', hover: 'var(--ds-background-accent-yellow-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-orange-subtler)', hover: 'var(--ds-background-accent-orange-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-orange-bolder)', hover: 'var(--ds-background-accent-orange-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-red-subtler)', hover: 'var(--ds-background-accent-red-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-red-bolder)', hover: 'var(--ds-background-accent-red-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-purple-subtler)', hover: 'var(--ds-background-accent-purple-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-purple-bolder)', hover: 'var(--ds-background-accent-purple-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-blue-subtler)', hover: 'var(--ds-background-accent-blue-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-blue-bolder)', hover: 'var(--ds-background-accent-blue-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-teal-bolder)', hover: 'var(--ds-background-accent-teal-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-teal-subtler)', hover: 'var(--ds-background-accent-teal-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-magenta-subtler)', hover: 'var(--ds-background-accent-magenta-subtler-hovered)' },
-  { base: 'var(--ds-background-accent-magenta-bold)', hover: 'var(--ds-background-accent-magenta-bold-hovered)' },
-  { base: 'var(--ds-background-accent-magenta-bolder)', hover: 'var(--ds-background-accent-magenta-bolder-hovered)' },
-  { base: 'var(--ds-background-accent-gray-bolder)', hover: 'var(--ds-background-accent-gray-bolder-hovered)' },
+  {
+    base: 'var(--ds-background-accent-lime-bolder)',
+    hover: 'var(--ds-background-accent-lime-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-lime-subtler)',
+    hover: 'var(--ds-background-accent-lime-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-green-bolder)',
+    hover: 'var(--ds-background-accent-green-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-green-subtler)',
+    hover: 'var(--ds-background-accent-green-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-yellow-bolder)',
+    hover: 'var(--ds-background-accent-yellow-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-yellow-subtler)',
+    hover: 'var(--ds-background-accent-yellow-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-orange-subtler)',
+    hover: 'var(--ds-background-accent-orange-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-orange-bolder)',
+    hover: 'var(--ds-background-accent-orange-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-red-subtler)',
+    hover: 'var(--ds-background-accent-red-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-red-bolder)',
+    hover: 'var(--ds-background-accent-red-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-purple-subtler)',
+    hover: 'var(--ds-background-accent-purple-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-purple-bolder)',
+    hover: 'var(--ds-background-accent-purple-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-blue-subtler)',
+    hover: 'var(--ds-background-accent-blue-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-blue-bolder)',
+    hover: 'var(--ds-background-accent-blue-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-teal-bolder)',
+    hover: 'var(--ds-background-accent-teal-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-teal-subtler)',
+    hover: 'var(--ds-background-accent-teal-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-magenta-subtler)',
+    hover: 'var(--ds-background-accent-magenta-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-magenta-bold)',
+    hover: 'var(--ds-background-accent-magenta-bold-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-magenta-bolder)',
+    hover: 'var(--ds-background-accent-magenta-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-gray-bolder)',
+    hover: 'var(--ds-background-accent-gray-bolder-hovered)',
+  },
   // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
 ];
 
@@ -78,7 +138,7 @@ const EditLabelView = ({ color, onSave, onDelete, onCancel }) => {
         >
           Save
         </Button>
-        
+
         <Button
           scale="neutral"
           radius="3px"
@@ -92,7 +152,7 @@ const EditLabelView = ({ color, onSave, onDelete, onCancel }) => {
           Delete
         </Button>
       </Flex>
-      
+
       <Button
         scale="neutral"
         fullwidth="true"
@@ -134,49 +194,50 @@ export function LabelMenu() {
   }
 
   return (
-      <LabelMenuWrapper>
-      { editingLabel !== null ? (
+    <LabelMenuWrapper>
+      {editingLabel !== null ? (
         <EditLabelView
-          color={labels.find(label => label.id === editingLabel)?.color}
+          color={labels.find((label) => label.id === editingLabel)?.color}
           onSave={handleSave}
           onDelete={handleDelete}
           onCancel={handleCancel}
-        /> 
-        ) : (
-      <>
-        <div>
-          <SearchInput type="text" placeholder="Search labels" />
-        </div>
-        <StyledDiv>
-          <h3>Labels</h3>
-        </StyledDiv>
-        <List>
-          {labels.map(({ color, id }) => (
-            <li key={id}>
-              <LabelWrapper>
-                <StyledCheckbox type="checkbox" />
-                <Label style={{ backgroundColor: color }}></Label>
-                <Button
-                  scale="ghost"
-                  style={{ color: 'var(--ds-text)' }}
-                  onClick={() => handleEdit(id)}
-                >
-                  <Icon name="edit" size="16px" />
-                </Button>
-              </LabelWrapper>
-            </li>
-          ))}
-        </List>
-        <Button
-          scale="neutral"
-          fullwidth="true"
-          style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-        >
-          Create a new label
-        </Button>
-      </>
-    )}
-  </LabelMenuWrapper >
+        />
+      ) : (
+        <>
+          <div>
+            <SearchInput type="text" placeholder="Search labels" />
+          </div>
+          <StyledDiv>
+            <h3>Labels</h3>
+          </StyledDiv>
+          <List>
+            {labels.map(({ color, id }) => (
+              <li key={id}>
+                <LabelWrapper>
+                  <StyledCheckbox type="checkbox" />
+                  <Label style={{ backgroundColor: color }}></Label>
+                  {/*defaultChecked={editingLabel === id}*/}
+                  <Button
+                    scale="ghost"
+                    style={{ color: 'var(--ds-text)' }}
+                    onClick={() => handleEdit(id)}
+                  >
+                    <Icon name="edit" size="16px" />
+                  </Button>
+                </LabelWrapper>
+              </li>
+            ))}
+          </List>
+          <Button
+            scale="neutral"
+            fullwidth="true"
+            style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
+          >
+            Create a new label
+          </Button>
+        </>
+      )}
+    </LabelMenuWrapper>
   );
 }
 
@@ -192,7 +253,7 @@ const LabelMenuWrapper = styled.div`
   flex-direction: column;
   background-color: var(--ds-surface-overlay);
   border-radius: 3px;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 `;
 
 const LabelWrapper = styled.div`
@@ -323,7 +384,9 @@ const ColorOption = styled.div`
   }
 
   &.selected {
-    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--ds-border-focused);
+    box-shadow:
+      0 0 0 2px white,
+      0 0 0 4px var(--ds-border-focused);
   }
 `;
 

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export function MembersMenu({context = 'default'}) {
+export function MembersMenu({ context = 'default' }) {
   return (
     <MembersMenuWrapper context={context}>
-    <div>
-      <SearchInput type="text" placeholder="Search members" />
-    </div>
-    <StyledDiv>
+      <div>
+        <SearchInput type="text" placeholder="Search members" />
+      </div>
+      <StyledDiv>
         <h3>{context === 'plusIcon' ? 'Add member' : 'Card members'}</h3>
-    </StyledDiv> 
+      </StyledDiv>
     </MembersMenuWrapper>
   );
 }
@@ -19,7 +19,6 @@ const MembersMenuWrapper = styled.div`
   gap: 12px;
   padding: ${(props) => (props.context === 'plusIcon' ? '12px' : '0')};
 `;
-
 
 const SearchInput = styled.input`
   padding: 8px 12px;
@@ -43,4 +42,4 @@ const StyledDiv = styled.div`
     font-size: 12px;
     font-weight: 600;
   }
-`
+`;

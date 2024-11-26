@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { MenuRender } from 'ui/Menus/MenuRender';
 
 export function NavTaskDetails() {
@@ -25,10 +26,18 @@ export function NavTaskDetails() {
       {buttons.map((buttonData) => (
         <MenuRender key={buttonData.name} buttonData={buttonData} />
       ))}
-      <span style={{ marginLeft: '7px' }}>Actions</span>
+
+      <CustomLabel>Actions</CustomLabel>
+
       {actionButtons.map((buttonData) => (
         <MenuRender key={buttonData.name} buttonData={buttonData} />
       ))}
     </nav>
   );
 }
+
+const CustomLabel = styled.div`
+  font-size: 12px;
+  margin-inline-start: 7px;
+  margin-block: 10px 4px;
+`;
