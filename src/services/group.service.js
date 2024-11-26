@@ -21,6 +21,7 @@ async function getById(boardId, groupId) {
 
 async function save(boardId, group) {
   const board = await boardService.getById(boardId);
+
   if (group.id) {
     const key = Object.keys(board.groups).find(
       (groupKey) => board.groups[groupKey].id === group.id,
@@ -30,6 +31,7 @@ async function save(boardId, group) {
     // board.groups.splice(idx, 1, group);
   } else {
     group.id = utilService.makeId();
+
     board.groups.push(group);
   }
 
