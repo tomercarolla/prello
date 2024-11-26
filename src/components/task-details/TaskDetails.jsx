@@ -164,14 +164,9 @@ export function TaskDetails({ task, groupId }) {
             <div className="action">
               <span>Notifications</span>
               <div>
-                <Button
-                  scale="neutral"
-                  className="btn"
-                  paddingInline="30px"
-                  fullwidth="true"
-                >
+                <Button scale="neutral" className="btn" fullwidth="true">
                   <Icon name="watch" size="16px" />
-                  Watch
+                  <span>Watch</span>
                 </Button>
               </div>
             </div>
@@ -192,7 +187,7 @@ export function TaskDetails({ task, groupId }) {
                 onBlur={handleDescriptionUpdate}
               />
             ) : (
-                // size="lg"
+              // size="lg"
               <Button
                 scale="neutral"
                 fullwidth="true"
