@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { updateGroup } from '../../../store/group/group.actions.js';
 import { useBoardContext } from '../board-context.jsx';
 
-export function ColumnName({ group }) {
+export function GroupName({ group }) {
   const [columnName, setColumnName] = useState(group.title);
   const [showTextArea, setShowTextArea] = useState(false);
   const textareaRef = useRef(null);
@@ -15,7 +15,7 @@ export function ColumnName({ group }) {
     }
   }, [showTextArea]);
 
-  //todo - update group in store
+  //todo - update group in the db
 
   return (
     <div role="textbox" className="name" onClick={() => setShowTextArea(true)}>

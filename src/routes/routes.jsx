@@ -1,12 +1,12 @@
+import { Provider } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { AuthRoute } from '../auth.utls';
+import { Board } from '../components/board/Board';
+import { TaskDetails } from '../components/task-details/TaskDetails.jsx';
+import { MainLayout } from '../layouts/MainLayout';
 import { HomePage } from '../pages/homepage/HomePage';
 import { WorkspacePage } from '../pages/WorkspacePage';
-import { Board } from '../components/board/Board';
-import { TaskDetails } from '../components/taskDetails/TaskDetails';
-import { MainLayout } from '../layouts/MainLayout';
-import { Provider } from 'react-redux';
 import { store } from '../store/store';
-import { AuthRoute } from '../auth.utls';
 
 const routes = [
   {
@@ -29,17 +29,17 @@ const routes = [
     component: TaskDetails,
     protected: true,
     layout: MainLayout,
-  }
-]
+  },
+];
 
 function renderRoutes(routes) {
-  return routes.map(route => {
-    const Component = route.component
-    const Layout = route.layout
+  return routes.map((route) => {
+    const Component = route.component;
+    const Layout = route.layout;
 
-    let element = <Component />
+    let element = <Component />;
     if (Layout) {
-      element = <Layout>{element}</Layout>
+      element = <Layout>{element}</Layout>;
     }
 
     if (route.protected) {
@@ -47,19 +47,15 @@ function renderRoutes(routes) {
         <Provider store={store}>
           <AuthRoute>{element}</AuthRoute>
         </Provider>
-      )
+      );
     }
 
     return (
-      <Route
-        key={route.path}
-        path={route.path}
-        element={element}
-      >
+      <Route key={route.path} path={route.path} element={element}>
         {route.children && renderRoutes(route.children)}
       </Route>
-    )
-  })
+    );
+  });
 }
 
-export { renderRoutes, routes }
+export { renderRoutes, routes };

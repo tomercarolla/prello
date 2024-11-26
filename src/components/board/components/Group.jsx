@@ -11,11 +11,11 @@ import { Button, Icon, Popover } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import invariant from 'tiny-invariant';
-import { ColumnName } from './ColumnName.jsx';
+import { GroupName } from './GroupName.jsx';
 import { NewTask } from './NewTask.jsx';
 import { Task } from './Task.jsx';
 
-export const Column = ({ group, tasks }) => {
+export const Group = ({ group, tasks }) => {
   const { t } = useTranslation();
   const groupRef = useRef(null);
   const groupInnerRef = useRef(null);
@@ -88,7 +88,7 @@ export const Column = ({ group, tasks }) => {
     >
       <div className="inner-group" ref={groupInnerRef}>
         <div className="top">
-          <ColumnName group={group} />
+          <GroupName group={group} />
 
           <Button
             scale="ghost"
@@ -128,7 +128,7 @@ export const Column = ({ group, tasks }) => {
             <div className="dynamic-content">
               <div className="tasks-list">
                 {tasks.map((task) => (
-                  <Task key={task.id} {...task} />
+                  <Task key={task.id} {...task} groupId={groupId} />
                 ))}
               </div>
             </div>
