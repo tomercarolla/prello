@@ -5,6 +5,8 @@ import { Board } from '../components/board/Board';
 import { TaskDetails } from '../components/task-details/TaskDetails.jsx';
 import { MainLayout } from '../layouts/MainLayout';
 import { HomePage } from '../pages/homepage/HomePage';
+import { LoginPage } from '../pages/LoginPage';
+import { SignupPage } from '../pages/SignupPage';
 import { WorkspacePage } from '../pages/WorkspacePage';
 import { store } from '../store/store';
 
@@ -12,6 +14,14 @@ const routes = [
   {
     path: '/',
     component: HomePage,
+  },
+  {
+    path: '/login',
+    component: LoginPage,
+  },
+  {
+    path: '/signup',
+    component: SignupPage,
   },
   {
     path: '/workspace',

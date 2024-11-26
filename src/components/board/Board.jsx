@@ -215,13 +215,10 @@ export function Board() {
         <div className="canvas">
           <div ref={listRef} className="list" {...event}>
             {board &&
-              board.orderedGroupsIds.map((groupId) => {
-                const group = board.groups[groupId];
-                const tasks = group.tasksIds.map(
-                  (taskId) => board.tasks[taskId],
+              board.groups.map((group) => {
+                return (
+                  <Group key={group.id} group={group} tasks={group.tasks} />
                 );
-
-                return <Group key={group.id} group={group} tasks={tasks} />;
               })}
 
             <div className="last-column">

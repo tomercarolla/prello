@@ -1,4 +1,4 @@
-import { boardService } from './board.service.local.js';
+import { boardService } from './board.service.js';
 import { utilService } from './util.service';
 
 //TODO - refactor task service
@@ -8,7 +8,7 @@ export const taskService = {
   getById,
   save,
   remove,
-  };
+};
 
 async function query(boardId) {
   const board = await boardService.getById(boardId);

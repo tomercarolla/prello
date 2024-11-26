@@ -346,7 +346,6 @@ async function updateTask(boardId, groupId, task, activityTitle) {
     throw new Error('Group with id ${groupId} not found');
   }
 
-
   if (!board.tasks[task.id]) {
     console.error(`Task with id ${task.id} not found in board:`, board);
     throw new Error(`Task with id ${task.id} not found`);
@@ -354,7 +353,7 @@ async function updateTask(boardId, groupId, task, activityTitle) {
 
   board.tasks[task.id] = { ...board.tasks[task.id], ...task };
 
-  if (!board.groups[groupId].tasksIds.includes(task.id)) { 
+  if (!board.groups[groupId].tasksIds.includes(task.id)) {
     board.groups[groupId].tasksIds.push(task.id);
   }
   // const group = board.groups.find((g) => g.id === groupId);
