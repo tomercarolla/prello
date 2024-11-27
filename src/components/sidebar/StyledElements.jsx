@@ -6,15 +6,22 @@ export const Container = styled.div`
   justify-content: ${(props) => props.$justifyContent || 'space-between'};
   align-items: ${(props) => props.$alignItems || 'center'};
   width: 100%;
-  padding-block: 12px;
-  padding-inline: 8px;
+  padding: 8px 12px 8px;
 `;
 
 export const AvatarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--ds-text-inverse);
+  }
 `;
 
 export const Divider = styled.div`

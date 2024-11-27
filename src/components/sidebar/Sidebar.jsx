@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Button } from '@ui';
+import { Button, Icon } from '@ui';
 import { Select } from 'antd';
-import { Icon } from 'ui/icons/Icon';
 import { AvatarContainer, Container, Divider } from './StyledElements';
 
 import { BoardList } from './components/BoardList';
@@ -72,7 +71,7 @@ export function Sidebar() {
 
   const listItems = [
     { name: 'Table', icon: 'table' },
-    { name: 'Calendar', icon: 'table' },
+    { name: 'Calendar', icon: 'calendar' },
   ];
 
   return (
@@ -80,10 +79,11 @@ export function Sidebar() {
       <Container className="sidebar-container">
         {expandedSidebar ? (
           <AvatarContainer>
-            {/* <div className="avatar"><Avatar data={} bgColor="gray" /></div> */}
+            <div className="avatar">T</div>
+
             <div className="user-info">
-              <span className="username">tomer test</span>
-              <span className="user-status">Premium</span>
+              <span className="username">Tomer test</span>
+              <span className="status">Free</span>
             </div>
           </AvatarContainer>
         ) : null}
@@ -111,7 +111,6 @@ export function Sidebar() {
             title="Workspace views"
             menuType="workspace"
             getMenuContent={getMenuContent}
-            onToggleMenu={toggleMenu}
           />
 
           <BoardList

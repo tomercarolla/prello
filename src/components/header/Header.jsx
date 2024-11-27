@@ -1,9 +1,7 @@
-import { Button } from '@ui';
+import { Avatar, Button, Icon } from '@ui';
 import { useState } from 'react';
-import { Icon } from 'ui/icons/Icon';
 
 import { useSelector } from 'react-redux';
-import { Avatar } from '../Avatar.jsx';
 import TrelloGif from './assets/TrelloGif.gif';
 import TrelloIcon from './assets/TrelloIcon.png';
 
