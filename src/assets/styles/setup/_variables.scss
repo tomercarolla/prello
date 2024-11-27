@@ -14,16 +14,17 @@
   --ds-text: #B6C2CF;
   --ds-background-inverse-subtle: #FFFFFF29;
   --ds-background-selected: #e9f2ff;
-  --ds-background-accent-green-bolder: #006644;
-  --ds-background-accent-green-subtle: #00875a;
-  --ds-border-focused: #85B8FF;
+  //--ds-background-accent-green-bolder: #006644;
+  //--ds-background-accent-green-subtle: #00875a;
   --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
-  --ds-background-neutral: #091e420f; 
-  --ds-background-accent-orange-subtler: #702E00;
-  --ds-background-accent-orange-subtler-hovered: #A54800;
-  --ds-background-accent-yellow-subtler: #533F04;
-  --ds-background-accent-yellow-subtler-hovered: #7F5F01;
+  --dynamic-text-transparent2: hsla(211, 18%, 68%, 0.16);
+  --ds-background-neutral-task: #091e420f;
+  //--ds-background-accent-orange-subtler: #702E00;
+  //--ds-background-accent-orange-subtler-hovered: #A54800;
+  //--ds-background-accent-yellow-subtler: #533F04;
+  //--ds-background-accent-yellow-subtler-hovered: #7F5F01;
   --ds-surface-sunken:#161a1d;
+  --ds-text-inverse: #1D2125;
 
   //Buttons
   --ds-background-brand-bold: #579DFF;
@@ -37,11 +38,12 @@
   --ds-background-neutral-hovered: #A6C5E229;
   --dynamic-button-hovered: rgba(255, 255, 255, 0.20);
   --ds-surface-raised: #22272B;
-  --ds-surface-overlay: #282E33;
   --ds-background-button-blue: #0056e0;
   --dynamic-button-blue-hovered: #0065ff;
-  --ds-background-brand-bold: #0c66e4;
+  --ds-background-brand-bold-label: #0c66e4;
   --ds-background-danger-bold: #F87168;
+  --dynamic-background-transparent: hsla(206, 13.7%, 10%, 0.9);
+
   //Popover Menu
   --ds-surface-overlay: #282E33;
   --ds-shadow-overlay: 0 0 0 1px #39424a, 0 8px 12px #0304045C, 0 0 1px 1px #03040480;
@@ -59,12 +61,13 @@
   --ds-border-focused: #85B8FF;
 
   // Borders
-  --ds-border-focused: #388bff;
+  --ds-border-focused-task: #388bff;
 
   // Breakpoints
   --mobile-breakpoint: 460px;
   --narrow-breakpoint: 720px;
   --normal-breakpoint: 960px;
+
   // Labels
     --ds-background-accent-lime-subtlest: #28311B;
     --ds-background-accent-lime-subtlest-hovered: #37471F;

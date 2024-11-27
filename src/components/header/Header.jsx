@@ -1,13 +1,9 @@
-import { Button } from '@ui';
+import { Avatar, Button, Icon } from '@ui';
 import { useState } from 'react';
-import { Icon } from 'ui/icons/Icon';
 
+import { useSelector } from 'react-redux';
 import TrelloGif from './assets/TrelloGif.gif';
 import TrelloIcon from './assets/TrelloIcon.png';
-import { Avatar } from '../Avatar.jsx';
-import { useSelector } from 'react-redux';
-
-const dropdowns = ['Workspaces', 'Recent', 'Starred', 'Templates'];
 
 export function Header() {
   const loggedInUser = useSelector((state) => state.userModule.currentUser);
@@ -27,19 +23,6 @@ export function Header() {
             <img className="trello-logo-gif" src={TrelloIcon} alt="" />
           )}
         </div>
-        <div className="drop-down-buttons-container pointer">
-          {dropdowns.map((text) => (
-            <Button
-              key={text}
-              scale="ghost"
-              radius="3px"
-              onClick={() => console.log(text)}
-            >
-              <span>{text}</span>
-              <Icon name="chevronDown" className="arrow-down" size="16px" />
-            </Button>
-          ))}
-        </div>
         <Button radius="4px" scale="brand">
           Create
         </Button>
@@ -50,9 +33,12 @@ export function Header() {
           <Icon name="search" size="16px" className="pointer" />
           <input className="search-bar" placeholder="Search Prello" />
         </div>
+
         <Icon name="bell" className="pointer" size="24px" />
         <Icon name="questionMark" className="pointer" size="22px" />
+
         <Avatar data={loggedInUser} />
+
         <div></div>
       </div>
     </header>
