@@ -79,6 +79,7 @@ export function Sidebar() {
       <Container className="sidebar-container">
         {expandedSidebar ? (
           <AvatarContainer>
+            {/*todo add dynamic user*/}
             <div className="avatar">T</div>
 
             <div className="user-info">
