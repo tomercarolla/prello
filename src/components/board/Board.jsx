@@ -215,9 +215,12 @@ export function Board() {
         <div className="canvas">
           <div ref={listRef} className="list" {...event}>
             {board &&
-              board.groups.map((group) => {
+              board?.groups?.map((group, idx) => {
                 return (
-                  <Group key={group.id} group={group} tasks={group.tasks} />
+                  <Group
+                    key={group.id || idx}
+                    group={group}
+                    tasks={group.tasks || []} />
                 );
               })}
 

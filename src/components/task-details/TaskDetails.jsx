@@ -6,9 +6,13 @@ import { Button, Icon } from '@ui';
 import { useSelector } from 'react-redux';
 import { MenuRender } from 'ui/Menus/MenuRender';
 import { NavTaskDetails } from './components/NavTaskDetails';
+import { showErrorMsg } from 'services/event-bus.service';
+import { useDispatch } from 'react-redux';
 
 export function TaskDetails({ task, groupId }) {
-  const board = useSelector((state) => state.boardModule.board);
+  const board = useSelector((state) => state.boardModule.board)
+  const dispatch = useDispatch()
+
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description || '');
   const [showTitleInput, setShowTitleInput] = useState(false);
@@ -17,10 +21,6 @@ export function TaskDetails({ task, groupId }) {
 
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
-  useEffect(() => {
-    setTitle(task.title);
-    setDescription(task.description || '');
-  }, [task]);
 
   useEffect(() => {
     if (showTitleInput && inputRef.current) {
@@ -31,19 +31,19 @@ export function TaskDetails({ task, groupId }) {
   async function handleTitleUpdate() {
     try {
       if (title.trim() === '') {
-        setTitle(task.title);
+        setTitle(task.title)
       } else {
         await updateTask(
           board._id,
           groupId,
           { ...task, title },
           'Updated task title',
-        );
+        )
       }
     } catch (error) {
-      console.error('Failed to update task:', error);
+      console.error('Failed to update task:', error)
     } finally {
-      setShowTitleInput(false);
+      setShowTitleInput(false)
     }
   }
 
@@ -138,6 +138,8 @@ export function TaskDetails({ task, groupId }) {
                           icon: 'label',
                           text: label.title,
                         }}
+                        task={task}
+                        groupId={groupId}
                         customTrigger={
                           <Button
                             scale="neutral"
@@ -156,6 +158,8 @@ export function TaskDetails({ task, groupId }) {
                     icon: 'plus',
                     text: 'Add Label',
                   }}
+                  task={task}
+                  groupId={groupId}
                   context="plusIcon"
                 />
               </div>
@@ -231,7 +235,7 @@ export function TaskDetails({ task, groupId }) {
           </div>
         </div>
 
-        <NavTaskDetails />
+        <NavTaskDetails task={task} groupId={groupId} />
       </section>
     </div>
   );

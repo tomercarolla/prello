@@ -26,7 +26,7 @@ async function getById(boardId, taskId) {
 async function save(boardId, groupId, task) {
   const board = await boardService.getById(boardId);
   const group = Object.values(board.groups).find(
-    (group) => group.id === groupId,
+    (group) => group.id === groupId
   );
 
   if (task.id) {
