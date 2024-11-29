@@ -127,13 +127,10 @@ export const Group = ({ group, tasks }) => {
           <>
             <div className="dynamic-content">
               <div className="tasks-list">
-                {tasks.map((task) => (
-                  <Task
-                    key={task.id}
-                    {...task}
-                    groupId={groupId}
-                  />
-                ))}
+                {tasks &&
+                  tasks.map((task) => (
+                    <Task key={task.id} {...task} groupId={groupId} />
+                  ))}
               </div>
             </div>
 

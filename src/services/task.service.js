@@ -24,10 +24,16 @@ async function getById(boardId, taskId) {
 }
 
 async function save(boardId, groupId, task) {
+  console.log('newTask service ', task);
+  console.log('boardId service ', boardId);
+  console.log('groupId service ', groupId);
   const board = await boardService.getById(boardId);
+  console.log('board service ', board);
   const group = Object.values(board.groups).find(
     (group) => group.id === groupId,
   );
+
+  console.log('group service ', group);
 
   if (task.id) {
     const idx = group.tasks.findIndex((currTask) => currTask.id === task.id);
@@ -35,8 +41,12 @@ async function save(boardId, groupId, task) {
     group.tasks.splice(idx, 1, task);
   } else {
     task.id = utilService.makeId();
-    board.tasks[task.id] = task;
-    group.tasksIds.push(task.id);
+
+    //fix here
+    group.tasks.push(task);
+    // board.tasks[task.id] = task;
+
+    // group.tasksIds.push(task.id);
   }
 
   await boardService.save(board);
