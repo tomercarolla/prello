@@ -1,11 +1,11 @@
 import { boardService } from './board.service.js';
+import { httpService } from './http.service.js';
 import { utilService } from './util.service';
-
-//TODO - refactor task service
 
 export const taskService = {
   query,
   getById,
+  addTask,
   save,
   remove,
 };
@@ -23,17 +23,23 @@ async function getById(boardId, taskId) {
   return board.tasks.find((task) => task.id === taskId);
 }
 
+async function addTask(boardId, groupId, task) {
+  try {
+    return await httpService.post(
+      `board/${boardId}/group/${groupId}/task`,
+      task,
+    );
+  } catch (err) {
+    console.error('Failed to add task:', err);
+    throw new Error('Failed to add task');
+  }
+}
+
 async function save(boardId, groupId, task) {
-  console.log('newTask service ', task);
-  console.log('boardId service ', boardId);
-  console.log('groupId service ', groupId);
   const board = await boardService.getById(boardId);
-  console.log('board service ', board);
   const group = Object.values(board.groups).find(
     (group) => group.id === groupId,
   );
-
-  console.log('group service ', group);
 
   if (task.id) {
     const idx = group.tasks.findIndex((currTask) => currTask.id === task.id);
@@ -42,11 +48,7 @@ async function save(boardId, groupId, task) {
   } else {
     task.id = utilService.makeId();
 
-    //fix here
     group.tasks.push(task);
-    // board.tasks[task.id] = task;
-
-    // group.tasksIds.push(task.id);
   }
 
   await boardService.save(board);
