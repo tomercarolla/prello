@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { updateTask } from '../../store/task/task.actions'
 import { updateBoard } from 'store/board/board.actions';
-import { utilService } from 'services/util.service';
-import { useSelector } from 'react-redux';
+
 
 const colorOptions = [
   { base: '#61BD4F', hover: '#519839' }, 
