@@ -1,29 +1,29 @@
-import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
+import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui'
 
-export function MenuRender({
-  buttonData,
-  context = 'default',
-  customTrigger = null,
-}) {
-  const { name, icon, text } = buttonData;
-
+export function MenuRender({ buttonData, context = 'default', customTrigger = null, boardId, task, groupId, boardLabels}) {
+  const { name, icon, text } = buttonData
+  
+  
   function renderMenuContent() {
     switch (name) {
+      
       case 'label':
-        return <LabelMenu context={context} />;
-      case 'member':
-        return <MembersMenu context={context} />;
-      default:
-        return <div>Menu not found</div>;
-    }
-  }
-
+        return <LabelMenu context={context} boardId={boardId} task={task} groupId={groupId} boardLabels={boardLabels} />
+        
+        case 'member':
+          return <MembersMenu context={context} />
+          
+          default:
+            return <div>Menu not found</div>
+          }
+        }
+        
   const defaultTrigger = (
     <Button className="btn-nav" scale="neutral">
       <Icon name={icon} size="18px" style={{ color: 'var(--ds-text)' }} />
-      {context !== 'plusIcon' && <span>{text}</span>}
+        {context !== 'plusIcon' && <span>{text}</span>}
     </Button>
-  );
+  )
 
   const trigger = customTrigger || defaultTrigger;
 
@@ -33,5 +33,5 @@ export function MenuRender({
         {renderMenuContent()}
       </Menu>
     </div>
-  );
+  )
 }

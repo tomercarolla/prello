@@ -1,7 +1,12 @@
-import { Button, Icon } from '@ui';
-import { Divider } from 'components/sidebar/StyledElements';
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react'
+import { utilService } from '../../services/util.service'
+import { updateBoard, updateTask } from 'store/board/board.actions'
+
+import styled from 'styled-components'
+import { Button, Icon } from '@ui'
+import { Divider } from 'components/sidebar/StyledElements'
+
+
 
 const colorOptions = [
   {
@@ -85,11 +90,11 @@ const colorOptions = [
     hover: 'var(--ds-background-accent-gray-bolder-hovered)',
   },
   // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
-];
+]
 
-const EditLabelView = ({ color, onSave, onDelete, onCancel }) => {
-  const [selectedColor, setSelectedColor] = useState(color);
-  const [labelName, setLabelName] = useState('');
+function EditLabelView({ color, onSave, onDelete, onCancel }) {
+  const [selectedColor, setSelectedColor] = useState(color)
+  const [labelName, setLabelName] = useState('')
 
   return (
     <EditLabelWrapper>
@@ -163,41 +168,105 @@ const EditLabelView = ({ color, onSave, onDelete, onCancel }) => {
       </Button>
     </EditLabelWrapper>
   );
-};
+}
 
-export function LabelMenu() {
-  const [editingLabel, setEditingLabel] = useState(null);
+export function LabelMenu({ boardId, groupId, task, boardLabels }) {
+  const [editingLabel, setEditingLabel] = useState(null)
+  const [selectedLabelIds, setSelectedLabelIds] = useState([])
+  const [isCreatingLabel, setIsCreatingLabel] = useState(false)
 
-  const labels = [
-    { color: '#216e4e', id: 1 },
-    { color: '#7f5f01', id: 2 },
-    { color: '#ae2e24', id: 3 },
-    { color: '#0055cc', id: 4 },
-  ];
+  if (!boardLabels) return null
 
-  function handleEdit(id) {
-    setEditingLabel(id);
+  useEffect(() => {
+    setSelectedLabelIds(task.labelIds || [])
+  }, [task.labelIds])
+
+  async function handleLabelToggle(labelId) {
+    try {
+      const newLabelIds = selectedLabelIds.includes(labelId)
+        ? selectedLabelIds.filter((id) => id !== labelId)
+        : [...selectedLabelIds, labelId];
+
+      const updatedTask = {
+        ...task,
+        labelIds: newLabelIds,
+      };
+
+      await updateTask(boardId, groupId, updatedTask);
+      setSelectedLabelIds(newLabelIds);
+    } catch (err) {
+      console.error('Error updating task:', err);
+    }
   }
 
-  function handleSave(name, color) {
-    console.log('Save', name, color);
-    setEditingLabel(null);
+  async function handleSave(labelName, selectedColor) {
+    try {
+      if (!labelName.trim() || !selectedColor) {
+        console.error('Label name and color are required')
+      }
+
+      if (isCreatingLabel) {
+        const newLabel = {
+          id: utilService.makeLabelId(),
+          title: labelName.trim(),
+          color: selectedColor,
+        }
+
+        const updateLabels = [...boardLabels, newLabel]
+        await updateBoard(boardId, { labels: updateLabels })
+      } else if (editingLabel) {
+        const updatedLabels = boardLabels.map(label => label.id === editingLabel
+          ? { ...label, title: labelName.trim(), color: selectedColor }
+          : label
+        )
+
+        await updateBoard(boardId, { labels: updatedLabels })
+      }
+      setEditingLabel(null)
+      setIsCreatingLabel(false)
+    } catch (err) {
+      console.error('Error saving label:', err)
+    }
   }
 
-  function handleDelete() {
-    console.log('Delete');
-    setEditingLabel(null);
+  async function handleDelete() {
+    try {
+      if (!editingLabel) return
+
+      const updatedLabels = boardLabels.filter(label => label.id !== editingLabel)
+
+      const updatedTask = {
+        ...task,
+        labelIds: task.labelIds.filter(id => id !== editingLabel)
+      }
+
+      await Promise.all([
+        updateBoard(boardId, { labels: updatedLabels }),
+        updateTask(boardId, groupId, updatedTask)
+      ])
+
+      setSelectedLabelIds(prev => prev.filter(id => id !== editingLabel))
+      setEditingLabel(null)
+    } catch (err) {
+      console.error('Error deleting label:', err)
+    }
+  }
+
+  function handleEdit(labelId) { 
+    setIsCreatingLabel(false)
+    setEditingLabel(labelId)
   }
 
   function handleCancel() {
-    setEditingLabel(null);
+    setEditingLabel(null)
+    setIsCreatingLabel(false)
   }
 
   return (
     <LabelMenuWrapper>
-      {editingLabel !== null ? (
+      {(editingLabel !== null || isCreatingLabel) ? (
         <EditLabelView
-          color={labels.find((label) => label.id === editingLabel)?.color}
+          color={editingLabel ? boardLabels.find(label => label.id === editingLabel)?.color : ''}
           onSave={handleSave}
           onDelete={handleDelete}
           onCancel={handleCancel}
@@ -211,16 +280,22 @@ export function LabelMenu() {
             <h3>Labels</h3>
           </StyledDiv>
           <List>
-            {labels.map(({ color, id }) => (
-              <li key={id}>
+            {boardLabels.map((label) => (
+              <li key={label.id}>
                 <LabelWrapper>
-                  <StyledCheckbox type="checkbox" />
-                  <Label style={{ backgroundColor: color }}></Label>
-                  {/*defaultChecked={editingLabel === id}*/}
+                  <StyledCheckbox
+                    type="checkbox"
+                    checked={selectedLabelIds.includes(label.id)}
+                    onChange={() => handleLabelToggle(label.id)}
+                  />
+                  <Label
+                    style={{ backgroundColor: label.color }}
+                    title={label.title}
+                  />
                   <Button
                     scale="ghost"
                     style={{ color: 'var(--ds-text)' }}
-                    onClick={() => handleEdit(id)}
+                    onClick={() => handleEdit(label.id)}
                   >
                     <Icon name="edit" size="16px" />
                   </Button>
@@ -232,13 +307,14 @@ export function LabelMenu() {
             scale="neutral"
             fullwidth="true"
             style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
+            onClick={() => setIsCreatingLabel(true)}
           >
             Create a new label
           </Button>
         </>
       )}
     </LabelMenuWrapper>
-  );
+  )
 }
 
 const EditLabelWrapper = styled.div`

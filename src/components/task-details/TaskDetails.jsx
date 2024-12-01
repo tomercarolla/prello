@@ -17,6 +17,8 @@ export function TaskDetails({ task, groupId }) {
 
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
+  console.log('Board labels:', board.labels)
+
   useEffect(() => {
     setTitle(task.title);
     setDescription(task.description || '');
@@ -67,6 +69,7 @@ export function TaskDetails({ task, groupId }) {
         .filter(Boolean)
     : [];
 
+
   return (
     <div className="task-details">
       <section className="task-header-container">
@@ -115,6 +118,9 @@ export function TaskDetails({ task, groupId }) {
               <div>
                 <div className="avatar">TS</div>
                 <MenuRender
+                  boardId={board._id}
+                  groupId={groupId}
+                  task={task}
                   buttonData={{
                     name: 'member',
                     icon: 'plus',
@@ -132,6 +138,10 @@ export function TaskDetails({ task, groupId }) {
                   {taskLabels.length > 0 &&
                     taskLabels.map((label) => (
                       <MenuRender
+                        boardId={board._id}
+                        boardLabels={board.labels}
+                        groupId={groupId}
+                        task={task}
                         key={label.id}
                         buttonData={{
                           name: 'label',
@@ -151,6 +161,10 @@ export function TaskDetails({ task, groupId }) {
                     ))}
                 </span>
                 <MenuRender
+                  boardId={board._id}
+                  boardLabels={board.labels}
+                  groupId={groupId}
+                  task={task}
                   buttonData={{
                     name: 'label',
                     icon: 'plus',
@@ -231,7 +245,12 @@ export function TaskDetails({ task, groupId }) {
           </div>
         </div>
 
-        <NavTaskDetails />
+        <NavTaskDetails
+          task={task}
+          groupId={groupId}
+          boardId={board._id}
+          boardLabels={board.labels}
+        />
       </section>
     </div>
   );
