@@ -21,8 +21,6 @@ export function NavTaskDetails({ boardId, groupId, task, boardLabels }) {
     { name: 'share', icon: 'share', text: 'Share' },
   ];
 
-  console.log('boardId:', boardId, 'groupId:', groupId, 'task:', task)
-
   return (
     <nav className="nav-task-body">
       {buttons.map((buttonData) => (
