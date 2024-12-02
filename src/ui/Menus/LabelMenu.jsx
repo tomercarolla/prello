@@ -66,7 +66,7 @@ const EditLabelView = ({ color, title, isNew,  onSave, onDelete, onCancel }) => 
           style={{
             justifyContent: 'center',
             color: 'var(--ds-text-inverse)',
-            backgroundColor: 'var(--ds-background-brand-bold)',
+            backgroundColor: 'var(--ds-background-brand-bold-label)',
           }}
           onClick={() => onSave(labelName, selectedColor)}
         >
