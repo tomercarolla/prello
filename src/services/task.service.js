@@ -1,11 +1,11 @@
 import { boardService } from './board.service.js';
+import { httpService } from './http.service.js';
 import { utilService } from './util.service';
-
-//TODO - refactor task service
 
 export const taskService = {
   query,
   getById,
+  addTask,
   save,
   remove,
 };
@@ -23,6 +23,18 @@ async function getById(boardId, taskId) {
   return board.tasks.find((task) => task.id === taskId);
 }
 
+async function addTask(boardId, groupId, task) {
+  try {
+    return await httpService.post(
+      `board/${boardId}/group/${groupId}/task`,
+      task,
+    );
+  } catch (err) {
+    console.error('Failed to add task:', err);
+    throw new Error('Failed to add task');
+  }
+}
+
 async function save(boardId, groupId, task) {
   const board = await boardService.getById(boardId);
   const group = Object.values(board.groups).find(
@@ -35,8 +47,8 @@ async function save(boardId, groupId, task) {
     group.tasks.splice(idx, 1, task);
   } else {
     task.id = utilService.makeId();
-    board.tasks[task.id] = task;
-    group.tasksIds.push(task.id);
+
+    group.tasks.push(task);
   }
 
   await boardService.save(board);
