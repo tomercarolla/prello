@@ -1,5 +1,6 @@
 export const utilService = {
   makeId,
+  makeLabelId,
   makeLorem,
   getRandomIntInclusive,
   debounce,
@@ -19,6 +20,11 @@ function makeId(length = 6) {
   }
 
   return txt;
+}
+
+function makeLabelId() {
+  const randomNumber = Math.floor(Math.random() * 900) + 100
+  return 'l' + randomNumber
 }
 
 function makeLorem(size = 100) {

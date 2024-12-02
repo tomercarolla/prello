@@ -6,12 +6,9 @@ import { Button, Icon } from '@ui';
 import { useSelector } from 'react-redux';
 import { MenuRender } from 'ui/Menus/MenuRender';
 import { NavTaskDetails } from './components/NavTaskDetails';
-import { showErrorMsg } from 'services/event-bus.service';
-import { useDispatch } from 'react-redux';
 
 export function TaskDetails({ task, groupId }) {
   const board = useSelector((state) => state.boardModule.board)
-  const dispatch = useDispatch()
 
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description || '');
@@ -144,7 +141,10 @@ export function TaskDetails({ task, groupId }) {
                           <Button
                             scale="neutral"
                             className="btn"
-                            style={{ backgroundColor: label.color }}
+                            style={{
+                              backgroundColor: label.color,
+                              color: 'var(--dynamic-text)',
+                            }}
                           >
                             {label.title}
                           </Button>

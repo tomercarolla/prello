@@ -1,12 +1,12 @@
-import { Button, Icon } from '@ui';
-import { Divider } from 'components/sidebar/StyledElements';
-import styled from 'styled-components';
+import { Button, Icon } from '@ui'
+import { Divider } from 'components/sidebar/StyledElements'
+import styled from 'styled-components'
 
-import { useState } from 'react';
-import { updateTask } from '../../store/task/task.actions'
-import { updateBoard } from 'store/board/board.actions';
-import { utilService } from 'services/util.service';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react'
+import { updateBoard, updateTask } from 'store/board/board.actions'
+import { useSelector } from 'react-redux'
+import { utilService } from 'services/util.service'
+
 
 const colorOptions = [
   { base: '#61BD4F', hover: '#519839' }, 
@@ -21,181 +21,214 @@ const colorOptions = [
   { base: '#344563', hover: '#091E42' }, 
 ];
 
-const EditLabelView = ({ color, title, isNew,  onSave, onDelete, onCancel }) => {
-  const [selectedColor, setSelectedColor] = useState(color || colorOptions[0].base);
-  const [labelName, setLabelName] = useState(title || '');
-
-  return (
-    <EditLabelWrapper>
-      <ColorPreview style={{ backgroundColor: selectedColor }} />
-      <SearchInput
-        type="text"
-        placeholder="Label name"
-        value={labelName}
-        onChange={(e) => setLabelName(e.target.value)}
-      />
-      <Container>
-        <label>Select a color</label>
-        <ColorGrid>
-          {colorOptions.map((color, index) => (
-            <ColorOption
-              key={index}
-              color={color}
-              onClick={() => setSelectedColor(color.base)}
-              className={selectedColor === color.base ? 'selected' : ''}
-              style={{ backgroundColor: color.base }}
-            />
-          ))}
-        </ColorGrid>
-      </Container>
-
-      <Button
-        scale="neutral"
-        fullwidth="true"
-        style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-        onClick={() => setSelectedColor('')}
-      >
-        Remove Color
-      </Button>
-
-      <Divider />
-
-      <Flex>
-        <Button
-          scale="neutral"
-          radius="3px"
-          style={{
-            justifyContent: 'center',
-            color: 'var(--ds-text-inverse)',
-            backgroundColor: 'var(--ds-background-brand-bold)',
-          }}
-          onClick={() => onSave(labelName, selectedColor)}
-        >
-          Save
-        </Button>
-
-        <Button
-          scale="neutral"
-          radius="3px"
-          style={{
-            justifyContent: 'center',
-            color: 'var(--ds-text-inverse)',
-            backgroundColor: 'var(--ds-background-danger-bold)',
-          }}
-          onClick={onDelete}
-        >
-          Delete
-        </Button>
-      </Flex>
-
-      <Button
-        scale="neutral"
-        fullwidth="true"
-        style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-        onClick={onCancel}
-      >
-        Cancel
-      </Button>
-    </EditLabelWrapper>
-  );
-};
 
 export function LabelMenu({ task, groupId }) {
-  const [editingLabel, setEditingLabel] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [editingLabel, setEditingLabel] = useState(null)
+  const [creatingLabel, setCreatingLabel] = useState(false)
+  const [searchLabel, setSearchLabel] = useState('')
   const board = useSelector(state => state.boardModule.board)
+  const [selectedColor, setSelectedColor] = useState(colorOptions[0].base)
+  const [labelName, setLabelName] = useState('')
 
-  const labels = board.labels || [];
-  const taskLabelIds = task?.labelIds || [];
+  const labels = board.labels || []
+  const taskLabelIds = task.labelIds || []
 
-  const filteredLabels = labels.filter(label => label.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  useEffect(() => {
+    if (editingLabel) {
+      const labelToEdit = board.labels.find(label => label.id === editingLabel)
+
+      if (labelToEdit) {
+        setLabelName(labelToEdit.title)
+        setSelectedColor(labelToEdit.color)
+      }
+    } else {
+      setLabelName('')
+      setSelectedColor(colorOptions[0].base)
+    }
+  }, [editingLabel, board.labels])
 
   async function handleLabelToggle(labelId) {
-    if (!task || !board) return
-
-    const isCurrentlySelected = taskLabelIds.includes(labelId);
-    const updatedLabelIds = isCurrentlySelected
-      ? taskLabelIds.filter(id => id !== labelId)
-      : [...taskLabelIds, labelId];
-    
     try {
-      await updateTask(board._id, groupId, { ...task, labelIds: updatedLabelIds }, 'Updated task labels');
-    } catch (error) {
-      console.error('Failed to update task:', error)
-    }
-  }
+      const updatedTask = {
+        ...task,
+        boardId: board._id,
+        labelIds: task.labelIds || [],
+      };
 
-
-  async function handleSave(title, color) {
-    try {
-      const updatedBoard = { ...board };
-
-      if (editingLabel === 'new') {
-        const newLabel = {
-          id: utilService.makeId(),
-          title,
-          color,
-        };
-        updatedBoard.labels = [...(board.labels || []), newLabel];
-      } else {
-        updatedBoard.labels = board.labels.map((label) =>
-          label.id === editingLabel ? { ...label, title, color } : label,
+      if (updatedTask.labelIds.includes(labelId)) {
+        updatedTask.labelIds = updatedTask.labelIds.filter(
+          (id) => id !== labelId,
         );
+      } else {
+        updatedTask.labelIds = [...updatedTask.labelIds, labelId];
       }
 
-      await updateBoard(updatedBoard);
-    } catch (error) {
-      console.error('Failed to save label:', error);
-    } finally {
-      setEditingLabel(null);
+      await updateTask(board._id, groupId, updatedTask);
+    } catch (err) {
+      console.error('Failed to toggle label:', err);
     }
   }
 
-  async function handleDelete() {
-    if (!editingLabel || editingLabel === 'new') return;
+  async function handleUpdateLabel(labelId, newTitle, newColor) {
+   try {
+     const updatedBoard = { ...board };
+     updatedBoard.labels = board.labels.map((label) =>
+       label.id === labelId
+         ? { ...label, title: newTitle, color: newColor }
+         : label,
+     );
 
+     await updateBoard(updatedBoard);
+     setEditingLabel(null);
+   } catch (err) {
+     console.error('Error updating label:', err);
+   }
+  }
+
+  async function handleCreateLabel(title, color) {
     try {
+      const newLabel = {
+        id: utilService.makeLabelId(),
+        title,
+        color,
+      };
+
       const updatedBoard = { ...board };
-
-      updatedBoard.labels = board.labels.filter(
-        (label) => label.id !== editingLabel,
-      );
-
-      Object.values(updatedBoard.groups).forEach((group) => {
-        group.tasksIds.forEach((taskId) => {
-          const task = updatedBoard.tasks[taskId];
-          if (task.labelIds?.includes(editingLabel)) {
-            task.labelIds = task.labelIds.filter((id) => id !== editingLabel);
-          }
-        });
-      });
+      updatedBoard.labels = [...(board.labels || []), newLabel];
 
       await updateBoard(updatedBoard);
-    } catch (error) {
-      console.error('Failed to delete label:', error);
-    } finally {
-      setEditingLabel(null);
+
+      const updatedTask = {
+        ...task,
+        labelIds: [...(task.labelIds || []), newLabel.id],
+      };
+      setCreatingLabel(false)
+      await updateTask(board._id, groupId, updatedTask);
+    } catch (err) {
+      console.error('Error creating label:', err);
     }
   }
 
-  function handleCancel() {
-    setEditingLabel(null);
+  async function handleDelete(labelId) {
+    try {
+      const updatedBoard = { ...board }
+      updatedBoard.labels = board.labels.filter(label => label.id !== labelId)
+      
+      await updateBoard(updatedBoard)
+      setEditingLabel(null)
+    } catch (err) {
+      console.error('Could not remove label', err)
+    }
   }
+
 
   const currentLabel =
     editingLabel && editingLabel !== 'new'
       ? board.labels.find((label) => label.id === editingLabel)
       : null;
+  
+  function ExpandedLabelMenu({ onCancel}) {
+
+    function handleSaveLabel() {
+      if (editingLabel) {
+          handleUpdateLabel(editingLabel, labelName, selectedColor)
+      } else {
+        handleCreateLabel(labelName, selectedColor)
+        }
+      }
+    
+    return (
+      <EditLabelWrapper>
+        <ColorPreview style={{ backgroundColor: selectedColor }} />
+        <SearchInput
+          type="text"
+          placeholder="Label name"
+          value={labelName}
+          onChange={(e) => setLabelName(e.target.value)}
+          maxLength={20}
+          autoFocus
+        />
+        <Container>
+          <label>Select a color</label>
+          <ColorGrid>
+            {colorOptions.map((color, index) => (
+              <ColorOption
+                key={index}
+                color={color}
+                onClick={() => setSelectedColor(color.base)}
+                className={selectedColor === color.base ? 'selected' : ''}
+                style={{ backgroundColor: color.base }}
+              />
+            ))}
+          </ColorGrid>
+        </Container>
+
+        <Button
+          scale="neutral"
+          fullwidth="true"
+          style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
+          onClick={() => setSelectedColor(colorOptions[0].base)}
+        >
+          Remove Color
+        </Button>
+
+        <Divider />
+
+        <Flex>
+          <Button
+            scale="neutral"
+            radius="3px"
+            style={{
+              justifyContent: 'center',
+              color: 'var(--ds-text-inverse)',
+              backgroundColor: 'var(--ds-background-brand-bold)',
+            }}
+            onClick={handleSaveLabel}
+          >
+            {editingLabel ? 'Update' : 'Create'}
+          </Button>
+
+          {editingLabel && (
+            <Button
+              scale="neutral"
+              radius="3px"
+              style={{
+                justifyContent: 'center',
+                color: 'var(--ds-text-inverse)',
+                backgroundColor: 'var(--ds-background-danger-bold)',
+              }}
+              onClick={() => handleDelete(editingLabel)}
+            >
+              Delete
+            </Button>
+          )}
+        </Flex>
+
+        <Button
+          scale="neutral"
+          fullwidth="true"
+          style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
+          onClick={onCancel}
+        >
+          Cancel
+        </Button>
+      </EditLabelWrapper>
+    );
+  }
 
 
   return (
     <LabelMenuWrapper>
-      {editingLabel !== null ? (
-        <EditLabelView
-          color={currentLabel?.color || colorOptions[0].base} 
-          onSave={handleSave}
-          onDelete={handleDelete}
-          onCancel={handleCancel}
+      {editingLabel || creatingLabel ? (
+        <ExpandedLabelMenu
+          color={editingLabel ? currentLabel?.color : colorOptions[0].base}
+          title={editingLabel ? currentLabel?.title : ''}
+          onCancel={() => {
+            setEditingLabel(null)
+            setCreatingLabel(false)
+            setLabelName('')
+            setSelectedColor(colorOptions[0].base)
+          }}
         />
       ) : (
         <>
@@ -203,8 +236,8 @@ export function LabelMenu({ task, groupId }) {
             <SearchInput
               type="text"
               placeholder="Search labels"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchLabel}
+              onChange={(e) => setSearchLabel(e.target.value)}
             />
           </div>
           <StyledDiv>
@@ -212,7 +245,7 @@ export function LabelMenu({ task, groupId }) {
           </StyledDiv>
 
           <List>
-            {filteredLabels.map(({ color, id, title }) => (
+            {labels.map(({ color, id, title }) => (
               <li key={id}>
                 <LabelWrapper>
                   <StyledCheckbox
@@ -242,7 +275,7 @@ export function LabelMenu({ task, groupId }) {
             scale="neutral"
             fullwidth="true"
             style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-            onClick={() => setEditingLabel('new')}
+            onClick={() => setCreatingLabel(true)}
           >
             Create a new label
           </Button>
