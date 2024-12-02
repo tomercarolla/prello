@@ -17,8 +17,6 @@ export function TaskDetails({ task, groupId }) {
 
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
-  console.log('Board labels:', board.labels)
-
   useEffect(() => {
     setTitle(task.title);
     setDescription(task.description || '');
