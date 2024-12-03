@@ -52,21 +52,24 @@ export function boardReducer(state = initialState, action) {
     case UPDATE_TASK:
       const updatedBoard = {
         ...state.board,
-        groups: {
-          ...state.board.groups,
-          [action.groupId]: {
-            ...state.board.groups[action.groupId],
-            tasksIds: state.board.groups[action.groupId].tasksIds.map(
-              (taskId) => (taskId === action.task.id ? action.task.id : taskId),
-            ),
-          },
-        },
-        tasks: {
-          ...state.board.tasks,
-          [action.task.id]: action.task,
-        },
-        activities: [action.activity, ...(state.board.activities || [])],
+        groups: state.board.groups.map((group) =>
+          group.id === action.groupId
+            ? {
+                ...group,
+                tasks: group.tasks.map((task) =>
+                  task.id === action.task.id
+                    ? {
+                        ...task,
+                        labelIds: action.task.labelIds,
+                        ...action.task,
+                      }
+                    : task,
+                ),
+              }
+            : group,
+        ),
       };
+
       return { ...state, board: updatedBoard };
 
     default:
@@ -77,7 +80,8 @@ export function boardReducer(state = initialState, action) {
 // unitTestReducer()
 
 function unitTestReducer() {
-  var state = initialState;
+  let state = initialState;
+
   const board1 = {
     _id: 'b101',
     title: 'Board ' + parseInt(Math.random() * 10),

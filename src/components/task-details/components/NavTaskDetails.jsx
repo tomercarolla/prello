@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MenuRender } from 'ui/Menus/MenuRender';
 
-export function NavTaskDetails() {
+export function NavTaskDetails({ task, groupId }) {
   const buttons = [
     { name: 'join', icon: 'join', text: 'Join' },
     { name: 'member', icon: 'member', text: 'Members' },
@@ -24,13 +24,23 @@ export function NavTaskDetails() {
   return (
     <nav className="nav-task-body">
       {buttons.map((buttonData) => (
-        <MenuRender key={buttonData.name} buttonData={buttonData} />
+        <MenuRender
+          key={buttonData.name}
+          buttonData={buttonData}
+          task={task}
+          groupId={groupId}
+        />
       ))}
 
       <CustomLabel>Actions</CustomLabel>
 
       {actionButtons.map((buttonData) => (
-        <MenuRender key={buttonData.name} buttonData={buttonData} />
+        <MenuRender
+          key={buttonData.name}
+          buttonData={buttonData}
+          task={task}
+          groupId={groupId}
+        />
       ))}
     </nav>
   );

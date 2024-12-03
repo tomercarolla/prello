@@ -8,9 +8,7 @@ export function WorkspacePage() {
       <Header />
       <main className="main-boards">
         <section>
-          <nav className="navbar">
             <SidebarWorkspace />
-          </nav>
         </section>
 
         <section className="boards-container">

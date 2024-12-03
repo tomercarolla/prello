@@ -77,21 +77,16 @@ export async function addBoardMsg(boardId, txt) {
   }
 }
 
-export async function updateTask(boardId, groupId, task, activityTitle) {
+export async function updateTask(boardId, groupId, task) {
   try {
-    const [savedTask, activity] = await boardService.updateTask(
-      boardId,
-      groupId,
-      task,
-      activityTitle,
-    );
-    console.log('Updated task', savedTask);
+    const savedTask = await boardService.updateTask(boardId, groupId, task);
+
     store.dispatch({
       type: UPDATE_TASK,
       groupId,
       task: savedTask,
-      activity,
     });
+
     return savedTask;
   } catch (err) {
     console.log('Cannot update task', err);
