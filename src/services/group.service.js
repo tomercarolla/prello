@@ -23,12 +23,10 @@ async function save(boardId, group) {
   const board = await boardService.getById(boardId);
 
   if (group.id) {
-    const key = Object.keys(board.groups).find(
-      (groupKey) => board.groups[groupKey].id === group.id,
-    );
+    const idx = board.groups.findIndex((gp) => gp.id === group.id);
 
-    board.groups[key] = group;
-    // board.groups.splice(idx, 1, group);
+    // board.groups[key] = group;
+    board.groups.splice(idx, 1, group);
   } else {
     group.id = utilService.makeId();
 
