@@ -1,306 +1,267 @@
-import { useEffect, useState } from 'react';
-import { updateBoard, updateTask } from 'store/board/board.actions';
-import { utilService } from '../../services/util.service';
-
 import { Button, Icon } from '@ui';
 import { Divider } from 'components/sidebar/StyledElements';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { utilService } from 'services/util.service';
+import { updateBoard, updateTask } from 'store/board/board.actions';
 import styled from 'styled-components';
 
 const colorOptions = [
-  {
-    base: 'var(--ds-background-accent-lime-bolder)',
-    hover: 'var(--ds-background-accent-lime-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-lime-subtler)',
-    hover: 'var(--ds-background-accent-lime-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-green-bolder)',
-    hover: 'var(--ds-background-accent-green-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-green-subtler)',
-    hover: 'var(--ds-background-accent-green-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-yellow-bolder)',
-    hover: 'var(--ds-background-accent-yellow-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-yellow-subtler)',
-    hover: 'var(--ds-background-accent-yellow-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-orange-subtler)',
-    hover: 'var(--ds-background-accent-orange-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-orange-bolder)',
-    hover: 'var(--ds-background-accent-orange-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-red-subtler)',
-    hover: 'var(--ds-background-accent-red-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-red-bolder)',
-    hover: 'var(--ds-background-accent-red-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-purple-subtler)',
-    hover: 'var(--ds-background-accent-purple-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-purple-bolder)',
-    hover: 'var(--ds-background-accent-purple-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-blue-subtler)',
-    hover: 'var(--ds-background-accent-blue-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-blue-bolder)',
-    hover: 'var(--ds-background-accent-blue-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-teal-bolder)',
-    hover: 'var(--ds-background-accent-teal-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-teal-subtler)',
-    hover: 'var(--ds-background-accent-teal-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-magenta-subtler)',
-    hover: 'var(--ds-background-accent-magenta-subtler-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-magenta-bold)',
-    hover: 'var(--ds-background-accent-magenta-bold-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-magenta-bolder)',
-    hover: 'var(--ds-background-accent-magenta-bolder-hovered)',
-  },
-  {
-    base: 'var(--ds-background-accent-gray-bolder)',
-    hover: 'var(--ds-background-accent-gray-bolder-hovered)',
-  },
-  // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
+  { base: '#61BD4F', hover: '#519839' },
+  { base: '#F2D600', hover: '#D9B51C' },
+  { base: '#FF9F1A', hover: '#CD8313' },
+  { base: '#EB5A46', hover: '#B04632' },
+  { base: '#C377E0', hover: '#89609E' },
+  { base: '#0079BF', hover: '#055A8C' },
+  { base: '#00C2E0', hover: '#0098B7' },
+  { base: '#51E898', hover: '#4BCE82' },
+  { base: '#FF78CB', hover: '#C75DAE' },
+  { base: '#344563', hover: '#091E42' },
 ];
 
-function EditLabelView({ color, onSave, onDelete, onCancel }) {
-  const [selectedColor, setSelectedColor] = useState(color);
+export function LabelMenu({ task, groupId }) {
+  const [editingLabel, setEditingLabel] = useState(null);
+  const [creatingLabel, setCreatingLabel] = useState(false);
+  const [searchLabel, setSearchLabel] = useState('');
+  const board = useSelector((state) => state.boardModule.board);
+  const [selectedColor, setSelectedColor] = useState(colorOptions[0].base);
   const [labelName, setLabelName] = useState('');
 
-  return (
-    <EditLabelWrapper>
-      <ColorPreview style={{ backgroundColor: selectedColor }} />
-      <SearchInput
-        type="text"
-        placeholder="Label name"
-        value={labelName}
-        onChange={(e) => setLabelName(e.target.value)}
-      />
-      <Container>
-        <label>Select a color</label>
-        <ColorGrid>
-          {colorOptions.map((color, index) => (
-            <ColorOption
-              key={index}
-              color={color}
-              onClick={() => setSelectedColor(color.base)}
-              className={selectedColor === color.base ? 'selected' : ''}
-            />
-          ))}
-        </ColorGrid>
-      </Container>
-
-      <Button
-        scale="neutral"
-        fullwidth="true"
-        style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-        onClick={() => setSelectedColor('')}
-      >
-        Remove Color
-      </Button>
-
-      <Divider />
-
-      <Flex>
-        <Button
-          scale="neutral"
-          radius="3px"
-          style={{
-            justifyContent: 'center',
-            color: 'var(--ds-text-inverse)',
-            backgroundColor: 'var(--ds-background-brand-bold-label)',
-          }}
-          onClick={() => onSave(labelName, selectedColor)}
-        >
-          Save
-        </Button>
-
-        <Button
-          scale="neutral"
-          radius="3px"
-          style={{
-            justifyContent: 'center',
-            color: 'var(--ds-text-inverse)',
-            backgroundColor: 'var(--ds-background-danger-bold)',
-          }}
-          onClick={onDelete}
-        >
-          Delete
-        </Button>
-      </Flex>
-
-      <Button
-        scale="neutral"
-        fullwidth="true"
-        style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-        onClick={onCancel}
-      >
-        Cancel
-      </Button>
-    </EditLabelWrapper>
-  );
-}
-
-export function LabelMenu({ boardId, groupId, task, boardLabels }) {
-  const [editingLabel, setEditingLabel] = useState(null);
-  const [selectedLabelIds, setSelectedLabelIds] = useState([]);
-  const [isCreatingLabel, setIsCreatingLabel] = useState(false);
-
-  if (!boardLabels) return null;
+  const labels = board.labels || [];
+  const taskLabelIds = task.labelIds || [];
 
   useEffect(() => {
-    setSelectedLabelIds(task.labelIds || []);
-  }, [task.labelIds]);
+    if (editingLabel) {
+      const labelToEdit = board.labels.find(
+        (label) => label.id === editingLabel,
+      );
+
+      if (labelToEdit) {
+        setLabelName(labelToEdit.title);
+        setSelectedColor(labelToEdit.color);
+      }
+    } else {
+      setLabelName('');
+      setSelectedColor(colorOptions[0].base);
+    }
+  }, [editingLabel, board.labels]);
 
   async function handleLabelToggle(labelId) {
     try {
-      const newLabelIds = selectedLabelIds.includes(labelId)
-        ? selectedLabelIds.filter((id) => id !== labelId)
-        : [...selectedLabelIds, labelId];
-
       const updatedTask = {
         ...task,
-        labelIds: newLabelIds,
+        boardId: board._id,
+        labelIds: task.labelIds || [],
       };
 
-      await updateTask(boardId, groupId, updatedTask);
-      setSelectedLabelIds(newLabelIds);
-    } catch (err) {
-      console.error('Error updating task:', err);
-    }
-  }
-
-  async function handleSave(labelName, selectedColor) {
-    try {
-      if (!labelName.trim() || !selectedColor) {
-        console.error('Label name and color are required');
-      }
-
-      if (isCreatingLabel) {
-        const newLabel = {
-          id: utilService.makeLabelId(),
-          title: labelName.trim(),
-          color: selectedColor,
-        };
-
-        const updateLabels = [...boardLabels, newLabel];
-        await updateBoard(boardId, { labels: updateLabels });
-      } else if (editingLabel) {
-        const updatedLabels = boardLabels.map((label) =>
-          label.id === editingLabel
-            ? { ...label, title: labelName.trim(), color: selectedColor }
-            : label,
+      if (updatedTask.labelIds.includes(labelId)) {
+        updatedTask.labelIds = updatedTask.labelIds.filter(
+          (id) => id !== labelId,
         );
-
-        await updateBoard(boardId, { labels: updatedLabels });
+      } else {
+        updatedTask.labelIds = [...updatedTask.labelIds, labelId];
       }
-      setEditingLabel(null);
-      setIsCreatingLabel(false);
+
+      await updateTask(board._id, groupId, updatedTask);
     } catch (err) {
-      console.error('Error saving label:', err);
+      console.error('Failed to toggle label:', err);
     }
   }
 
-  async function handleDelete() {
+  async function handleUpdateLabel(labelId, newTitle, newColor) {
     try {
-      if (!editingLabel) return;
-
-      const updatedLabels = boardLabels.filter(
-        (label) => label.id !== editingLabel,
+      const updatedBoard = { ...board };
+      updatedBoard.labels = board.labels.map((label) =>
+        label.id === labelId
+          ? { ...label, title: newTitle, color: newColor }
+          : label,
       );
 
-      const updatedTask = {
-        ...task,
-        labelIds: task.labelIds.filter((id) => id !== editingLabel),
-      };
-
-      await Promise.all([
-        updateBoard(boardId, { labels: updatedLabels }),
-        updateTask(boardId, groupId, updatedTask),
-      ]);
-
-      setSelectedLabelIds((prev) => prev.filter((id) => id !== editingLabel));
+      await updateBoard(updatedBoard);
       setEditingLabel(null);
     } catch (err) {
-      console.error('Error deleting label:', err);
+      console.error('Error updating label:', err);
     }
   }
 
-  function handleEdit(labelId) {
-    setIsCreatingLabel(false);
-    setEditingLabel(labelId);
+  async function handleCreateLabel(title, color) {
+    try {
+      const newLabel = {
+        id: utilService.makeLabelId(),
+        title,
+        color,
+      };
+
+      const updatedBoard = { ...board };
+      updatedBoard.labels = [...(board.labels || []), newLabel];
+
+      await updateBoard(updatedBoard);
+
+      const updatedTask = {
+        ...task,
+        labelIds: [...(task.labelIds || []), newLabel.id],
+      };
+      setCreatingLabel(false);
+      await updateTask(board._id, groupId, updatedTask);
+    } catch (err) {
+      console.error('Error creating label:', err);
+    }
   }
 
-  function handleCancel() {
-    setEditingLabel(null);
-    setIsCreatingLabel(false);
+  async function handleDelete(labelId) {
+    try {
+      const updatedBoard = { ...board };
+      updatedBoard.labels = board.labels.filter(
+        (label) => label.id !== labelId,
+      );
+
+      await updateBoard(updatedBoard);
+      setEditingLabel(null);
+    } catch (err) {
+      console.error('Could not remove label', err);
+    }
+  }
+
+  const currentLabel =
+    editingLabel && editingLabel !== 'new'
+      ? board.labels.find((label) => label.id === editingLabel)
+      : null;
+
+  function ExpandedLabelMenu({ onCancel }) {
+    function handleSaveLabel() {
+      if (editingLabel) {
+        handleUpdateLabel(editingLabel, labelName, selectedColor);
+      } else {
+        handleCreateLabel(labelName, selectedColor);
+      }
+    }
+
+    return (
+      <EditLabelWrapper>
+        <ColorPreview style={{ backgroundColor: selectedColor }} />
+        <SearchInput
+          type="text"
+          placeholder="Label name"
+          value={labelName}
+          onChange={(e) => setLabelName(e.target.value)}
+          maxLength={20}
+          autoFocus
+        />
+        <Container>
+          <label>Select a color</label>
+          <ColorGrid>
+            {colorOptions.map((color, index) => (
+              <ColorOption
+                key={index}
+                color={color}
+                onClick={() => setSelectedColor(color.base)}
+                className={selectedColor === color.base ? 'selected' : ''}
+                style={{ backgroundColor: color.base }}
+              />
+            ))}
+          </ColorGrid>
+        </Container>
+
+        <Button
+          scale="neutral"
+          fullwidth="true"
+          style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
+          onClick={() => setSelectedColor(colorOptions[0].base)}
+        >
+          Remove Color
+        </Button>
+
+        <Divider />
+
+        <Flex>
+          <Button
+            scale="neutral"
+            radius="3px"
+            style={{
+              justifyContent: 'center',
+              color: 'var(--ds-text-inverse)',
+              backgroundColor: 'var(--ds-background-brand-bold)',
+            }}
+            onClick={handleSaveLabel}
+          >
+            {editingLabel ? 'Update' : 'Create'}
+          </Button>
+
+          {editingLabel && (
+            <Button
+              scale="neutral"
+              radius="3px"
+              style={{
+                justifyContent: 'center',
+                color: 'var(--ds-text-inverse)',
+                backgroundColor: 'var(--ds-background-danger-bold)',
+              }}
+              onClick={() => handleDelete(editingLabel)}
+            >
+              Delete
+            </Button>
+          )}
+        </Flex>
+
+        <Button
+          scale="neutral"
+          fullwidth="true"
+          style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
+          onClick={onCancel}
+        >
+          Cancel
+        </Button>
+      </EditLabelWrapper>
+    );
   }
 
   return (
     <LabelMenuWrapper>
-      {editingLabel !== null || isCreatingLabel ? (
-        <EditLabelView
-          color={
-            editingLabel
-              ? boardLabels.find((label) => label.id === editingLabel)?.color
-              : ''
-          }
-          onSave={handleSave}
-          onDelete={handleDelete}
-          onCancel={handleCancel}
+      {editingLabel || creatingLabel ? (
+        <ExpandedLabelMenu
+          color={editingLabel ? currentLabel?.color : colorOptions[0].base}
+          title={editingLabel ? currentLabel?.title : ''}
+          onCancel={() => {
+            setEditingLabel(null);
+            setCreatingLabel(false);
+            setLabelName('');
+            setSelectedColor(colorOptions[0].base);
+          }}
         />
       ) : (
         <>
           <div>
-            <SearchInput type="text" placeholder="Search labels" />
+            <SearchInput
+              type="text"
+              placeholder="Search labels"
+              value={searchLabel}
+              onChange={(e) => setSearchLabel(e.target.value)}
+            />
           </div>
           <StyledDiv>
             <h3>Labels</h3>
           </StyledDiv>
+
           <List>
-            {boardLabels.map((label) => (
-              <li key={label.id}>
+            {labels.map(({ color, id, title }) => (
+              <li key={id}>
                 <LabelWrapper>
                   <StyledCheckbox
                     type="checkbox"
-                    checked={selectedLabelIds.includes(label.id)}
-                    onChange={() => handleLabelToggle(label.id)}
+                    checked={taskLabelIds.includes(id)}
+                    onChange={() => handleLabelToggle(id)}
                   />
                   <Label
-                    style={{ backgroundColor: label.color }}
-                    title={label.title}
-                  />
+                    onClick={() => handleLabelToggle(id)}
+                    style={{ backgroundColor: color }}
+                  >
+                    {title}
+                  </Label>
+
                   <Button
                     scale="ghost"
                     style={{ color: 'var(--ds-text)' }}
-                    onClick={() => handleEdit(label.id)}
+                    onClick={() => setEditingLabel(id)}
                   >
                     <Icon name="edit" size="16px" />
                   </Button>
@@ -312,7 +273,7 @@ export function LabelMenu({ boardId, groupId, task, boardLabels }) {
             scale="neutral"
             fullwidth="true"
             style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-            onClick={() => setIsCreatingLabel(true)}
+            onClick={() => setCreatingLabel(true)}
           >
             Create a new label
           </Button>
@@ -395,6 +356,7 @@ const StyledCheckbox = styled.input`
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease-in-out;
+  z-index: 1;
 
   &:checked {
     background-color: #0079bf;

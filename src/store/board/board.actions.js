@@ -77,24 +77,20 @@ export async function addBoardMsg(boardId, txt) {
   }
 }
 
-export async function updateTask(boardId, groupId, task, activityTitle) {
+export async function updateTask(boardId, groupId, task) {
   try {
-    const savedTask = await boardService.updateTask(
-      boardId,
-      groupId,
-      task,
-      activityTitle,
-    )
-    console.log('Updated task', savedTask);
+    const savedTask = await boardService.updateTask(boardId, groupId, task);
+
     store.dispatch({
       type: UPDATE_TASK,
       groupId,
       task: savedTask,
-    })
-    return savedTask
+    });
+
+    return savedTask;
   } catch (err) {
-    console.log('Cannot update task', err)
-    throw err
+    console.log('Cannot update task', err);
+    throw err;
   }
 }
 
