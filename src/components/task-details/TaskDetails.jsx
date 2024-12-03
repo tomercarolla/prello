@@ -18,7 +18,6 @@ export function TaskDetails({ task, groupId }) {
 
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
-
   useEffect(() => {
     if (showTitleInput && inputRef.current) {
       inputRef.current.focus();
@@ -28,19 +27,19 @@ export function TaskDetails({ task, groupId }) {
   async function handleTitleUpdate() {
     try {
       if (title.trim() === '') {
-        setTitle(task.title)
+        setTitle(task.title);
       } else {
         await updateTask(
           board._id,
           groupId,
           { ...task, title },
           'Updated task title',
-        )
+        );
       }
     } catch (error) {
-      console.error('Failed to update task:', error)
+      console.error('Failed to update task:', error);
     } finally {
-      setShowTitleInput(false)
+      setShowTitleInput(false);
     }
   }
 

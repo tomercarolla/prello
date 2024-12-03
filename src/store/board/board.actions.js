@@ -83,13 +83,14 @@ export async function updateTask(boardId, groupId, task) {
       boardId,
       groupId,
       task,
-    )
+    );
 
     store.dispatch({
       type: UPDATE_TASK,
       groupId,
       task: savedTask
-    })
+    });
+
     return savedTask;
   } catch (err) {
     console.log('Cannot update task', err);

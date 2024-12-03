@@ -1,10 +1,9 @@
 .sidebar-workspace {
   position: sticky;
-  margin: 40px 0 0;
-  max-height: 90vh;
-  padding: 0 16px;
-  width: 256px;
-  height: 100vh;
+  margin: 38px 9px 0;
+  padding: 0 18px;
+  width: 224px;
+  max-height: 200vh;
   font-weight: 600;
 
   .top-sidebar-container {
@@ -22,9 +21,9 @@
         display: flex;
         align-items: center;
         border-radius: 8px;
-        min-height: 40px;
-        padding: 6px 8px;
-        margin-bottom: 4px;
+        min-height: 38px;
+        padding: 1px 8px;
+        margin-bottom: 2px;
         overflow: hidden;
         gap: 8px;
         cursor: pointer;
@@ -34,7 +33,7 @@
          align-items: center;
          text-decoration: none;
          color: var(--ds-text);
-         gap: 5px;
+         gap: 10px;
         }
 
         &:hover {
@@ -79,9 +78,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 5px;
+      margin-top: 10px;
       font-size: 14px;
-      padding: 10px;
+      padding: 3px;
       border-radius: 8px;
       width: 100%;
       gap: 10px;
@@ -93,8 +92,8 @@
         gap: 5px;
 
         .avatar {
-          width: 20px;
-          height: 20px;
+          width: 22px;
+          height: 22px;
           border-radius: 3px;
           background: linear-gradient(var(--ds-background-accent-green-bolder, #006644), var(--ds-background-accent-green-subtle, #00875a));
         }

@@ -9,16 +9,16 @@ import { utilService } from 'services/util.service'
 
 
 const colorOptions = [
-  { base: '#61BD4F', hover: '#519839' }, 
-  { base: '#F2D600', hover: '#D9B51C' }, 
-  { base: '#FF9F1A', hover: '#CD8313' }, 
-  { base: '#EB5A46', hover: '#B04632' }, 
-  { base: '#C377E0', hover: '#89609E' }, 
-  { base: '#0079BF', hover: '#055A8C' }, 
-  { base: '#00C2E0', hover: '#0098B7' }, 
-  { base: '#51E898', hover: '#4BCE82' }, 
-  { base: '#FF78CB', hover: '#C75DAE' }, 
-  { base: '#344563', hover: '#091E42' }, 
+  { base: '#61BD4F', hover: '#519839' },
+  { base: '#F2D600', hover: '#D9B51C' },
+  { base: '#FF9F1A', hover: '#CD8313' },
+  { base: '#EB5A46', hover: '#B04632' },
+  { base: '#C377E0', hover: '#89609E' },
+  { base: '#0079BF', hover: '#055A8C' },
+  { base: '#00C2E0', hover: '#0098B7' },
+  { base: '#51E898', hover: '#4BCE82' },
+  { base: '#FF78CB', hover: '#C75DAE' },
+  { base: '#344563', hover: '#091E42' },
 ];
 
 
@@ -113,7 +113,7 @@ export function LabelMenu({ task, groupId }) {
     try {
       const updatedBoard = { ...board }
       updatedBoard.labels = board.labels.filter(label => label.id !== labelId)
-      
+
       await updateBoard(updatedBoard)
       setEditingLabel(null)
     } catch (err) {
@@ -126,7 +126,7 @@ export function LabelMenu({ task, groupId }) {
     editingLabel && editingLabel !== 'new'
       ? board.labels.find((label) => label.id === editingLabel)
       : null;
-  
+
   function ExpandedLabelMenu({ onCancel}) {
 
     function handleSaveLabel() {
@@ -136,7 +136,7 @@ export function LabelMenu({ task, groupId }) {
         handleCreateLabel(labelName, selectedColor)
         }
       }
-    
+
     return (
       <EditLabelWrapper>
         <ColorPreview style={{ backgroundColor: selectedColor }} />
@@ -283,10 +283,7 @@ export function LabelMenu({ task, groupId }) {
       )}
     </LabelMenuWrapper>
   );
-}
-
-
-
+};
 
 const EditLabelWrapper = styled.div`
   display: flex;
@@ -309,7 +306,6 @@ const LabelWrapper = styled.div`
   width: 100%;
   margin-bottom: 5px;
   gap: 5px;
-  
 `;
 
 const SearchInput = styled.input`

@@ -1,4 +1,4 @@
-import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui'
+import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
 
 export function MenuRender({ buttonData, context = 'default', customTrigger = null, task, groupId }) {
   const { name, icon, text } = buttonData

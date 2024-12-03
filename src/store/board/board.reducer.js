@@ -56,7 +56,7 @@ export function boardReducer(state = initialState, action) {
           group.id === action.groupId
             ? {
               ...group,
-              tasks: group.tasks.map(task => 
+              tasks: group.tasks.map(task =>
                 task.id === action.task.id
                   ? {
                     ...task,
@@ -68,18 +68,20 @@ export function boardReducer(state = initialState, action) {
             }
             : group
         )
-      }
+      };
+
       return { ...state, board: updatedBoard }
 
     default:
-      return state
+      return state;
   }
 }
 
 // unitTestReducer()
 
 function unitTestReducer() {
-  var state = initialState;
+  let state = initialState;
+
   const board1 = {
     _id: 'b101',
     title: 'Board ' + parseInt(Math.random() * 10),

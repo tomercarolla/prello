@@ -21,6 +21,11 @@ function makeId(length = 6) {
 
   return txt;
 }
+// i need this in a format like this: 'l123' or 'l345'
+function makeLabelId() {
+  const randomNum = Math.floor(Math.random() * 900) + 100; // generates random number between 100-999
+  return `l${randomNum}`;
+}
 
 function makeLabelId() {
   const randomNumber = Math.floor(Math.random() * 900) + 100
