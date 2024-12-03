@@ -84,7 +84,7 @@ export async function updateTask(boardId, groupId, task) {
       groupId,
       task,
     )
-    console.log('Updated task', savedTask)
+
     store.dispatch({
       type: UPDATE_TASK,
       groupId,

@@ -57,8 +57,14 @@ export function boardReducer(state = initialState, action) {
             ? {
               ...group,
               tasks: group.tasks.map(task => 
-                task.id === action.task.id ? action.task : task
-              ) 
+                task.id === action.task.id
+                  ? {
+                    ...task,
+                    labelIds: action.task.labelIds,
+                    ...action.task
+                  }
+                  : task
+              )
             }
             : group
         )
