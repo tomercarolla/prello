@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 function getUserInitials(name) {
-  if (!name) return ''
-  return name.charAt(0).toUpperCase()
+  if (!name) return '';
+
+  return name.charAt(0).toUpperCase();
 }
 
 export function Avatar({
