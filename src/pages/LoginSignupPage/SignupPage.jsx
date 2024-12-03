@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { signup } from '../store/user/user.actions.js'
+import { signup } from '../../store/user/user.actions.js'
+
+import leftImage from './assets/trello-signup-left-image.svg'
+import rightImage from './assets/trello-signup-right-image.svg'
 
 export function SignupPage() {
   const navigate = useNavigate()
@@ -51,7 +54,10 @@ export function SignupPage() {
   return (
     <div className="signup-page">
       <form onSubmit={handleSubmit} className="signup-form">
-        <h2>Sign Up!</h2>
+        <div className='header'>
+          <h2>Welcome to Prello</h2>
+          <span>Sign up now!</span>
+        </div>
 
         {error && <div className="error">{error}</div>}
 
@@ -95,11 +101,17 @@ export function SignupPage() {
         </div>
 
         <button>Signup</button>
+
         <div className='login-link'>
-          Already have an account?
-          <span onClick={() => navigate('login')}>Login here</span>
+          Already have an account?{" "}
+          <span onClick={() => navigate('/login')}>Login here</span>
         </div>
       </form>
+
+      <div className='images-container'>
+        <img src={leftImage} alt='left-image' />
+        <img src={rightImage} alt='right-image' />
+      </div>
     </div>
-  );
+  )
 }
