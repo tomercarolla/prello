@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react'
-import { utilService } from '../../services/util.service'
-import { updateBoard, updateTask } from 'store/board/board.actions'
+import { useEffect, useState } from 'react';
+import { updateBoard, updateTask } from 'store/board/board.actions';
+import { utilService } from '../../services/util.service';
 
-import styled from 'styled-components'
-import { Button, Icon } from '@ui'
-import { Divider } from 'components/sidebar/StyledElements'
-
-
+import { Button, Icon } from '@ui';
+import { Divider } from 'components/sidebar/StyledElements';
+import styled from 'styled-components';
 
 const colorOptions = [
   {
@@ -90,11 +88,11 @@ const colorOptions = [
     hover: 'var(--ds-background-accent-gray-bolder-hovered)',
   },
   // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
-]
+];
 
 function EditLabelView({ color, onSave, onDelete, onCancel }) {
-  const [selectedColor, setSelectedColor] = useState(color)
-  const [labelName, setLabelName] = useState('')
+  const [selectedColor, setSelectedColor] = useState(color);
+  const [labelName, setLabelName] = useState('');
 
   return (
     <EditLabelWrapper>
@@ -171,15 +169,15 @@ function EditLabelView({ color, onSave, onDelete, onCancel }) {
 }
 
 export function LabelMenu({ boardId, groupId, task, boardLabels }) {
-  const [editingLabel, setEditingLabel] = useState(null)
-  const [selectedLabelIds, setSelectedLabelIds] = useState([])
-  const [isCreatingLabel, setIsCreatingLabel] = useState(false)
+  const [editingLabel, setEditingLabel] = useState(null);
+  const [selectedLabelIds, setSelectedLabelIds] = useState([]);
+  const [isCreatingLabel, setIsCreatingLabel] = useState(false);
 
-  if (!boardLabels) return null
+  if (!boardLabels) return null;
 
   useEffect(() => {
-    setSelectedLabelIds(task.labelIds || [])
-  }, [task.labelIds])
+    setSelectedLabelIds(task.labelIds || []);
+  }, [task.labelIds]);
 
   async function handleLabelToggle(labelId) {
     try {
@@ -202,7 +200,7 @@ export function LabelMenu({ boardId, groupId, task, boardLabels }) {
   async function handleSave(labelName, selectedColor) {
     try {
       if (!labelName.trim() || !selectedColor) {
-        console.error('Label name and color are required')
+        console.error('Label name and color are required');
       }
 
       if (isCreatingLabel) {
@@ -210,63 +208,70 @@ export function LabelMenu({ boardId, groupId, task, boardLabels }) {
           id: utilService.makeLabelId(),
           title: labelName.trim(),
           color: selectedColor,
-        }
+        };
 
-        const updateLabels = [...boardLabels, newLabel]
-        await updateBoard(boardId, { labels: updateLabels })
+        const updateLabels = [...boardLabels, newLabel];
+        await updateBoard(boardId, { labels: updateLabels });
       } else if (editingLabel) {
-        const updatedLabels = boardLabels.map(label => label.id === editingLabel
-          ? { ...label, title: labelName.trim(), color: selectedColor }
-          : label
-        )
+        const updatedLabels = boardLabels.map((label) =>
+          label.id === editingLabel
+            ? { ...label, title: labelName.trim(), color: selectedColor }
+            : label,
+        );
 
-        await updateBoard(boardId, { labels: updatedLabels })
+        await updateBoard(boardId, { labels: updatedLabels });
       }
-      setEditingLabel(null)
-      setIsCreatingLabel(false)
+      setEditingLabel(null);
+      setIsCreatingLabel(false);
     } catch (err) {
-      console.error('Error saving label:', err)
+      console.error('Error saving label:', err);
     }
   }
 
   async function handleDelete() {
     try {
-      if (!editingLabel) return
+      if (!editingLabel) return;
 
-      const updatedLabels = boardLabels.filter(label => label.id !== editingLabel)
+      const updatedLabels = boardLabels.filter(
+        (label) => label.id !== editingLabel,
+      );
 
       const updatedTask = {
         ...task,
-        labelIds: task.labelIds.filter(id => id !== editingLabel)
-      }
+        labelIds: task.labelIds.filter((id) => id !== editingLabel),
+      };
 
       await Promise.all([
         updateBoard(boardId, { labels: updatedLabels }),
-        updateTask(boardId, groupId, updatedTask)
-      ])
+        updateTask(boardId, groupId, updatedTask),
+      ]);
 
-      setSelectedLabelIds(prev => prev.filter(id => id !== editingLabel))
-      setEditingLabel(null)
+      setSelectedLabelIds((prev) => prev.filter((id) => id !== editingLabel));
+      setEditingLabel(null);
     } catch (err) {
-      console.error('Error deleting label:', err)
+      console.error('Error deleting label:', err);
     }
   }
 
   function handleEdit(labelId) {
-    setIsCreatingLabel(false)
-    setEditingLabel(labelId)
+    setIsCreatingLabel(false);
+    setEditingLabel(labelId);
   }
 
   function handleCancel() {
-    setEditingLabel(null)
-    setIsCreatingLabel(false)
+    setEditingLabel(null);
+    setIsCreatingLabel(false);
   }
 
   return (
     <LabelMenuWrapper>
-      {(editingLabel !== null || isCreatingLabel) ? (
+      {editingLabel !== null || isCreatingLabel ? (
         <EditLabelView
-          color={editingLabel ? boardLabels.find(label => label.id === editingLabel)?.color : ''}
+          color={
+            editingLabel
+              ? boardLabels.find((label) => label.id === editingLabel)?.color
+              : ''
+          }
           onSave={handleSave}
           onDelete={handleDelete}
           onCancel={handleCancel}
@@ -314,7 +319,7 @@ export function LabelMenu({ boardId, groupId, task, boardLabels }) {
         </>
       )}
     </LabelMenuWrapper>
-  )
+  );
 }
 
 const EditLabelWrapper = styled.div`
