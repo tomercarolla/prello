@@ -78,7 +78,6 @@ const boards = [
         dueDate: '2024-09-24',
         description: 'description',
         comments: [
-          // in Trello this is easier implemented as an activity
           {
             id: 'ZdPnm',
             title: 'also @yaronb please CR this',
@@ -137,6 +136,8 @@ const boards = [
       },
     ],
   },
+
+  
   {
     _id: '1234',
     title: 'Board dev proj',
