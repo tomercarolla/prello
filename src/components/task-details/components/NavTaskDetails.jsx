@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MenuRender } from 'ui/Menus/MenuRender';
 
-export function NavTaskDetails({ task, groupId }) {
+export function NavTaskDetails({ boardId, groupId, task, boardLabels }) {
   const buttons = [
     { name: 'join', icon: 'join', text: 'Join' },
     { name: 'member', icon: 'member', text: 'Members' },
@@ -27,8 +27,10 @@ export function NavTaskDetails({ task, groupId }) {
         <MenuRender
           key={buttonData.name}
           buttonData={buttonData}
-          task={task}
+          boardId={boardId}
+          boardLabels={boardLabels}
           groupId={groupId}
+          task={task}
         />
       ))}
 
@@ -38,8 +40,9 @@ export function NavTaskDetails({ task, groupId }) {
         <MenuRender
           key={buttonData.name}
           buttonData={buttonData}
-          task={task}
+          boardId={boardId}
           groupId={groupId}
+          task={task}
         />
       ))}
     </nav>

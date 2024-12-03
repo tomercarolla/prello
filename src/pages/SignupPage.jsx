@@ -97,7 +97,7 @@ export function SignupPage() {
         <button>Signup</button>
         <div className='login-link'>
           Already have an account?
-          <span onClick={() => navigate('login')}>Login here</span>
+          <span onClick={() => navigate('/login')}>Login here</span>
         </div>
       </form>
     </div>

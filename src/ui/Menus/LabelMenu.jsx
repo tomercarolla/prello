@@ -1,28 +1,100 @@
-import { Button, Icon } from '@ui';
-import { Divider } from 'components/sidebar/StyledElements';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react'
+import { utilService } from '../../services/util.service'
+import { updateBoard, updateTask } from 'store/board/board.actions'
 
-import { useState } from 'react';
-import { updateTask } from '../../store/task/task.actions'
-import { updateBoard } from 'store/board/board.actions';
+import styled from 'styled-components'
+import { Button, Icon } from '@ui'
+import { Divider } from 'components/sidebar/StyledElements'
+
 
 
 const colorOptions = [
-  { base: '#61BD4F', hover: '#519839' }, 
-  { base: '#F2D600', hover: '#D9B51C' }, 
-  { base: '#FF9F1A', hover: '#CD8313' }, 
-  { base: '#EB5A46', hover: '#B04632' }, 
-  { base: '#C377E0', hover: '#89609E' }, 
-  { base: '#0079BF', hover: '#055A8C' }, 
-  { base: '#00C2E0', hover: '#0098B7' }, 
-  { base: '#51E898', hover: '#4BCE82' }, 
-  { base: '#FF78CB', hover: '#C75DAE' }, 
-  { base: '#344563', hover: '#091E42' }, 
-];
+  {
+    base: 'var(--ds-background-accent-lime-bolder)',
+    hover: 'var(--ds-background-accent-lime-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-lime-subtler)',
+    hover: 'var(--ds-background-accent-lime-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-green-bolder)',
+    hover: 'var(--ds-background-accent-green-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-green-subtler)',
+    hover: 'var(--ds-background-accent-green-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-yellow-bolder)',
+    hover: 'var(--ds-background-accent-yellow-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-yellow-subtler)',
+    hover: 'var(--ds-background-accent-yellow-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-orange-subtler)',
+    hover: 'var(--ds-background-accent-orange-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-orange-bolder)',
+    hover: 'var(--ds-background-accent-orange-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-red-subtler)',
+    hover: 'var(--ds-background-accent-red-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-red-bolder)',
+    hover: 'var(--ds-background-accent-red-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-purple-subtler)',
+    hover: 'var(--ds-background-accent-purple-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-purple-bolder)',
+    hover: 'var(--ds-background-accent-purple-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-blue-subtler)',
+    hover: 'var(--ds-background-accent-blue-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-blue-bolder)',
+    hover: 'var(--ds-background-accent-blue-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-teal-bolder)',
+    hover: 'var(--ds-background-accent-teal-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-teal-subtler)',
+    hover: 'var(--ds-background-accent-teal-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-magenta-subtler)',
+    hover: 'var(--ds-background-accent-magenta-subtler-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-magenta-bold)',
+    hover: 'var(--ds-background-accent-magenta-bold-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-magenta-bolder)',
+    hover: 'var(--ds-background-accent-magenta-bolder-hovered)',
+  },
+  {
+    base: 'var(--ds-background-accent-gray-bolder)',
+    hover: 'var(--ds-background-accent-gray-bolder-hovered)',
+  },
+  // { base: 'var(--ds-background-accent-gray-subtle)', hover: 'var(--ds-background-accent-gray-subtle-hovered)' },
+]
 
-const EditLabelView = ({ color, title, isNew,  onSave, onDelete, onCancel }) => {
-  const [selectedColor, setSelectedColor] = useState(color || colorOptions[0].base);
-  const [labelName, setLabelName] = useState(title || '');
+function EditLabelView({ color, onSave, onDelete, onCancel }) {
+  const [selectedColor, setSelectedColor] = useState(color)
+  const [labelName, setLabelName] = useState('')
 
   return (
     <EditLabelWrapper>
@@ -42,7 +114,6 @@ const EditLabelView = ({ color, title, isNew,  onSave, onDelete, onCancel }) => 
               color={color}
               onClick={() => setSelectedColor(color.base)}
               className={selectedColor === color.base ? 'selected' : ''}
-              style={{ backgroundColor: color.base }}
             />
           ))}
         </ColorGrid>
@@ -97,101 +168,105 @@ const EditLabelView = ({ color, title, isNew,  onSave, onDelete, onCancel }) => 
       </Button>
     </EditLabelWrapper>
   );
-};
+}
 
-export function LabelMenu({ task, groupId }) {
-  const [editingLabel, setEditingLabel] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const board = useSelector(state => state.boardModule.board)
+export function LabelMenu({ boardId, groupId, task, boardLabels }) {
+  const [editingLabel, setEditingLabel] = useState(null)
+  const [selectedLabelIds, setSelectedLabelIds] = useState([])
+  const [isCreatingLabel, setIsCreatingLabel] = useState(false)
 
-  const labels = board.labels || [];
-  const taskLabelIds = task?.labelIds || [];
+  if (!boardLabels) return null
 
-  const filteredLabels = labels.filter(label => label.title.toLowerCase().includes(searchQuery.toLowerCase()));
+  useEffect(() => {
+    setSelectedLabelIds(task.labelIds || [])
+  }, [task.labelIds])
 
   async function handleLabelToggle(labelId) {
-    if (!task || !board) return
-
-    const isCurrentlySelected = taskLabelIds.includes(labelId);
-    const updatedLabelIds = isCurrentlySelected
-      ? taskLabelIds.filter(id => id !== labelId)
-      : [...taskLabelIds, labelId];
-    
     try {
-      await updateTask(board._id, groupId, { ...task, labelIds: updatedLabelIds }, 'Updated task labels');
-    } catch (error) {
-      console.error('Failed to update task:', error)
+      const newLabelIds = selectedLabelIds.includes(labelId)
+        ? selectedLabelIds.filter((id) => id !== labelId)
+        : [...selectedLabelIds, labelId];
+
+      const updatedTask = {
+        ...task,
+        labelIds: newLabelIds,
+      };
+
+      await updateTask(boardId, groupId, updatedTask);
+      setSelectedLabelIds(newLabelIds);
+    } catch (err) {
+      console.error('Error updating task:', err);
     }
   }
 
-
-  async function handleSave(title, color) {
+  async function handleSave(labelName, selectedColor) {
     try {
-      const updatedBoard = { ...board };
-
-      if (editingLabel === 'new') {
-        const newLabel = {
-          id: utilService.makeId(),
-          title,
-          color,
-        };
-        updatedBoard.labels = [...(board.labels || []), newLabel];
-      } else {
-        updatedBoard.labels = board.labels.map((label) =>
-          label.id === editingLabel ? { ...label, title, color } : label,
-        );
+      if (!labelName.trim() || !selectedColor) {
+        console.error('Label name and color are required')
       }
 
-      await updateBoard(updatedBoard);
-    } catch (error) {
-      console.error('Failed to save label:', error);
-    } finally {
-      setEditingLabel(null);
+      if (isCreatingLabel) {
+        const newLabel = {
+          id: utilService.makeLabelId(),
+          title: labelName.trim(),
+          color: selectedColor,
+        }
+
+        const updateLabels = [...boardLabels, newLabel]
+        await updateBoard(boardId, { labels: updateLabels })
+      } else if (editingLabel) {
+        const updatedLabels = boardLabels.map(label => label.id === editingLabel
+          ? { ...label, title: labelName.trim(), color: selectedColor }
+          : label
+        )
+
+        await updateBoard(boardId, { labels: updatedLabels })
+      }
+      setEditingLabel(null)
+      setIsCreatingLabel(false)
+    } catch (err) {
+      console.error('Error saving label:', err)
     }
   }
 
   async function handleDelete() {
-    if (!editingLabel || editingLabel === 'new') return;
-
     try {
-      const updatedBoard = { ...board };
+      if (!editingLabel) return
 
-      updatedBoard.labels = board.labels.filter(
-        (label) => label.id !== editingLabel,
-      );
+      const updatedLabels = boardLabels.filter(label => label.id !== editingLabel)
 
-      Object.values(updatedBoard.groups).forEach((group) => {
-        group.tasksIds.forEach((taskId) => {
-          const task = updatedBoard.tasks[taskId];
-          if (task.labelIds?.includes(editingLabel)) {
-            task.labelIds = task.labelIds.filter((id) => id !== editingLabel);
-          }
-        });
-      });
+      const updatedTask = {
+        ...task,
+        labelIds: task.labelIds.filter(id => id !== editingLabel)
+      }
 
-      await updateBoard(updatedBoard);
-    } catch (error) {
-      console.error('Failed to delete label:', error);
-    } finally {
-      setEditingLabel(null);
+      await Promise.all([
+        updateBoard(boardId, { labels: updatedLabels }),
+        updateTask(boardId, groupId, updatedTask)
+      ])
+
+      setSelectedLabelIds(prev => prev.filter(id => id !== editingLabel))
+      setEditingLabel(null)
+    } catch (err) {
+      console.error('Error deleting label:', err)
     }
   }
 
-  function handleCancel() {
-    setEditingLabel(null);
+  function handleEdit(labelId) {
+    setIsCreatingLabel(false)
+    setEditingLabel(labelId)
   }
 
-  const currentLabel =
-    editingLabel && editingLabel !== 'new'
-      ? board.labels.find((label) => label.id === editingLabel)
-      : null;
-
+  function handleCancel() {
+    setEditingLabel(null)
+    setIsCreatingLabel(false)
+  }
 
   return (
     <LabelMenuWrapper>
-      {editingLabel !== null ? (
+      {(editingLabel !== null || isCreatingLabel) ? (
         <EditLabelView
-          color={currentLabel?.color || colorOptions[0].base} 
+          color={editingLabel ? boardLabels.find(label => label.id === editingLabel)?.color : ''}
           onSave={handleSave}
           onDelete={handleDelete}
           onCancel={handleCancel}
@@ -199,37 +274,28 @@ export function LabelMenu({ task, groupId }) {
       ) : (
         <>
           <div>
-            <SearchInput
-              type="text"
-              placeholder="Search labels"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <SearchInput type="text" placeholder="Search labels" />
           </div>
           <StyledDiv>
             <h3>Labels</h3>
           </StyledDiv>
-
           <List>
-            {filteredLabels.map(({ color, id, title }) => (
-              <li key={id}>
+            {boardLabels.map((label) => (
+              <li key={label.id}>
                 <LabelWrapper>
                   <StyledCheckbox
                     type="checkbox"
-                    checked={taskLabelIds.includes(id)}
-                    onChange={() => handleLabelToggle(id)}
+                    checked={selectedLabelIds.includes(label.id)}
+                    onChange={() => handleLabelToggle(label.id)}
                   />
                   <Label
-                    onClick={() => handleLabelToggle(id)}
-                    style={{ backgroundColor: color }}
-                  >
-                    {title}
-                  </Label>
-
+                    style={{ backgroundColor: label.color }}
+                    title={label.title}
+                  />
                   <Button
                     scale="ghost"
                     style={{ color: 'var(--ds-text)' }}
-                    onClick={() => setEditingLabel(id)}
+                    onClick={() => handleEdit(label.id)}
                   >
                     <Icon name="edit" size="16px" />
                   </Button>
@@ -241,18 +307,15 @@ export function LabelMenu({ task, groupId }) {
             scale="neutral"
             fullwidth="true"
             style={{ justifyContent: 'center', color: 'var(--ds-text)' }}
-            onClick={() => setEditingLabel('new')}
+            onClick={() => setIsCreatingLabel(true)}
           >
             Create a new label
           </Button>
         </>
       )}
     </LabelMenuWrapper>
-  );
+  )
 }
-
-
-
 
 const EditLabelWrapper = styled.div`
   display: flex;
@@ -275,7 +338,6 @@ const LabelWrapper = styled.div`
   width: 100%;
   margin-bottom: 5px;
   gap: 5px;
-  
 `;
 
 const SearchInput = styled.input`
@@ -328,7 +390,6 @@ const StyledCheckbox = styled.input`
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease-in-out;
-  z-index: 1;
 
   &:checked {
     background-color: #0079bf;

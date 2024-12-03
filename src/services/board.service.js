@@ -5,7 +5,6 @@ export const boardService = {
   getById,
   save,
   remove,
-  addTask,
   updateTask,
   removeTask,
 };
@@ -47,18 +46,6 @@ async function save(board) {
   } catch (err) {
     console.error('Failed to save board:', err);
     throw new Error('Failed to save board');
-  }
-}
-
-async function addTask(boardId, groupId, task) {
-  try {
-    return await httpService.post(
-      `board/${boardId}/group/${groupId}/task`,
-      task,
-    );
-  } catch (err) {
-    console.error('Failed to add task:', err);
-    throw new Error('Failed to add task');
   }
 }
 
