@@ -6,6 +6,8 @@ export function MenuRender({
   customTrigger = null,
   task,
   groupId,
+  user,
+  boardId
 }) {
   const { name, icon, text } = buttonData;
 
@@ -13,8 +15,10 @@ export function MenuRender({
     switch (name) {
       case 'label':
         return <LabelMenu context={context} task={task} groupId={groupId} />;
+      
       case 'member':
-        return <MembersMenu context={context} />;
+        return <MembersMenu context={context} user={user} boardId={boardId} />;
+      
       default:
         return <div>Menu not found</div>;
     }

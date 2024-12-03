@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MenuRender } from 'ui/Menus/MenuRender';
 
-export function NavTaskDetails({ task, groupId }) {
+export function NavTaskDetails({ task, groupId, user, boardId }) {
   const buttons = [
     { name: 'join', icon: 'join', text: 'Join' },
     { name: 'member', icon: 'member', text: 'Members' },
@@ -29,6 +29,8 @@ export function NavTaskDetails({ task, groupId }) {
           buttonData={buttonData}
           task={task}
           groupId={groupId}
+          boardId={boardId}
+          user={user}
         />
       ))}
 
