@@ -52,25 +52,25 @@ export function boardReducer(state = initialState, action) {
     case UPDATE_TASK:
       const updatedBoard = {
         ...state.board,
-        groups: state.board.groups.map(group =>
+        groups: state.board.groups.map((group) =>
           group.id === action.groupId
             ? {
-              ...group,
-              tasks: group.tasks.map(task =>
-                task.id === action.task.id
-                  ? {
-                    ...task,
-                    labelIds: action.task.labelIds,
-                    ...action.task
-                  }
-                  : task
-              )
-            }
-            : group
-        )
+                ...group,
+                tasks: group.tasks.map((task) =>
+                  task.id === action.task.id
+                    ? {
+                        ...task,
+                        labelIds: action.task.labelIds,
+                        ...action.task,
+                      }
+                    : task,
+                ),
+              }
+            : group,
+        ),
       };
 
-      return { ...state, board: updatedBoard }
+      return { ...state, board: updatedBoard };
 
     default:
       return state;

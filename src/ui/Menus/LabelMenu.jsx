@@ -1,12 +1,10 @@
-import { Button, Icon } from '@ui'
-import { Divider } from 'components/sidebar/StyledElements'
-import styled from 'styled-components'
-
-import { useEffect, useState } from 'react'
-import { updateBoard, updateTask } from 'store/board/board.actions'
-import { useSelector } from 'react-redux'
-import { utilService } from 'services/util.service'
-
+import { Button, Icon } from '@ui';
+import { Divider } from 'components/sidebar/StyledElements';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { utilService } from 'services/util.service';
+import { updateBoard, updateTask } from 'store/board/board.actions';
+import styled from 'styled-components';
 
 const colorOptions = [
   { base: '#61BD4F', hover: '#519839' },
@@ -21,31 +19,32 @@ const colorOptions = [
   { base: '#344563', hover: '#091E42' },
 ];
 
-
 export function LabelMenu({ task, groupId }) {
-  const [editingLabel, setEditingLabel] = useState(null)
-  const [creatingLabel, setCreatingLabel] = useState(false)
-  const [searchLabel, setSearchLabel] = useState('')
-  const board = useSelector(state => state.boardModule.board)
-  const [selectedColor, setSelectedColor] = useState(colorOptions[0].base)
-  const [labelName, setLabelName] = useState('')
+  const [editingLabel, setEditingLabel] = useState(null);
+  const [creatingLabel, setCreatingLabel] = useState(false);
+  const [searchLabel, setSearchLabel] = useState('');
+  const board = useSelector((state) => state.boardModule.board);
+  const [selectedColor, setSelectedColor] = useState(colorOptions[0].base);
+  const [labelName, setLabelName] = useState('');
 
-  const labels = board.labels || []
-  const taskLabelIds = task.labelIds || []
+  const labels = board.labels || [];
+  const taskLabelIds = task.labelIds || [];
 
   useEffect(() => {
     if (editingLabel) {
-      const labelToEdit = board.labels.find(label => label.id === editingLabel)
+      const labelToEdit = board.labels.find(
+        (label) => label.id === editingLabel,
+      );
 
       if (labelToEdit) {
-        setLabelName(labelToEdit.title)
-        setSelectedColor(labelToEdit.color)
+        setLabelName(labelToEdit.title);
+        setSelectedColor(labelToEdit.color);
       }
     } else {
-      setLabelName('')
-      setSelectedColor(colorOptions[0].base)
+      setLabelName('');
+      setSelectedColor(colorOptions[0].base);
     }
-  }, [editingLabel, board.labels])
+  }, [editingLabel, board.labels]);
 
   async function handleLabelToggle(labelId) {
     try {
@@ -70,19 +69,19 @@ export function LabelMenu({ task, groupId }) {
   }
 
   async function handleUpdateLabel(labelId, newTitle, newColor) {
-   try {
-     const updatedBoard = { ...board };
-     updatedBoard.labels = board.labels.map((label) =>
-       label.id === labelId
-         ? { ...label, title: newTitle, color: newColor }
-         : label,
-     );
+    try {
+      const updatedBoard = { ...board };
+      updatedBoard.labels = board.labels.map((label) =>
+        label.id === labelId
+          ? { ...label, title: newTitle, color: newColor }
+          : label,
+      );
 
-     await updateBoard(updatedBoard);
-     setEditingLabel(null);
-   } catch (err) {
-     console.error('Error updating label:', err);
-   }
+      await updateBoard(updatedBoard);
+      setEditingLabel(null);
+    } catch (err) {
+      console.error('Error updating label:', err);
+    }
   }
 
   async function handleCreateLabel(title, color) {
@@ -102,7 +101,7 @@ export function LabelMenu({ task, groupId }) {
         ...task,
         labelIds: [...(task.labelIds || []), newLabel.id],
       };
-      setCreatingLabel(false)
+      setCreatingLabel(false);
       await updateTask(board._id, groupId, updatedTask);
     } catch (err) {
       console.error('Error creating label:', err);
@@ -111,31 +110,31 @@ export function LabelMenu({ task, groupId }) {
 
   async function handleDelete(labelId) {
     try {
-      const updatedBoard = { ...board }
-      updatedBoard.labels = board.labels.filter(label => label.id !== labelId)
+      const updatedBoard = { ...board };
+      updatedBoard.labels = board.labels.filter(
+        (label) => label.id !== labelId,
+      );
 
-      await updateBoard(updatedBoard)
-      setEditingLabel(null)
+      await updateBoard(updatedBoard);
+      setEditingLabel(null);
     } catch (err) {
-      console.error('Could not remove label', err)
+      console.error('Could not remove label', err);
     }
   }
-
 
   const currentLabel =
     editingLabel && editingLabel !== 'new'
       ? board.labels.find((label) => label.id === editingLabel)
       : null;
 
-  function ExpandedLabelMenu({ onCancel}) {
-
+  function ExpandedLabelMenu({ onCancel }) {
     function handleSaveLabel() {
       if (editingLabel) {
-          handleUpdateLabel(editingLabel, labelName, selectedColor)
+        handleUpdateLabel(editingLabel, labelName, selectedColor);
       } else {
-        handleCreateLabel(labelName, selectedColor)
-        }
+        handleCreateLabel(labelName, selectedColor);
       }
+    }
 
     return (
       <EditLabelWrapper>
@@ -216,7 +215,6 @@ export function LabelMenu({ task, groupId }) {
     );
   }
 
-
   return (
     <LabelMenuWrapper>
       {editingLabel || creatingLabel ? (
@@ -224,10 +222,10 @@ export function LabelMenu({ task, groupId }) {
           color={editingLabel ? currentLabel?.color : colorOptions[0].base}
           title={editingLabel ? currentLabel?.title : ''}
           onCancel={() => {
-            setEditingLabel(null)
-            setCreatingLabel(false)
-            setLabelName('')
-            setSelectedColor(colorOptions[0].base)
+            setEditingLabel(null);
+            setCreatingLabel(false);
+            setLabelName('');
+            setSelectedColor(colorOptions[0].base);
           }}
         />
       ) : (
@@ -283,7 +281,7 @@ export function LabelMenu({ task, groupId }) {
       )}
     </LabelMenuWrapper>
   );
-};
+}
 
 const EditLabelWrapper = styled.div`
   display: flex;

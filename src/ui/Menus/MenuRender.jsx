@@ -1,16 +1,22 @@
 import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
 
-export function MenuRender({ buttonData, context = 'default', customTrigger = null, task, groupId }) {
-  const { name, icon, text } = buttonData
+export function MenuRender({
+  buttonData,
+  context = 'default',
+  customTrigger = null,
+  task,
+  groupId,
+}) {
+  const { name, icon, text } = buttonData;
 
   function renderMenuContent() {
     switch (name) {
       case 'label':
-        return <LabelMenu context={context} task={task} groupId={groupId} />
+        return <LabelMenu context={context} task={task} groupId={groupId} />;
       case 'member':
-        return <MembersMenu context={context} />
+        return <MembersMenu context={context} />;
       default:
-        return <div>Menu not found</div>
+        return <div>Menu not found</div>;
     }
   }
 
@@ -21,7 +27,7 @@ export function MenuRender({ buttonData, context = 'default', customTrigger = nu
     </Button>
   );
 
-  const trigger = customTrigger || defaultTrigger
+  const trigger = customTrigger || defaultTrigger;
 
   return (
     <div className="btn-container" style={{ position: 'relative' }}>

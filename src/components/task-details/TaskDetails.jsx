@@ -1,14 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-
-import { updateTask } from '../../store/board/board.actions';
-
 import { Button, Icon } from '@ui';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MenuRender } from 'ui/Menus/MenuRender';
+import { updateTask } from '../../store/board/board.actions';
 import { NavTaskDetails } from './components/NavTaskDetails';
 
 export function TaskDetails({ task, groupId }) {
-  const board = useSelector((state) => state.boardModule.board)
+  const board = useSelector((state) => state.boardModule.board);
 
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description || '');
