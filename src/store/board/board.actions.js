@@ -13,10 +13,13 @@ import {
 export async function loadBoards() {
   try {
     const boards = await boardService.query();
+
     console.log('Boards from DB:', boards);
+
     store.dispatch(getCmdSetBoards(boards));
   } catch (err) {
     console.error('Cannot load boards', err);
+
     throw err;
   }
 }
@@ -24,10 +27,13 @@ export async function loadBoards() {
 export async function loadBoard(boardId) {
   try {
     const board = await boardService.getById(boardId);
+
     console.log('Board from DB:', board);
+
     store.dispatch(getCmdSetBoard(board));
   } catch (err) {
     console.log('Cannot load board', err);
+
     throw err;
   }
 }
@@ -35,6 +41,7 @@ export async function loadBoard(boardId) {
 export async function removeBoard(boardId) {
   try {
     await boardService.remove(boardId);
+
     store.dispatch(getCmdRemoveBoard(boardId));
   } catch (err) {
     console.log('Cannot remove board', err);
@@ -45,11 +52,13 @@ export async function removeBoard(boardId) {
 export async function addBoard(board) {
   try {
     const savedBoard = await boardService.save(board);
-    console.log('Added Board', savedBoard);
+
     store.dispatch(getCmdAddBoard(savedBoard));
+
     return savedBoard;
   } catch (err) {
     console.log('Cannot add board', err);
+
     throw err;
   }
 }
@@ -57,25 +66,28 @@ export async function addBoard(board) {
 export async function updateBoard(updatedBoard) {
   try {
     const savedBoard = await boardService.save(updatedBoard);
+
     store.dispatch(getCmdUpdateBoard(savedBoard));
+
     return savedBoard;
   } catch (err) {
     console.log('Cannot save board', err);
+
     throw err;
   }
 }
 
-export async function addBoardMsg(boardId, txt) {
-  try {
-    const msg = await boardService.addBoardMsg(boardId, txt);
-    console.log('Added Board message', msg);
-    store.dispatch(getCmdAddBoardMsg(msg));
-    return msg;
-  } catch (err) {
-    console.log('Cannot add board msg', err);
-    throw err;
-  }
-}
+// export async function addBoardMsg(boardId, txt) {
+//   try {
+//     const msg = await boardService.addBoardMsg(boardId, txt);
+//
+//     store.dispatch(getCmdAddBoardMsg(msg));
+//     return msg;
+//   } catch (err) {
+//     console.log('Cannot add board msg', err);
+//     throw err;
+//   }
+// }
 
 export async function updateTask(boardId, groupId, task) {
   try {
