@@ -1,11 +1,7 @@
 import { groupService } from '../../services/group.service.js';
+import { UPDATE_BOARD } from '../board/board.reducer.js';
 import { store } from '../store.js';
-import {
-  ADD_GROUP,
-  REMOVE_GROUP,
-  SET_GROUPS,
-  UPDATE_GROUP,
-} from './group.reducer';
+import { REMOVE_GROUP, SET_GROUPS, UPDATE_GROUP } from './group.reducer';
 
 export async function loadGroups() {
   try {
@@ -17,10 +13,11 @@ export async function loadGroups() {
   }
 }
 
-export async function addGroup(group) {
+export async function addGroup(boardId, group) {
   try {
-    const savedGroup = await groupService.save(group);
-    store.dispatch({ type: ADD_GROUP, group: savedGroup });
+    const savedBoard = await groupService.save(boardId, group);
+
+    store.dispatch({ type: UPDATE_BOARD, board: savedBoard });
   } catch (err) {
     console.error('GroupActions: err in addGroup', err);
     throw err;
