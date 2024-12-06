@@ -6,6 +6,8 @@ export function MenuRender({
   customTrigger = null,
   task,
   groupId,
+  user,
+  boardId,
 }) {
   const { name, icon, text } = buttonData;
 
@@ -13,8 +15,10 @@ export function MenuRender({
     switch (name) {
       case 'label':
         return <LabelMenu context={context} task={task} groupId={groupId} />;
+
       case 'member':
-        return <MembersMenu context={context} />;
+        return <MembersMenu context={context} user={user} boardId={boardId} />;
+
       default:
         return <div>Menu not found</div>;
     }
@@ -23,7 +27,8 @@ export function MenuRender({
   const defaultTrigger = (
     <Button className="btn-nav" scale="neutral">
       <Icon name={icon} size="18px" style={{ color: 'var(--ds-text)' }} />
-      {context !== 'plusIcon' && <span>{text}</span>}
+
+      {context !== 'plusIcon' ? <span>{text}</span> : null}
     </Button>
   );
 
