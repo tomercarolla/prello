@@ -247,7 +247,9 @@
         }
 
         .task-badges {
-
+          display: flex;
+          align-items: center;
+          gap: 6px;
         }
 
         .edit-btn {

@@ -4,16 +4,13 @@ import { useSelector } from 'react-redux';
 import { MenuRender } from 'ui/Menus/MenuRender';
 import { updateTask } from '../../store/board/board.actions';
 import { NavTaskDetails } from './components/NavTaskDetails';
+import { TaskDescription } from './components/TaskDescription.jsx';
 
 export function TaskDetails({ task, groupId }) {
   const board = useSelector((state) => state.boardModule.board);
-
   const [title, setTitle] = useState(task.title);
-  const [description, setDescription] = useState(task.description || '');
   const [showTitleInput, setShowTitleInput] = useState(false);
-  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const inputRef = useRef(null);
-
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
   useEffect(() => {
@@ -41,25 +38,11 @@ export function TaskDetails({ task, groupId }) {
     }
   }
 
-  async function handleDescriptionUpdate() {
-    try {
-      await updateTask(
-        board._id,
-        groupId,
-        { ...task, description },
-        'Updated task description',
-      );
-    } catch (error) {
-      console.error('Failed to update task:', error);
-    }
-    setShowDescriptionInput(false);
-  }
-
   const taskLabels = task.labelIds
     ? task.labelIds
         .map((labelId) => board.labels.find((label) => label.id === labelId))
         .filter(Boolean)
-    : [];
+    : null;
 
   return (
     <div className="task-details">
@@ -85,6 +68,7 @@ export function TaskDetails({ task, groupId }) {
               </div>
             )}
           </div>
+
           <div className="group-container">
             <p>
               in list:
@@ -121,9 +105,10 @@ export function TaskDetails({ task, groupId }) {
 
             <div className="action">
               <span>Labels</span>
+
               <div>
                 <span>
-                  {taskLabels.length > 0 &&
+                  {taskLabels &&
                     taskLabels.map((label) => (
                       <MenuRender
                         key={label.id}
@@ -149,6 +134,7 @@ export function TaskDetails({ task, groupId }) {
                       />
                     ))}
                 </span>
+
                 <MenuRender
                   buttonData={{
                     name: 'label',
@@ -173,32 +159,7 @@ export function TaskDetails({ task, groupId }) {
             </div>
           </div>
 
-          <div className="description-container">
-            <div
-              className="action-title"
-              style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-            >
-              <Icon name="description" size="22px" />
-              <h4>Description</h4>
-            </div>
-            {showDescriptionInput ? (
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                onBlur={handleDescriptionUpdate}
-              />
-            ) : (
-              // size="lg"
-              <Button
-                scale="neutral"
-                fullwidth="true"
-                className="btn-description"
-                onClick={() => setShowDescriptionInput(true)}
-              >
-                {description || 'Add more detailed description...'}
-              </Button>
-            )}
-          </div>
+          <TaskDescription board={board} task={task} groupId={groupId} />
 
           <div className="activity-container">
             <div className="action-title">
@@ -206,7 +167,8 @@ export function TaskDetails({ task, groupId }) {
                 <Icon name="activity" size="22px" />
                 <h4>Activity</h4>
               </div>
-              <Button scale="neutral" className="btn-activity">
+
+              <Button scale="neutral" className="btn-activity" radius="3px">
                 Hide details
               </Button>
             </div>
@@ -214,6 +176,7 @@ export function TaskDetails({ task, groupId }) {
             <div className="activities">
               <div className="activity">
                 <div className="avatar">TS</div>
+
                 <input
                   className="input-activity"
                   type="text"
@@ -223,6 +186,7 @@ export function TaskDetails({ task, groupId }) {
 
               <div className="activity">
                 <div className="avatar">YY</div>
+
                 <span>
                   <span>Yehonatan Yeshayahu</span>
                   Joined this card
