@@ -12,9 +12,12 @@
 
 // Views
 @import "app";
+
 // Pages
 @import "pages/homepage";
 @import "pages/workspacepage";
+@import "pages/auth";
+
 // Components
 @import "components/board";
 @import "components/header";
