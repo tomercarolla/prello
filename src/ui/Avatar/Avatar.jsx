@@ -3,12 +3,7 @@ import styled from 'styled-components';
 function getUserInitials(name) {
   if (!name) return '';
 
-  return name
-    .split(' ')
-    .map((part) => part[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
+  return name.charAt(0).toUpperCase();
 }
 
 export function Avatar({

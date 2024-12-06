@@ -4,7 +4,7 @@ import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/ad
 import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
 import { Button, Icon } from '@ui';
 import _ from 'lodash';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -13,6 +13,7 @@ import { loadBoard, updateBoard } from '../../store/board/board.actions.js';
 import { BoardProvider } from './board-context.jsx';
 import { BoardHeader } from './components/BoardHeader.jsx';
 import { Group } from './components/Group.jsx';
+import { NewGroup } from './components/NewGroup.jsx';
 
 export function Board() {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ export function Board() {
   const board = useSelector((state) => state.boardModule.board);
   const listRef = useRef();
   const { event } = useDraggable(listRef);
+  const [isAddingGroup, setIsAddingGroup] = useState(false);
 
   useEffect(() => {
     loadBoard(boardId);
@@ -33,12 +35,19 @@ export function Board() {
       itemIndexInFinishGroup,
     }) => {
       const updatedBoard = _.cloneDeep(board);
-      const startGroupData = updatedBoard.groups[sourceGroupId];
-      const destinationGroupData = updatedBoard.groups[destinationGroupId];
-      const taskToMove = startGroupData.tasksIds[taskIndexInStartGroup];
+      const startGroupData = updatedBoard.groups.find(
+        (group) => group.id === sourceGroupId,
+      );
+      const destinationGroupData = updatedBoard.groups.find(
+        (group) => group.id === destinationGroupId,
+      );
 
-      startGroupData.tasksIds.splice(taskIndexInStartGroup, 1);
-      destinationGroupData.tasksIds.splice(
+      const taskToMove = startGroupData.tasks.splice(
+        taskIndexInStartGroup,
+        1,
+      )[0];
+
+      destinationGroupData.tasks.splice(
         itemIndexInFinishGroup ?? 0,
         0,
         taskToMove,
@@ -52,9 +61,12 @@ export function Board() {
   const reorderTask = useCallback(
     ({ groupId, startIndex, finishIndex }) => {
       const updatedBoard = JSON.parse(JSON.stringify(board)); // Deep clone
-      const groupData = updatedBoard.groups[groupId];
-      groupData.tasksIds = reorder({
-        list: groupData.tasksIds,
+      const groupData = updatedBoard.groups.find(
+        (group) => group.id === groupId,
+      );
+
+      groupData.tasks = reorder({
+        list: groupData.tasks,
         startIndex,
         finishIndex,
       });
@@ -67,8 +79,8 @@ export function Board() {
   const reorderGroup = useCallback(
     ({ startIndex, finishIndex }) => {
       const updatedBoard = _.cloneDeep(board);
-      updatedBoard.orderedGroupsIds = reorder({
-        list: updatedBoard.orderedGroupsIds,
+      updatedBoard.groups = reorder({
+        list: updatedBoard.groups,
         startIndex,
         finishIndex,
       });
@@ -88,15 +100,15 @@ export function Board() {
         }
 
         if (source.data.type === 'group') {
-          const startIndex = board.orderedGroupsIds.findIndex(
-            (columnId) => columnId === source.data.groupId,
+          const startIndex = board.groups.findIndex(
+            (group) => group.id === source.data.groupId,
           );
 
           const target = location.current.dropTargets[0];
           const sourceGroupId = target.data.groupId;
 
-          const indexOfTarget = board.orderedGroupsIds.findIndex(
-            (columnId) => columnId === target.data.groupId,
+          const indexOfTarget = board.groups.findIndex(
+            (group) => group.id === target.data.groupId,
           );
 
           const closestEdgeOfTarget = extractClosestEdge(target.data);
@@ -122,10 +134,12 @@ export function Board() {
 
           const sourceGroupId = sourceGroupRecord.data.groupId;
 
-          const sourceGroupData = board.groups[sourceGroupId];
+          const sourceGroupData = board.groups.find(
+            (group) => group.id === sourceGroupId,
+          );
 
-          const draggedTaskIndex = sourceGroupData.tasksIds.findIndex(
-            (task) => task === draggedTaskId,
+          const draggedTaskIndex = sourceGroupData.tasks.findIndex(
+            (task) => task.id === draggedTaskId,
           );
 
           if (location.current.dropTargets.length === 1) {
@@ -136,7 +150,7 @@ export function Board() {
             if (sourceGroupId === destinationGroupId) {
               const destinationIndex = getReorderDestinationIndex({
                 startIndex: draggedTaskIndex,
-                indexOfTarget: sourceGroupData.tasksIds.length - 1,
+                indexOfTarget: sourceGroupData.tasks.length - 1,
                 closestEdgeOfTarget: null,
                 axis: 'vertical',
               });
@@ -162,11 +176,11 @@ export function Board() {
               location.current.dropTargets;
 
             const destinationGroupId = destinationGroupRecord.data.groupId;
-
-            const destinationGroup = board.groups[destinationGroupId];
-
-            const indexOfTarget = destinationGroup.tasksIds.findIndex(
-              (task) => task === destinationTaskRecord.data.taskId,
+            const destinationGroup = board.groups.find(
+              (group) => group.id === destinationGroupId,
+            );
+            const indexOfTarget = destinationGroup.tasks.findIndex(
+              (task) => task.id === destinationTaskRecord.data.taskId,
             );
 
             const closestEdgeOfTarget = extractClosestEdge(
@@ -215,18 +229,34 @@ export function Board() {
         <div className="canvas">
           <div ref={listRef} className="list" {...event}>
             {board &&
-              board.groups.map((group) => {
+              board?.groups?.map((group, idx) => {
                 return (
-                  <Group key={group.id} group={group} tasks={group.tasks} />
+                  <Group
+                    key={group.id || idx}
+                    group={group}
+                    tasks={group.tasks || []}
+                  />
                 );
               })}
 
-            <div className="last-column">
-              <Button scale="ghost" className="add-list-btn">
-                <Icon name="plus" size="16px" />
-                <span>{t('ADD_ANOTHER_LIST')}</span>
-              </Button>
-            </div>
+            {isAddingGroup ? (
+              <NewGroup
+                boardId={boardId}
+                isAddingGroup={isAddingGroup}
+                setIsAddingGroup={setIsAddingGroup}
+              />
+            ) : (
+              <div className="last-column">
+                <Button
+                  scale="ghost"
+                  className="add-list-btn"
+                  onClick={() => setIsAddingGroup(true)}
+                >
+                  <Icon name="plus" size="16px" />
+                  <span>{t('ADD_ANOTHER_LIST')}</span>
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>

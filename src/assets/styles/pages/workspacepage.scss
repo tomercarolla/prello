@@ -7,17 +7,9 @@
   border-top: 1px solid #5a5a5a;
   height: 100vh;
 
-  .navbar {
-    position: sticky;
-    width:256px;
-    top:40px;
-    padding: 0 16px;
-    margin: 40px 0 0;
-    height: 100vh;
-  }
 
   .boards-container {
-    margin: 20px 16px 0 16px;
+    margin: 20px 0 16px;
     max-width: 825px;
     min-width: 288px;
     width: 100%;

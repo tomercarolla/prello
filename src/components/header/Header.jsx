@@ -6,7 +6,7 @@ import TrelloGif from './assets/TrelloGif.gif';
 import TrelloIcon from './assets/TrelloIcon.png';
 
 export function Header() {
-  const loggedInUser = useSelector((state) => state.userModule.currentUser);
+  const user = useSelector((state) => state.userModule.user);
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -37,7 +37,7 @@ export function Header() {
         <Icon name="bell" className="pointer" size="24px" />
         <Icon name="questionMark" className="pointer" size="22px" />
 
-        <Avatar data={loggedInUser} />
+        <Avatar data={user} />
 
         <div></div>
       </div>

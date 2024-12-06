@@ -1,4 +1,5 @@
 import { boardService } from './board.service.js';
+// import { boardService } from './board.service.local.js';
 import { utilService } from './util.service';
 
 export const groupService = {
@@ -20,15 +21,15 @@ async function getById(boardId, groupId) {
 
 async function save(boardId, group) {
   const board = await boardService.getById(boardId);
-  if (group.id) {
-    const key = Object.keys(board.groups).find(
-      (groupKey) => board.groups[groupKey].id === group.id,
-    );
 
-    board.groups[key] = group;
-    // board.groups.splice(idx, 1, group);
+  if (group.id) {
+    const idx = board.groups.findIndex((gp) => gp.id === group.id);
+
+    // board.groups[key] = group;
+    board.groups.splice(idx, 1, group);
   } else {
     group.id = utilService.makeId();
+
     board.groups.push(group);
   }
 
