@@ -1,4 +1,4 @@
-import { Button, Icon } from '@ui';
+import { Avatar, Button, Icon } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MenuRender } from 'ui/Menus/MenuRender';
@@ -7,13 +7,12 @@ import { NavTaskDetails } from './components/NavTaskDetails';
 
 export function TaskDetails({ task, groupId }) {
   const board = useSelector((state) => state.boardModule.board);
-
+  const user = useSelector((state) => state.userModule.user);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description || '');
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const inputRef = useRef(null);
-
   const groupTitle = board.groups[groupId]?.title || 'Unknown List';
 
   useEffect(() => {
@@ -107,7 +106,9 @@ export function TaskDetails({ task, groupId }) {
             <div className="action">
               <span>Members</span>
               <div>
-                <div className="avatar">TS</div>
+                <div className="avatar">
+                  <Avatar data={user} />
+                </div>
                 <MenuRender
                   buttonData={{
                     name: 'member',
@@ -115,6 +116,8 @@ export function TaskDetails({ task, groupId }) {
                     text: 'Add Member',
                   }}
                   context="plusIcon"
+                  user={user}
+                  boardId={board._id}
                 />
               </div>
             </div>
@@ -213,7 +216,9 @@ export function TaskDetails({ task, groupId }) {
 
             <div className="activities">
               <div className="activity">
-                <div className="avatar">TS</div>
+                <div className="avatar">
+                  <Avatar data={user} />
+                </div>
                 <input
                   className="input-activity"
                   type="text"
@@ -232,7 +237,12 @@ export function TaskDetails({ task, groupId }) {
           </div>
         </div>
 
-        <NavTaskDetails task={task} groupId={groupId} />
+        <NavTaskDetails
+          task={task}
+          groupId={groupId}
+          user={user}
+          boardId={board._id}
+        />
       </section>
     </div>
   );
