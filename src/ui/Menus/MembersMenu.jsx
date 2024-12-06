@@ -3,36 +3,36 @@ import { useEffect, useState } from 'react';
 import { boardService } from 'services/board.service';
 import styled from 'styled-components';
 
-
 export function MembersMenu({ context = 'default', boardId }) {
-  const [board, setBoard] = useState(null)
+  const [board, setBoard] = useState(null);
 
   useEffect(() => {
-    loadBoard()
-  }, [boardId])
+    loadBoard();
+  }, [boardId]);
 
   async function loadBoard() {
     try {
-      const loadedBoard = await boardService.getById(boardId)
-      setBoard(loadedBoard)
+      const loadedBoard = await boardService.getById(boardId);
+      setBoard(loadedBoard);
     } catch (err) {
-      console.error('Failed to load board:', err)
+      console.error('Failed to load board:', err);
     }
   }
 
-  if (!board) return null
+  if (!board) return null;
 
   return (
     <MembersMenuWrapper context={context}>
-      <div>
-        <SearchInput type="text" placeholder="Search members" />
-      </div>
+      <SearchInput type="text" placeholder="Search members" />
+
       <StyledDiv>
         <h3>{context === 'plusIcon' ? 'Add member' : 'Board members'}</h3>
       </StyledDiv>
-      {board.members.map(member => (
+
+      {board.members.map((member) => (
         <MemberDiv key={member._id}>
           <Avatar data={member} />
+
           <div>{member.fullname}</div>
         </MemberDiv>
       ))}
@@ -62,26 +62,24 @@ const SearchInput = styled.input`
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 16px;
 
   h3 {
-    margin-top: 16px;
     color: var(--ds-text-subtle);
     font-size: 12px;
     font-weight: 600;
   }
-`
-
-const MemberDiv = styled.div`
-    display: flex;
-    width: 100%;
-    padding: 10px 5px;
-    border-radius: 3px;
-    gap:10px;
-
-    &:hover {
-      background-color: var(--ds-background-neutral);
-      cursor:pointer;
-    }
-  }
 `;
 
+const MemberDiv = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: 3px;
+  gap: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--ds-background-neutral);
+  }
+`;
