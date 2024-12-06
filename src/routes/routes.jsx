@@ -4,10 +4,10 @@ import { AuthRoute } from '../auth.utls';
 import { Board } from '../components/board/Board';
 import { TaskDetails } from '../components/task-details/TaskDetails.jsx';
 import { MainLayout } from '../layouts/MainLayout';
+import { Login } from '../pages/auth/login/Login.jsx';
+import { Signup } from '../pages/auth/signup/Signup.jsx';
 import { HomePage } from '../pages/homepage/HomePage';
-import { LoginPage } from '../pages/LoginSignupPage/LoginPage';
-import { SignupPage } from '../pages/LoginSignupPage/SignupPage';
-import { WorkspacePage } from '../pages/WorkspacePage';
+import { Workspace } from '../pages/workspace/Workspace.jsx';
 import { store } from '../store/store';
 
 const routes = [
@@ -17,15 +17,15 @@ const routes = [
   },
   {
     path: '/login',
-    component: LoginPage,
+    component: Login,
   },
   {
     path: '/signup',
-    component: SignupPage,
+    component: Signup,
   },
   {
     path: '/workspace',
-    component: WorkspacePage,
+    component: Workspace,
     protected: true,
   },
   {
@@ -48,6 +48,7 @@ function renderRoutes(routes) {
     const Layout = route.layout;
 
     let element = <Component />;
+
     if (Layout) {
       element = <Layout>{element}</Layout>;
     }

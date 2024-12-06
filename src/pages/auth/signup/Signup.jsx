@@ -1,60 +1,68 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { signup } from '../../store/user/user.actions.js'
+import { Button } from '@ui';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { signup } from '../../../store/user/user.actions.js';
+import LeftImage from '../assets/trello-signup-left-image.svg';
+import RightImage from '../assets/trello-signup-right-image.svg';
 
-import leftImage from './assets/trello-signup-left-image.svg'
-import rightImage from './assets/trello-signup-right-image.svg'
-
-export function SignupPage() {
-  const navigate = useNavigate()
+export function Signup() {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
-    fullname: ''
-  })
-
-  const [error, setError] = useState('')
+    fullname: '',
+  });
+  const [error, setError] = useState('');
 
   async function handleSubmit(ev) {
-    ev.preventDefault()
-    setError('')
+    ev.preventDefault();
+
+    setError('');
 
     try {
-      if (!credentials.username || !credentials.password || !credentials.fullname) {
-        setError('All fields are required')
-        return
+      if (
+        !credentials.username ||
+        !credentials.password ||
+        !credentials.fullname
+      ) {
+        setError('All fields are required');
+
+        return;
       }
 
-      await signup(credentials)
-      navigate('/workspace')
+      await signup(credentials);
+
+      navigate('/workspace');
     } catch (err) {
       if (err.response?.status === 400) {
         if (err.response.data.includes('already exists')) {
-          setError('Username already exists')
+          setError('Username already exists');
         } else {
-          setError(err.response.data || 'Error signing up')
-        } 
+          setError(err.response.data || 'Error signing up');
+        }
       } else {
-        setError('An error occurred duting signup. Please try again')
+        setError('An error occurred duting signup. Please try again');
       }
-      console.error('Error signing up:', err)
+
+      console.error('Error signing up:', err);
     }
   }
 
   function handleChange(ev) {
-    const { name, value } = ev.target
+    const { name, value } = ev.target;
+
     setCredentials((prevCreds) => ({
       ...prevCreds,
       [name]: value,
-    }))
-    
-    if (error) setError('')
+    }));
+
+    if (error) setError('');
   }
 
   return (
-    <div className="signup-page">
-      <form onSubmit={handleSubmit} className="signup-form">
-        <div className='header'>
+    <div className="auth-page">
+      <form onSubmit={handleSubmit} className="auth-form">
+        <div className="header">
           <h2>Welcome to Prello</h2>
           <span>Sign up now!</span>
         </div>
@@ -100,18 +108,21 @@ export function SignupPage() {
           />
         </div>
 
-        <button>Signup</button>
+        <Button className="submit-btn" radius="3px" fullwidth="true">
+          Signup
+        </Button>
 
-        <div className='login-link'>
-          Already have an account?{" "}
-          <span onClick={() => navigate('/login')}>Login here</span>
+        <div className="link">
+          <span>Already have an account?</span>
+
+          <Link to="/login">Login here</Link>
         </div>
       </form>
 
-      <div className='images-container'>
-        <img src={leftImage} alt='left-image' />
-        <img src={rightImage} alt='right-image' />
+      <div className="images-container">
+        <img src={LeftImage} alt="left-image" />
+        <img src={RightImage} alt="right-image" />
       </div>
     </div>
-  )
+  );
 }
