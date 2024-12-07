@@ -107,31 +107,31 @@ export function Sidebar() {
           <Divider />
 
           <NavLinks />
-
+{/* 
           <WorkspaceContainer
             title="Workspace views"
             menuType="workspace"
             getMenuContent={getMenuContent}
-          />
+          /> */}
 
-          <BoardList
+          {/* <BoardList
             items={listItems}
             toggleMenu={toggleMenu}
             getMenuContent={getMenuContent}
-          />
+          /> */}
 
-          <WorkspaceContainer
+          {/* <WorkspaceContainer
             title="Your Boards"
             menuType="board"
             getMenuContent={getMenuContent}
             onToggleMenu={toggleMenu}
-          />
+          /> */}
 
-          <BoardList
+          {/* <BoardList
             items={[{ name: "Yonatan's Board", icon: 'board' }]}
             toggleMenu={toggleMenu}
             getMenuContent={getMenuContent}
-          />
+          /> */}
         </>
       )}
     </nav>

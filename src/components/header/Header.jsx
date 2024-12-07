@@ -1,5 +1,6 @@
 import { Avatar, Button, Icon } from '@ui';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import TrelloGif from './assets/TrelloGif.gif';
@@ -14,7 +15,8 @@ export function Header() {
     <header className="header-container">
       <div className="header-left-side">
         <Icon name="applicationSwitcher" size="20px" className="pointer" />
-        <div
+        <Link
+         to='/workspace'
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -23,7 +25,7 @@ export function Header() {
           ) : (
             <img className="trello-logo-gif" src={TrelloIcon} alt="" />
           )}
-        </div>
+        </Link>
         <Button radius="4px" scale="brand">
           Create
         </Button>
