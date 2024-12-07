@@ -1,9 +1,9 @@
+import { Joinbutton } from '../components/JoinButton';
 import styled from 'styled-components';
 import { MenuRender } from 'ui/Menus/MenuRender';
 
 export function NavTaskDetails({ task, groupId, user, boardId }) {
   const buttons = [
-    { name: 'join', icon: 'join', text: 'Join' },
     { name: 'member', icon: 'member', text: 'Members' },
     { name: 'label', icon: 'label', text: 'Labels' },
     { name: 'checklist', icon: 'checklist', text: 'Checklist' },
@@ -23,6 +23,13 @@ export function NavTaskDetails({ task, groupId, user, boardId }) {
 
   return (
     <nav className="nav-task-body">
+      <div className='join-button'>
+        <Joinbutton
+          task={task}
+          groupId={groupId}
+        />
+      </div>
+
       {buttons.map((buttonData) => (
         <MenuRender
           key={buttonData.name}
@@ -53,3 +60,5 @@ const CustomLabel = styled.div`
   margin-inline-start: 7px;
   margin-block: 10px 4px;
 `;
+
+

@@ -1,24 +1,19 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { utilService } from 'services/util.service'
 
-function getUserInitials(name) {
-  if (!name) return ''
-  return name.charAt(0).toUpperCase()
-}
+export function Avatar({ data, size = '30px', fontSize = '14px' }) {
+  const name = data?.fullname || data?.username || ''
+  const imageUrl = data?.imgUrl 
 
-export function Avatar({
-  data,
-  size = '24px',
-  fontSize = '12px',
-  bgColor = 'gray',
-}) {
-  const name = data?.fullname || data?.username || '';
-  const imageUrl = data?.imgUrl || data?.avatarUrl || '';
+  function getUserInitials(name) {
+      return name ? name.charAt(0).toUpperCase() : ''
+  }
 
-  const initials = getUserInitials(name);
+  const initials = getUserInitials(name)
+  const bgColor = utilService.getColorByUsername(name)
 
   return (
     <AvatarWrapper
-      $imageUrl={imageUrl}
       $size={size}
       $fontSize={fontSize}
       $bgColor={bgColor}
@@ -26,9 +21,13 @@ export function Avatar({
       role="img"
       aria-label={name || 'User avatar'}
     >
-      {imageUrl ? <img src={imageUrl} alt={name || 'User avatar'} /> : initials}
+      {imageUrl ? (
+        <img src={imageUrl} alt={'name'} />
+      ) : (
+        <span>{initials}</span>
+      )}
     </AvatarWrapper>
-  );
+  )
 }
 
 const AvatarWrapper = styled.div`
@@ -41,7 +40,7 @@ const AvatarWrapper = styled.div`
   background-color: ${({ $bgColor }) => $bgColor};
   color: white;
   font-size: ${({ $fontSize }) => $fontSize};
-  font-weight: bold;
+  font-weight: light;
   text-transform: uppercase;
   cursor: pointer;
   overflow: hidden;

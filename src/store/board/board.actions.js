@@ -13,7 +13,6 @@ import {
 export async function loadBoards() {
   try {
     const boards = await boardService.query();
-    console.log('Boards from DB:', boards);
     store.dispatch(getCmdSetBoards(boards));
   } catch (err) {
     console.error('Cannot load boards', err);
@@ -77,20 +76,21 @@ export async function addBoardMsg(boardId, txt) {
   }
 }
 
-export async function updateTask(boardId, groupId, task) {
+export async function updateTask(boardId, groupId, task, activity) {
   try {
-    const savedTask = await boardService.updateTask(boardId, groupId, task);
+    const savedTask = await boardService.updateTask(boardId, groupId, task, activity)
 
     store.dispatch({
       type: UPDATE_TASK,
       groupId,
       task: savedTask,
+      activity,
     });
 
     return savedTask;
   } catch (err) {
-    console.log('Cannot update task', err);
-    throw err;
+    console.log('Cannot update task', err)
+    throw err
   }
 }
 

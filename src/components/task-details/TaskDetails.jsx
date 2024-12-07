@@ -1,28 +1,37 @@
-import { Avatar, Button, Icon } from '@ui';
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { MenuRender } from 'ui/Menus/MenuRender';
-import { updateTask } from '../../store/board/board.actions';
-import { NavTaskDetails } from './components/NavTaskDetails';
+import { Avatar, Button, Icon } from '@ui'
+import { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { MenuRender } from 'ui/Menus/MenuRender'
+import { updateTask } from '../../store/board/board.actions'
+import { NavTaskDetails } from './components/NavTaskDetails'
 
-export function TaskDetails({ task, groupId }) {
-  const board = useSelector((state) => state.boardModule.board);
-  const user = useSelector((state) => state.userModule.user);
+export function TaskDetails({ task: initialTask, groupId }) {
+  const board = useSelector((state) => state.boardModule.board) 
+  const user = useSelector((state) => state.userModule.user)
+  const currentGroup = board.groups.find((g) => g.id === groupId);
+  const currentTask = currentGroup?.tasks.find((t) => t.id === initialTask.id) || initialTask
 
-  const [title, setTitle] = useState(task.title);
-  const [description, setDescription] = useState(task.description || '');
-  const [showTitleInput, setShowTitleInput] = useState(false);
-  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
-  const inputRef = useRef(null);
+  const [title, setTitle] = useState(currentTask.title)
+  const [description, setDescription] = useState(currentTask.description || '')
+  const [showTitleInput, setShowTitleInput] = useState(false)
+  const [showDescriptionInput, setShowDescriptionInput] = useState(false)
+  const taskMembers = currentTask.memberIds || []
+  const inputRef = useRef(null)
+  
+  const groupTitle = board.groups[groupId]?.title || 'Unknown List'
 
-
-  const groupTitle = board.groups[groupId]?.title || 'Unknown List';
+    const memberDetails = taskMembers
+    .map(memberId => {
+      const boardMember = board.members.find(member => member._id === memberId)
+      return boardMember || (user._id === memberId ? user : null)
+    })
+    .filter(Boolean)
 
   useEffect(() => {
     if (showTitleInput && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [showTitleInput]);
+  }, [showTitleInput])
 
   async function handleTitleUpdate() {
     try {
@@ -57,12 +66,13 @@ export function TaskDetails({ task, groupId }) {
     setShowDescriptionInput(false);
   }
 
-  const taskLabels = task.labelIds
-    ? task.labelIds
+  const taskLabels = currentTask.labelIds
+    ? currentTask.labelIds
         .map((labelId) => board.labels.find((label) => label.id === labelId))
         .filter(Boolean)
-    : [];
+    : []
 
+  
   return (
     <div className="task-details">
       <section className="task-header-container">
@@ -108,18 +118,28 @@ export function TaskDetails({ task, groupId }) {
           <div className="actions-container">
             <div className="action">
               <span>Members</span>
-              <div>
-                <div className="avatar"><Avatar data={user} /></div>
-                <MenuRender
-                  buttonData={{
-                    name: 'member',
-                    icon: 'plus',
-                    text: 'Add Member',
-                  }}
-                  context="plusIcon"
-                  user={user}
-                  boardId={board._id}
-                />
+              <div className="members-container">
+                {memberDetails.length > 0 && (
+                  <div className="members-list">
+                    {memberDetails.map((member) => (
+                      <Avatar key={member._id} data={member} />
+                    ))}
+                  </div>
+                )}
+                <div>
+                  <MenuRender
+                    buttonData={{
+                      name: 'member',
+                      icon: 'plus',
+                      text: 'Add Member',
+                    }}
+                    context="plusIcon"
+                    task={currentTask}
+                    groupId={groupId}
+                    user={user}
+                    boardId={board._id}
+                  />
+                </div>
               </div>
             </div>
 
@@ -136,7 +156,7 @@ export function TaskDetails({ task, groupId }) {
                           icon: 'label',
                           text: label.title,
                         }}
-                        task={task}
+                        task={currentTask}
                         groupId={groupId}
                         customTrigger={
                           <Button
@@ -159,7 +179,7 @@ export function TaskDetails({ task, groupId }) {
                     icon: 'plus',
                     text: 'Add Label',
                   }}
-                  task={task}
+                  task={currentTask}
                   groupId={groupId}
                   context="plusIcon"
                 />
@@ -217,7 +237,9 @@ export function TaskDetails({ task, groupId }) {
 
             <div className="activities">
               <div className="activity">
-                <div className="avatar"><Avatar data={user} /></div>
+                <div className="avatar">
+                  <Avatar data={user} />
+                </div>
                 <input
                   className="input-activity"
                   type="text"
@@ -225,18 +247,38 @@ export function TaskDetails({ task, groupId }) {
                 />
               </div>
 
-              <div className="activity">
-                <div className="avatar">YY</div>
-                <span>
-                  <span>Yehonatan Yeshayahu</span>
-                  Joined this card
-                </span>
+              <div className="activities">
+                {board.activities
+                  .filter((activity) => activity.currentTask?.id === currentTask.id)
+                  .map((activity) => (
+                    <div key={activity.id} className="activity">
+                      <div className="avatar">
+                        <Avatar data={activity.byMember} />
+                      </div>
+                      <div className="activity-content">
+                        <span>
+                          <span className='activity-member'>{activity.byMember.fullname}</span>
+                          <span className='activity-txt'>
+                            {activity.txt}
+                          </span>
+                        </span>
+                        <span className="timestamp">
+                          {new Date(activity.createdAt).toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
         </div>
 
-        <NavTaskDetails task={task} groupId={groupId} user={user} boardId={board._id} />
+        <NavTaskDetails
+          task={currentTask}
+          groupId={groupId}
+          user={user}
+          boardId={board._id}
+        />
       </section>
     </div>
   );

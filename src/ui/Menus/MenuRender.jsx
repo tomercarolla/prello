@@ -1,4 +1,5 @@
-import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui';
+import { Button, Icon, LabelMenu, MembersMenu, Menu } from '@ui'
+
 
 export function MenuRender({
   buttonData,
@@ -14,10 +15,10 @@ export function MenuRender({
   function renderMenuContent() {
     switch (name) {
       case 'label':
-        return <LabelMenu context={context} task={task} groupId={groupId} />;
+        return <LabelMenu context={context} task={task} groupId={groupId} />
       
       case 'member':
-        return <MembersMenu context={context} user={user} boardId={boardId} />;
+        return <MembersMenu context={context} groupId={groupId} task={task} />
       
       default:
         return <div>Menu not found</div>;

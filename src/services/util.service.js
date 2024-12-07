@@ -3,12 +3,24 @@ export const utilService = {
   makeLabelId,
   makeLorem,
   getRandomIntInclusive,
+  getColorByUsername,
   debounce,
   randomPastTime,
   saveToStorage,
   loadFromStorage,
   getRandomColor,
 };
+
+const AVATAR_COLORS = [
+  '#FF6B6B', 
+  '#4ECDC4', 
+  '#45B7D1', 
+  '#96CEB4', 
+  '#FFEEAD', 
+  '#D4A5A5', 
+  '#9B59B6', 
+  '#3498DB', 
+];
 
 function makeId(length = 6) {
   var txt = '';
@@ -105,7 +117,13 @@ function loadFromStorage(key, defaultValue = null) {
   return JSON.parse(value);
 }
 
-export function getRandomColor() {
+function getColorByUsername(username) {
+  const index = username.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+  return AVATAR_COLORS[index % AVATAR_COLORS.length]
+}
+ 
+function getRandomColor() {
   const hue = Math.floor(Math.random() * 360);
   return `hsl(${hue}, 65%, 60%)`;
 }
+

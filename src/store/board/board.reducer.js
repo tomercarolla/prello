@@ -60,16 +60,19 @@ export function boardReducer(state = initialState, action) {
                   task.id === action.task.id
                     ? {
                         ...task,
-                        labelIds: action.task.labelIds,
                         ...action.task,
+                        memberIds: action.task.memberIds || task.memberIds || [],
+                        labelIds: action.task.labelIds || task.labelIds
                       }
                     : task,
                 ),
               }
             : group,
         ),
-      };
-
+        activities: action.activity 
+          ? [action.activity, ...(state.board.activities || [])]
+          : state.board.activities
+      }
       return { ...state, board: updatedBoard };
 
     default:
