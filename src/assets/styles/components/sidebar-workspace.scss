@@ -2,7 +2,7 @@
   position: sticky;
   margin: 38px 9px 0;
   padding: 0 18px;
-  width: 224px;
+  width: 274px;
   max-height: 200vh;
   font-weight: 600;
 
@@ -80,7 +80,7 @@
       justify-content: space-between;
       margin-top: 10px;
       font-size: 14px;
-      padding: 3px;
+      padding: 12px 5px 12px 0px;
       border-radius: 8px;
       width: 100%;
       gap: 10px;
@@ -89,13 +89,24 @@
       .user-info-container {
         display: flex;
         align-items: center;
-        gap: 5px;
+        padding-inline: 10px;
+        gap: 10px;
+
+        span {
+          display: flex;
+        }
 
         .avatar {
-          width: 22px;
-          height: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
           border-radius: 3px;
           background: linear-gradient(var(--ds-background-accent-green-bolder, #006644), var(--ds-background-accent-green-subtle, #00875a));
+          color: #333;
+          font-weight: 700;
+          font-size: 18px;
         }
       }
 
