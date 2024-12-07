@@ -1,6 +1,7 @@
 export const utilService = {
   makeId,
   makeLabelId,
+  makeActivityId,
   makeLorem,
   getRandomIntInclusive,
   getColorByUsername,
@@ -37,6 +38,11 @@ function makeId(length = 6) {
 function makeLabelId() {
   const randomNum = Math.floor(Math.random() * 900) + 100; // generates random number between 100-999
   return `l${randomNum}`;
+}
+
+function makeActivityId() {
+  const randomNum = Math.floor(Math.random() * 900) + 100
+  return `a${randomNum}`
 }
 
 function makeLorem(size = 100) {

@@ -78,7 +78,10 @@ export async function addBoardMsg(boardId, txt) {
 
 export async function updateTask(boardId, groupId, task, activity) {
   try {
+    console.log('Sending backend:', { task, activity })
     const savedTask = await boardService.updateTask(boardId, groupId, task, activity)
+    
+    console.log('Recieved from backend:', savedTask)
 
     store.dispatch({
       type: UPDATE_TASK,
