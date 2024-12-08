@@ -43,11 +43,12 @@ import { Cover } from './Cover.jsx';
 import { CustomFields } from './CustomFields.jsx';
 import { Watch } from './Watch.jsx';
 import { Move } from './Move.jsx';
-import { Copy } from './Copy.jsx';
+import { Copy } from './Copy.jsx.jsx';
 import { Archive } from './Archive.jsx';
 import { Share } from './Share.jsx';
 import { Description } from './Description.jsx';
 import { Activity } from './Activity.jsx';
+import { Unjoin } from './Unjoin.jsx';
 
 
 export const icons = {
@@ -101,5 +102,6 @@ export const icons = {
   share: Share,
   description: Description,
   activity: Activity,
+  unjoin: Unjoin,
   // Add more icons here...
 };

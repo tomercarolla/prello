@@ -49,12 +49,12 @@ async function save(board) {
   }
 }
 
-async function updateTask(boardId, groupId, task) {
+async function updateTask(boardId, groupId, task, activity) {
   try {
     return await httpService.put(
       `board/${boardId}/group/${groupId}/task/${task.id}`,
-      task,
-    );
+      { task, activity }
+    )
   } catch (err) {
     console.error('Failed to update task:', err);
     throw new Error('Failed to update task');

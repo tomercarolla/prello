@@ -53,7 +53,7 @@ export async function logout() {
 
 export async function loadUsers() {
   try {
-    const users = await userService.getUsers();
+    const users = await userService.query();
     store.dispatch({ type: LOADING_START });
     store.dispatch({ type: SET_USERS, users });
   } catch (err) {

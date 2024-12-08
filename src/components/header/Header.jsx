@@ -1,7 +1,7 @@
 import { Avatar, Button, Icon } from '@ui';
 import { useState } from 'react';
-
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import TrelloGif from './assets/TrelloGif.gif';
 import TrelloIcon from './assets/TrelloIcon.png';
 
@@ -12,8 +12,10 @@ export function Header() {
   return (
     <header className="header-container">
       <div className="header-left-side">
-        <Icon name="applicationSwitcher" size="20px" className="pointer" />
-        <div
+        <Icon name="applicationSwitcher" size="20px" />
+
+        <Link
+          to="/workspace"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -22,7 +24,7 @@ export function Header() {
           ) : (
             <img className="trello-logo-gif" src={TrelloIcon} alt="" />
           )}
-        </div>
+        </Link>
         <Button radius="4px" scale="brand">
           Create
         </Button>
@@ -31,15 +33,15 @@ export function Header() {
       <div className="header-right-side">
         <div className="input-container">
           <Icon name="search" size="16px" className="pointer" />
+
           <input className="search-bar" placeholder="Search Prello" />
         </div>
 
         <Icon name="bell" className="pointer" size="24px" />
+
         <Icon name="questionMark" className="pointer" size="22px" />
 
         <Avatar data={user} />
-
-        <div></div>
       </div>
     </header>
   );

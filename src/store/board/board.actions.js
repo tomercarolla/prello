@@ -77,31 +77,38 @@ export async function updateBoard(updatedBoard) {
   }
 }
 
-// export async function addBoardMsg(boardId, txt) {
-//   try {
-//     const msg = await boardService.addBoardMsg(boardId, txt);
-//
-//     store.dispatch(getCmdAddBoardMsg(msg));
-//     return msg;
-//   } catch (err) {
-//     console.log('Cannot add board msg', err);
-//     throw err;
-//   }
-// }
-
-export async function updateTask(boardId, groupId, task) {
+export async function addBoardMsg(boardId, txt) {
   try {
-    const savedTask = await boardService.updateTask(boardId, groupId, task);
+    const msg = await boardService.addBoardMsg(boardId, txt);
+    console.log('Added Board message', msg);
+    store.dispatch(getCmdAddBoardMsg(msg));
+    return msg;
+  } catch (err) {
+    console.log('Cannot add board msg', err);
+    throw err;
+  }
+}
+
+export async function updateTask(boardId, groupId, task, activity) {
+  try {
+    const savedTask = await boardService.updateTask(
+      boardId,
+      groupId,
+      task,
+      activity,
+    );
 
     store.dispatch({
       type: UPDATE_TASK,
       groupId,
       task: savedTask,
+      activity,
     });
 
     return savedTask;
   } catch (err) {
     console.log('Cannot update task', err);
+
     throw err;
   }
 }
