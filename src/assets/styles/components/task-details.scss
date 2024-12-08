@@ -70,6 +70,7 @@
   .task-body {
     display: grid;
     grid-template-columns: 3fr 1fr;
+    gap: 10px;
     margin-top: 10px;
 
     .task-body-content {
@@ -81,12 +82,10 @@
         margin-left: 32px;
         margin-bottom: 24px;
 
-
         .action {
           display: flex;
           flex-direction: column;
           max-width: 330px;
-
 
           span {
             display: flex;
@@ -99,8 +98,23 @@
             gap: 2px;
           }
 
+          .members-container,
+          .labels-list {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            .btn-nav {
+              color: var(--ds-text);
+            }
+          }
+
           div {
             display: flex;
+            align-content: center;
             flex-wrap: wrap;
             align-items: center;
             gap: 5px;
@@ -111,23 +125,66 @@
       .description-container {
         .action-title {
           display: flex;
-          align-items: 'center';
-          justify-content: 'space-between';
+          align-items: center;
+          gap: 8px;
+          margin-block-end: 8px;
           font-size: 16px;
-          gap: '10px';
         }
 
-        .textarea-description {
-          background-color: var('--surface');
+        .tox-tinymce {
+          border: 2px solid var(--ds-border-input, #091e4224);
+          border-radius: 0;
         }
+
+        .tox-editor-header,
+        .tox-toolbar-overlord,
+        .tox-toolbar__primary {
+          background-color: #1D2125;
+        }
+
+        .tox-tbtn {
+          background-color: #1D2125;
+          color: #B6C2CF;
+          cursor: pointer;
+
+          &.tox-tbtn--disabled {
+            cursor: default;
+            opacity: .5;
+          }
+
+          svg {
+            fill: #B6C2CF;
+          }
+        }
+
+        .tox-edit-area {
+          &:before {
+            border: none;
+          }
+        }
+
+        .tox-edit-area__iframe {
+          background-color: #22272B;
+
+          * {
+            color: #B6C2CF;
+          }
+        }
+
+        .tox-statusbar {
+          display: none;
+        }
+
+        //.textarea-description {
+        //  background-color: var('--surface');
+        //}
 
         .btn-description {
           align-items: flex-start;
           padding-top: 10px;
-          padding-inline: 12px;
           width: 100%;
           height: 8vh;
-          max-width: 480px;
+          max-width: -webkit-fill-available;
           margin-top: 15px;
           margin-left: 30px;
           color: var(--ds-text);
@@ -150,9 +207,6 @@
         }
 
         .btn-activity {
-          padding-inline: 15px;
-          border-radius: 3px;
-          margin-right: 25px;
           color: var(--ds-text);
         }
 
@@ -164,6 +218,20 @@
             align-items: center;
             gap: 10px;
             margin-top: 10px;
+
+            .activity-content {
+              .activity-member {
+                font-size: 16px;
+                font-weight: 600;
+              }
+              .activity-txt {
+                font-size: 14px;
+                font-weight: 100;
+              }
+              .timestamp {
+                font-size: 10px;
+              }
+            }
 
             .input-activity {
               width: 92%;
