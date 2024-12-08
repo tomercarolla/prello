@@ -1,9 +1,11 @@
 import { Icon } from '@ui';
 import { Divider } from 'components/sidebar/StyledElements';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export function SidebarWorkspace() {
+  const loggedInUser = useSelector((state) => state.userModule.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -13,10 +15,10 @@ export function SidebarWorkspace() {
   const topSidebarItems = [
     { name: 'Boards', icon: 'board' },
     { name: 'Templates', icon: 'template' },
-    { name: 'Home', icon: 'board' },
+    { name: 'Home', icon: 'archive' },
   ];
 
-  const dropDownmenuItems = [
+  const dropDownMenuItems = [
     { name: 'Boards', icon: 'board' },
     { name: 'Collections', icon: 'collections' },
     { name: 'Highlights', icon: 'heart' },
@@ -43,7 +45,7 @@ export function SidebarWorkspace() {
                   ev.currentTarget.setAttribute('data-active', 'false')
                 }
               >
-                <Link to="/w">
+                <Link to="/workspace">
                   <Icon name={item.icon} size="16px" />
                   <span>{item.name}</span>
                 </Link>
@@ -61,15 +63,19 @@ export function SidebarWorkspace() {
 
           <li onClick={toggleMenu} className="dropdown-menu-header">
             <div className="user-info-container">
-              <div className="avatar"></div>
-              <span>Tomer test</span>
+              <div className="avatar">
+                {loggedInUser.fullname.charAt(0).toUpperCase()}
+              </div>
+
+              <span>{loggedInUser.fullname}</span>
             </div>
+
             <Icon name={isMenuOpen ? 'chevronUp' : 'chevronDown'} size="16px" />
           </li>
 
           {isMenuOpen && (
             <ul className="dropdown-menu">
-              {dropDownmenuItems.map((item) => (
+              {dropDownMenuItems.map((item) => (
                 <li
                   key={item.name}
                   className="dropdown-menu-item"
