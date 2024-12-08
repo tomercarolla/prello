@@ -98,6 +98,20 @@
             gap: 2px;
           }
 
+          .members-container,
+          .labels-list {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            .btn-nav {
+              color: var(--ds-text);
+            }
+          }
+
           div {
             display: flex;
             align-content: center;

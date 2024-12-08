@@ -1,16 +1,16 @@
-import styled from 'styled-components'
-import { utilService } from 'services/util.service'
+import { utilService } from 'services/util.service';
+import styled from 'styled-components';
 
 export function Avatar({ data, size = '30px', fontSize = '14px' }) {
-  const name = data?.fullname || data?.username || ''
-  const imageUrl = data?.imgUrl
+  const name = data?.fullname || data?.username || '';
+  const imageUrl = data?.imgUrl;
 
   function getUserInitials(name) {
-      return name ? name.charAt(0).toUpperCase() : '';
+    return name ? name.charAt(0).toUpperCase() : '';
   }
 
-  const initials = getUserInitials(name)
-  const bgColor = utilService.getColorByUsername(name)
+  const initials = getUserInitials(name);
+  const bgColor = utilService.getColorByUsername(name);
 
   return (
     <AvatarWrapper
@@ -21,11 +21,7 @@ export function Avatar({ data, size = '30px', fontSize = '14px' }) {
       role="img"
       aria-label={name || 'User avatar'}
     >
-      {imageUrl ? (
-        <img src={imageUrl} alt={'name'} />
-      ) : (
-        <span>{initials}</span>
-      )}
+      {imageUrl ? <img src={imageUrl} alt={'name'} /> : <span>{initials}</span>}
     </AvatarWrapper>
   );
 }

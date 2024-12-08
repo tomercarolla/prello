@@ -1,34 +1,31 @@
-import { useEffect, useState } from 'react';
-import { boardService } from 'services/board.service';
-import { Avatar } from '@ui'
-import { useSelector } from 'react-redux'
-import { updateTask } from 'store/board/board.actions'
-import styled from 'styled-components'
+import { Avatar } from '@ui';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { updateTask } from 'store/board/board.actions';
+import styled from 'styled-components';
 
 export function MembersMenu({ context = 'default', task, groupId }) {
-  const board = useSelector((state) => state.boardModule.board)
-  const currentUser = useSelector((state) => state.userModule.user)
-  const memberIds = task.memberIds || []
-  const [searchMember, setSearchMember] = useState('')
+  const board = useSelector((state) => state.boardModule.board);
+  const currentUser = useSelector((state) => state.userModule.user);
+  const memberIds = task.memberIds || [];
+  const [searchMember, setSearchMember] = useState('');
+  const availableMembers = board.members.filter((member) => {
+    if (!searchMember) return true;
 
-  const availableMembers = board.members
-    .filter(member => {
-      if (!searchMember) return true
-
-      return (
-        member.fullname?.toLowerCase().includes(searchMember.toLowerCase()) ||
-        member.username?.toLowerCase().includes(searchMember.toLowerCase())
-      )
-  })
+    return (
+      member.fullname?.toLowerCase().includes(searchMember.toLowerCase()) ||
+      member.username?.toLowerCase().includes(searchMember.toLowerCase())
+    );
+  });
 
   async function handleMemberToggle(memberId) {
     try {
       const updatedTask = {
         ...task,
         memberIds: task.memberIds?.includes(memberId)
-          ? task.memberIds.filter(id => id !== memberId)
-          : [...(task.memberIds || []), memberId]
-      }
+          ? task.memberIds.filter((id) => id !== memberId)
+          : [...(task.memberIds || []), memberId],
+      };
 
       await updateTask(board._id, groupId, updatedTask);
     } catch (err) {

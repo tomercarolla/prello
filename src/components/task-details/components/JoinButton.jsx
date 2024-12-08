@@ -52,11 +52,8 @@ export function JoinButton({ task, groupId }) {
       radius="3px"
       className="btn-nav"
     >
-      <Icon
-        name={isJoined ? 'unjoin' : 'join'}
-        size="18px"
-        style={{ color: 'var(--ds-text)' }}
-      />
+      <Icon name={isJoined ? 'unjoin' : 'join'} size="18px" />
+
       <span>{isJoined ? 'Leave' : 'Join'}</span>
     </Button>
   );
