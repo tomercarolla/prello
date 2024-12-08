@@ -4,6 +4,8 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { updateTask } from '../../../store/board/board.actions.js';
 
+const TINY_KEY = 'ff5o8kn9j9f3rd2sl431p5mxl6oqpa5hf447rggzzcufpfuu';
+
 export function TaskDescription({ board, groupId, task }) {
   const [description, setDescription] = useState(task.description || '');
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
@@ -44,7 +46,7 @@ export function TaskDescription({ board, groupId, task }) {
       {showDescriptionInput ? (
         <>
           <Editor
-            apiKey="ff5o8kn9j9f3rd2sl431p5mxl6oqpa5hf447rggzzcufpfuu"
+            apiKey={TINY_KEY}
             init={{
               selector: 'textarea',
               plugins: [
