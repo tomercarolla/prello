@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: ${(props) => props.$justifyContent || 'space-between'};
   align-items: ${(props) => props.$alignItems || 'center'};
   width: 100%;
-  padding: 8px 4px 8px;
+  padding: ${(props) => props.$padding || '8px 12px 8px'};
 `;
 
 export const AvatarContainer = styled.div`

@@ -91,15 +91,12 @@ export async function addBoardMsg(boardId, txt) {
 
 export async function updateTask(boardId, groupId, task, activity) {
   try {
-    console.log('Sending backend:', { task, activity });
     const savedTask = await boardService.updateTask(
       boardId,
       groupId,
       task,
       activity,
     );
-
-    console.log('Recieved from backend:', savedTask);
 
     store.dispatch({
       type: UPDATE_TASK,
@@ -111,26 +108,10 @@ export async function updateTask(boardId, groupId, task, activity) {
     return savedTask;
   } catch (err) {
     console.log('Cannot update task', err);
+
     throw err;
   }
 }
-
-// export async function updateTask(boardId, groupId, task) {
-//   try {
-//     const savedTask = await boardService.updateTask(boardId, groupId, task);
-//
-//     store.dispatch({
-//       type: UPDATE_TASK,
-//       groupId,
-//       task: savedTask,
-//     });
-//
-//     return savedTask;
-//   } catch (err) {
-//     console.log('Cannot update task', err);
-//     throw err;
-//   }
-// }
 
 // Command Creators:
 function getCmdSetBoards(boards) {

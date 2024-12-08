@@ -1,91 +1,26 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-
 import { Button, Icon } from '@ui';
 import { Select } from 'antd';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import { NavLinks } from './components/NavLinks.jsx';
 import { AvatarContainer, Container, Divider } from './StyledElements';
 
-import { BoardList } from './components/BoardList';
-import { NavLinks } from './components/NavLinks.jsx';
-import { WorkspaceContainer } from './components/WorkspaceContainer';
-import { useSelector } from 'react-redux';
-
 export function Sidebar() {
-  const loggedinUser = useSelector(state => state.userModule.user)
+  const loggedInUser = useSelector((state) => state.userModule.user);
   const [expandedSidebar, setExpandedSidebar] = useState(true);
-  const [openMenu, setOpenMenu] = useState(null);
-
-  function toggleMenu(menuType) {
-    setOpenMenu(openMenu === menuType ? null : menuType);
-  }
-
-  function getMenuContent(type) {
-    switch (type) {
-      case 'workspace':
-        return (
-          <div className="filter-container">
-            <StyledLabel>Filter</StyledLabel>
-            <StyledSelect
-              defaultValue="all"
-              style={{ width: '100%' }}
-              onChange={(value) => console.log(value)}
-              options={[
-                { value: 'all', label: 'All workspace views' },
-                { value: 'created', label: 'Created by me' },
-              ]}
-              className="custom-select"
-            />
-          </div>
-        );
-      case 'board':
-        return (
-          <div className="sort-container">
-            <StyledLabel>Sort</StyledLabel>
-            <StyledSelect
-              defaultValue="alphabetically"
-              style={{ width: '100%' }}
-              onChange={(value) => console.log(value)}
-              options={[
-                { value: 'alphabetically', label: 'sort alphabetically' },
-                { value: 'created', label: 'sort by created date' },
-              ]}
-              className="custom-select"
-            />
-          </div>
-        );
-      case 'table':
-      case 'calendar':
-        return (
-          <Button
-            fullwidth="true"
-            scale="dynamic"
-            size="md"
-            className="close-button"
-          >
-            <Icon name="trash" size="16px" color="var(--ds-text)" />
-            <span style={{ color: 'var(--ds-text)' }}>Remove View</span>
-          </Button>
-        );
-      default:
-        return null;
-    }
-  }
-
-  const listItems = [
-    { name: 'Table', icon: 'table' },
-    { name: 'Calendar', icon: 'calendar' },
-  ];
 
   return (
     <nav className={`sidebar ${expandedSidebar ? 'expanded' : 'collapsed'}`}>
       <Container className="sidebar-container">
         {expandedSidebar ? (
           <AvatarContainer>
-            {/*todo add dynamic user*/}
-            <div className="avatar">{loggedinUser.fullname.charAt(0).toUpperCase()}</div>
+            <div className="avatar">
+              {loggedInUser.fullname.charAt(0).toUpperCase()}
+            </div>
 
             <div className="user-info">
-              <span className="fullname">{loggedinUser.fullname}</span>
+              <span className="fullname">{loggedInUser.fullname}</span>
               <span className="status">Free</span>
             </div>
           </AvatarContainer>
@@ -109,31 +44,6 @@ export function Sidebar() {
           <Divider />
 
           <NavLinks />
-{/* 
-          <WorkspaceContainer
-            title="Workspace views"
-            menuType="workspace"
-            getMenuContent={getMenuContent}
-          /> */}
-
-          {/* <BoardList
-            items={listItems}
-            toggleMenu={toggleMenu}
-            getMenuContent={getMenuContent}
-          /> */}
-
-          {/* <WorkspaceContainer
-            title="Your Boards"
-            menuType="board"
-            getMenuContent={getMenuContent}
-            onToggleMenu={toggleMenu}
-          /> */}
-
-          {/* <BoardList
-            items={[{ name: "Yonatan's Board", icon: 'board' }]}
-            toggleMenu={toggleMenu}
-            getMenuContent={getMenuContent}
-          /> */}
         </>
       )}
     </nav>
