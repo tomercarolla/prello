@@ -9,7 +9,6 @@ import TrelloIcon from './assets/TrelloIcon.png';
 export function Header() {
   const user = useSelector((state) => state.userModule.user);
   const [isHovering, setIsHovering] = useState(false);
-  
 
   return (
     <header className="header-container">

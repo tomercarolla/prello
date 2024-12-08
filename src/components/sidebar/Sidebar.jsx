@@ -8,8 +8,10 @@ import { AvatarContainer, Container, Divider } from './StyledElements';
 import { BoardList } from './components/BoardList';
 import { NavLinks } from './components/NavLinks.jsx';
 import { WorkspaceContainer } from './components/WorkspaceContainer';
+import { useSelector } from 'react-redux';
 
 export function Sidebar() {
+  const loggedinUser = useSelector(state => state.userModule.user)
   const [expandedSidebar, setExpandedSidebar] = useState(true);
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -80,10 +82,10 @@ export function Sidebar() {
         {expandedSidebar ? (
           <AvatarContainer>
             {/*todo add dynamic user*/}
-            <div className="avatar">T</div>
+            <div className="avatar">{loggedinUser.fullname.charAt(0).toUpperCase()}</div>
 
             <div className="user-info">
-              <span className="username">Tomer test</span>
+              <span className="fullname">{loggedinUser.fullname}</span>
               <span className="status">Free</span>
             </div>
           </AvatarContainer>

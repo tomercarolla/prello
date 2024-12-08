@@ -30,12 +30,7 @@ export async function loadTask(boardId, taskId) {
 
 export async function addTask(boardId, groupId, task) {
   try {
-    console.log('newTask actions ', task);
-    console.log('boardId actions ', boardId);
-    console.log('groupId actions ', groupId);
     const savedBoard = await taskService.save(boardId, groupId, task);
-
-    console.log('savedBoard ', savedBoard);
 
     store.dispatch({ type: UPDATE_BOARD, board: savedBoard });
   } catch (err) {
