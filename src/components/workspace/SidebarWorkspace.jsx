@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export function SidebarWorkspace() {
-  const loggedinUser = useSelector(state => state.userModule.user)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const loggedInUser = useSelector((state) => state.userModule.user);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -18,7 +18,7 @@ export function SidebarWorkspace() {
     { name: 'Home', icon: 'archive' },
   ];
 
-  const dropDownmenuItems = [
+  const dropDownMenuItems = [
     { name: 'Boards', icon: 'board' },
     { name: 'Collections', icon: 'collections' },
     { name: 'Highlights', icon: 'heart' },
@@ -64,16 +64,18 @@ export function SidebarWorkspace() {
           <li onClick={toggleMenu} className="dropdown-menu-header">
             <div className="user-info-container">
               <div className="avatar">
-                {loggedinUser.fullname.charAt(0).toUpperCase()}
+                {loggedInUser.fullname.charAt(0).toUpperCase()}
               </div>
-              <span>{loggedinUser.fullname}</span>
+
+              <span>{loggedInUser.fullname}</span>
             </div>
-            <Icon name={isMenuOpen ? 'chevronDown' : 'chevronUp'} size="16px" />
+
+            <Icon name={isMenuOpen ? 'chevronUp' : 'chevronDown'} size="16px" />
           </li>
 
           {isMenuOpen && (
             <ul className="dropdown-menu">
-              {dropDownmenuItems.map((item) => (
+              {dropDownMenuItems.map((item) => (
                 <li
                   key={item.name}
                   className="dropdown-menu-item"
