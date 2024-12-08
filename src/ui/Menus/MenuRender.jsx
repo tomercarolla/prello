@@ -27,6 +27,7 @@ export function MenuRender({
   const defaultTrigger = (
     <Button radius="3px" fullwidth="true" className="btn-nav" scale="neutral">
       <Icon name={icon} size="18px" />
+
       {context !== 'plusIcon' && <span>{text}</span>}
     </Button>
   );

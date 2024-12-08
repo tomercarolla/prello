@@ -13,9 +13,13 @@ import {
 export async function loadBoards() {
   try {
     const boards = await boardService.query();
+
+    console.log('Boards from DB:', boards);
+
     store.dispatch(getCmdSetBoards(boards));
   } catch (err) {
     console.error('Cannot load boards', err);
+
     throw err;
   }
 }
@@ -23,10 +27,13 @@ export async function loadBoards() {
 export async function loadBoard(boardId) {
   try {
     const board = await boardService.getById(boardId);
+
     console.log('Board from DB:', board);
+
     store.dispatch(getCmdSetBoard(board));
   } catch (err) {
     console.log('Cannot load board', err);
+
     throw err;
   }
 }
@@ -34,6 +41,7 @@ export async function loadBoard(boardId) {
 export async function removeBoard(boardId) {
   try {
     await boardService.remove(boardId);
+
     store.dispatch(getCmdRemoveBoard(boardId));
   } catch (err) {
     console.log('Cannot remove board', err);
@@ -44,11 +52,13 @@ export async function removeBoard(boardId) {
 export async function addBoard(board) {
   try {
     const savedBoard = await boardService.save(board);
-    console.log('Added Board', savedBoard);
+
     store.dispatch(getCmdAddBoard(savedBoard));
+
     return savedBoard;
   } catch (err) {
     console.log('Cannot add board', err);
+
     throw err;
   }
 }
@@ -56,10 +66,13 @@ export async function addBoard(board) {
 export async function updateBoard(updatedBoard) {
   try {
     const savedBoard = await boardService.save(updatedBoard);
+
     store.dispatch(getCmdUpdateBoard(savedBoard));
+
     return savedBoard;
   } catch (err) {
     console.log('Cannot save board', err);
+
     throw err;
   }
 }
@@ -76,24 +89,42 @@ export async function addBoardMsg(boardId, txt) {
   }
 }
 
-export async function updateTask(boardId, groupId, task, activity) {
+//check with yonathan
+// export async function updateTask(boardId, groupId, task, activity) {
+//     try {
+//         console.log('Sending backend:', { task, activity })
+//         const savedTask = await boardService.updateTask(boardId, groupId, task, activity)
+//
+//         console.log('Recieved from backend:', savedTask)
+//
+//         store.dispatch({
+//             type: UPDATE_TASK,
+//             groupId,
+//             task: savedTask,
+//             activity,
+//         });
+//
+//         return savedTask;
+//     } catch (err) {
+//         console.log('Cannot update task', err)
+//         throw err
+//     }
+// }
+
+export async function updateTask(boardId, groupId, task) {
   try {
-    console.log('Sending backend:', { task, activity })
-    const savedTask = await boardService.updateTask(boardId, groupId, task, activity)
-    
-    console.log('Recieved from backend:', savedTask)
+    const savedTask = await boardService.updateTask(boardId, groupId, task);
 
     store.dispatch({
       type: UPDATE_TASK,
       groupId,
       task: savedTask,
-      activity,
     });
 
     return savedTask;
   } catch (err) {
-    console.log('Cannot update task', err)
-    throw err
+    console.log('Cannot update task', err);
+    throw err;
   }
 }
 

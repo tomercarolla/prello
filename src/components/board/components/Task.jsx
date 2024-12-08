@@ -80,7 +80,9 @@ export function Task({ board, groupId, ...task }) {
             {task.title}
           </a>
 
-          <div className="task-badges"></div>
+          <div className="task-badges">
+            {task.description ? <Icon name="description" size="16px" /> : null}
+          </div>
         </div>
       </div>
 
@@ -93,15 +95,11 @@ export function Task({ board, groupId, ...task }) {
   );
 
   return (
-    <Modal
-      open={modalOpen}
-      onOpenChange={setModalOpen}
-      trigger={taskContent}
-    >
+    <Modal open={modalOpen} onOpenChange={setModalOpen} trigger={taskContent}>
       <TaskDetails task={task} groupId={groupId} />
     </Modal>
   );
-};
+}
 
 const DropIndicator = ({ edge, gap }) => {
   const edgeClassMap = {

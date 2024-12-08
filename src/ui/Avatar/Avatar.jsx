@@ -3,10 +3,10 @@ import { utilService } from 'services/util.service'
 
 export function Avatar({ data, size = '30px', fontSize = '14px' }) {
   const name = data?.fullname || data?.username || ''
-  const imageUrl = data?.imgUrl 
+  const imageUrl = data?.imgUrl
 
   function getUserInitials(name) {
-      return name ? name.charAt(0).toUpperCase() : ''
+      return name ? name.charAt(0).toUpperCase() : '';
   }
 
   const initials = getUserInitials(name)
@@ -27,7 +27,7 @@ export function Avatar({ data, size = '30px', fontSize = '14px' }) {
         <span>{initials}</span>
       )}
     </AvatarWrapper>
-  )
+  );
 }
 
 const AvatarWrapper = styled.div`
@@ -40,7 +40,7 @@ const AvatarWrapper = styled.div`
   background-color: ${({ $bgColor }) => $bgColor};
   color: white;
   font-size: ${({ $fontSize }) => $fontSize};
-  font-weight: light;
+  font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
   overflow: hidden;

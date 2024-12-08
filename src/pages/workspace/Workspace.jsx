@@ -1,14 +1,15 @@
 import { SidebarWorkspace } from 'components/workspace/SidebarWorkspace';
-import { Header } from '../components/header/Header.jsx';
-import { WorkspaceContent } from '../components/workspace/WorkspaceContent.jsx';
+import { Header } from '../../components/header/Header.jsx';
+import { WorkspaceContent } from '../../components/workspace/WorkspaceContent.jsx';
 
-export function WorkspacePage() {
+export function Workspace() {
   return (
     <>
       <Header />
+
       <main className="main-boards">
         <section>
-            <SidebarWorkspace />
+          <SidebarWorkspace />
         </section>
 
         <section className="boards-container">

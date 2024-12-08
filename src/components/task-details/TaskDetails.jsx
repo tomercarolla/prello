@@ -6,7 +6,7 @@ import { updateTask } from '../../store/board/board.actions'
 import { NavTaskDetails } from './components/NavTaskDetails'
 
 export function TaskDetails({ task: initialTask, groupId }) {
-  const board = useSelector((state) => state.boardModule.board) 
+  const board = useSelector((state) => state.boardModule.board)
   const user = useSelector((state) => state.userModule.user)
   const currentGroup = board.groups.find((g) => g.id === groupId);
   const currentTask = currentGroup?.tasks.find((t) => t.id === initialTask.id) || initialTask
@@ -17,7 +17,7 @@ export function TaskDetails({ task: initialTask, groupId }) {
   const [showDescriptionInput, setShowDescriptionInput] = useState(false)
   const taskMembers = currentTask.memberIds || []
   const inputRef = useRef(null)
-  
+
   const groupTitle = board.groups[groupId]?.title || 'Unknown List'
 
     const memberDetails = taskMembers
@@ -31,7 +31,7 @@ export function TaskDetails({ task: initialTask, groupId }) {
     if (showTitleInput && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [showTitleInput])
+  }, [showTitleInput]);
 
   async function handleTitleUpdate() {
     try {
@@ -70,9 +70,8 @@ export function TaskDetails({ task: initialTask, groupId }) {
     ? currentTask.labelIds
         .map((labelId) => board.labels.find((label) => label.id === labelId))
         .filter(Boolean)
-    : []
+    : [];
 
-  
   return (
     <div className="task-details">
       <section className="task-header-container">
@@ -97,6 +96,7 @@ export function TaskDetails({ task: initialTask, groupId }) {
               </div>
             )}
           </div>
+
           <div className="group-container">
             <p>
               in list:
@@ -126,7 +126,7 @@ export function TaskDetails({ task: initialTask, groupId }) {
                     ))}
                   </div>
                 )}
-                <div>
+
                   <MenuRender
                     buttonData={{
                       name: 'member',
@@ -139,12 +139,12 @@ export function TaskDetails({ task: initialTask, groupId }) {
                     user={user}
                     boardId={board._id}
                   />
-                </div>
               </div>
             </div>
 
             <div className="action">
               <span>Labels</span>
+
               <div>
                 <span>
                   {taskLabels.length > 0 &&
@@ -173,6 +173,7 @@ export function TaskDetails({ task: initialTask, groupId }) {
                       />
                     ))}
                 </span>
+
                 <MenuRender
                   buttonData={{
                     name: 'label',
@@ -197,32 +198,7 @@ export function TaskDetails({ task: initialTask, groupId }) {
             </div>
           </div>
 
-          <div className="description-container">
-            <div
-              className="action-title"
-              style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-            >
-              <Icon name="description" size="22px" />
-              <h4>Description</h4>
-            </div>
-            {showDescriptionInput ? (
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                onBlur={handleDescriptionUpdate}
-              />
-            ) : (
-              // size="lg"
-              <Button
-                scale="neutral"
-                fullwidth="true"
-                className="btn-description"
-                onClick={() => setShowDescriptionInput(true)}
-              >
-                {description || 'Add more detailed description...'}
-              </Button>
-            )}
-          </div>
+          <TaskDescription board={board} task={task} groupId={groupId} />
 
           <div className="activity-container">
             <div className="action-title">
@@ -230,7 +206,8 @@ export function TaskDetails({ task: initialTask, groupId }) {
                 <Icon name="activity" size="22px" />
                 <h4>Activity</h4>
               </div>
-              <Button scale="neutral" className="btn-activity">
+
+              <Button scale="neutral" className="btn-activity" radius="3px">
                 Hide details
               </Button>
             </div>

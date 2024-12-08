@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
+import { boardService } from 'services/board.service';
 import { Avatar } from '@ui'
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { updateTask } from 'store/board/board.actions'
 import styled from 'styled-components'
@@ -13,7 +14,7 @@ export function MembersMenu({ context = 'default', task, groupId }) {
   const availableMembers = board.members
     .filter(member => {
       if (!searchMember) return true
-      
+
       return (
         member.fullname?.toLowerCase().includes(searchMember.toLowerCase()) ||
         member.username?.toLowerCase().includes(searchMember.toLowerCase())
@@ -43,21 +44,25 @@ export function MembersMenu({ context = 'default', task, groupId }) {
         value={searchMember}
         onChange={(e) => setSearchMember(e.target.value)}
       />
+
       <StyledDiv>
         <h3>{context === 'plusIcon' ? 'Add member' : 'Board members'}</h3>
       </StyledDiv>
+
       {availableMembers.map((member) => (
         <MemberDiv
           key={member._id}
           onClick={() => handleMemberToggle(member._id)}
         >
           <Avatar data={member} />
+
           <div>{member.fullname}</div>
+
           {memberIds.includes(member._id)}
         </MemberDiv>
       ))}
     </MembersMenuWrapper>
-  )
+  );
 }
 
 const MembersMenuWrapper = styled.div`
@@ -82,25 +87,24 @@ const SearchInput = styled.input`
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 16px;
 
   h3 {
-    margin-top: 16px;
     color: var(--ds-text-subtle);
     font-size: 12px;
     font-weight: 600;
   }
-`
-
-const MemberDiv = styled.div`
-    display: flex;
-    width: 100%;
-    padding: 10px 5px;
-    border-radius: 3px;
-    gap: 10px;
-
-    &:hover {
-      background-color: var(--ds-background-neutral);
-      cursor: pointer;
-    }
 `;
 
+const MemberDiv = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: 3px;
+  gap: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--ds-background-neutral);
+  }
+`;
