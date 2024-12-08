@@ -1,4 +1,5 @@
-export * from './Menu.jsx';
-export * from './Popover.jsx';
+export * from './Menu.jsx'
+export * from './Popover.jsx'
 export * from './MembersMenu.jsx'
 export * from './LabelMenu.jsx'
+export * from '../../components/task-details/components/JoinButton.jsx'

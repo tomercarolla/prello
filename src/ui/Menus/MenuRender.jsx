@@ -17,7 +17,7 @@ export function MenuRender({
         return <LabelMenu context={context} task={task} groupId={groupId} />;
 
       case 'member':
-        return <MembersMenu context={context} user={user} boardId={boardId} />;
+        return <MembersMenu context={context} groupId={groupId} task={task} />;
 
       default:
         return <div>Menu not found</div>;
@@ -25,20 +25,20 @@ export function MenuRender({
   }
 
   const defaultTrigger = (
-    <Button className="btn-nav" scale="neutral">
-      <Icon name={icon} size="18px" style={{ color: 'var(--ds-text)' }} />
+    <Button radius="3px" fullwidth="true" className="btn-nav" scale="neutral">
+      <Icon name={icon} size="18px" />
 
-      {context !== 'plusIcon' ? <span>{text}</span> : null}
+      {context !== 'plusIcon' && <span>{text}</span>}
     </Button>
   );
 
   const trigger = customTrigger || defaultTrigger;
 
   return (
-    <div className="btn-container" style={{ position: 'relative' }}>
+    <li>
       <Menu trigger={trigger} title={text}>
         {renderMenuContent()}
       </Menu>
-    </div>
+    </li>
   );
 }

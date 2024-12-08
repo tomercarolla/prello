@@ -1,14 +1,14 @@
 import { httpService } from './http.service';
 
 export const userService = {
-  getUsers,
+  query,
   getById,
   update,
   remove,
   getLoggedinUser,
 };
 
-async function getUsers() {
+async function query() {
   try {
     return await httpService.get(`user`);
   } catch (err) {

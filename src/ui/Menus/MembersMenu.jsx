@@ -1,39 +1,61 @@
 import { Avatar } from '@ui';
-import { useEffect, useState } from 'react';
-import { boardService } from 'services/board.service';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { updateTask } from 'store/board/board.actions';
 import styled from 'styled-components';
 
-export function MembersMenu({ context = 'default', boardId }) {
-  const [board, setBoard] = useState(null);
+export function MembersMenu({ context = 'default', task, groupId }) {
+  const board = useSelector((state) => state.boardModule.board);
+  const currentUser = useSelector((state) => state.userModule.user);
+  const memberIds = task.memberIds || [];
+  const [searchMember, setSearchMember] = useState('');
+  const availableMembers = board.members.filter((member) => {
+    if (!searchMember) return true;
 
-  useEffect(() => {
-    loadBoard();
-  }, [boardId]);
+    return (
+      member.fullname?.toLowerCase().includes(searchMember.toLowerCase()) ||
+      member.username?.toLowerCase().includes(searchMember.toLowerCase())
+    );
+  });
 
-  async function loadBoard() {
+  async function handleMemberToggle(memberId) {
     try {
-      const loadedBoard = await boardService.getById(boardId);
-      setBoard(loadedBoard);
+      const updatedTask = {
+        ...task,
+        memberIds: task.memberIds?.includes(memberId)
+          ? task.memberIds.filter((id) => id !== memberId)
+          : [...(task.memberIds || []), memberId],
+      };
+
+      await updateTask(board._id, groupId, updatedTask);
     } catch (err) {
-      console.error('Failed to load board:', err);
+      console.error('Failed to toggle member:', err);
     }
   }
 
-  if (!board) return null;
-
   return (
     <MembersMenuWrapper context={context}>
-      <SearchInput type="text" placeholder="Search members" />
+      <SearchInput
+        type="text"
+        placeholder="Search members"
+        value={searchMember}
+        onChange={(e) => setSearchMember(e.target.value)}
+      />
 
       <StyledDiv>
         <h3>{context === 'plusIcon' ? 'Add member' : 'Board members'}</h3>
       </StyledDiv>
 
-      {board.members.map((member) => (
-        <MemberDiv key={member._id}>
+      {availableMembers.map((member) => (
+        <MemberDiv
+          key={member._id}
+          onClick={() => handleMemberToggle(member._id)}
+        >
           <Avatar data={member} />
 
           <div>{member.fullname}</div>
+
+          {memberIds.includes(member._id)}
         </MemberDiv>
       ))}
     </MembersMenuWrapper>
