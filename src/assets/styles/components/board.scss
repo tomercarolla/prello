@@ -96,6 +96,7 @@
     display: flex;
     max-height: 100%;
     width: 272px;
+    min-width: 272px;
 
     &.collapsed {
       padding: 8px 4px 16px;

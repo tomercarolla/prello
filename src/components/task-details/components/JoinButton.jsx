@@ -8,20 +8,20 @@ export function JoinButton({ task, groupId }) {
   const board = useSelector((state) => state.boardModule.board);
   const loggedInUser = useSelector((state) => state.userModule.user);
   const memberIds = task.memberIds || [];
-  const isJoined = memberIds.includes(loggedInUser._id);
+  const isLeft = memberIds.includes(loggedInUser._id);
 
   async function handleToggleJoin() {
     try {
       const updatedTask = {
         ...task,
-        memberIds: isJoined
+        memberIds: isLeft
           ? memberIds.filter((id) => id !== loggedInUser._id)
           : [...memberIds, loggedInUser._id],
       };
 
       const activity = {
         id: utilService.makeActivityId(),
-        txt: isJoined ? 'joined this card' : 'left this card',
+        txt: isLeft ? 'left this card' : 'joined this card',
         createdAt: Date.now(),
         byMember: {
           _id: loggedInUser._id,
@@ -52,9 +52,9 @@ export function JoinButton({ task, groupId }) {
       radius="3px"
       className="btn-nav"
     >
-      <Icon name={isJoined ? 'unjoin' : 'join'} size="18px" />
+      <Icon name={isLeft ? 'unjoin' : 'join'} size="18px" />
 
-      <span>{isJoined ? 'Leave' : 'Join'}</span>
+      <span>{isLeft ? 'Leave' : 'Join'}</span>
     </Button>
   );
 }
