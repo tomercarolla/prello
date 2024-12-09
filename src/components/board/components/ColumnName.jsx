@@ -15,8 +15,6 @@ export function ColumnName({ group }) {
     }
   }, [showTextArea]);
 
-  //todo - update group in store
-
   return (
     <div role="textbox" className="name" onClick={() => setShowTextArea(true)}>
       {showTextArea ? (

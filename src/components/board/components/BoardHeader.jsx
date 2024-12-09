@@ -1,10 +1,11 @@
 import { Button, Icon } from '@ui';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { updateBoard } from '../../../store/board/board.actions.js';
 
-export function BoardHeader() {
+export function BoardHeader({ board }) {
   const { t } = useTranslation();
-  const [boardName, setBoardName] = useState('Basic Board');
+  const [boardName, setBoardName] = useState(board.title);
   const [showInput, setShowInput] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const inputRef = useRef(null);
@@ -28,9 +29,22 @@ export function BoardHeader() {
             <input
               type="text"
               ref={inputRef}
-              onBlur={() => setShowInput(false)}
               value={boardName}
               onChange={(e) => setBoardName(e.target.value)}
+              onBlur={async () => {
+                if (boardName.trim() === '') {
+                  setBoardName(board.title);
+                } else {
+                  const updatedBoard = {
+                    ...board,
+                    title: boardName,
+                  };
+
+                  await updateBoard(updatedBoard);
+                }
+
+                setShowInput(false);
+              }}
             />
           ) : (
             <h1>{boardName}</h1>

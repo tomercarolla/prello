@@ -15,8 +15,6 @@ export function GroupName({ group }) {
     }
   }, [showTextArea]);
 
-  //todo - update group in the db
-
   return (
     <div role="textbox" className="name" onClick={() => setShowTextArea(true)}>
       {showTextArea ? (
