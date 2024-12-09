@@ -224,7 +224,7 @@ export function Board() {
   return (
     <BoardProvider>
       <div className="board">
-        <BoardHeader />
+        {board ? <BoardHeader board={board} /> : null}
 
         <div className="canvas">
           <div ref={listRef} className="list" {...event}>
