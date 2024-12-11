@@ -36,10 +36,8 @@ async function addTask(boardId, groupId, task) {
 }
 
 async function save(boardId, groupId, task) {
-  const board = await boardService.getById(boardId)
-  const group = Object.values(board.groups).find(
-    (group) => group.id === groupId
-  );
+  const board = await boardService.getById(boardId);
+  const group = board.groups.find((group) => group.id === groupId);
 
   if (task.id) {
     const idx = group.tasks.findIndex((currTask) => currTask.id === task.id);

@@ -1,4 +1,3 @@
-import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { getReorderDestinationIndex } from '@atlaskit/pragmatic-drag-and-drop-hitbox/dist/types/get-reorder-destination-index.js';
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/dist/types/entry-point/element/adapter.js';
 import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
@@ -6,23 +5,8 @@ import _ from 'lodash';
 import { useCallback, useEffect } from 'react';
 import { updateBoard } from '../../store/board/board.actions.js';
 
-export const ReorderGroupExample = () => {
+export const ReorderGroup = () => {
   const board = [];
-
-  const reorderGroup = useCallback(
-    ({ startIndex, finishIndex }) => {
-      const updatedBoard = _.cloneDeep(board);
-
-      updatedBoard.groups = reorder({
-        list: updatedBoard.groups,
-        startIndex,
-        finishIndex,
-      });
-
-      updateBoard(updatedBoard);
-    },
-    [board],
-  );
 
   useEffect(() => {
     return monitorForElements({
@@ -43,12 +27,9 @@ export const ReorderGroupExample = () => {
             (group) => group.id === target.data.groupId,
           );
 
-          const closestEdgeOfTarget = extractClosestEdge(target.data);
-
           const finishIndex = getReorderDestinationIndex({
             startIndex,
             indexOfTarget,
-            closestEdgeOfTarget,
             axis: 'horizontal',
           });
 
@@ -61,4 +42,19 @@ export const ReorderGroupExample = () => {
       },
     });
   }, [board, reorderGroup]);
+
+  const reorderGroup = useCallback(
+    ({ startIndex, finishIndex }) => {
+      const updatedBoard = _.cloneDeep(board);
+
+      updatedBoard.groups = reorder({
+        list: updatedBoard.groups,
+        startIndex,
+        finishIndex,
+      });
+
+      updateBoard(updatedBoard);
+    },
+    [board],
+  );
 };

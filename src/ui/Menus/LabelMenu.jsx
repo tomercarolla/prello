@@ -337,6 +337,7 @@ const List = styled.ul`
 
 const Label = styled.div`
   display: flex;
+  align-items: center;
   position: relative;
   width: 100%;
   margin: 0;
