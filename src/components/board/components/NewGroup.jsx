@@ -71,6 +71,7 @@ export function NewGroup({ boardId, isAddingGroup, setIsAddingGroup }) {
 
             const newGroup = {
               title: value,
+              tasks: [],
             };
 
             await addGroup(boardId, newGroup);
